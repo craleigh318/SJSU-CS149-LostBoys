@@ -7,17 +7,7 @@
 //
 
 #include "simulated_process.h"
-
-float getRandomFloat(float minimum, float maximum)
-{
-    float floatWithinOne = ((float)rand()) / ((float)RAND_MAX);
-    return (maximum * floatWithinOne) - (minimum * floatWithinOne) + minimum;
-}
-
-int getRandomInt(int minimum, int maximum)
-{
-    return (rand() % (maximum - minimum + 1)) + minimum;
-}
+#include "helper_functions.h"
 
 struct simulated_process new_simulated_process()
 {
