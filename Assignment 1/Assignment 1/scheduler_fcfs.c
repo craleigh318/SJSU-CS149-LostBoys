@@ -7,6 +7,7 @@
 //
 
 #include "scheduler_fcfs.h"
+#include "helper_functions.h"
 
 void finish_run()
 {
@@ -18,8 +19,7 @@ void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed)
     bool queueIsEmpty = (readyQueue.length <= 0);
     if (queueIsEmpty)
     {
-        printf("Queue is empty! Please enlarge queue next time.\n");
-        
+        printf("\nQueue is empty! Please enlarge queue next time.\n");
     }
     if (queueIsEmpty || (timeElapsed >= TIME_LIMIT))
     {
@@ -28,9 +28,19 @@ void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed)
     else
     {
         struct simulated_process nextProcess = readyQueue.processes[0];
-        ++readyQueue.processes;
-        --readyQueue.length;
-        float newTimeElapsed = timeElapsed + nextProcess.expectedRunTime;
+        float newTimeElapsed;
+        float nextArrivalTime = nextProcess.arrivalTime;
+        if (nextArrivalTime > timeElapsed)
+        {
+            newTimeElapsed = nextArrivalTime;
+        }
+        else
+        {
+            printf("P%d", 0);
+            ++readyQueue.processes;
+            --readyQueue.length;
+            newTimeElapsed = timeElapsed + nextProcess.expectedRunTime;
+        }
         pop_ready_queue(readyQueue, newTimeElapsed);
     }
 }
