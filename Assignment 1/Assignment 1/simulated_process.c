@@ -11,9 +11,11 @@
 
 struct simulated_process new_simulated_process()
 {
-    struct simulated_process newSimulatedProcess;
-    newSimulatedProcess.arrivalTime = getRandomFloat(0.0f, 99.0f);
-    newSimulatedProcess.expectedRunTime = getRandomFloat(0.1f, 10.0f);
-    newSimulatedProcess.priority = getRandomInt(1, 4);
+    struct simulated_process newSimulatedProcess =
+    {
+        getRandomFloat(0.0f, 99.0f),
+        getRandomFloat(0.1f, 10.0f),
+        getRandomInt(1, 4)
+    };
     return newSimulatedProcess;
 }

@@ -35,6 +35,13 @@ struct ready_queue
 struct ready_queue new_ready_queue(int length);
 
 /*
+ Returns a new ready queue with values copied from another ready queue.
+ 
+ Call delete_ready_queue when done!
+ */
+struct ready_queue copy_ready_queue(struct ready_queue copyingReadyQueue);
+
+/*
  Frees heap objects in the specified ready queue.
  */
 void delete_ready_queue(struct ready_queue * deletingQueue);

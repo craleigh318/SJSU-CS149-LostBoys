@@ -10,16 +10,26 @@
 
 struct ready_queue new_ready_queue(int length)
 {
-    struct ready_queue newReadyQueue;
-    newReadyQueue.length = length;
-    struct simulated_process processes[length];
-    for (int i; i < length; ++i)
+    struct ready_queue newReadyQueue =
     {
-        processes[i] = new_simulated_process();
+        length,
+        malloc(length * sizeof(struct simulated_process))
+    };
+    for (int i = 0; i < length; ++i)
+    {
+        newReadyQueue.processes[i] = new_simulated_process();
     }
-    size_t sizeOfProcesses = sizeof(processes);
-    newReadyQueue.processes = malloc(sizeOfProcesses);
-    memmove(newReadyQueue.processes, &processes, sizeOfProcesses);
+    return newReadyQueue;
+}
+
+struct ready_queue copy_ready_queue(struct ready_queue copyingReadyQueue)
+{
+    struct ready_queue newReadyQueue =
+    {
+        copyingReadyQueue.length,
+        malloc(sizeof(*copyingReadyQueue.processes))
+    };
+    *newReadyQueue.processes = *copyingReadyQueue.processes;
     return newReadyQueue;
 }
 

@@ -11,6 +11,7 @@
 		A44654E41A888AA0000E54E2 /* ready_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = A44654E21A888AA0000E54E2 /* ready_queue.c */; };
 		A47C1D091A8495F000E41BC2 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = A47C1D081A8495F000E41BC2 /* main.c */; };
 		A47C1D111A8496C400E41BC2 /* simulated_process.c in Sources */ = {isa = PBXBuildFile; fileRef = A47C1D0F1A8496C400E41BC2 /* simulated_process.c */; };
+		A4FE94171A8AFD6B00619332 /* scheduler_fcfs.c in Sources */ = {isa = PBXBuildFile; fileRef = A4FE94151A8AFD6B00619332 /* scheduler_fcfs.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,9 @@
 		A47C1D0F1A8496C400E41BC2 /* simulated_process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = simulated_process.c; sourceTree = "<group>"; };
 		A47C1D101A8496C400E41BC2 /* simulated_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simulated_process.h; sourceTree = "<group>"; };
 		A47C1D131A84972A00E41BC2 /* system_headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system_headers.h; sourceTree = "<group>"; };
+		A4FE94131A8AF79F00619332 /* process_scheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = process_scheduler.h; sourceTree = "<group>"; };
+		A4FE94151A8AFD6B00619332 /* scheduler_fcfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scheduler_fcfs.c; sourceTree = "<group>"; };
+		A4FE94161A8AFD6B00619332 /* scheduler_fcfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheduler_fcfs.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,9 @@
 				A44654E01A888413000E54E2 /* helper_functions.h */,
 				A44654E21A888AA0000E54E2 /* ready_queue.c */,
 				A44654E31A888AA0000E54E2 /* ready_queue.h */,
+				A4FE94131A8AF79F00619332 /* process_scheduler.h */,
+				A4FE94151A8AFD6B00619332 /* scheduler_fcfs.c */,
+				A4FE94161A8AFD6B00619332 /* scheduler_fcfs.h */,
 			);
 			path = "Assignment 1";
 			sourceTree = "<group>";
@@ -135,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4FE94171A8AFD6B00619332 /* scheduler_fcfs.c in Sources */,
 				A44654E11A888413000E54E2 /* helper_functions.c in Sources */,
 				A47C1D111A8496C400E41BC2 /* simulated_process.c in Sources */,
 				A47C1D091A8495F000E41BC2 /* main.c in Sources */,
@@ -149,7 +157,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -164,7 +172,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -189,7 +197,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -206,7 +214,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
