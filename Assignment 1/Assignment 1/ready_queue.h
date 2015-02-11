@@ -46,4 +46,9 @@ struct ready_queue copy_ready_queue(struct ready_queue copyingReadyQueue);
  */
 void delete_ready_queue(struct ready_queue * deletingQueue);
 
+/*
+ Sorts a ready queue by arrival time
+ */
+void sort_ready_queue(struct ready_queue * sortingQueue);
+
 #endif /* defined(__Assignment_1__ready_queue__) */

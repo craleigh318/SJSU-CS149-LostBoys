@@ -44,6 +44,7 @@ int main(int argc, const char * argv[])
     srand((unsigned int)time(NULL));
     int queueSize = 4;
     struct ready_queue randomQueue = new_ready_queue(queueSize);
+    sort_ready_queue(&randomQueue);
     print_ready_queue(randomQueue);
     run_schedulers(randomQueue);
     delete_ready_queue(&randomQueue);
