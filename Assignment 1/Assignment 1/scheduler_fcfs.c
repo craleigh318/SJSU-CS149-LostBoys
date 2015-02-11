@@ -8,8 +8,6 @@
 
 #include "scheduler_fcfs.h"
 
-const float TIME_LIMIT = 100.0f;
-
 void finish_run()
 {
     printf("\n");
