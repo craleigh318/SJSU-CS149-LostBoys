@@ -34,7 +34,9 @@ void print_ready_queue(struct ready_queue printingQueue)
  */
 void run_schedulers(struct ready_queue runningQueue)
 {
-    schedule_fcfs(runningQueue);
+    struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
+    schedule_fcfs(queueFCFS);
+    delete_ready_queue(&queueFCFS);
 }
 
 int main(int argc, const char * argv[])
