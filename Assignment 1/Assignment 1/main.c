@@ -37,15 +37,20 @@ void run_schedulers(struct ready_queue runningQueue)
     struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
     schedule_fcfs(queueFCFS);
     delete_ready_queue(&queueFCFS);
+
+    struct ready_queue queueSRT = copy_ready_queue(runningQueue);
+    schedule_SRT(queueSRT);
+    delete_ready_queue(&queueSRT);
 }
 
 int main(int argc, const char * argv[])
 {
     srand((unsigned int)time(NULL));
-    int queueSize = 4;
+    int queueSize = 10;
     struct ready_queue randomQueue = new_ready_queue(queueSize);
     sort_ready_queue(&randomQueue);
     print_ready_queue(randomQueue);
+
     run_schedulers(randomQueue);
     delete_ready_queue(&randomQueue);
     return 0;
