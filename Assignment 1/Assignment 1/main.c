@@ -46,7 +46,7 @@ void run_schedulers(struct ready_queue runningQueue)
 int main(int argc, const char * argv[])
 {
     srand((unsigned int)time(NULL));
-    int queueSize = 10;
+    int queueSize = 5;
     struct ready_queue randomQueue = new_ready_queue(queueSize);
     sort_ready_queue(&randomQueue);
     print_ready_queue(randomQueue);

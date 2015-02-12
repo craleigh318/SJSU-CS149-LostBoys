@@ -9,6 +9,7 @@
 #ifndef __Assignment_1__scheduler_fcfs__
 #define __Assignment_1__scheduler_fcfs__
 #include "system_headers.h"
+#include "helper_functions.h"
 #include "ready_queue.h"
 
 /*

@@ -24,18 +24,22 @@ struct ready_queue new_ready_queue(int length)
 
 struct ready_queue copy_ready_queue(struct ready_queue copyingReadyQueue)
 {
-    struct ready_queue newReadyQueue =
-    {
-        copyingReadyQueue.length,
-        malloc(sizeof(*copyingReadyQueue.processes))
-    };
-    *newReadyQueue.processes = *copyingReadyQueue.processes;
+    struct ready_queue newReadyQueue;
+    newReadyQueue.length = copyingReadyQueue.length;
+
+    newReadyQueue.processes = malloc(sizeof(newReadyQueue.processes));
+    for(int i = 0; i < copyingReadyQueue.length; i++) {
+    	newReadyQueue.processes[i].arrivalTime = copyingReadyQueue.processes[i].arrivalTime;
+    	newReadyQueue.processes[i].expectedRunTime = copyingReadyQueue.processes[i].expectedRunTime;
+    	newReadyQueue.processes[i].priority = copyingReadyQueue.processes[i].priority;
+    }
+
     return newReadyQueue;
 }
 
 void delete_ready_queue(struct ready_queue * deletingQueue)
 {
-    free(deletingQueue->processes);
+    //free(deletingQueue->processes);
 }
 
 int partition(struct simulated_process * a, int l, int r) {
