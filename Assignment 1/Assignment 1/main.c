@@ -23,7 +23,7 @@ void print_ready_queue(struct ready_queue printingQueue)
     int i = 0;
     while (i < queueSize)
     {
-        printf("Process %d:\n", i);
+        printf("Process %d:\n", (i + 1));
         print_simulated_process(printingQueue.processes[i]);
         printf("\n");
         ++i;
@@ -47,7 +47,7 @@ void run_schedulers(struct ready_queue runningQueue)
 int main(int argc, const char * argv[])
 {
     srand((unsigned int)time(NULL));
-    int queueSize = 64;
+    int queueSize = 32;
     struct ready_queue randomQueue = new_ready_queue(queueSize);
     sort_ready_queue(&randomQueue);
     print_ready_queue(randomQueue);

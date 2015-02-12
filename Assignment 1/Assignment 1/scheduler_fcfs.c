@@ -8,14 +8,16 @@
 
 #include "scheduler_fcfs.h"
 #include "helper_functions.h"
+#include "scheduler_statistics.h"
 
-void finish_run(float averageWaitTime)
+void finish_run(struct scheduler_statistics statistics)
 {
-    printf("\nAverage Wait Time: %f\n", averageWaitTime);
+    printf("\nWait Time: %f\n", statistics.waiting_time);
 }
 
-void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed, int numPops, float averageWaitTime)
+void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics statistics, float timeElapsed)
 {
+    int numPops = statistics.throughput;
     bool queueIsEmpty = (numPops >= readyQueue.length);
     if (queueIsEmpty)
     {
@@ -23,36 +25,30 @@ void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed, int numPo
     }
     if (queueIsEmpty || (timeElapsed >= TIME_LIMIT))
     {
-        finish_run(averageWaitTime);
+        finish_run(statistics);
     }
     else
     {
         struct simulated_process nextProcess = readyQueue.processes[numPops];
         float newTimeElapsed;
-        float newAverageWaitTime;
         float nextArrivalTime = nextProcess.arrivalTime;
-        int newNumPops;
         if (nextArrivalTime > timeElapsed)
         {
             newTimeElapsed = nextArrivalTime;
-            newNumPops = numPops;
-            newAverageWaitTime = ((((float)(numPops) * averageWaitTime)
-                                   + nextArrivalTime - timeElapsed) / (float)(numPops + 1));
+            statistics.waiting_time += (nextArrivalTime - timeElapsed);
         }
         else
         {
-            newAverageWaitTime = averageWaitTime;
-            newNumPops = numPops + 1;
-            printf(" P%d", numPops);
+            ++statistics.throughput;
+            printf(" P%d", statistics.throughput);
             newTimeElapsed = timeElapsed + nextProcess.expectedRunTime;
         }
-        pop_ready_queue(readyQueue, newTimeElapsed, newNumPops, newAverageWaitTime);
+        pop_ready_queue(readyQueue, statistics, newTimeElapsed);
     }
 }
 
 void schedule_fcfs(struct ready_queue readyQueue)
 {
     printf("First Come, First Served:\nTime Line:");
-    float timeElapsed = 0.0f;
-    pop_ready_queue(readyQueue, timeElapsed, 0, 0.0f);
+    pop_ready_queue(readyQueue, new_scheduler_statistics(), 0.0f);
 }
