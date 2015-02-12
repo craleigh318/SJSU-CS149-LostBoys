@@ -14,7 +14,7 @@ void finish_run(float averageWaitTime)
     printf("\nAverage Wait Time: %f\n", averageWaitTime);
 }
 
-void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed, float numPops, float averageWaitTime)
+void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed, int numPops, float averageWaitTime)
 {
     bool queueIsEmpty = (readyQueue.length <= 0);
     if (queueIsEmpty)
@@ -27,25 +27,25 @@ void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed, float num
     }
     else
     {
-        struct simulated_process nextProcess = readyQueue.processes[0];
+        struct simulated_process nextProcess = readyQueue.processes[numPops - 1];
         float newTimeElapsed;
         float newAverageWaitTime;
         float nextArrivalTime = nextProcess.arrivalTime;
         if (nextArrivalTime > timeElapsed)
         {
             newTimeElapsed = nextArrivalTime;
-            newAverageWaitTime = ((((numPops - 1.0f) * averageWaitTime)
-                                   + nextArrivalTime - timeElapsed) / numPops);
+            newAverageWaitTime = ((((float)(numPops - 1) * averageWaitTime)
+                                   + nextArrivalTime - timeElapsed) / (float)numPops);
         }
         else
         {
             newAverageWaitTime = averageWaitTime;
             printf(" P%d", 0);
-            ++readyQueue.processes;
             --readyQueue.length;
             newTimeElapsed = timeElapsed + nextProcess.expectedRunTime;
+            printf("%f", nextProcess.expectedRunTime);
         }
-        pop_ready_queue(readyQueue, newTimeElapsed, (numPops + 1.0f), newAverageWaitTime);
+        pop_ready_queue(readyQueue, newTimeElapsed, (numPops + 1), newAverageWaitTime);
     }
 }
 
@@ -53,5 +53,5 @@ void schedule_fcfs(struct ready_queue readyQueue)
 {
     printf("First Come, First Served:\nTime Line:");
     float timeElapsed = 0.0f;
-    pop_ready_queue(readyQueue, timeElapsed, 1.0f, 0.0f);
+    pop_ready_queue(readyQueue, timeElapsed, 1, 0.0f);
 }
