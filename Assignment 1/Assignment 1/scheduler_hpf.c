@@ -47,6 +47,7 @@ void schedule_hpf(struct ready_queue readyQueue) {
 
 void preemptive(struct ready_queue readyQueue) {
 // preemptive scheduling , use RR with a time slice of 1 quantum for each priority queue
+// update later
 }
 void nonpreemptive(struct ready_queue readyQueue) {
 // nonpreemptive scheduling , use FCFS
