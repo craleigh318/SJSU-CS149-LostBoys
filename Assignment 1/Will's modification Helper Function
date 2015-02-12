@@ -1,0 +1,25 @@
+#include "helper_functions.h"
+
+float getRandomFloat(float minimum, float maximum)
+{
+    float floatWithinOne = ((float)rand()) / ((float)RAND_MAX);
+    return (maximum * floatWithinOne) - (minimum * floatWithinOne) + minimum;
+}
+
+int getRandomInt(int minimum, int maximum)
+{
+    return (rand() % (maximum - minimum + 1)) + minimum;
+}
+
+char getRandomLetter()
+{
+	char letters[27]; 	// Create a long string of letters "ABCDE........Z" just like this 
+	for (int i = 0 ; i < letters.length; i++) 
+	{
+		letters[i] = i + 'A'; // Generate those ABCDE.... into the character string 
+	}
+	int number = rand() % letters.length; // Get a random number from 0 to 27 that will represent the index 
+	char letter = letters[number]; // Store index of letters containing the letter 
+	letters[number] = '/0'; // Once letter is saved in 'char letter' , remove it from long string to prevent reuse 
+	return letter; // return random letter
+}
