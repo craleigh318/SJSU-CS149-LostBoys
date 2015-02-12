@@ -16,7 +16,7 @@ void finish_run(float averageWaitTime)
 
 void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed, int numPops, float averageWaitTime)
 {
-    bool queueIsEmpty = (readyQueue.length <= 0);
+    bool queueIsEmpty = (numPops >= readyQueue.length);
     if (queueIsEmpty)
     {
         printf("\nQueue is empty! Please enlarge queue next time.\n");
@@ -27,25 +27,26 @@ void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed, int numPo
     }
     else
     {
-        struct simulated_process nextProcess = readyQueue.processes[numPops - 1];
+        struct simulated_process nextProcess = readyQueue.processes[numPops];
         float newTimeElapsed;
         float newAverageWaitTime;
         float nextArrivalTime = nextProcess.arrivalTime;
+        int newNumPops;
         if (nextArrivalTime > timeElapsed)
         {
             newTimeElapsed = nextArrivalTime;
-            newAverageWaitTime = ((((float)(numPops - 1) * averageWaitTime)
-                                   + nextArrivalTime - timeElapsed) / (float)numPops);
+            newNumPops = numPops;
+            newAverageWaitTime = ((((float)(numPops) * averageWaitTime)
+                                   + nextArrivalTime - timeElapsed) / (float)(numPops + 1));
         }
         else
         {
             newAverageWaitTime = averageWaitTime;
-            printf(" P%d", 0);
-            --readyQueue.length;
+            newNumPops = numPops + 1;
+            printf(" P%d", numPops);
             newTimeElapsed = timeElapsed + nextProcess.expectedRunTime;
-            printf("%f", nextProcess.expectedRunTime);
         }
-        pop_ready_queue(readyQueue, newTimeElapsed, (numPops + 1), newAverageWaitTime);
+        pop_ready_queue(readyQueue, newTimeElapsed, newNumPops, newAverageWaitTime);
     }
 }
 
@@ -53,5 +54,5 @@ void schedule_fcfs(struct ready_queue readyQueue)
 {
     printf("First Come, First Served:\nTime Line:");
     float timeElapsed = 0.0f;
-    pop_ready_queue(readyQueue, timeElapsed, 1, 0.0f);
+    pop_ready_queue(readyQueue, timeElapsed, 0, 0.0f);
 }

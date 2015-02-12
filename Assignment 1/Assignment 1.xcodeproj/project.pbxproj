@@ -13,6 +13,7 @@
 		A47C1D111A8496C400E41BC2 /* simulated_process.c in Sources */ = {isa = PBXBuildFile; fileRef = A47C1D0F1A8496C400E41BC2 /* simulated_process.c */; };
 		A4AF1E511A8C1BA300B9E813 /* shortest_remaining_time.c in Sources */ = {isa = PBXBuildFile; fileRef = A4AF1E4F1A8C1BA300B9E813 /* shortest_remaining_time.c */; };
 		A4AF1E541A8C206900B9E813 /* scheduler_sjf.c in Sources */ = {isa = PBXBuildFile; fileRef = A4AF1E521A8C206900B9E813 /* scheduler_sjf.c */; };
+		A4AF1E571A8C8CBF00B9E813 /* scheduler_statistics.c in Sources */ = {isa = PBXBuildFile; fileRef = A4AF1E551A8C8CBF00B9E813 /* scheduler_statistics.c */; };
 		A4FE94171A8AFD6B00619332 /* scheduler_fcfs.c in Sources */ = {isa = PBXBuildFile; fileRef = A4FE94151A8AFD6B00619332 /* scheduler_fcfs.c */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,8 @@
 		A4AF1E501A8C1BA300B9E813 /* shortest_remaining_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shortest_remaining_time.h; sourceTree = "<group>"; };
 		A4AF1E521A8C206900B9E813 /* scheduler_sjf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scheduler_sjf.c; sourceTree = "<group>"; };
 		A4AF1E531A8C206900B9E813 /* scheduler_sjf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheduler_sjf.h; sourceTree = "<group>"; };
+		A4AF1E551A8C8CBF00B9E813 /* scheduler_statistics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scheduler_statistics.c; sourceTree = "<group>"; };
+		A4AF1E561A8C8CBF00B9E813 /* scheduler_statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheduler_statistics.h; sourceTree = "<group>"; };
 		A4FE94151A8AFD6B00619332 /* scheduler_fcfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scheduler_fcfs.c; sourceTree = "<group>"; };
 		A4FE94161A8AFD6B00619332 /* scheduler_fcfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheduler_fcfs.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +93,8 @@
 				A4FE94161A8AFD6B00619332 /* scheduler_fcfs.h */,
 				A4AF1E521A8C206900B9E813 /* scheduler_sjf.c */,
 				A4AF1E531A8C206900B9E813 /* scheduler_sjf.h */,
+				A4AF1E551A8C8CBF00B9E813 /* scheduler_statistics.c */,
+				A4AF1E561A8C8CBF00B9E813 /* scheduler_statistics.h */,
 			);
 			path = "Assignment 1";
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4AF1E571A8C8CBF00B9E813 /* scheduler_statistics.c in Sources */,
 				A4FE94171A8AFD6B00619332 /* scheduler_fcfs.c in Sources */,
 				A4AF1E511A8C1BA300B9E813 /* shortest_remaining_time.c in Sources */,
 				A44654E11A888413000E54E2 /* helper_functions.c in Sources */,
