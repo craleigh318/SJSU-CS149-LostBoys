@@ -10,6 +10,7 @@
 #include "ready_queue.h"
 #include "scheduler_fcfs.h"
 #include "shortest_remaining_time.h"
+#include "round_robin.h"
 
 void print_simulated_process(struct simulated_process printingProcess)
 {
