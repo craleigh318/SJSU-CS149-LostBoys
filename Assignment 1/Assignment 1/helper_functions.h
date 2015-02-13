@@ -10,6 +10,8 @@
 #define __Assignment_1__helper_functions__
 #include "system_headers.h"
 
+extern const float TIME_LIMIT;
+
 /*
  Returns a random float, ranging from the specified minimum and maximum.
  */

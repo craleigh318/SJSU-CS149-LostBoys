@@ -9,6 +9,7 @@
 #include "system_headers.h"
 #include "ready_queue.h"
 #include "scheduler_fcfs.h"
+#include "shortest_remaining_time.h"
 
 void print_simulated_process(struct simulated_process printingProcess)
 {
@@ -22,7 +23,7 @@ void print_ready_queue(struct ready_queue printingQueue)
     int i = 0;
     while (i < queueSize)
     {
-        printf("Process %c:\n", i + 'A');
+        printf("Process %d:\n", (i + 1));
         print_simulated_process(printingQueue.processes[i]);
         printf("\n");
         ++i;
@@ -37,15 +38,20 @@ void run_schedulers(struct ready_queue runningQueue)
     struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
     schedule_fcfs(queueFCFS);
     delete_ready_queue(&queueFCFS);
+
+    struct ready_queue queueSRT = copy_ready_queue(runningQueue);
+    schedule_SRT(queueSRT);
+    delete_ready_queue(&queueSRT);
 }
 
 int main(int argc, const char * argv[])
 {
     srand((unsigned int)time(NULL));
-    int queueSize = 4;
+    int queueSize = 32;
     struct ready_queue randomQueue = new_ready_queue(queueSize);
     sort_ready_queue(&randomQueue);
     print_ready_queue(randomQueue);
+
     run_schedulers(randomQueue);
     delete_ready_queue(&randomQueue);
     return 0;

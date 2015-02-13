@@ -13,7 +13,4 @@
 #include <time.h>
 #include <string.h>
 #include <stdbool.h>
-
-const float TIME_LIMIT = 100.0f;
-
 #endif

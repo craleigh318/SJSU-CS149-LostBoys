@@ -7,37 +7,47 @@
 //
 
 #include "scheduler_fcfs.h"
+#include "helper_functions.h"
 
-void finish_run()
+void finish_run(struct scheduler_statistics statistics)
 {
-    printf("\n");
+    printf("\nWait Time: %f\n", statistics.waiting_time);
 }
 
-void pop_ready_queue(struct ready_queue readyQueue, float timeElapsed)
+void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics statistics, float timeElapsed)
 {
-    bool queueIsEmpty = (readyQueue.length <= 0);
+    int numPops = statistics.throughput;
+    bool queueIsEmpty = (numPops >= readyQueue.length);
     if (queueIsEmpty)
     {
-        printf("Queue is empty! Please enlarge queue next time.\n");
-        
+        printf("\nQueue is empty! Please enlarge queue next time.\n");
     }
     if (queueIsEmpty || (timeElapsed >= TIME_LIMIT))
     {
-        finish_run();
+        finish_run(statistics);
     }
     else
     {
-        struct simulated_process nextProcess = readyQueue.processes[0];
-        ++readyQueue.processes;
-        --readyQueue.length;
-        float newTimeElapsed = timeElapsed + nextProcess.expectedRunTime;
-        pop_ready_queue(readyQueue, newTimeElapsed);
+        struct simulated_process nextProcess = readyQueue.processes[numPops];
+        float newTimeElapsed;
+        float nextArrivalTime = nextProcess.arrivalTime;
+        if (nextArrivalTime > timeElapsed)
+        {
+            newTimeElapsed = nextArrivalTime;
+            statistics.waiting_time += (nextArrivalTime - timeElapsed);
+        }
+        else
+        {
+            ++statistics.throughput;
+            printf(" P%d", statistics.throughput);
+            newTimeElapsed = timeElapsed + nextProcess.expectedRunTime;
+        }
+        pop_ready_queue(readyQueue, statistics, newTimeElapsed);
     }
 }
 
 void schedule_fcfs(struct ready_queue readyQueue)
 {
-    printf("First Come, First Served:\n");
-    float timeElapsed = 0.0f;
-    pop_ready_queue(readyQueue, timeElapsed);
+    printf("First Come, First Served:\nTime Line:");
+    pop_ready_queue(readyQueue, new_scheduler_statistics(), 0.0f);
 }

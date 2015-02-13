@@ -24,12 +24,14 @@ struct ready_queue new_ready_queue(int length)
 
 struct ready_queue copy_ready_queue(struct ready_queue copyingReadyQueue)
 {
+    int length = copyingReadyQueue.length;
+    size_t sizeOfProcesses = length * sizeof(struct simulated_process);
     struct ready_queue newReadyQueue =
     {
-        copyingReadyQueue.length,
-        malloc(sizeof(*copyingReadyQueue.processes))
+        length,
+        malloc(sizeOfProcesses)
     };
-    *newReadyQueue.processes = *copyingReadyQueue.processes;
+    memcpy(newReadyQueue.processes, copyingReadyQueue.processes, sizeOfProcesses);
     return newReadyQueue;
 }
 
