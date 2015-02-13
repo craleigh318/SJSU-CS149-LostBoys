@@ -42,6 +42,10 @@ void run_schedulers(struct ready_queue runningQueue)
     struct ready_queue queueSRT = copy_ready_queue(runningQueue);
     schedule_SRT(queueSRT);
     delete_ready_queue(&queueSRT);
+
+    struct ready_queue queueRR = copy_ready_queue(runningQueue);
+    round_robin(queueRR);
+    delete_ready_queue(&queueRR);
 }
 
 int main(int argc, const char * argv[])
