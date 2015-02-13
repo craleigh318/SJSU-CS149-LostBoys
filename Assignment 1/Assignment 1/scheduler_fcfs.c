@@ -33,8 +33,8 @@ void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics 
         float nextArrivalTime = nextProcess.arrivalTime;
         if (nextArrivalTime > timeElapsed)
         {
-            newTimeElapsed = nextArrivalTime;
-            statistics.waiting_time += (nextArrivalTime - timeElapsed);
+            newTimeElapsed = ceilf(nextArrivalTime);
+            statistics.waiting_time += (newTimeElapsed - timeElapsed);
         }
         else
         {
