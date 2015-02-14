@@ -10,8 +10,13 @@ typedef struct List {
 List init_list(int length) {
 	List retList;
 	retList.length = 0;
+	retList.processes = malloc(length * sizeof(struct simulated_process));
 
 	return retList;
+}
+
+void delete_list(List* delList) {
+	free(delList->processes);
 }
 
 void copy_simulated_process(struct simulated_process* a, struct simulated_process* b) {
@@ -65,50 +70,29 @@ void quick_sort_run_time(struct simulated_process * a, int l, int r) {
 
 void schedule_SRT(struct ready_queue readyQueue) {
 	int curr_time = 0;
+	int time_slice = 1;
 	List runningList = init_list(readyQueue.length);
 	List completedList = init_list(readyQueue.length);
 
-//	push_process_to_list(&runningList, readyQueue.processes[0]);
-//
-//	push_process_to_list(&runningList, readyQueue.processes[1]);
-//
-//	push_process_to_list(&runningList, readyQueue.processes[2]);
-//
-//	push_process_to_list(&runningList, readyQueue.processes[3]);
-
-//	struct simulated_process currProcess = readyQueue.processes[0];
-//	push_process_to_list(&runningList, currProcess);
-//
-//	struct simulated_process currProcess = readyQueue.processes[0];
-//	push_process_to_list(&runningList, currProcess);
-//
-//	struct simulated_process currProcess = readyQueue.processes[0];
-//	push_process_to_list(&runningList, currProcess);
-//
-//	struct simulated_process currProcess = readyQueue.processes[0];
-//	push_process_to_list(&runningList, currProcess);
-
-
-//	for(int i = 0; i < 4; i++){
-//		printf("length: %i   arrival: %f   expected:%f   pri:%i\n",
-//				runningList.length,
-//				runningList.processes[i].arrivalTime,
-//				runningList.processes[i].expectedRunTime,
-//				runningList.processes[i].priority);
-//	}
-
-	while(curr_time < TIME_LIMIT) {
-		if(readyQueue.processes[0].arrivalTime < curr_time &&
-				readyQueue.length > 0) {
+	while(curr_time < TIME_LIMIT && completedList.length < readyQueue.length) {
+		if(readyQueue.processes[0].arrivalTime < curr_time) {
 			push_process_to_list(&runningList, readyQueue.processes[0]);
 			readyQueue.processes++;
 			readyQueue.length--;
 			quick_sort_run_time(runningList.processes, 0, runningList.length - 1);
 		}
-		//runningList.processes[0].expectedRunTime -= 1;
+		if(runningList.length > 0) {
+			runningList.processes[0].expectedRunTime -= time_slice;
+			if(runningList.processes[0].expectedRunTime < 0){
+				push_process_to_list(&completedList, runningList.processes[0]);
+				runningList.processes++;
+				runningList.length--;
+			}
+		}
 		curr_time++;
 	}
 
+	puts("Running List");
 	for(int i = 0; i < runningList.length; i++){
 		printf("length: %i   arrival: %f   expected:%f   pri:%i\n",
 				runningList.length,
@@ -116,4 +100,15 @@ void schedule_SRT(struct ready_queue readyQueue) {
 				runningList.processes[i].expectedRunTime,
 				runningList.processes[i].priority);
 	}
+
+	puts("Completed List");
+	for(int i = 0; i < completedList.length; i++){
+		printf("length: %i   arrival: %f   expected:%f   pri:%i\n",
+				completedList.length,
+				completedList.processes[i].arrivalTime,
+				completedList.processes[i].expectedRunTime,
+				completedList.processes[i].priority);
+	}
+
+	printf("\n");
 }
