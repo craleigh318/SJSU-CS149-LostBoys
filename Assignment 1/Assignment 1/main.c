@@ -9,7 +9,13 @@
 #include "system_headers.h"
 #include "ready_queue.h"
 #include "scheduler_fcfs.h"
+<<<<<<< HEAD
 #include "shortest_remaining_time.h"
+=======
+#include "scheduler_sjf.h"
+#include "scheduler_srt.h"
+#include "round_robin.h"
+>>>>>>> 2b9ce7ae32727800a67d9632beaf46577260db55
 
 void print_simulated_process(struct simulated_process printingProcess)
 {
@@ -38,6 +44,10 @@ void run_schedulers(struct ready_queue runningQueue)
     struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
     schedule_fcfs(queueFCFS);
     delete_ready_queue(&queueFCFS);
+    
+    struct ready_queue queueSJF = copy_ready_queue(runningQueue);
+    schedule_sjf(queueSJF);
+    delete_ready_queue(&queueSJF);
 
     struct ready_queue queueSRT = copy_ready_queue(runningQueue);
     schedule_SRT(queueSRT);

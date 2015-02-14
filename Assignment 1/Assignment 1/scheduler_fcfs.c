@@ -11,7 +11,7 @@
 
 void finish_run(struct scheduler_statistics statistics)
 {
-    printf("\nWait Time: %f\n", statistics.waiting_time);
+    printf("\nWait Time: %f\n\n", statistics.waiting_time);
 }
 
 void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics statistics, float timeElapsed)
