@@ -9,6 +9,7 @@
 #include "system_headers.h"
 #include "ready_queue.h"
 #include "scheduler_fcfs.h"
+#include "scheduler_sjf.h"
 #include "scheduler_srt.h"
 #include "round_robin.h"
 
@@ -39,6 +40,10 @@ void run_schedulers(struct ready_queue runningQueue)
     struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
     schedule_fcfs(queueFCFS);
     delete_ready_queue(&queueFCFS);
+    
+    struct ready_queue queueSJF = copy_ready_queue(runningQueue);
+    schedule_sjf(queueSJF);
+    delete_ready_queue(&queueSJF);
 
     struct ready_queue queueSRT = copy_ready_queue(runningQueue);
     schedule_SRT(queueSRT);
