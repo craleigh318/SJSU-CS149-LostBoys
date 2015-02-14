@@ -12,10 +12,12 @@
 
 struct scheduler_statistics
 {
-    float turnaround_time;
-    float waiting_time;
-    float response_time;
-    int throughput;
+    
+    float turnaround_time; // The amount of elapsed time from when a process enters the ready queue to when it completes execution.
+    float waiting_time; // Amount of time a process waits in the ready queue.
+    float response_time; // In an interactive environment, the amount of elapsed time from when a request was submitted until the first response is produced.
+    int throughput; // Number of processes that complete their execution per time unit.
+
 };
 
 /*
