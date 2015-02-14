@@ -9,8 +9,70 @@
 #include "round_robin.h"
 #include "helper_functions.h"
 
-void exec_round_robin(struct ready_queue readyQueue)
-{
+int next_process(struct ready_queue readyQueue, float timeElapsed, int index) {
+	int i = index+1;
+	while(i != index) {
+		if(i == readyQueue.length)
+		   i = 0;
+		else {
+			if(readyQueue.processes[i].expectedRunTime > 0.0 && readyQueue.processes[i].arrivalTime < timeElapsed)
+						return i;
+			i++;
+		}
+	}
+	return i;
+}
+
+int is_complete(struct ready_queue readyQueue, int index) {
+	if (readyQueue.processes[index].expectedRunTime <= 0.0)
+		return 1;
+	else
+		return 0;
+}
+
+int is_ready(struct ready_queue readyQueue, int index, float timeElapsed) {
+	if(readyQueue.processes[index].expectedRunTime > 0.0 && readyQueue.processes[index].arrivalTime < timeElapsed)
+		return 1;
+	else
+		return 0;
+}
+
+int ready_processes(struct ready_queue readyQueue, float timeElapsed) {
+	int i;
+	int readyProcesses = 0;
+	for(i = 0; i < readyQueue.length; i++){
+		if (is_ready(readyQueue, i, timeElapsed)) {
+			readyProcesses++;
+		}
+	}
+	return readyProcesses;
+}
+
+void flag(struct ready_queue readyQueue, int index) {
+	if(is_complete(readyQueue, index))
+		readyQueue.processes[index].priority = 0;
+}
+
+int is_not_flagged(struct ready_queue readyQueue, int index) {
+	if(readyQueue.processes[index].priority == 0)
+		return 0;
+	else
+		return 1;
+}
+
+int throughput(struct ready_queue readyQueue) {
+	int i;
+	int completeProcesses = 0;
+	for(i = 0; i < readyQueue.length; i++){
+		if (is_complete(readyQueue, i)) {
+			completeProcesses++;
+		}
+
+	}
+	return completeProcesses;
+}
+
+void exec_round_robin(struct ready_queue readyQueue) {
     bool queueIsEmpty = (readyQueue.length <= 0);
     float timeElapsed = 0.0;
     if (queueIsEmpty)
@@ -19,29 +81,37 @@ void exec_round_robin(struct ready_queue readyQueue)
     }
     else {
     	int i = 0;
-    	int done = 0;
-    	printf("There are %d elements in the queue!\n", readyQueue.length);
-    	while(timeElapsed < TIME_LIMIT && done < readyQueue.length) {
-    		if(i == readyQueue.length) {
-    			i = 0;
-    		}
-    		if(readyQueue.processes[i].expectedRunTime > 0.0) {
+    	float totalWait = 0;
+    	float totalTurnAround = 0;
+    	float avgWait = 0;
+    	float avgTurnaround = 0;
+    	printf("Time Line:\n");
+    	while(timeElapsed < TIME_LIMIT && throughput(readyQueue) < readyQueue.length) {
+
+    		if(is_ready(readyQueue, i, timeElapsed)) {
     			readyQueue.processes[i].expectedRunTime--;
-    			timeElapsed++;
-    			printf("P%d ", i+1);
+    			totalWait += ((ready_processes(readyQueue, timeElapsed) - 1) - throughput(readyQueue));
+       			printf("P%d-", i+1);
     		}
-    		else {
-    			done++;
+    		else if (is_complete(readyQueue, i) && is_not_flagged(readyQueue, i)){
+    			totalTurnAround += (timeElapsed - readyQueue.processes[i].arrivalTime);
+    			flag(readyQueue, i);
     		}
-    		 i++;
+    		i = next_process(readyQueue, timeElapsed, i);
+    		timeElapsed++;
     	}
-    	printf("\nTime elapsed: %f....%d process(es) were completed", timeElapsed, done);
+    	avgWait = totalWait/ready_processes(readyQueue, timeElapsed);
+    	avgTurnaround = totalTurnAround/throughput(readyQueue);
+    	printf("\n\nAverage Waiting Time: %f"
+    			"\nAverage Turnaround Time: %f"
+    			"\nThroughput: %d processes were completed"
+    			"\n\n%f quantas have elapsed",
+				avgWait, avgTurnaround, throughput(readyQueue),timeElapsed);
     }
 }
 
-void round_robin(struct ready_queue readyQueue)
-{
-    printf("\nRound Robin:\n");
+void round_robin(struct ready_queue readyQueue) {
+    printf("\nRound Robin ");
     exec_round_robin(readyQueue);
 }
 
