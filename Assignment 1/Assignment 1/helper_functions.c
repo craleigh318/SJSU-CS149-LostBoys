@@ -8,6 +8,8 @@
 
 #include "helper_functions.h"
 
+const float TIME_LIMIT = 100.0f;
+
 float getRandomFloat(float minimum, float maximum)
 {
     float floatWithinOne = ((float)rand()) / ((float)RAND_MAX);

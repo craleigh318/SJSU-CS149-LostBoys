@@ -30,6 +30,20 @@ int is_complete(struct ready_queue readyQueue, int index) {
 		return 0;
 }
 
+int is_not_flaggedCompleted(int completedProcess[], int index) {
+	if (completedProcess[index] == 0)
+		return 1;
+	else
+		return 0;
+}
+
+int is_not_flaggedVisited(int visitedProcesses[], int index) {
+	if (visitedProcesses[index] == 0)
+		return 1;
+	else
+		return 0;
+}
+
 int is_ready(struct ready_queue readyQueue, int index, float timeElapsed) {
 	if(readyQueue.processes[index].expectedRunTime > 0.0 && readyQueue.processes[index].arrivalTime < timeElapsed)
 		return 1;
@@ -48,7 +62,7 @@ int ready_processes(struct ready_queue readyQueue, float timeElapsed) {
 	return readyProcesses;
 }
 
-void flag(struct ready_queue readyQueue, int index) {
+/*void flag(struct ready_queue readyQueue, int index) {
 	if(is_complete(readyQueue, index))
 		readyQueue.processes[index].priority = 0;
 }
@@ -58,7 +72,7 @@ int is_not_flagged(struct ready_queue readyQueue, int index) {
 		return 0;
 	else
 		return 1;
-}
+}*/
 
 int throughput(struct ready_queue readyQueue) {
 	int i;
@@ -83,30 +97,52 @@ void exec_round_robin(struct ready_queue readyQueue) {
     	int i = 0;
     	float totalWait = 0;
     	float totalTurnAround = 0;
+    	float totalResponseTime = 0;
     	float avgWait = 0;
     	float avgTurnaround = 0;
+    	float avgResponseTime = 0;
+    	//int size = readyQueue.length;
+
+    	int completedFlag[readyQueue.length];
+    	memset(completedFlag, 0, readyQueue.length);
+
+    	int visitedFlag[readyQueue.length];
+    	memset(visitedFlag, 0, readyQueue.length);
+    	/*int j = 0;
+    	while(j < sizeof(completedFlag)) {
+
+    	}*/
+
+    	//int visitedFlag[size] = {0};
     	printf("Time Line:\n");
     	while(timeElapsed < TIME_LIMIT && throughput(readyQueue) < readyQueue.length) {
 
     		if(is_ready(readyQueue, i, timeElapsed)) {
     			readyQueue.processes[i].expectedRunTime--;
+    			if(is_not_flaggedVisited(visitedFlag, i)) {
+    				totalResponseTime += timeElapsed - readyQueue.processes[i].arrivalTime;
+    			}
+    			visitedFlag[i] = 1;
     			totalWait += ((ready_processes(readyQueue, timeElapsed) - 1) - throughput(readyQueue));
        			printf("P%d-", i+1);
     		}
-    		else if (is_complete(readyQueue, i) && is_not_flagged(readyQueue, i)){
+    		else if (is_complete(readyQueue, i) && (is_not_flaggedCompleted(completedFlag, i))){
     			totalTurnAround += (timeElapsed - readyQueue.processes[i].arrivalTime);
-    			flag(readyQueue, i);
+    			//flag(readyQueue, i);
+    			completedFlag[i] = 1;
     		}
     		i = next_process(readyQueue, timeElapsed, i);
     		timeElapsed++;
     	}
     	avgWait = totalWait/ready_processes(readyQueue, timeElapsed);
-    	avgTurnaround = totalTurnAround/throughput(readyQueue);
+    	avgTurnaround = totalTurnAround/readyQueue.length;
+    	avgResponseTime = totalResponseTime/readyQueue.length;
     	printf("\n\nAverage Waiting Time: %f"
     			"\nAverage Turnaround Time: %f"
+    			"\nAverage Response Time: %f"
     			"\nThroughput: %d processes were completed"
     			"\n\n%f quantas have elapsed",
-				avgWait, avgTurnaround, throughput(readyQueue),timeElapsed);
+				avgWait, avgTurnaround, avgResponseTime, throughput(readyQueue),timeElapsed);
     }
 }
 

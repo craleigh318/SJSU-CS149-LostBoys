@@ -15,6 +15,5 @@
  */
 void equalOpp(struct ready_queue readyQueue);
 
-void round_robin(struct ready_queue readyQueue);
 
 #endif /* ROUND_ROBIN_H_ */
