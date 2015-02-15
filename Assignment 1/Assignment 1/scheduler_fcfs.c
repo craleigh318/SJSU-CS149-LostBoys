@@ -39,7 +39,7 @@ void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics 
         else
         {
             ++statistics.throughput;
-            printf(" P%d", statistics.throughput);
+            printf(" P%d", nextProcess.identifier);
             newTimeElapsed = timeElapsed + nextProcess.expectedRunTime;
         }
         pop_ready_queue(readyQueue, statistics, newTimeElapsed);

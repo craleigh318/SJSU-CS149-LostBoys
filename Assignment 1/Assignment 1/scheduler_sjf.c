@@ -12,20 +12,20 @@
 void sort_by_sjf(struct ready_queue * unsortedReadyQueue)
 {
     int length = unsortedReadyQueue->length;
-    struct simulated_process * tempProcess;
+    struct simulated_process tempProcess;
     for (int i = 0; i < length; ++i)
     {
         struct simulated_process * iProcess = &(unsortedReadyQueue->processes[i]);
-        float iRunTime = iProcess->expectedRunTime;
+        float iJobTime = (iProcess->arrivalTime + iProcess->expectedRunTime);
         for (int j = (i + 1); j < length; ++j)
         {
             struct simulated_process * jProcess = &(unsortedReadyQueue->processes[j]);
-            float jRunTime = jProcess->expectedRunTime;
-            if (iRunTime > jRunTime)
+            float jJobTime = (jProcess->arrivalTime + jProcess->expectedRunTime);
+            if (iJobTime > jJobTime)
             {
-                tempProcess = iProcess;
-                iProcess = jProcess;
-                jProcess = tempProcess;
+                tempProcess = *iProcess;
+                *iProcess = *jProcess;
+                *jProcess = tempProcess;
             }
         }
     }

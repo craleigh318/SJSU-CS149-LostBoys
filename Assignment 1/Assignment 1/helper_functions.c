@@ -20,3 +20,27 @@ int getRandomInt(int minimum, int maximum)
 {
     return (rand() % (maximum - minimum + 1)) + minimum;
 }
+
+float get_max_float(float x, float y)
+{
+    if (x >= y)
+    {
+        return x;
+    }
+    else
+    {
+        return y;
+    }
+}
+
+float get_min_float(float x, float y)
+{
+    if (x <= y)
+    {
+        return x;
+    }
+    else
+    {
+        return y;
+    }
+}

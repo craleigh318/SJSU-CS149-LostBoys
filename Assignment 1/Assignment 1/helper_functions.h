@@ -22,4 +22,14 @@ float getRandomFloat(float minimum, float maximum);
  */
 int getRandomInt(int minimum, int maximum);
 
+/*
+ Returns the greater of two floats
+ */
+float get_max_float(float x, float y);
+
+/*
+ Returns the lesser of two floats
+ */
+float get_min_float(float x, float y);
+
 #endif /* defined(__Assignment_1__helper_functions__) */
