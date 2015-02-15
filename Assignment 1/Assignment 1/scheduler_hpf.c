@@ -29,18 +29,19 @@ void schedule_hpf(struct ready_queue readyQueue) {
     {
         if (sorted.processes[i].priority == 1) // Get the process within the sort and see if the process's priority matches the priority's queue number
         {
-            //priority1.add(sort[i]); // if their process's priority number is equal to 1, then add that process into the priority1 queue
-            //sorted.remove(sorted[i]); // Since that priority is placed into the priority1 queue , remove it from the sort queue
+            
+            add_ready_queue_process(&priority1, sorted.processes[i]); // if their process's priority number is equal to 1, then add that process into the priority1 queue
+            remove_ready_queue_process(&sorted, i); // Since that priority is placed into the priority1 queue , remove it from the sort queue
         } else if (sorted.processes[i].priority == 2) {
-            //priority2.add(sorted[i]);
-            //sorted.remove(sorted[i]);
+            add_ready_queue_process(&priority2, sorted.processes[i]);
+            remove_ready_queue_process(&sorted, i);
         } else if (sorted.processes[i].priority == 3) {
-            //priority3.add(sorted[i]);
-            //sorted.remove(sorted[i]);
+            add_ready_queue_process(&priority3, sorted.processes[i]);
+            remove_ready_queue_process(&sorted, i);
         } else // else the process's priority is 4
         {
-            //priority4.add(sorted[i]);
-            //sorted.remove(sorted[i]);
+            add_ready_queue_process(&priority4, sorted.processes[i]);
+            remove_ready_queue_process(&sorted, i);
         }
     }
     
@@ -50,21 +51,21 @@ void schedule_hpf(struct ready_queue readyQueue) {
 
 // preemptive scheduling , use RR with a time slice of 1 quantum for each priority queue
 void preemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2,struct ready_queue readyQueue3,struct ready_queue readyQueue4) {
-	// send the highest priority queue - which in this case is 1 - to method exec_round_robin(struct ready_queue readyQueue)
-	// one at a time and then send the next priority queue - which is 2 - and keep going until we reach the lowest priority queue - 4
-	//		exec_round_robin(readyQueue1);
-	//		exec_round_robin(readyQueue2);
-	//		exec_round_robin(readyQueue3);
-	//		exec_round_robin(readyQueue4);
+    // send the highest priority queue - which in this case is 1 - to method exec_round_robin(struct ready_queue readyQueue)
+    // one at a time and then send the next priority queue - which is 2 - and keep going until we reach the lowest priority queue - 4
+    //		exec_round_robin(readyQueue1);
+    //		exec_round_robin(readyQueue2);
+    //		exec_round_robin(readyQueue3);
+    //		exec_round_robin(readyQueue4);
 }
 
 // nonpreemptive scheduling , use FCFS
 void nonpreemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2,struct ready_queue readyQueue3,struct ready_queue readyQueue4)
 {
-	// send the highest priority queue - which in this case 1 - to method schedule_fcfs(struct ready_queue readyQueue)
-	// Then send the next priority queue - which is 2 - and keep going until we reach the lowest priority queue - 4
-	//		schedule_fcfs(readyQueue1);
-	//		schedule_fcfs(readyQueue2);
-	//		schedule_fcfs(readyQueue3);
-	//		schedule_fcfs(readyQueue4);
+    // send the highest priority queue - which in this case 1 - to method schedule_fcfs(struct ready_queue readyQueue)
+    // Then send the next priority queue - which is 2 - and keep going until we reach the lowest priority queue - 4
+    //		schedule_fcfs(readyQueue1);
+    //		schedule_fcfs(readyQueue2);
+    //		schedule_fcfs(readyQueue3);
+    //		schedule_fcfs(readyQueue4);
 }

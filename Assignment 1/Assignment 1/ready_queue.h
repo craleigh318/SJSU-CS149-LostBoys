@@ -56,4 +56,14 @@ void sort_ready_queue(struct ready_queue * sortingQueue);
  */
 void set_ready_queue_identifier(struct ready_queue * identifierQueue);
 
+/*
+ Adds a process to a ready queue.
+ */
+void add_ready_queue_process(struct ready_queue * queue, struct simulated_process addedProcess);
+
+/*
+ Removes a process, by index, from a ready queue, and returns it.
+ */
+struct simulated_process remove_ready_queue_process(struct ready_queue * queue, int index);
+
 #endif /* defined(__Assignment_1__ready_queue__) */
