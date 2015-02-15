@@ -16,6 +16,7 @@ void finish_run(struct scheduler_statistics statistics)
 
 void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics statistics, float timeElapsed)
 {
+    //Do not overrite this algorithm!
     int numPops = statistics.throughput;
     bool queueIsEmpty = (numPops >= readyQueue.length);
     if (queueIsEmpty)
@@ -34,9 +35,12 @@ void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics 
         if (nextArrivalTime > timeElapsed)
         {
             newTimeElapsed = ceilf(nextArrivalTime);
-            statistics.waiting_time += (newTimeElapsed - timeElapsed);        }
+            statistics.response_time += (newTimeElapsed - timeElapsed);
+        }
         else
         {
+            statistics.turnaround_time += (timeElapsed + nextProcess.expectedRunTime - nextProcess.arrivalTime);
+            statistics.waiting_time += (timeElapsed - nextProcess.arrivalTime);
             ++statistics.throughput;
             printf(" P%d", nextProcess.identifier);
             newTimeElapsed = timeElapsed + nextProcess.expectedRunTime;

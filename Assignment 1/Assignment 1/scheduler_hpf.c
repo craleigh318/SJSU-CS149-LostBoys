@@ -1,6 +1,8 @@
 #include "simulated_process.h"
 #include "scheduler_hpf.h"
 #include "ready_queue.h"
+#include "round_robin.h"
+#include "scheduler_fcfs.h"
 
 void schedule_hpf(struct ready_queue readyQueue) {
     
@@ -10,25 +12,25 @@ void schedule_hpf(struct ready_queue readyQueue) {
     // We have to get rid of the randomly generated process to nothing
     for(int i = 0; i < readyQueue.length; i++)
     {
-    	priority1[i] = 0;
+    	//priority1[i] = 0;
     }
 
-    struct ready_queue priority2 = new_ready_queue(readyQueue.queueSize);
+    struct ready_queue priority2 = new_ready_queue(readyQueue.length);
     for(int j = 0; j < readyQueue.length; j++)
     {
-        priority2[j] = 0;
+        //priority2[j] = 0;
     }
 
-    struct ready_queue priority3 = new_ready_queue(readyQueue.queueSize);
+    struct ready_queue priority3 = new_ready_queue(readyQueue.length);
     for(int k = 0; k < readyQueue.length; k++)
     {
-        priority3[k] = 0;
+        //priority3[k] = 0;
     }
 
-    struct ready_queue priority4 = new_ready_queue(readyQueue.queueSize);
+    struct ready_queue priority4 = new_ready_queue(readyQueue.length);
     for(int k = 0; k < readyQueue.length; k++)
     {
-        priority4[k] = 0;
+        //priority4[k] = 0;
     }
     
     // 2nd with the place
@@ -62,10 +64,10 @@ void schedule_hpf(struct ready_queue readyQueue) {
 void preemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2,struct ready_queue readyQueue3,struct ready_queue readyQueue4) {
     // send the highest priority queue - which in this case is 1 - to method exec_round_robin(struct ready_queue readyQueue)
     // one at a time and then send the next priority queue - which is 2 - and keep going until we reach the lowest priority queue - 4
-			exec_round_robin(readyQueue1);
-			exec_round_robin(readyQueue2);
-			exec_round_robin(readyQueue3);
-			exec_round_robin(readyQueue4);
+			round_robin(readyQueue1);
+			round_robin(readyQueue2);
+			round_robin(readyQueue3);
+			round_robin(readyQueue4);
 }
 
 void nonpreemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2,struct ready_queue readyQueue3,struct ready_queue readyQueue4)
