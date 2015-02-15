@@ -45,27 +45,27 @@ void schedule_hpf(struct ready_queue readyQueue) {
         }
     }
     
-    // 4th, once the priority queues are sorted in their respective queue
-    // Send all the queues to the preemptive [FCFS] & nonpreemptive[
+    // 4th after processes are sorted into their priority queue based on their priority number
+    // Send the new priority queues to the preemptive (Round robin) & nonpreemptive (FCFS) methods.
+    preemptive(priority1, priority2, priority3, priority4);
+    nonpreemptive(priority1, priority2, priority3, priority4);
 }
 
-// preemptive scheduling , use RR with a time slice of 1 quantum for each priority queue
 void preemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2,struct ready_queue readyQueue3,struct ready_queue readyQueue4) {
     // send the highest priority queue - which in this case is 1 - to method exec_round_robin(struct ready_queue readyQueue)
     // one at a time and then send the next priority queue - which is 2 - and keep going until we reach the lowest priority queue - 4
-    //		exec_round_robin(readyQueue1);
-    //		exec_round_robin(readyQueue2);
-    //		exec_round_robin(readyQueue3);
-    //		exec_round_robin(readyQueue4);
+			exec_round_robin(readyQueue1);
+			exec_round_robin(readyQueue2);
+			exec_round_robin(readyQueue3);
+			exec_round_robin(readyQueue4);
 }
 
-// nonpreemptive scheduling , use FCFS
 void nonpreemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2,struct ready_queue readyQueue3,struct ready_queue readyQueue4)
 {
     // send the highest priority queue - which in this case 1 - to method schedule_fcfs(struct ready_queue readyQueue)
     // Then send the next priority queue - which is 2 - and keep going until we reach the lowest priority queue - 4
-    //		schedule_fcfs(readyQueue1);
-    //		schedule_fcfs(readyQueue2);
-    //		schedule_fcfs(readyQueue3);
-    //		schedule_fcfs(readyQueue4);
+			schedule_fcfs(readyQueue1);
+			schedule_fcfs(readyQueue2);
+			schedule_fcfs(readyQueue3);
+			schedule_fcfs(readyQueue4);
 }
