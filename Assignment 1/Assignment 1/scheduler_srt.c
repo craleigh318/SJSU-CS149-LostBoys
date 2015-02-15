@@ -112,6 +112,6 @@ void schedule_SRT(struct ready_queue readyQueue) {
 
 	printf("\n");
 
-	delete_list(runningList);
-	delete_list(completedList);
+	//delete_list(runningList);
+	//delete_list(completedList);
 }

@@ -9,13 +9,11 @@
 #include "system_headers.h"
 #include "ready_queue.h"
 #include "scheduler_fcfs.h"
-<<<<<<< HEAD
 #include "shortest_remaining_time.h"
-=======
 #include "scheduler_sjf.h"
 #include "scheduler_srt.h"
 #include "round_robin.h"
->>>>>>> 2b9ce7ae32727800a67d9632beaf46577260db55
+
 
 void print_simulated_process(struct simulated_process printingProcess)
 {

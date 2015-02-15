@@ -5,7 +5,6 @@
  *      Author: Saurav
  */
 
-
 #include "round_robin.h"
 #include "helper_functions.h"
 
@@ -62,18 +61,6 @@ int ready_processes(struct ready_queue readyQueue, float timeElapsed) {
 	return readyProcesses;
 }
 
-/*void flag(struct ready_queue readyQueue, int index) {
-	if(is_complete(readyQueue, index))
-		readyQueue.processes[index].priority = 0;
-}
-
-int is_not_flagged(struct ready_queue readyQueue, int index) {
-	if(readyQueue.processes[index].priority == 0)
-		return 0;
-	else
-		return 1;
-}*/
-
 int throughput(struct ready_queue readyQueue) {
 	int i;
 	int completeProcesses = 0;
@@ -101,19 +88,13 @@ void exec_round_robin(struct ready_queue readyQueue) {
     	float avgWait = 0;
     	float avgTurnaround = 0;
     	float avgResponseTime = 0;
-    	//int size = readyQueue.length;
 
     	int completedFlag[readyQueue.length];
     	memset(completedFlag, 0, readyQueue.length);
 
     	int visitedFlag[readyQueue.length];
     	memset(visitedFlag, 0, readyQueue.length);
-    	/*int j = 0;
-    	while(j < sizeof(completedFlag)) {
 
-    	}*/
-
-    	//int visitedFlag[size] = {0};
     	printf("Time Line:\n");
     	while(timeElapsed < TIME_LIMIT && throughput(readyQueue) < readyQueue.length) {
 
