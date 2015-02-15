@@ -2,20 +2,20 @@
 #include "scheduler_hpf.h"
 
 void schedule_hpf(struct ready_queue readyQueue) {
-    // 1st sort simulated processes in arrival time order - using Bubblesort
-    int out, in;
-    int queueSize = 26;
-    struct ready_queue sorted = readyQueue; // Store runningQueue parameter into the sorted variable
-    for (out = 0; out < sorted.length; out++) {
-        for (in = 0; in < sorted.length - 1; in++) {
-            if (sorted.processes[in].arrivalTime
-                > sorted.processes[out + 1].arrivalTime) {
-                struct simulated_process arrival = sorted.processes[in + 1];
-                sorted.processes[in + 1] = sorted.processes[out];
-                sorted.processes[out] = arrival;
-            }
-        }
-    }
+//    // 1st sort simulated processes in arrival time order - using Bubblesort
+//    int out, in;
+//    int queueSize = 26;
+//    struct ready_queue sorted = readyQueue; // Store runningQueue parameter into the sorted variable
+//    for (out = 0; out < sorted.length; out++) {
+//        for (in = 0; in < sorted.length - 1; in++) {
+//            if (sorted.processes[in].arrivalTime
+//                > sorted.processes[out + 1].arrivalTime) {
+//                struct simulated_process arrival = sorted.processes[in + 1];
+//                sorted.processes[in + 1] = sorted.processes[out];
+//                sorted.processes[out] = arrival;
+//            }
+//        }
+//    }
     
     // 2nd create 4 priority queues label 1-4 priority && empty everything in it with 1 - highest
     struct ready_queue priority1 = new_ready_queue(queueSize);
