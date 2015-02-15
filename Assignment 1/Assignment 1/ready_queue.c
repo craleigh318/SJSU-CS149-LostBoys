@@ -75,7 +75,7 @@ void set_ready_queue_identifier(struct ready_queue * identifierQueue) {
 	int count = 1;
 
 	for(int i = 0; i < identifierQueue->length; i++) {
-		identifierQueue.processes[i].identifier = count;
+		identifierQueue->processes[i].identifier = count;
 		count++;
 	}
 }
