@@ -39,6 +39,6 @@ struct simulated_process
 /*
  Returns a new simulated process with random values.
  */
-struct simulated_process new_simulated_process(int identifier);
+struct simulated_process new_simulated_process();
 
 #endif /* defined(__Assignment_1__simulated_process__) */

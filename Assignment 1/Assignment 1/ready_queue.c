@@ -12,7 +12,7 @@ struct ready_queue new_ready_queue(int length) {
     struct ready_queue newReadyQueue = { length, malloc(
                                                         length * sizeof(struct simulated_process)) };
     for (int i = 0; i < length; ++i) {
-        newReadyQueue.processes[i] = new_simulated_process(i + 1);
+        newReadyQueue.processes[i] = new_simulated_process();
     }
     return newReadyQueue;
 }
