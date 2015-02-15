@@ -15,6 +15,11 @@
  */
 struct simulated_process
 {
+	/*
+	 A name for each process.
+	 */
+	int identifier;
+
     /*
      Ranges from 0.0 to 99.0.
      */

@@ -51,4 +51,9 @@ void delete_ready_queue(struct ready_queue * deletingQueue);
  */
 void sort_ready_queue(struct ready_queue * sortingQueue);
 
+/*
+ Sets the identifiers for each process
+ */
+void set_ready_queue_identifier(struct ready_queue * identifierQueue);
+
 #endif /* defined(__Assignment_1__ready_queue__) */

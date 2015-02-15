@@ -13,6 +13,7 @@ struct simulated_process new_simulated_process()
 {
     struct simulated_process newSimulatedProcess =
     {
+    	-1,
         getRandomFloat(0.0f, 99.0f),
         getRandomFloat(0.1f, 10.0f),
         getRandomInt(1, 4)

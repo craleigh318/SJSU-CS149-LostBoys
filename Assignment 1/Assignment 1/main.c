@@ -62,6 +62,7 @@ int main(int argc, const char * argv[])
     int queueSize = 32;
     struct ready_queue randomQueue = new_ready_queue(queueSize);
     sort_ready_queue(&randomQueue);
+    set_ready_queue_identifier(&randomQueue);
     print_ready_queue(randomQueue);
 
     run_schedulers(randomQueue);
