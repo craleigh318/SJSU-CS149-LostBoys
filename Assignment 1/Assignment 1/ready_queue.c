@@ -100,7 +100,7 @@ struct simulated_process remove_ready_queue_process(struct ready_queue * queue, 
     queue->processes = malloc((oldLength - 1) * sizeOfProcess);
     int i = 0;
     int j = 0;
-    struct simulated_process removedProcess = new_simulated_process();
+    struct simulated_process removedProcess = {0, 0.0f, 0.0f, 0};
     while (i < oldLength)
     {
         if (i == index)
