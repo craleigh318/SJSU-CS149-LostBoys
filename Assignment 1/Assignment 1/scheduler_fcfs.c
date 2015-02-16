@@ -8,15 +8,11 @@
 
 #include "scheduler_fcfs.h"
 #include "helper_functions.h"
+#include "global_statistics.h"
 
 void finish_run(struct scheduler_statistics statistics)
 {
-    statistics.turnaround_time /= statistics.throughput;
-    statistics.waiting_time /= statistics.throughput;
-    statistics.response_time /= statistics.throughput;
-    printf("\nTurnaround Time: %f\nWait Time: %f\nResponse Time: %f\nThroughput: %d\n\n",
-           statistics.turnaround_time, statistics.waiting_time, statistics.response_time,
-           statistics.throughput);
+    add_to_global_statistics(statistics);
 }
 
 void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics statistics, float timeElapsed)
