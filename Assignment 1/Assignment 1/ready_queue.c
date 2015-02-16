@@ -7,6 +7,7 @@
 //
 
 #include "ready_queue.h"
+#include "helper_functions.h"
 
 struct ready_queue new_ready_queue(int length) {
     struct ready_queue newReadyQueue = { length, malloc(
