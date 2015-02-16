@@ -81,7 +81,7 @@ void exec_round_robin(struct ready_queue readyQueue, struct scheduler_statistics
         int visitedFlag[readyQueue.length];
         memset(visitedFlag, 0, readyQueue.length);
         
-        printf("\nTime Line:\n");
+        printf("\nTime Line: ");
         while(timeElapsed < TIME_LIMIT && throughput(readyQueue) < size) {
             
             if(is_ready(readyQueue, i, timeElapsed)) {
@@ -105,22 +105,17 @@ void exec_round_robin(struct ready_queue readyQueue, struct scheduler_statistics
             
             if(currentProcess != prevProcess)
             {
-                printf("P%d-", currentProcess);
+                printf("P%d ", currentProcess);
                 prevProcess = currentProcess;
             }
         }
+        printf("\n");
         statistics.waiting_time = totalWait/size;
         statistics.turnaround_time = totalTurnAround/size;
         statistics.response_time = totalResponseTime/size;
         statistics.throughput = throughput(readyQueue);
         add_to_global_statistics(statistics);
-        printf("\n%f quanta have elapsed\n", timeElapsed);
-        /*printf("\n\nAverage Waiting Time: %f"
-         "\nAverage Turnaround Time: %f"
-         "\nAverage Response Time: %f"
-         "\nThroughput: %d processes were completed"
-         "\n\n%f quantas have elapsed\n",
-         statistics.waiting_time, statistics.turnaround_time, statistics.response_time, throughput(readyQueue),timeElapsed);*/
+        //printf("\n%f quanta have elapsed\n", timeElapsed);
     }
 }
 
