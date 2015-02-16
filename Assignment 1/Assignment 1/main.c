@@ -13,6 +13,7 @@
 #include "scheduler_sjf.h"
 #include "scheduler_srt.h"
 #include "round_robin.h"
+#include "global_statistics.h"
 
 
 void print_simulated_process(struct simulated_process printingProcess)
@@ -34,12 +35,41 @@ void print_ready_queue(struct ready_queue printingQueue)
     }
 }
 
+void print_statistics()
+{
+    int throughput = globalStatistics.throughput;
+    float avgTurnaround = globalStatistics.turnaround_time / (float)throughput;
+    float avgWaitTime = globalStatistics.waiting_time / (float)throughput;
+    float avgResponse = globalStatistics.response_time / (float)throughput;
+    printf("\nAvg. Turnaround Time: %f\nAvg. Wait Time: %f\nAvg. Response Time: %f\nThroughput: %d\n\n",
+           avgTurnaround, avgWaitTime, avgResponse, throughput);
+}
+
+void run_one_scheduler(void (* scheduler_name)(struct ready_queue), struct ready_queue runningQueue)
+{
+    const int NUM_TRIALS = 5;
+    struct ready_queue queueCopy;
+    for (int i = 0; i < NUM_TRIALS; ++i)
+    {
+        queueCopy = copy_ready_queue(runningQueue);
+        scheduler_name(queueCopy);
+        delete_ready_queue(&queueCopy);
+    }
+    print_statistics();
+    reset_global_statistics();
+}
+
 /*
  Call your scheduling algorithms here.
  */
 void run_schedulers(struct ready_queue runningQueue)
 {
-    struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
+    run_one_scheduler(&schedule_fcfs, runningQueue);
+    run_one_scheduler(&schedule_sjf, runningQueue);
+    run_one_scheduler(&schedule_SRT, runningQueue);
+    run_one_scheduler(&round_robin, runningQueue);
+    /*
+     struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
     schedule_fcfs(queueFCFS);
     delete_ready_queue(&queueFCFS);
     
@@ -54,6 +84,7 @@ void run_schedulers(struct ready_queue runningQueue)
     struct ready_queue queueRR = copy_ready_queue(runningQueue);
     round_robin(queueRR);
     delete_ready_queue(&queueRR);
+     */
 
 //    struct ready_queue queueHPF = copy_ready_queue(runningQueue);
 //    schedule_hpf(queueHPF);
@@ -65,6 +96,7 @@ int main(int argc, const char * argv[])
     srand((unsigned int)time(NULL));
 
 
+    reset_global_statistics();
     int queueSize = 32;
     struct ready_queue randomQueue = new_ready_queue(queueSize);
 

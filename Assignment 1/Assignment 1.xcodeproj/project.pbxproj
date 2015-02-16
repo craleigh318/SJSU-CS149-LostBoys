@@ -16,6 +16,7 @@
 		A47C1D091A8495F000E41BC2 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = A47C1D081A8495F000E41BC2 /* main.c */; };
 		A47C1D111A8496C400E41BC2 /* simulated_process.c in Sources */ = {isa = PBXBuildFile; fileRef = A47C1D0F1A8496C400E41BC2 /* simulated_process.c */; };
 		A4B8365B1A8DBA23007ED9BF /* round_robin.c in Sources */ = {isa = PBXBuildFile; fileRef = A4B836591A8DBA23007ED9BF /* round_robin.c */; };
+		A4C367E51A91EA41005B9627 /* global_statistics.c in Sources */ = {isa = PBXBuildFile; fileRef = A4C367E31A91EA41005B9627 /* global_statistics.c */; };
 		A4FE94171A8AFD6B00619332 /* scheduler_fcfs.c in Sources */ = {isa = PBXBuildFile; fileRef = A4FE94151A8AFD6B00619332 /* scheduler_fcfs.c */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,8 @@
 		A47C1D131A84972A00E41BC2 /* system_headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system_headers.h; sourceTree = "<group>"; };
 		A4B836591A8DBA23007ED9BF /* round_robin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = round_robin.c; sourceTree = "<group>"; };
 		A4B8365A1A8DBA23007ED9BF /* round_robin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round_robin.h; sourceTree = "<group>"; };
+		A4C367E31A91EA41005B9627 /* global_statistics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = global_statistics.c; sourceTree = "<group>"; };
+		A4C367E41A91EA41005B9627 /* global_statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global_statistics.h; sourceTree = "<group>"; };
 		A4FE94131A8AF79F00619332 /* process_scheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = process_scheduler.h; sourceTree = "<group>"; };
 		A4FE94151A8AFD6B00619332 /* scheduler_fcfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scheduler_fcfs.c; sourceTree = "<group>"; };
 		A4FE94161A8AFD6B00619332 /* scheduler_fcfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheduler_fcfs.h; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				A4FE94161A8AFD6B00619332 /* scheduler_fcfs.h */,
 				A441DF741A8D6E5600C6D6CF /* scheduler_statistics.c */,
 				A441DF751A8D6E5600C6D6CF /* scheduler_statistics.h */,
+				A4C367E31A91EA41005B9627 /* global_statistics.c */,
+				A4C367E41A91EA41005B9627 /* global_statistics.h */,
 			);
 			path = "Assignment 1";
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				A441DF721A8D6A8A00C6D6CF /* scheduler_hpf.c in Sources */,
 				A441DF731A8D6A8A00C6D6CF /* scheduler_sjf.c in Sources */,
 				A4257C4A1A8ED94F001DD2C8 /* scheduler_srt.c in Sources */,
+				A4C367E51A91EA41005B9627 /* global_statistics.c in Sources */,
 				A44654E41A888AA0000E54E2 /* ready_queue.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
