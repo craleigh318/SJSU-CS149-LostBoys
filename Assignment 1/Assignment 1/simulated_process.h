@@ -47,6 +47,16 @@ struct simulated_process
      */
 
     int flagComplete;
+
+    /*
+     Holds the time when a process enters the ready queue
+     */
+    float timeEnteredReadyQueue;
+
+    /*
+     Holds the time when a process starts running
+     */
+    float timeStartsRunning;
 };
 
 /*
