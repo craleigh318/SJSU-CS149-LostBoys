@@ -13,6 +13,8 @@
 
 static const float TIME_LIMIT = 100.0f;
 
+static const int NUM_TRIALS = 5;
+
 /*
  Returns a random float, ranging from the specified minimum and maximum.
  */

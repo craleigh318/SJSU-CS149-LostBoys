@@ -14,6 +14,7 @@
 #include "scheduler_srt.h"
 #include "round_robin.h"
 #include "global_statistics.h"
+#include "helper_functions.h"
 
 
 void print_simulated_process(struct simulated_process printingProcess)
@@ -37,17 +38,17 @@ void print_ready_queue(struct ready_queue printingQueue)
 
 void print_statistics()
 {
-    int throughput = globalStatistics.throughput;
-    float avgTurnaround = globalStatistics.turnaround_time / (float)throughput;
-    float avgWaitTime = globalStatistics.waiting_time / (float)throughput;
-    float avgResponse = globalStatistics.response_time / (float)throughput;
-    printf("\nAvg. Turnaround Time: %f\nAvg. Wait Time: %f\nAvg. Response Time: %f\nThroughput: %d\n\n",
+    
+    int throughput = globalStatistics.throughput / NUM_TRIALS;
+    float avgTurnaround = globalStatistics.turnaround_time / NUM_TRIALS;
+    float avgWaitTime = globalStatistics.waiting_time / NUM_TRIALS;
+    float avgResponse = globalStatistics.response_time / NUM_TRIALS;
+    printf("\nAvg. Turnaround Time: %f\nAvg. Wait Time: %f\nAvg. Response Time: %f\nAvg. Throughput: %d\n\n",
            avgTurnaround, avgWaitTime, avgResponse, throughput);
 }
 
 void run_one_scheduler(void (* scheduler_name)(struct ready_queue), struct ready_queue runningQueue)
 {
-    const int NUM_TRIALS = 5;
     struct ready_queue queueCopy;
     for (int i = 0; i < NUM_TRIALS; ++i)
     {

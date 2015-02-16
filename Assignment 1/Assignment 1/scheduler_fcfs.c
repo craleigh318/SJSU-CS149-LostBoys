@@ -12,7 +12,11 @@
 
 void finish_run(struct scheduler_statistics statistics)
 {
+    statistics.turnaround_time /= statistics.throughput;
+    statistics.waiting_time /= statistics.throughput;
+    statistics.response_time /= statistics.throughput;
     add_to_global_statistics(statistics);
+    printf("\n");
 }
 
 void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics statistics, float timeElapsed)
@@ -52,6 +56,6 @@ void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics 
 
 void schedule_fcfs(struct ready_queue readyQueue)
 {
-    printf("First Come, First Served:\nTime Line:");
+    printf("\nFirst Come, First Served:\nTime Line:");
     pop_ready_queue(readyQueue, new_scheduler_statistics(), 0.0f);
 }

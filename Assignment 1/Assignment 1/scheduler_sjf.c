@@ -33,7 +33,7 @@ void sort_by_sjf(struct ready_queue * unsortedReadyQueue)
 
 void schedule_sjf(struct ready_queue readyQueue)
 {
-    printf("Shortest Job First:\nTime Line:");
+    printf("\nShortest Job First:\nTime Line:");
     sort_by_sjf(&readyQueue);
     pop_ready_queue(readyQueue, new_scheduler_statistics(), 0.0f);
 }
