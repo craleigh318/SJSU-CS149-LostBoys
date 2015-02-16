@@ -1,4 +1,5 @@
 #include "scheduler_srt.h"
+#include "global_statistics.h"
 
 typedef struct List {
 	int length;
@@ -38,7 +39,7 @@ void schedule_SRT(struct ready_queue readyQueue) {
 	List runningList = init_list(readyQueue.length);
 	List completedList = init_list(readyQueue.length);
 
-	puts("Shortest Remaining Time:");
+	puts("\nShortest Remaining Time:");
 	printf("Time Line: ");
 
 	while(curr_time < TIME_LIMIT && completedList.length < readyQueue.length) {
@@ -78,14 +79,16 @@ void schedule_SRT(struct ready_queue readyQueue) {
 		}
 		curr_time++;
 	}
-
+    stats.waiting_time /= (completedList.length + runningList.length);
+    stats.turnaround_time /= completedList.length;
+    stats.response_time /= (completedList.length + runningList.length);
+    add_to_global_statistics(stats);
 	puts("");
-
-	printf("Average Waiting Time: %f \nAverage Turnaround Time: %f \nAverage Response Time: %f \nThroughput: %i\n",
+    /*printf("Average Waiting Time: %f \nAverage Turnaround Time: %f \nAverage Response Time: %f \nThroughput: %i\n",
 			stats.waiting_time / (completedList.length + runningList.length),
 			stats.turnaround_time / completedList.length,
 			stats.response_time / (completedList.length + runningList.length),
-			completedList.length);
+			completedList.length);*/
 	//delete_list(&runningList);
 	//delete_list(&completedList);
 }
