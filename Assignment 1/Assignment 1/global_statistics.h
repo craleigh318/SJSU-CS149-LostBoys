@@ -13,6 +13,8 @@
 
 struct scheduler_statistics globalStatistics;
 
+void add_to_global_statistics(struct scheduler_statistics addingStats);
+
 void reset_global_statistics();
 
 #endif /* defined(__Assignment_1__global_statistics__) */
