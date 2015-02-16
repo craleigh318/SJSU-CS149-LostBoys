@@ -63,8 +63,11 @@ void run_schedulers(struct ready_queue runningQueue)
 int main(int argc, const char * argv[])
 {
     srand((unsigned int)time(NULL));
+
+
     int queueSize = 32;
     struct ready_queue randomQueue = new_ready_queue(queueSize);
+
     sort_ready_queue(&randomQueue);
     set_ready_queue_identifier(&randomQueue);
     print_ready_queue(randomQueue);

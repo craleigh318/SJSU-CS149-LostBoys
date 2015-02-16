@@ -7,6 +7,8 @@
 
 #include "round_robin.h"
 #include "helper_functions.h"
+#include "scheduler_statistics.h"
+
 
 int next_process(struct ready_queue readyQueue, float timeElapsed, int index) {
 	int i = index+1;
@@ -14,7 +16,7 @@ int next_process(struct ready_queue readyQueue, float timeElapsed, int index) {
 		if(i == readyQueue.length)
 		   i = 0;
 		else {
-			if(readyQueue.processes[i].expectedRunTime > 0.0 && readyQueue.processes[i].arrivalTime < timeElapsed)
+			if(readyQueue.processes[i].expectedRunTime > 0.0 && readyQueue.processes[i].arrivalTime <= timeElapsed)
 						return i;
 			i++;
 		}
@@ -29,22 +31,8 @@ int is_complete(struct ready_queue readyQueue, int index) {
 		return 0;
 }
 
-int is_not_flaggedCompleted(int completedProcess[], int index) {
-	if (completedProcess[index] == 0)
-		return 1;
-	else
-		return 0;
-}
-
-int is_not_flaggedVisited(int visitedProcesses[], int index) {
-	if (visitedProcesses[index] == 0)
-		return 1;
-	else
-		return 0;
-}
-
 int is_ready(struct ready_queue readyQueue, int index, float timeElapsed) {
-	if(readyQueue.processes[index].expectedRunTime > 0.0 && readyQueue.processes[index].arrivalTime < timeElapsed)
+	if(readyQueue.processes[index].expectedRunTime > 0.0 && readyQueue.processes[index].arrivalTime <= timeElapsed)
 		return 1;
 	else
 		return 0;
@@ -54,9 +42,8 @@ int ready_processes(struct ready_queue readyQueue, float timeElapsed) {
 	int i;
 	int readyProcesses = 0;
 	for(i = 0; i < readyQueue.length; i++){
-		if (is_ready(readyQueue, i, timeElapsed)) {
+		if (is_ready(readyQueue, i, timeElapsed))
 			readyProcesses++;
-		}
 	}
 	return readyProcesses;
 }
@@ -65,17 +52,18 @@ int throughput(struct ready_queue readyQueue) {
 	int i;
 	int completeProcesses = 0;
 	for(i = 0; i < readyQueue.length; i++){
-		if (is_complete(readyQueue, i)) {
+		if (is_complete(readyQueue, i))
 			completeProcesses++;
-		}
-
 	}
 	return completeProcesses;
 }
 
-void exec_round_robin(struct ready_queue readyQueue) {
+void exec_round_robin(struct ready_queue readyQueue, struct scheduler_statistics statistics) {
+	int size = readyQueue.length;
+	int currentProcess;
+	int prevProcess = -1;
     bool queueIsEmpty = (readyQueue.length <= 0);
-    float timeElapsed = 0.0;
+    float timeElapsed = 0;
     if (queueIsEmpty)
     {
         printf("\nQueue is empty! Please enlarge queue next time.\n");
@@ -83,11 +71,8 @@ void exec_round_robin(struct ready_queue readyQueue) {
     else {
     	int i = 0;
     	float totalWait = 0;
-    	float totalTurnAround = 0;
-    	float totalResponseTime = 0;
-    	float avgWait = 0;
-    	float avgTurnaround = 0;
-    	float avgResponseTime = 0;
+    	float totalTurnAround = 0.0;
+    	float totalResponseTime = 0.0;
 
     	int completedFlag[readyQueue.length];
     	memset(completedFlag, 0, readyQueue.length);
@@ -96,39 +81,47 @@ void exec_round_robin(struct ready_queue readyQueue) {
     	memset(visitedFlag, 0, readyQueue.length);
 
     	printf("Time Line:\n");
-    	while(timeElapsed < TIME_LIMIT && throughput(readyQueue) < readyQueue.length) {
+    	while(timeElapsed < TIME_LIMIT && throughput(readyQueue) < size) {
 
     		if(is_ready(readyQueue, i, timeElapsed)) {
+    			totalWait += (ready_processes(readyQueue, timeElapsed) - 1);
     			readyQueue.processes[i].expectedRunTime--;
-    			if(is_not_flaggedVisited(visitedFlag, i)) {
-    				totalResponseTime += timeElapsed - readyQueue.processes[i].arrivalTime;
+
+    			if(readyQueue.processes[i].flagVisited == 0) {
+    				totalResponseTime += (timeElapsed - readyQueue.processes[i].arrivalTime);
+    				readyQueue.processes[i].flagVisited = 1;
     			}
-    			visitedFlag[i] = 1;
-    			totalWait += ((ready_processes(readyQueue, timeElapsed) - 1) - throughput(readyQueue));
-       			printf("P%d-", i+1);
     		}
-    		else if (is_complete(readyQueue, i) && (is_not_flaggedCompleted(completedFlag, i))){
+    		timeElapsed += 1.0;
+    		if (is_complete(readyQueue, i) && readyQueue.processes[i].flagComplete == 0){
     			totalTurnAround += (timeElapsed - readyQueue.processes[i].arrivalTime);
-    			//flag(readyQueue, i);
-    			completedFlag[i] = 1;
+    			readyQueue.processes[i].flagComplete = 1;
     		}
+
+    		currentProcess = readyQueue.processes[i].identifier;
+
     		i = next_process(readyQueue, timeElapsed, i);
-    		timeElapsed++;
+
+    		if(currentProcess != prevProcess)
+    		{
+    			printf("P%d-", currentProcess);
+    			prevProcess = currentProcess;
+    		}
     	}
-    	avgWait = totalWait/ready_processes(readyQueue, timeElapsed);
-    	avgTurnaround = totalTurnAround/readyQueue.length;
-    	avgResponseTime = totalResponseTime/readyQueue.length;
+    	statistics.waiting_time = totalWait/size;
+    	statistics.turnaround_time = totalTurnAround/size;
+    	statistics.response_time = totalResponseTime/size;
     	printf("\n\nAverage Waiting Time: %f"
     			"\nAverage Turnaround Time: %f"
     			"\nAverage Response Time: %f"
     			"\nThroughput: %d processes were completed"
-    			"\n\n%f quantas have elapsed",
-				avgWait, avgTurnaround, avgResponseTime, throughput(readyQueue),timeElapsed);
+    			"\n\n%f quantas have elapsed\n",
+				statistics.waiting_time, statistics.turnaround_time, statistics.response_time, throughput(readyQueue),timeElapsed);
     }
 }
 
 void round_robin(struct ready_queue readyQueue) {
     printf("\nRound Robin ");
-    exec_round_robin(readyQueue);
+    exec_round_robin(readyQueue, new_scheduler_statistics());
 }
 

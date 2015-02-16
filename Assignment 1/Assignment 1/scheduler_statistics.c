@@ -13,7 +13,7 @@ struct scheduler_statistics new_scheduler_statistics()
     struct scheduler_statistics newSchedulerStatistics =
     {
         0.0f,
-        0.0f,
+        0,
         0.0f,
         0
     };

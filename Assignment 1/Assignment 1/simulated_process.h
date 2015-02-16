@@ -34,11 +34,27 @@ struct simulated_process
      Ranges from 1 to 4.  Lower values indicate higher priority.
      */
     int priority;
+
+    /*
+     Mark a process as being visited
+     */
+
+    int flagVisited;
+
+
+    /*
+     Mark a process as complete
+     */
+
+    int flagComplete;
 };
 
 /*
  Returns a new simulated process with random values.
  */
 struct simulated_process new_simulated_process();
+
+//REMOVE ME
+struct simulated_process new_nonRandom_simulated_process(int identifier, float arrival, float runtime, int priority, int flagVisit, int flagComplete);
 
 #endif /* defined(__Assignment_1__simulated_process__) */
