@@ -5,7 +5,7 @@
 #include "scheduler_fcfs.h"
 
 void schedule_hpf(struct ready_queue readyQueue) {
-    
+    printf("\nHighest Priority First:\n");
     // 1st create 4 priority queues label 1-4 priority && empty everything in it. 1 = Highest
     struct ready_queue priority1 = new_ready_queue(readyQueue.length);
     // Initialize priority1 with some generated simulated process
@@ -41,17 +41,17 @@ void schedule_hpf(struct ready_queue readyQueue) {
         {
             
             add_ready_queue_process(&priority1, readyQueue.processes[i]); // if their process's priority number is equal to 1, then add that process into the priority1 queue
-            remove_ready_queue_process(&readyQueue, i); // Since that priority is placed into the priority1 queue , remove it from the sort queue
+            //remove_ready_queue_process(&readyQueue, i); // Since that priority is placed into the priority1 queue , remove it from the sort queue
         } else if (readyQueue.processes[i].priority == 2) {
             add_ready_queue_process(&priority2, readyQueue.processes[i]);
-            remove_ready_queue_process(&readyQueue, i);
+            //remove_ready_queue_process(&readyQueue, i);
         } else if (readyQueue.processes[i].priority == 3) {
             add_ready_queue_process(&priority3, readyQueue.processes[i]);
-            remove_ready_queue_process(&readyQueue, i);
+            //remove_ready_queue_process(&readyQueue, i);
         } else // else the process's priority is 4
         {
             add_ready_queue_process(&priority4, readyQueue.processes[i]);
-            remove_ready_queue_process(&readyQueue, i);
+            //remove_ready_queue_process(&readyQueue, i);
         }
     }
     

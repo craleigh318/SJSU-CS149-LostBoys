@@ -12,6 +12,7 @@
 #include "shortest_remaining_time.h"
 #include "scheduler_sjf.h"
 #include "scheduler_srt.h"
+#include "scheduler_hpf.h"
 #include "round_robin.h"
 #include "global_statistics.h"
 #include "helper_functions.h"
@@ -69,6 +70,7 @@ void run_schedulers(struct ready_queue runningQueue)
     run_one_scheduler(&schedule_sjf, runningQueue);
     run_one_scheduler(&schedule_SRT, runningQueue);
     run_one_scheduler(&round_robin, runningQueue);
+    run_one_scheduler(&schedule_hpf, runningQueue);
     /*
      struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
      schedule_fcfs(queueFCFS);
