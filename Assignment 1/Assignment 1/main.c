@@ -71,40 +71,40 @@ void run_schedulers(struct ready_queue runningQueue)
     run_one_scheduler(&round_robin, runningQueue);
     /*
      struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
-    schedule_fcfs(queueFCFS);
-    delete_ready_queue(&queueFCFS);
-    
-    struct ready_queue queueSJF = copy_ready_queue(runningQueue);
-    schedule_sjf(queueSJF);
-    delete_ready_queue(&queueSJF);
-
-    struct ready_queue queueSRT = copy_ready_queue(runningQueue);
-    schedule_SRT(queueSRT);
-    delete_ready_queue(&queueSRT);
-
-    struct ready_queue queueRR = copy_ready_queue(runningQueue);
-    round_robin(queueRR);
-    delete_ready_queue(&queueRR);
+     schedule_fcfs(queueFCFS);
+     delete_ready_queue(&queueFCFS);
+     
+     struct ready_queue queueSJF = copy_ready_queue(runningQueue);
+     schedule_sjf(queueSJF);
+     delete_ready_queue(&queueSJF);
+     
+     struct ready_queue queueSRT = copy_ready_queue(runningQueue);
+     schedule_SRT(queueSRT);
+     delete_ready_queue(&queueSRT);
+     
+     struct ready_queue queueRR = copy_ready_queue(runningQueue);
+     round_robin(queueRR);
+     delete_ready_queue(&queueRR);
      */
-
-//    struct ready_queue queueHPF = copy_ready_queue(runningQueue);
-//    schedule_hpf(queueHPF);
-//    delete_ready_queue(&queueHPF);
+    
+    //    struct ready_queue queueHPF = copy_ready_queue(runningQueue);
+    //    schedule_hpf(queueHPF);
+    //    delete_ready_queue(&queueHPF);
 }
 
 int main(int argc, const char * argv[])
 {
     srand((unsigned int)time(NULL));
-
-
+    
+    
     reset_global_statistics();
     int queueSize = 32;
     struct ready_queue randomQueue = new_ready_queue(queueSize);
-
+    
     sort_ready_queue(&randomQueue);
     set_ready_queue_identifier(&randomQueue);
     print_ready_queue(randomQueue);
-
+    
     run_schedulers(randomQueue);
     delete_ready_queue(&randomQueue);
     return 0;

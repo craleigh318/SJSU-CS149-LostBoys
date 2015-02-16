@@ -50,7 +50,7 @@ int partition_run_time(struct simulated_process * a, int l, int r) {
     pivot = a[l].expectedRunTime;
     i = l;
     j = r + 1;
-
+    
     while (1) {
         do
             ++i;
@@ -72,7 +72,7 @@ int partition_run_time(struct simulated_process * a, int l, int r) {
 
 void quick_sort_run_time(struct simulated_process * a, int l, int r) {
     int j;
-
+    
     if (l < r) {
         j = partition_run_time(a, l, r);
         quick_sort_run_time(a, l, j - 1);
@@ -81,38 +81,38 @@ void quick_sort_run_time(struct simulated_process * a, int l, int r) {
 }
 
 int partition_arrival_time(struct simulated_process * a, int l, int r) {
-	float pivot;
-	struct simulated_process t;
-	int i, j;
-	pivot = a[l].arrivalTime;
-	i = l;
-	j = r + 1;
-
-	while (1) {
-		do
-			++i;
-		while (a[i].arrivalTime <= pivot && i <= r);
-		do
-			--j;
-		while (a[j].arrivalTime > pivot);
-		if (i >= j)
-			break;
-		t = a[i];
-		a[i] = a[j];
-		a[j] = t;
-	}
-	t = a[l];
-	a[l] = a[j];
-	a[j] = t;
-	return j;
+    float pivot;
+    struct simulated_process t;
+    int i, j;
+    pivot = a[l].arrivalTime;
+    i = l;
+    j = r + 1;
+    
+    while (1) {
+        do
+            ++i;
+        while (a[i].arrivalTime <= pivot && i <= r);
+        do
+            --j;
+        while (a[j].arrivalTime > pivot);
+        if (i >= j)
+            break;
+        t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+    }
+    t = a[l];
+    a[l] = a[j];
+    a[j] = t;
+    return j;
 }
 
 void quick_sort_arrival_time(struct simulated_process * a, int l, int r) {
-	int j;
-
-	if (l < r) {
-		j = partition_arrival_time(a, l, r);
-		quick_sort_arrival_time(a, l, j - 1);
-		quick_sort_arrival_time(a, j + 1, r);
-	}
+    int j;
+    
+    if (l < r) {
+        j = partition_arrival_time(a, l, r);
+        quick_sort_arrival_time(a, l, j - 1);
+        quick_sort_arrival_time(a, j + 1, r);
+    }
 }

@@ -32,7 +32,7 @@ void delete_ready_queue(struct ready_queue * deletingQueue) {
 }
 
 void sort_ready_queue(struct ready_queue * sortingQueue) {
-	quick_sort_arrival_time(sortingQueue->processes, 0, sortingQueue->length - 1);
+    quick_sort_arrival_time(sortingQueue->processes, 0, sortingQueue->length - 1);
 }
 
 void set_ready_queue_identifier(struct ready_queue * identifierQueue) {

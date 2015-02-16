@@ -15,11 +15,11 @@
  */
 struct simulated_process
 {
-	/*
-	 A name for each process.
-	 */
-	int identifier;
-
+    /*
+     A name for each process.
+     */
+    int identifier;
+    
     /*
      Ranges from 0.0 to 99.0.
      */
@@ -34,25 +34,25 @@ struct simulated_process
      Ranges from 1 to 4.  Lower values indicate higher priority.
      */
     int priority;
-
+    
     /*
      Mark a process as being visited
      */
-
+    
     int flagVisited;
-
-
+    
+    
     /*
      Mark a process as complete
      */
-
+    
     int flagComplete;
-
+    
     /*
      Holds the time when a process enters the ready queue
      */
     float timeEnteredReadyQueue;
-
+    
     /*
      Holds the time when a process starts running
      */
