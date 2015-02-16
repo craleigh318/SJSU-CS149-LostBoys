@@ -112,8 +112,9 @@ void exec_round_robin(struct ready_queue readyQueue, struct scheduler_statistics
         statistics.waiting_time = totalWait/size;
         statistics.turnaround_time = totalTurnAround/size;
         statistics.response_time = totalResponseTime/size;
+        statistics.throughput = throughput(readyQueue);
         add_to_global_statistics(statistics);
-        printf("\n");
+        printf("\n%f quanta have elapsed\n", timeElapsed);
         /*printf("\n\nAverage Waiting Time: %f"
          "\nAverage Turnaround Time: %f"
          "\nAverage Response Time: %f"
