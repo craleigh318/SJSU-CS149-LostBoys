@@ -83,6 +83,7 @@ void schedule_SRT(struct ready_queue readyQueue) {
     stats.waiting_time /= (completedList.length + runningList.length);
     stats.turnaround_time /= completedList.length;
     stats.response_time /= (completedList.length + runningList.length);
+    stats.throughput = completedList.length;
     add_to_global_statistics(stats);
     puts("");
     /*printf("Average Waiting Time: %f \nAverage Turnaround Time: %f \nAverage Response Time: %f \nThroughput: %i\n",
