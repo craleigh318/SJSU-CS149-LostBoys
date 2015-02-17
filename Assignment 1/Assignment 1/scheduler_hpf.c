@@ -3,6 +3,7 @@
 #include "ready_queue.h"
 #include "round_robin.h"
 #include "scheduler_fcfs.h"
+#include "global_statistics.h"
 
 void schedule_hpf(struct ready_queue readyQueue) {
     printf("\nHighest Priority First:\n");
@@ -37,6 +38,7 @@ void schedule_hpf(struct ready_queue readyQueue) {
     // Send the new priority queues to the preemptive (Round robin) & nonpreemptive (FCFS) methods.
     preemptive(priority1, priority2, priority3, priority4);
     nonpreemptive(priority1, priority2, priority3, priority4);
+    globalStatistics.throughput = queueSize * 5;
 }
 
 void preemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2,struct ready_queue readyQueue3,struct ready_queue readyQueue4) {

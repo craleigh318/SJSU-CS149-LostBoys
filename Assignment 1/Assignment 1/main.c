@@ -17,6 +17,7 @@
 #include "global_statistics.h"
 #include "helper_functions.h"
 
+static struct ready_queue trials[5];
 
 void print_simulated_process(struct simulated_process printingProcess)
 {
@@ -24,14 +25,14 @@ void print_simulated_process(struct simulated_process printingProcess)
            printingProcess.expectedRunTime, printingProcess.priority);
 }
 
-void print_ready_queue(struct ready_queue printingQueue)
+void print_ready_queue(int j)
 {
-    int queueSize = printingQueue.length;
+    int queueSize = trials[j].length;
     int i = 0;
     while (i < queueSize)
     {
-        printf("Process %d:\n", (i + 1));
-        print_simulated_process(printingQueue.processes[i]);
+        printf("Process %d (Trial %d):\n", (i + 1), (j + 1));
+        print_simulated_process(trials[j].processes[i]);
         printf("\n");
         ++i;
     }
@@ -55,7 +56,7 @@ void run_one_scheduler(void (* scheduler_name)(struct ready_queue), struct ready
     while (i < NUM_TRIALS)
     {
         queueCopy = copy_ready_queue(runningQueue);
-        scheduler_name(queueCopy);
+        scheduler_name(trials[i]);
         delete_ready_queue(&queueCopy);
         ++i;
     }
@@ -101,6 +102,12 @@ int main(int argc, const char * argv[])
     // Test 
     srand((unsigned int)time(NULL));
     
+    int i;
+    for (i = 0; i < NUM_TRIALS; ++i)
+    {
+        trials[i] = new_ready_queue(queueSize);
+        print_ready_queue(i);
+    }
     
     reset_global_statistics();
     int queueSize = 32;
@@ -108,7 +115,7 @@ int main(int argc, const char * argv[])
     
     sort_ready_queue(&randomQueue);
     set_ready_queue_identifier(&randomQueue);
-    print_ready_queue(randomQueue);
+    //print_ready_queue(randomQueue);
     
     run_schedulers(randomQueue);
     delete_ready_queue(&randomQueue);
