@@ -14,7 +14,8 @@ void schedule_hpf(struct ready_queue readyQueue, void (* subscheduler)(struct re
     struct ready_queue priority3 = new_ready_queue(0);
     struct ready_queue priority4 = new_ready_queue(0);
    
-    for (int i = 0; i <= readyQueue.length; i++) // Go through entire sort
+    int i;
+    for (i = 0; i <= readyQueue.length; i++) // Go through entire sort
     {
         if (readyQueue.processes[i].priority == 1) // Get the process within the sort and see if the process's priority matches the priority's queue number
         {

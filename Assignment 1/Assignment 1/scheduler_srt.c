@@ -40,7 +40,8 @@ void schedule_SRT(struct ready_queue readyQueuePass) {
     List completedList = init_list(readyQueuePass.length);
     List readyQueue = init_list(readyQueuePass.length);
     readyQueue.length = readyQueuePass.length;
-    for(int i = 0; i < readyQueue.length; i++) {
+    int i;
+    for(i = 0; i < readyQueue.length; i++) {
     	readyQueue.processes[i] = readyQueuePass.processes[i];
     }
     

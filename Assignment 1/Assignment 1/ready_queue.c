@@ -16,7 +16,8 @@ struct ready_queue new_ready_queue(int length)
         length,
         {0}
     };
-    for (int i = 0; i < length; ++i) {
+    int i;
+    for ( i = 0; i < length; ++i) {
         newReadyQueue.processes[i] = new_simulated_process();
     }
     return newReadyQueue;
@@ -39,7 +40,8 @@ void sort_ready_queue(struct ready_queue * sortingQueue)
 void set_ready_queue_identifier(struct ready_queue * identifierQueue)
 {
     int count = 1;
-    for(int i = 0; i < identifierQueue->length; i++) {
+    int i;
+    for( i = 0; i < identifierQueue->length; i++) {
         identifierQueue->processes[i].identifier = count;
         count++;
     }
@@ -56,7 +58,8 @@ struct simulated_process remove_ready_queue_process(struct ready_queue * queue, 
 {
     struct simulated_process removedProcess = queue->processes[index];
     int oldLength = queue->length;
-    for (int i = index; i < (oldLength - 1); ++i)
+    int i;
+    for (i = index; i < (oldLength - 1); ++i)
     {
         queue->processes[i] = queue->processes[i + 1];
     }
