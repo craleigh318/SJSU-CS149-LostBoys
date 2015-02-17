@@ -26,13 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment 1/Assignment 1/scheduler_sjf.c"
-            timestampString = "445656358.382061"
+            timestampString = "445845393.862823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "sort_by_sjf()"
-            landmarkType = "7">
+            startingLineNumber = "25"
+            endingLineNumber = "25">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

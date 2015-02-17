@@ -12,11 +12,6 @@
 #include "ready_queue.h"
 
 /*
- Sorts a ready queue by job length.
- */
-void sort_by_sjf(struct ready_queue * unsortedReadyQueue);
-
-/*
  Shortest Job First scheduling alogirthm.
  */
 void schedule_sjf(struct ready_queue readyQueue);
