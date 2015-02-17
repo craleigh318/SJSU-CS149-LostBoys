@@ -27,7 +27,6 @@ void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics 
     if (queueIsEmpty)
     {
         printf("\nQueue is empty.\n");
-        finish_run(statistics);
     }
     if (queueIsEmpty || (timeElapsed >= TIME_LIMIT))
     {
