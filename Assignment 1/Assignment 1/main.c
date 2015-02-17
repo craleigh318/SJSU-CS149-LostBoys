@@ -98,6 +98,7 @@ void run_schedulers(struct ready_queue runningQueue)
 
 int main(int argc, const char * argv[])
 {
+    // Test 
     srand((unsigned int)time(NULL));
     
     
