@@ -90,29 +90,4 @@ void schedule_SRT(struct ready_queue readyQueuePass) {
     stats.throughput = completedList.length;
     add_to_global_statistics(stats);
     puts("");
-
-   	puts("Running List");
-     	for(int i = 0; i < runningList.length; i++){
-     		printf("length: %i   arrival: %f   expected:%f   pri:%i\n",
-     				runningList.length,
-     				runningList.processes[i].arrivalTime,
-     				runningList.processes[i].expectedRunTime,
-     				runningList.processes[i].priority);
-   }
-
-   	puts("Completed List");
-   	for(int i = 0; i < completedList.length; i++){
-   		printf("length: %i   arrival: %f   expected:%f   pri:%i\n",
-   				completedList.length,
-   				completedList.processes[i].arrivalTime,
-   				completedList.processes[i].expectedRunTime,
-   				completedList.processes[i].priority);
-   	}
-    /*printf("Average Waiting Time: %f \nAverage Turnaround Time: %f \nAverage Response Time: %f \nThroughput: %i\n",
-     stats.waiting_time / (completedList.length + runningList.length),
-     stats.turnaround_time / completedList.length,
-     stats.response_time / (completedList.length + runningList.length),
-     completedList.length);*/
-    //delete_list(&runningList);
-    //delete_list(&completedList);
 }
