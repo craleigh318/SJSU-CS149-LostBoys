@@ -44,11 +44,12 @@ void schedule_SRT(struct ready_queue readyQueue) {
     
     while(curr_time < TIME_LIMIT && completedList.length < readyQueue.length) {
         //Puts a process into the ready queue when it arrives
-        while(readyQueue.processes[0].arrivalTime < curr_time) {
+        int i = 0;
+        while(readyQueue.processes[i].arrivalTime < curr_time) {
             push_process_to_list(&runningList, readyQueue.processes[0]);
             stats.response_time += (curr_time - readyQueue.processes[0].arrivalTime);
             readyQueue.processes[0].timeEnteredReadyQueue = curr_time;
-            readyQueue.processes++;
+            i++;
             readyQueue.length--;
             quick_sort_run_time(runningList.processes, 0, runningList.length - 1);
         }

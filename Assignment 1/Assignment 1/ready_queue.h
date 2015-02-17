@@ -11,6 +11,8 @@
 #include "system_headers.h"
 #include "simulated_process.h"
 
+static const int queueSize = 32;
+
 /*
  A queue of simulated processes.
  */
@@ -24,7 +26,7 @@ struct ready_queue
     /*
      The processes, as an array.
      */
-    struct simulated_process * processes;
+    struct simulated_process processes[queueSize];
 };
 
 /*
