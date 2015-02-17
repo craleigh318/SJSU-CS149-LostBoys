@@ -26,30 +26,34 @@ void copy_simulated_process(struct simulated_process* a, struct simulated_proces
     a->priority = b->priority;
 }
 
-void push_process_to_list(List* passQueue, struct simulated_process a) {
-    passQueue->processes[passQueue->length] = a;
+void push_process_to_list(List* passQueue, struct simulated_process* a) {
+    passQueue->processes[passQueue->length] = *a;
     passQueue->length++;
 }
 
-void schedule_SRT(struct ready_queue readyQueue) {
+void schedule_SRT(struct ready_queue readyQueuePass) {
     int curr_time = 0;
     int time_slice = 1;
     int curr_identifier = -1;
     struct scheduler_statistics stats = new_scheduler_statistics();
-    List runningList = init_list(readyQueue.length);
-    List completedList = init_list(readyQueue.length);
+    List runningList = init_list(readyQueuePass.length);
+    List completedList = init_list(readyQueuePass.length);
+    List readyQueue = init_list(readyQueuePass.length);
+    readyQueue.length = readyQueuePass.length;
+    for(int i = 0; i < readyQueue.length; i++) {
+    	readyQueue.processes[i] = readyQueuePass.processes[i];
+    }
     
     puts("\nShortest Remaining Time:");
     printf("Time Line: ");
     
     while(curr_time < TIME_LIMIT && completedList.length < readyQueue.length) {
         //Puts a process into the ready queue when it arrives
-        int i = 0;
-        while(readyQueue.processes[i].arrivalTime < curr_time) {
-            push_process_to_list(&runningList, readyQueue.processes[0]);
+        while(readyQueue.processes[0].arrivalTime < curr_time) {
+            push_process_to_list(&runningList, &readyQueue.processes[0]);
             stats.response_time += (curr_time - readyQueue.processes[0].arrivalTime);
-            readyQueue.processes[0].timeEnteredReadyQueue = curr_time;
-            i++;
+            runningList.processes[0].timeEnteredReadyQueue = curr_time;
+            readyQueue.processes++;
             readyQueue.length--;
             quick_sort_run_time(runningList.processes, 0, runningList.length - 1);
         }
@@ -72,7 +76,7 @@ void schedule_SRT(struct ready_queue readyQueue) {
                 curr_identifier = runningList.processes[0].identifier;
             //Process is finished and is moved to the completed list
             if(runningList.processes[0].expectedRunTime < 0){
-                push_process_to_list(&completedList, runningList.processes[0]);
+                push_process_to_list(&completedList, &runningList.processes[0]);
                 stats.turnaround_time += (curr_time - completedList.processes[0].timeStartsRunning);
                 runningList.processes++;
                 runningList.length--;
@@ -83,8 +87,27 @@ void schedule_SRT(struct ready_queue readyQueue) {
     stats.waiting_time /= (completedList.length + runningList.length);
     stats.turnaround_time /= completedList.length;
     stats.response_time /= (completedList.length + runningList.length);
+    stats.throughput = completedList.length;
     add_to_global_statistics(stats);
     puts("");
+
+   	puts("Running List");
+     	for(int i = 0; i < runningList.length; i++){
+     		printf("length: %i   arrival: %f   expected:%f   pri:%i\n",
+     				runningList.length,
+     				runningList.processes[i].arrivalTime,
+     				runningList.processes[i].expectedRunTime,
+     				runningList.processes[i].priority);
+   }
+
+   	puts("Completed List");
+   	for(int i = 0; i < completedList.length; i++){
+   		printf("length: %i   arrival: %f   expected:%f   pri:%i\n",
+   				completedList.length,
+   				completedList.processes[i].arrivalTime,
+   				completedList.processes[i].expectedRunTime,
+   				completedList.processes[i].priority);
+   	}
     /*printf("Average Waiting Time: %f \nAverage Turnaround Time: %f \nAverage Response Time: %f \nThroughput: %i\n",
      stats.waiting_time / (completedList.length + runningList.length),
      stats.turnaround_time / completedList.length,
