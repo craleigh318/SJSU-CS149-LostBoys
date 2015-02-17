@@ -42,9 +42,9 @@ void print_statistics()
 {
     
     int throughput = globalStatistics.throughput / NUM_TRIALS;
-    float avgTurnaround = globalStatistics.turnaround_time / (float)NUM_TRIALS;
-    float avgWaitTime = globalStatistics.waiting_time / (float)NUM_TRIALS;
-    float avgResponse = globalStatistics.response_time / (float)NUM_TRIALS;
+    float avgTurnaround = globalStatistics.turnaround_time / (float)NUM_TRIALS / throughput;
+    float avgWaitTime = globalStatistics.waiting_time / (float)NUM_TRIALS / throughput;
+    float avgResponse = globalStatistics.response_time / (float)NUM_TRIALS / throughput;
     printf("\nAvg. Turnaround Time: %f\nAvg. Wait Time: %f\nAvg. Response Time: %f\nAvg. Throughput: %d\n\n",
            avgTurnaround, avgWaitTime, avgResponse, throughput);
 }
