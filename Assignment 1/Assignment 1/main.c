@@ -70,7 +70,8 @@ void run_schedulers()
     run_one_scheduler(&schedule_sjf);
     run_one_scheduler(&schedule_SRT);
     run_one_scheduler(&round_robin);
-    run_one_scheduler(&schedule_hpf);
+    run_one_scheduler(&schedule_hpf_with_fcfs);
+    run_one_scheduler(&schedule_hpf_with_rr);
 }
 
 int main(int argc, const char * argv[])

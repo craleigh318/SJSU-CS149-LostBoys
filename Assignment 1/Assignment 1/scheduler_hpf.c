@@ -5,7 +5,7 @@
 #include "scheduler_fcfs.h"
 #include "global_statistics.h"
 
-void schedule_hpf(struct ready_queue readyQueue) {
+void schedule_hpf(struct ready_queue readyQueue, void (* subscheduler)(struct ready_queue, struct ready_queue, struct ready_queue, struct ready_queue)) {
     printf("\nHighest Priority First:\n");
     // 1st create 4 priority queues label 1-4 priority && empty everything in it. 1 = Highest
     struct ready_queue priority1 = new_ready_queue(0);
@@ -36,8 +36,7 @@ void schedule_hpf(struct ready_queue readyQueue) {
     
     // 3rd after processes are sorted into their priority queue based on their priority number
     // Send the new priority queues to the preemptive (Round robin) & nonpreemptive (FCFS) methods.
-    preemptive(priority1, priority2, priority3, priority4);
-    nonpreemptive(priority1, priority2, priority3, priority4);
+    subscheduler(priority1, priority2, priority3, priority4);
 }
 
 void preemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2,struct ready_queue readyQueue3,struct ready_queue readyQueue4) {
@@ -57,4 +56,13 @@ void nonpreemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2
     schedule_fcfs(readyQueue2);
     schedule_fcfs(readyQueue3);
     schedule_fcfs(readyQueue4);
+}
+
+void schedule_hpf_with_fcfs(struct ready_queue readyQueue)
+{
+    schedule_hpf(readyQueue, &nonpreemptive);
+}
+void schedule_hpf_with_rr(struct ready_queue readyQueue)
+{
+    schedule_hpf(readyQueue, &preemptive);
 }
