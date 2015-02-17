@@ -7,7 +7,7 @@
 void schedule_hpf(struct ready_queue readyQueue) {
     printf("\nHighest Priority First:\n");
     // 1st create 4 priority queues label 1-4 priority && empty everything in it. 1 = Highest
-    struct ready_queue priority1 = new_ready_queue(readyQueue.length);
+    struct ready_queue priority1 = new_ready_queue(0);
     // Initialize priority1 with some generated simulated process
     // We have to get rid of the randomly generated process to nothing
     for(int i = 0; i < readyQueue.length; i++)
@@ -15,19 +15,19 @@ void schedule_hpf(struct ready_queue readyQueue) {
         //priority1[i] = 0;
     }
     
-    struct ready_queue priority2 = new_ready_queue(readyQueue.length);
+    struct ready_queue priority2 = new_ready_queue(0);
     for(int j = 0; j < readyQueue.length; j++)
     {
         //priority2[j] = 0;
     }
     
-    struct ready_queue priority3 = new_ready_queue(readyQueue.length);
+    struct ready_queue priority3 = new_ready_queue(0);
     for(int k = 0; k < readyQueue.length; k++)
     {
         //priority3[k] = 0;
     }
     
-    struct ready_queue priority4 = new_ready_queue(readyQueue.length);
+    struct ready_queue priority4 = new_ready_queue(0);
     for(int k = 0; k < readyQueue.length; k++)
     {
         //priority4[k] = 0;

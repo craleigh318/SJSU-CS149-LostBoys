@@ -26,7 +26,7 @@ void pop_ready_queue(struct ready_queue readyQueue, struct scheduler_statistics 
     bool queueIsEmpty = (numPops >= readyQueue.length);
     if (queueIsEmpty)
     {
-        printf("\nQueue is empty! Please enlarge queue next time.\n");
+        printf("\nQueue is empty.\n");
     }
     if (queueIsEmpty || (timeElapsed >= TIME_LIMIT))
     {

@@ -51,11 +51,13 @@ void print_statistics()
 void run_one_scheduler(void (* scheduler_name)(struct ready_queue), struct ready_queue runningQueue)
 {
     struct ready_queue queueCopy;
-    for (int i = 0; i < NUM_TRIALS; ++i)
+    int i = 0;
+    while (i < NUM_TRIALS)
     {
         queueCopy = copy_ready_queue(runningQueue);
         scheduler_name(queueCopy);
         delete_ready_queue(&queueCopy);
+        ++i;
     }
     print_statistics();
     reset_global_statistics();
