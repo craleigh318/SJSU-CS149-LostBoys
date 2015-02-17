@@ -6,7 +6,6 @@
 #include "global_statistics.h"
 
 void schedule_hpf(struct ready_queue readyQueue, void (* subscheduler)(struct ready_queue, struct ready_queue, struct ready_queue, struct ready_queue)) {
-    printf("\nHighest Priority First:\n");
     // 1st create 4 priority queues label 1-4 priority && empty everything in it. 1 = Highest
     struct ready_queue priority1 = new_ready_queue(0);
     // Initialize priority1 with some generated simulated process
@@ -60,9 +59,11 @@ void nonpreemptive(struct ready_queue readyQueue1,struct ready_queue readyQueue2
 
 void schedule_hpf_with_fcfs(struct ready_queue readyQueue)
 {
+    printf("\nHighest Priority First (Non-Preemptive):\n");
     schedule_hpf(readyQueue, &nonpreemptive);
 }
 void schedule_hpf_with_rr(struct ready_queue readyQueue)
 {
+    printf("\nHighest Priority First (Preemptive):\n");
     schedule_hpf(readyQueue, &preemptive);
 }
