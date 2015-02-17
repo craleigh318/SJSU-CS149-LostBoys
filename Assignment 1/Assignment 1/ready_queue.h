@@ -26,7 +26,7 @@ struct ready_queue
     /*
      The processes, as an array.
      */
-    struct simulated_process processes[queueSize];
+    struct simulated_process processes[32];
 };
 
 /*
