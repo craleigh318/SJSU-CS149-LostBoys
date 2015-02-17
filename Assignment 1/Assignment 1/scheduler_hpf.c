@@ -10,37 +10,15 @@ void schedule_hpf(struct ready_queue readyQueue) {
     struct ready_queue priority1 = new_ready_queue(0);
     // Initialize priority1 with some generated simulated process
     // We have to get rid of the randomly generated process to nothing
-    for(int i = 0; i < readyQueue.length; i++)
-    {
-        //priority1[i] = 0;
-    }
-    
     struct ready_queue priority2 = new_ready_queue(0);
-    for(int j = 0; j < readyQueue.length; j++)
-    {
-        //priority2[j] = 0;
-    }
-    
     struct ready_queue priority3 = new_ready_queue(0);
-    for(int k = 0; k < readyQueue.length; k++)
-    {
-        //priority3[k] = 0;
-    }
-    
     struct ready_queue priority4 = new_ready_queue(0);
-    for(int k = 0; k < readyQueue.length; k++)
-    {
-        //priority4[k] = 0;
-    }
-    
-    // 2nd with the place
-    
+   
     for (int i = 0; i <= readyQueue.length; i++) // Go through entire sort
     {
         if (readyQueue.processes[i].priority == 1) // Get the process within the sort and see if the process's priority matches the priority's queue number
         {
-            
-            add_ready_queue_process(&priority1, readyQueue.processes[i]); // if their process's priority number is equal to 1, then add that process into the priority1 queue
+             add_ready_queue_process(&priority1, readyQueue.processes[i]); // if their process's priority number is equal to 1, then add that process into the priority1 queue
             //remove_ready_queue_process(&readyQueue, i); // Since that priority is placed into the priority1 queue , remove it from the sort queue
         } else if (readyQueue.processes[i].priority == 2) {
             add_ready_queue_process(&priority2, readyQueue.processes[i]);
