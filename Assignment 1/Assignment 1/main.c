@@ -49,15 +49,12 @@ void print_statistics()
            avgTurnaround, avgWaitTime, avgResponse, throughput);
 }
 
-void run_one_scheduler(void (* scheduler_name)(struct ready_queue), struct ready_queue runningQueue)
+void run_one_scheduler(void (* scheduler_name)(struct ready_queue))
 {
-    struct ready_queue queueCopy;
     int i = 0;
     while (i < NUM_TRIALS)
     {
-        queueCopy = copy_ready_queue(runningQueue);
         scheduler_name(trials[i]);
-        delete_ready_queue(&queueCopy);
         ++i;
     }
     print_statistics();
@@ -67,57 +64,28 @@ void run_one_scheduler(void (* scheduler_name)(struct ready_queue), struct ready
 /*
  Call your scheduling algorithms here.
  */
-void run_schedulers(struct ready_queue runningQueue)
+void run_schedulers()
 {
-    run_one_scheduler(&schedule_fcfs, runningQueue);
-    run_one_scheduler(&schedule_sjf, runningQueue);
-    run_one_scheduler(&schedule_SRT, runningQueue);
-    run_one_scheduler(&round_robin, runningQueue);
-    run_one_scheduler(&schedule_hpf, runningQueue);
-    /*
-     struct ready_queue queueFCFS = copy_ready_queue(runningQueue);
-     schedule_fcfs(queueFCFS);
-     delete_ready_queue(&queueFCFS);
-     
-     struct ready_queue queueSJF = copy_ready_queue(runningQueue);
-     schedule_sjf(queueSJF);
-     delete_ready_queue(&queueSJF);
-     
-     struct ready_queue queueSRT = copy_ready_queue(runningQueue);
-     schedule_SRT(queueSRT);
-     delete_ready_queue(&queueSRT);
-     
-     struct ready_queue queueRR = copy_ready_queue(runningQueue);
-     round_robin(queueRR);
-     delete_ready_queue(&queueRR);
-     */
-    
-    //    struct ready_queue queueHPF = copy_ready_queue(runningQueue);
-    //    schedule_hpf(queueHPF);
-    //    delete_ready_queue(&queueHPF);
+    run_one_scheduler(&schedule_fcfs);
+    run_one_scheduler(&schedule_sjf);
+    run_one_scheduler(&schedule_SRT);
+    run_one_scheduler(&round_robin);
+    run_one_scheduler(&schedule_hpf);
 }
 
 int main(int argc, const char * argv[])
 {
     // Test 
     srand((unsigned int)time(NULL));
-    
+    reset_global_statistics();
     int i;
     for (i = 0; i < NUM_TRIALS; ++i)
     {
         trials[i] = new_ready_queue(queueSize);
+        sort_ready_queue(&trials[i]);
+        set_ready_queue_identifier(&trials[i]);
         print_ready_queue(i);
     }
-    
-    reset_global_statistics();
-    int queueSize = 32;
-    struct ready_queue randomQueue = new_ready_queue(queueSize);
-    
-    sort_ready_queue(&randomQueue);
-    set_ready_queue_identifier(&randomQueue);
-    //print_ready_queue(randomQueue);
-    
-    run_schedulers(randomQueue);
-    delete_ready_queue(&randomQueue);
+    run_schedulers();
     return 0;
 }
