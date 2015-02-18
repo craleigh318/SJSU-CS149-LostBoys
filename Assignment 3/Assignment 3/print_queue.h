@@ -27,11 +27,15 @@ struct print_queue new_print_queue();
 
 /*
  Adds a string to a print queue.
+ 
+ Returns true if successful.
  */
 bool add_print_job(struct print_queue * queue, char * job);
 
 /*
  Prints the first-added job in a queue.
+ 
+ Returns true if successful.
  */
 bool print_next_job(struct print_queue * queue);
 
