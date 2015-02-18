@@ -17,6 +17,7 @@
 struct print_queue {
     int size;
     char * jobs[PRINT_QUEUE_MAX_SIZE];
+    bool locked;
 };
 
 /*
