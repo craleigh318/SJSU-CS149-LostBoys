@@ -11,14 +11,14 @@
 #include "system_headers.h"
 #include "student_type.h"
 
-struct student {
+typedef struct {
     int idNumber;
     enum student_type type;
-};
+} Student;
 
 /*
  Returns a new student with the specified ID.
  */
-struct student new_student(int idNumber);
+Student new_student(int idNumber);
 
 #endif /* defined(__Assignment_3__student__) */

@@ -8,8 +8,8 @@
 
 #include "student.h"
 
-struct student new_student(int idNumber) {
-    struct student newStudent = {
+Student new_student(int idNumber) {
+    Student newStudent = {
         idNumber,
         get_random_student_type()
     };
