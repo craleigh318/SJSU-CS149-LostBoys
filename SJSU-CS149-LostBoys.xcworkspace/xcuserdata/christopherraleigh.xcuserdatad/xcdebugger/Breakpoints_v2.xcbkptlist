@@ -134,27 +134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment 3/Assignment 3/print_queue.c"
-            timestampString = "445995953.345073"
+            timestampString = "445996392.566784"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "add_print_job()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment 3/Assignment 3/print_queue.c"
-            timestampString = "445995953.345073"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "add_print_job()"
             landmarkType = "7">
          </BreakpointContent>

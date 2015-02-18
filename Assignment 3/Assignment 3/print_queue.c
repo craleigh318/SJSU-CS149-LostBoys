@@ -18,11 +18,14 @@ struct print_queue new_print_queue() {
 }
 
 bool add_print_job(struct print_queue * queue, char * job) {
-    queue->locked = true;
-    queue->jobs[queue->size] = job;
-    ++queue->size;
-    queue->locked = false;
-    return true;
+    if (!queue->locked) {
+        queue->locked = true;
+        queue->jobs[queue->size] = job;
+        ++queue->size;
+        queue->locked = false;
+        return true;
+    }
+    return false;
 }
 
 bool print_next_job(struct print_queue * queue) {
@@ -39,7 +42,5 @@ bool print_next_job(struct print_queue * queue) {
         queue->locked = false;
         return true;
     }
-    else {
         return false;
-    }
 }
