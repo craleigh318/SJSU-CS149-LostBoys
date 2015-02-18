@@ -16,15 +16,15 @@
  RS: regular senior
  EE: everyone else
  */
-enum student_type {
+typedef enum {
     gs,
     rs,
     ee
-};
+} StudentType;
 
 /*
  Returns GS, RS, or EE randomly.
  */
-enum student_type get_random_student_type();
+StudentType get_random_student_type();
 
 #endif

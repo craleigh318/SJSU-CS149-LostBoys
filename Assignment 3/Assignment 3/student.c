@@ -15,3 +15,22 @@ Student new_student(int idNumber) {
     };
     return newStudent;
 }
+
+/*char * student_to_string(Student student) {
+    StudentType type = student.type;
+    char * strType;
+    switch (type) {
+        case gs:
+            strType = "GS";
+            break;
+        case rs:
+            strType = "RS";
+            break;
+        default:
+            strType = "EE";
+            break;
+    }
+    char newString[16];
+    sprintf(newString, "#%d.%s", student.idNumber, strType);
+    return newString;
+}*/

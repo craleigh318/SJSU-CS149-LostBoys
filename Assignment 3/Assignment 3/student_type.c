@@ -8,6 +8,6 @@
 
 #include "student_type.h"
 
-enum student_type get_random_student_type() {
+StudentType get_random_student_type() {
     return (rand() % 3);
 }

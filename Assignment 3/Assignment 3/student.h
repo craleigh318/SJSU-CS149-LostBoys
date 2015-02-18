@@ -13,12 +13,14 @@
 
 typedef struct {
     int idNumber;
-    enum student_type type;
+    StudentType type;
 } Student;
 
 /*
  Returns a new student with the specified ID.
  */
 Student new_student(int idNumber);
+
+/*char * student_to_string(Student student);*/
 
 #endif /* defined(__Assignment_3__student__) */
