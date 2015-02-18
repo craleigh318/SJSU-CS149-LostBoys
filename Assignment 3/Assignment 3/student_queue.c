@@ -36,9 +36,9 @@ Student pop_student_queue(StudentQueue* queue)  {
 	return ret_student;
 }
 
-void print_student_queue(StudentQueue* queue) {
-	for(int i = 0; i < queue->length; i++) {
-		Student curr_student = queue->students[i];
+void print_student_queue(StudentQueue queue) {
+	for(int i = 0; i < queue.length; i++) {
+		Student curr_student = queue.students[i];
 		printf("Student %2i   Type: %i\n", curr_student.idNumber, curr_student.type);
 	}
 }

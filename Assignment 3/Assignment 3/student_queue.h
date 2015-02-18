@@ -30,6 +30,6 @@ void push_student_queue(StudentQueue* queue, Student student);
 
 Student pop_student_queue(StudentQueue* queue);
 
-void print_student_queue(StudentQueue* queue);
+void print_student_queue(StudentQueue queue);
 
 #endif /* STUDENT_QUEUE_H_ */
