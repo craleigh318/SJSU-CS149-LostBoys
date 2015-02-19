@@ -8,8 +8,8 @@
 
 #include "print_queue.h"
 
-struct print_queue new_print_queue() {
-    struct print_queue newQueue = {
+PrintQueue new_print_queue() {
+    PrintQueue newQueue = {
         0,
         {0},
         false
@@ -17,7 +17,7 @@ struct print_queue new_print_queue() {
     return newQueue;
 }
 
-bool add_print_job(struct print_queue * queue, char * job) {
+bool add_print_job(PrintQueue * queue, char * job) {
     if (!queue->locked) {
         queue->locked = true;
         queue->jobs[queue->size] = job;
@@ -28,7 +28,7 @@ bool add_print_job(struct print_queue * queue, char * job) {
     return false;
 }
 
-bool print_next_job(struct print_queue * queue) {
+bool print_next_job(PrintQueue * queue) {
     int queueSize = queue->size;
     if (!queue->locked && (queueSize > 0)) {
         queue->locked = true;
@@ -43,4 +43,14 @@ bool print_next_job(struct print_queue * queue) {
         return true;
     }
         return false;
+}
+
+void thread_loop_for_print_queue(PrintQueue * printQueue) {
+    print_next_job(printQueue);
+    thread_loop_for_print_queue(printQueue);
+}
+
+void thread_for_print_queue() {
+    mainPrintQueue = new_print_queue();
+    thread_loop_for_print_queue(&mainPrintQueue);
 }

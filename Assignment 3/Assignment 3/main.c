@@ -12,6 +12,10 @@
 #include "student_type.h"
 
 int main(int argc, const char * argv[]) {
+    pthread_t printerThread;
+    
+    pthread_create(&printerThread, NULL, &thread_for_print_queue, NULL);
+    
     srand((unsigned int)time(NULL));
 
 	Student studentList[MAX_STUDENTS];
@@ -43,12 +47,10 @@ int main(int argc, const char * argv[]) {
 	print_student_queue(eeQueue);
 
     // insert code here...
-    struct print_queue myQueue = new_print_queue();
+    
     char string1[] = "Hello, World!";
     char string2[] = "Hello, Self!";
-    add_print_job(&myQueue, string1);
-    add_print_job(&myQueue, string2);
-    print_next_job(&myQueue);
-    print_next_job(&myQueue);
+    add_print_job(&mainPrintQueue, string1);
+    add_print_job(&mainPrintQueue, string2);
     return 0;
 }

@@ -8,6 +8,7 @@
 
 #ifndef Assignment_3_system_headers_h
 #define Assignment_3_system_headers_h
+#include <pthread.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>

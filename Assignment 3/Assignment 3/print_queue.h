@@ -14,29 +14,36 @@
 /*
  Prints to the console.
  */
-struct print_queue {
+typedef struct {
     int size;
     char * jobs[PRINT_QUEUE_MAX_SIZE];
     bool locked;
-};
+} PrintQueue;
+
+static PrintQueue mainPrintQueue;
 
 /*
  Returns a new print queue.
  */
-struct print_queue new_print_queue();
+PrintQueue new_print_queue();
 
 /*
  Adds a string to a print queue.
  
  Returns true if successful.
  */
-bool add_print_job(struct print_queue * queue, char * job);
+bool add_print_job(PrintQueue * queue, char * job);
 
 /*
  Prints the first-added job in a queue.
  
  Returns true if successful.
  */
-bool print_next_job(struct print_queue * queue);
+bool print_next_job(PrintQueue * queue);
+
+/*
+ Entry point for the print queue thread.
+ */
+void thread_for_print_queue();
 
 #endif /* defined(__Assignment_3__print_queue__) */
