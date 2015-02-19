@@ -8,6 +8,12 @@
 
 #include "student_type.h"
 
+/*
+ Return a number between 0 - 2
+ 0 = Graduating Seniors
+ 1 = Regular Seniors
+ 2 = Everyone else 
+ */
 StudentType get_random_student_type() {
-    return (rand() % 3);
+    return (rand() % 3); 
 }
