@@ -44,6 +44,6 @@ bool print_next_job(PrintQueue * queue);
 /*
  Entry point for the print queue thread.
  */
-void thread_for_print_queue();
+void * thread_for_print_queue(void * params);
 
 #endif /* defined(__Assignment_3__print_queue__) */

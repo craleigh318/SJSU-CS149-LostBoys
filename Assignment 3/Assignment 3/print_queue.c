@@ -50,7 +50,8 @@ void thread_loop_for_print_queue(PrintQueue * printQueue) {
     thread_loop_for_print_queue(printQueue);
 }
 
-void thread_for_print_queue() {
+void * thread_for_print_queue(void * params) {
     mainPrintQueue = new_print_queue();
     thread_loop_for_print_queue(&mainPrintQueue);
+    return NULL;
 }

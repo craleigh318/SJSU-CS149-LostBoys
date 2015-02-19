@@ -52,5 +52,6 @@ int main(int argc, const char * argv[]) {
     char string2[] = "Hello, Self!";
     add_print_job(&mainPrintQueue, string1);
     add_print_job(&mainPrintQueue, string2);
+    //pthread_join(printerThread, NULL);
     return 0;
 }
