@@ -21,6 +21,10 @@ typedef struct {
  */
 Student new_student(int idNumber);
 
-/*char * student_to_string(Student student);*/
+/*
+ Writes the specified student as a string to the specified char array.
+ Have at least 7 chars in the array before calling.
+ */
+void student_to_string(Student student, char ** destination);
 
 #endif /* defined(__Assignment_3__student__) */

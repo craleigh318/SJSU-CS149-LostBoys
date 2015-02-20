@@ -16,7 +16,7 @@ Student new_student(int idNumber) {
     return newStudent;
 }
 
-/*char * student_to_string(Student student) {
+void student_to_string(Student student, char ** destination) {
     StudentType type = student.type;
     char * strType;
     switch (type) {
@@ -30,7 +30,5 @@ Student new_student(int idNumber) {
             strType = "EE";
             break;
     }
-    char newString[16];
-    sprintf(newString, "#%d.%s", student.idNumber, strType);
-    return newString;
-}*/
+    sprintf(*destination, "#%d.%s", student.idNumber, strType);
+}
