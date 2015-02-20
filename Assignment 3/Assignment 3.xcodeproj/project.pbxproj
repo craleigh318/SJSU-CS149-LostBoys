@@ -13,6 +13,7 @@
 		A43ADFDD1A949B40005220F2 /* student_type.c in Sources */ = {isa = PBXBuildFile; fileRef = A43ADFDC1A949B40005220F2 /* student_type.c */; };
 		A480D4E01A95554A003ABCC2 /* sections.c in Sources */ = {isa = PBXBuildFile; fileRef = A480D4DC1A95554A003ABCC2 /* sections.c */; };
 		A480D4E11A95554A003ABCC2 /* student_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = A480D4DE1A95554A003ABCC2 /* student_queue.c */; };
+		A4F6218D1A972CF50081EB6E /* global_variables.c in Sources */ = {isa = PBXBuildFile; fileRef = A4F6218B1A972CF50081EB6E /* global_variables.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,8 @@
 		A480D4DD1A95554A003ABCC2 /* sections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sections.h; sourceTree = "<group>"; };
 		A480D4DE1A95554A003ABCC2 /* student_queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = student_queue.c; sourceTree = "<group>"; };
 		A480D4DF1A95554A003ABCC2 /* student_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = student_queue.h; sourceTree = "<group>"; };
+		A4F6218B1A972CF50081EB6E /* global_variables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = global_variables.c; sourceTree = "<group>"; };
+		A4F6218C1A972CF50081EB6E /* global_variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global_variables.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				A43ADFD81A949612005220F2 /* student_type.h */,
 				A43ADFD91A94984C005220F2 /* student.c */,
 				A43ADFDA1A94984C005220F2 /* student.h */,
+				A4F6218B1A972CF50081EB6E /* global_variables.c */,
+				A4F6218C1A972CF50081EB6E /* global_variables.h */,
 			);
 			path = "Assignment 3";
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 				A43ADFCE1A9432ED005220F2 /* main.c in Sources */,
 				A43ADFDB1A94984C005220F2 /* student.c in Sources */,
 				A43ADFD71A94735C005220F2 /* print_queue.c in Sources */,
+				A4F6218D1A972CF50081EB6E /* global_variables.c in Sources */,
 				A480D4E11A95554A003ABCC2 /* student_queue.c in Sources */,
 				A43ADFDD1A949B40005220F2 /* student_type.c in Sources */,
 				A480D4E01A95554A003ABCC2 /* sections.c in Sources */,
@@ -190,7 +196,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -225,7 +231,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};

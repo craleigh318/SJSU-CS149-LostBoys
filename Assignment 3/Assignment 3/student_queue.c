@@ -11,7 +11,7 @@ StudentQueue new_student_queue() {
 	StudentQueue new_queue = {
 			0,
 			0,
-			{-1}
+			-1
 	};
 	return new_queue;
 }

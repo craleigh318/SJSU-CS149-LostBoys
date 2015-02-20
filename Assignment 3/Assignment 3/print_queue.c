@@ -7,6 +7,7 @@
 //
 
 #include "print_queue.h"
+#include "global_variables.h"
 
 PrintQueue new_print_queue() {
     PrintQueue newQueue = {
@@ -46,8 +47,13 @@ bool print_next_job(PrintQueue * queue) {
 }
 
 void thread_loop_for_print_queue(PrintQueue * printQueue) {
-    print_next_job(printQueue);
-    thread_loop_for_print_queue(printQueue);
+    bool printQueueIsEmpty = (printQueue->size <= 0);
+    if ((!programIsEnding) || (!printQueueIsEmpty)) {
+        if (!printQueueIsEmpty) {
+            print_next_job(printQueue);
+        }
+        //thread_loop_for_print_queue(printQueue);
+    }
 }
 
 void * thread_for_print_queue(void * params) {

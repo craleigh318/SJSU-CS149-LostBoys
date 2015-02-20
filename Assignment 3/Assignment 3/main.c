@@ -10,12 +10,13 @@
 #include "print_queue.h"
 #include "student_queue.h"
 #include "student_type.h"
+#include "global_variables.h"
 
 int main(int argc, const char * argv[]) {
+    initialize_global_variables();
+    mainPrintQueue = new_print_queue();
     pthread_t printerThread;
-    
     pthread_create(&printerThread, NULL, &thread_for_print_queue, NULL);
-    
     srand((unsigned int)time(NULL));
 
 	Student studentList[MAX_STUDENTS];
