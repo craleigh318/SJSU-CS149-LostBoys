@@ -19,17 +19,12 @@ int main(int argc, const char * argv[]) {
     pthread_create(&printerThread, NULL, &thread_for_print_queue, NULL);
     srand((unsigned int)time(NULL));
 
-	Student studentList[MAX_STUDENTS];
-	for(int i = 0; i < MAX_STUDENTS; i++) {
-		studentList[i] = new_student(i + 1);
-	}
-
 	StudentQueue rsQueue = new_student_queue();
 	StudentQueue gsQueue = new_student_queue();
 	StudentQueue eeQueue = new_student_queue();
 
 	for(int i = 0; i < MAX_STUDENTS; i++) {
-		Student currStudent = studentList[i];
+		Student currStudent = new_student(i + 1);
 		if(currStudent.type == gs)
 			push_student_queue(&gsQueue, currStudent);
 		else if(currStudent.type == rs)
