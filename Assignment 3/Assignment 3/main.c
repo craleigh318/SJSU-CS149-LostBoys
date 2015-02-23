@@ -14,9 +14,6 @@
 
 int main(int argc, const char * argv[]) {
     initialize_global_variables();
-    mainPrintQueue = new_print_queue();
-    pthread_t printerThread;
-    pthread_create(&printerThread, NULL, &thread_for_print_queue, NULL);
     srand((unsigned int)time(NULL));
 
 	StudentQueue rsQueue = new_student_queue();
@@ -46,8 +43,10 @@ int main(int argc, const char * argv[]) {
     
     char string1[] = "Hello, World!";
     char string2[] = "Hello, Self!";
-    add_print_job(&mainPrintQueue, string1);
-    add_print_job(&mainPrintQueue, string2);
-    //pthread_join(printerThread, NULL);
+    PrintQueue mainPrintQueue = new_print_queue();
+    PrintQueue * mainPrintQueuePtr = &mainPrintQueue;
+    add_print_job(mainPrintQueuePtr, string1);
+    add_print_job(mainPrintQueuePtr, string2);
+    pthread_join(mainPrintThread, NULL);
     return 0;
 }

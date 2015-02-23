@@ -17,10 +17,9 @@
 typedef struct {
     int size;
     char * jobs[PRINT_QUEUE_MAX_SIZE];
-    bool locked;
 } PrintQueue;
 
-static PrintQueue mainPrintQueue;
+static pthread_t mainPrintThread;
 
 /*
  Returns a new print queue.
