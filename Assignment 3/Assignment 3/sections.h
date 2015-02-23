@@ -11,10 +11,10 @@
 
 
 typedef struct {
-    int section1_chairs;
-    int section2_chairs;
-    int section3_chairs;
-}Sections;
+    int seats_left;
+
+    pthread_mutex_t lock;
+} Sections;
 
 /*
  Returns a new set of sections with the specified ID.
