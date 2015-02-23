@@ -11,7 +11,8 @@
 Student new_student(int idNumber) {
     Student newStudent = {
         idNumber,
-        get_random_student_type()
+        get_random_student_type(),
+        get_random_section()
     };
     return newStudent;
 }

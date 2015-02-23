@@ -12,7 +12,7 @@
 PrintQueue new_print_queue() {
     PrintQueue newQueue = {
         0,
-        0,
+        0
     };
     return newQueue;
 }

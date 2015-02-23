@@ -14,3 +14,7 @@ Sections newSections() {
     };
     return new_Sections;
 }
+
+int get_random_section() {
+	return (rand() % 4) + 1;
+}

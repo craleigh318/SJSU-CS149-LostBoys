@@ -14,6 +14,8 @@
 typedef struct {
     int idNumber;
     StudentType type;
+    int sectionNum;
+    pthread_t thread;
 } Student;
 
 /*

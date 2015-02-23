@@ -21,5 +21,14 @@ typedef struct {
  */
 Sections newSections();
 
+/*
+ Returns a random section
+ 1 = Section 1
+ 2 = Section 2
+ 3 = Section 3
+ 4 = no preference
+ */
+int get_random_section();
+
 
 #endif /* SECTIONS_H_ */

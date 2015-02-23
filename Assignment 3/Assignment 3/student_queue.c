@@ -10,7 +10,6 @@
 StudentQueue new_student_queue() {
 	StudentQueue new_queue = {
 			0,
-			0,
 			-1
 	};
 	return new_queue;
@@ -41,5 +40,12 @@ void print_student_queue(StudentQueue queue) {
 		Student curr_student = queue.students[i];
 		printf("Student %2i   Type: %i\n", curr_student.idNumber, curr_student.type);
 	}
+}
+
+void* process_student(void* threadId) {
+	   long tid;
+	    tid = (long)threadId;
+	    printf("last thread #%ld!\n", tid);
+	    pthread_exit(NULL);
 }
 
