@@ -23,18 +23,21 @@ char* create_time_stamp(int time) {
 void start_enrollment_process() {
     pthread_t studentsThread[MAX_STUDENTS];
     StudentQueue studentList = new_student_queue();
-
+	
+	// Simulate each student with a thread , there will be 75 students 
 	for(int i = 0; i < MAX_STUDENTS; i++) {
 		Student currStudent = new_student(i + 1);
 		push_student_queue(&studentList, currStudent);
 	}
-	sort_students_arrival(&studentList);
+	sort_students_arrival(&studentList); // sort simulated students in arrival time order starting at 0 to 2 minutes 
+	
+	// Student enters at tail of queue and exits at head & all three work simulatenously , but can only enroll 1 student at a time 
+	StudentQueue rsQueue = new_student_queue(); // A queue for regular seniors 
+	StudentQueue gsQueue = new_student_queue(); // A queue for graduating seniors 
+	StudentQueue eeQueue = new_student_queue(); // A queue for everyone else 
 
-	StudentQueue rsQueue = new_student_queue();
-	StudentQueue gsQueue = new_student_queue();
-	StudentQueue eeQueue = new_student_queue();
-
-	Sections sect1 = newSections();
+	// Create 3 sections 
+	Sections sect1 = newSections(); 
 	Sections sect2 = newSections();
 	Sections sect3 = newSections();
 
