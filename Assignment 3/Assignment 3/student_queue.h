@@ -54,4 +54,8 @@ void print_student_queue(StudentQueue queue);
  */
 void sort_students_arrival(StudentQueue* queue);
 
+void quick_sort_arrival_time(Student * a, int l, int r);
+
+void process_student_queue(StudentQueue* a);
+
 #endif /* STUDENT_QUEUE_H_ */

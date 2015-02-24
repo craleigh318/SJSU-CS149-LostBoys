@@ -54,7 +54,7 @@ void* process_student(void* threadId) {
 //	else if(student.sectionNum == 4) {
 //
 //	}
-	pthread_exit(NULL);
+//	pthread_exit(NULL);
 }
 
 void print_student(Student student) {

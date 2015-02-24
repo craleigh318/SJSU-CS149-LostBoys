@@ -93,3 +93,14 @@ void sort_students_arrival(StudentQueue* queue) {
 	quick_sort_arrival_time(queue->students, 0, queue->length - 1);
 }
 
+void process_student_queue(StudentQueue* a){
+	int processTime = 0;
+	if(a->students[0].sectionNum == gs)
+		processTime = (rand() % 2) + 1;
+	else if(a->students[0].sectionNum == rs)
+		processTime = (rand() % 3) + 2;
+	else if(a->students[0].sectionNum == ee)
+		processTime = (rand() % 4) + 3;
+
+	pop_student_queue(a);
+}

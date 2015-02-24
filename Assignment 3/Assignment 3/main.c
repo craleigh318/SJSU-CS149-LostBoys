@@ -10,17 +10,20 @@
 #include "print_queue.h"
 #include "student_queue.h"
 #include "student_type.h"
-#include "student.h"
-#include "sections.h"
 #include "global_variables.h"
 
 #define END_TIME 120
 
-int main(int argc, const char * argv[]) {
-    initialize_global_variables();
-    srand((unsigned int)time(NULL));
-
+void start_enrollment_process() {
     pthread_t studentsThread[MAX_STUDENTS];
+    StudentQueue studentList = new_student_queue();
+
+	for(int i = 0; i < MAX_STUDENTS; i++) {
+		Student currStudent = new_student(i + 1);
+		push_student_queue(&studentList, currStudent);
+	}
+	sort_students_arrival(&studentList);
+
 	StudentQueue rsQueue = new_student_queue();
 	StudentQueue gsQueue = new_student_queue();
 	StudentQueue eeQueue = new_student_queue();
@@ -29,32 +32,43 @@ int main(int argc, const char * argv[]) {
 	Sections sect2 = newSections();
 	Sections sect3 = newSections();
 
-	for(int i = 0; i < MAX_STUDENTS; i++) {
-		Student currStudent = new_student(i + 1);
+	int currTime = 0;
+	while(currTime < END_TIME) {
+		while(studentList.length > 0 &&
+				peek_student_queue(studentList).arrivalTime == currTime) {
+			Student currStudent = pop_student_queue(&studentList);
+			if (currStudent.type == gs)
+				push_student_queue(&gsQueue, currStudent);
+			else if (currStudent.type == rs)
+				push_student_queue(&rsQueue, currStudent);
+			else if (currStudent.type == ee)
+				push_student_queue(&eeQueue, currStudent);
+			else
+				puts("ERROR: Invalid Student type");
+		}
 
-		if(currStudent.type == gs)
-			push_student_queue(&gsQueue, currStudent);
-		else if(currStudent.type == rs)
-			push_student_queue(&rsQueue, currStudent);
-		else if(currStudent.type == ee)
-			push_student_queue(&eeQueue, currStudent);
-		else
-			puts("ERROR: Invalid Student type");
+		if(gsQueue.length > 0)
+			process_student_queue(&gsQueue);
+		if(rsQueue.length > 0)
+			process_student_queue(&rsQueue);
+		if(eeQueue.length > 0)
+			process_student_queue(&eeQueue);
+
+		currTime = currTime + 1;
 	}
+}
 
-	puts("rsQueue");
-	print_student_queue(rsQueue);
-	puts("gsQueue");
-	print_student_queue(gsQueue);
-	puts("eeQueue");
-	print_student_queue(eeQueue);
+int main(int argc, const char * argv[]) {
+    initialize_global_variables();
+    srand((unsigned int)time(NULL));
 
-//	int i = 0;
-//	ThreadParams pass = {
+	start_enrollment_process();
+
+//	threadParams pass = {
 //			rsQueue.students[0],
 //			{sect1, sect2, sect3}
 //	};
-//	ThreadParams* passed = &pass;
+//	threadParams* passed = &pass;
 //	pthread_t thread = pthread_create(&studentsThread[i], NULL, process_student, passed);
 //	if(thread) {
 //		printf("ERROR: Could not create thread. Error code %i\n", (int) thread);

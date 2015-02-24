@@ -8,15 +8,8 @@
 
 #ifndef __Assignment_3__global_variables__
 #define __Assignment_3__global_variables__
+
 #include "system_headers.h"
-#include "student.h"
-#include "sections.h"
-
-typedef struct {
-	Student student;
-
-	Sections sections[3];
-} ThreadParams;
 
 static bool programIsEnding;
 
