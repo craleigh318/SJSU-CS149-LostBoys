@@ -80,13 +80,13 @@ int main(int argc, const char * argv[]) {
 
     // insert code here...
     
-//    char string1[] = "Hello, World!";
-//    char string2[] = "Hello, Self!";
-//    PrintQueue mainPrintQueue = new_print_queue();
-//    PrintQueue * mainPrintQueuePtr = &mainPrintQueue;
-//    add_print_job(mainPrintQueuePtr, string1);
-//    add_print_job(mainPrintQueuePtr, string2);
-//    pthread_join(mainPrintThread, NULL);
+    char string1[] = "Hello, World!";
+    char string2[] = "Hello, Self!";
+    PrintQueue mainPrintQueue = new_print_queue();
+    PrintQueue * mainPrintQueuePtr = &mainPrintQueue;
+    add_print_job(mainPrintQueuePtr, string1);
+    add_print_job(mainPrintQueuePtr, string2);
+    pthread_join(mainPrintThread, NULL);
 
     pthread_exit(NULL);
 
