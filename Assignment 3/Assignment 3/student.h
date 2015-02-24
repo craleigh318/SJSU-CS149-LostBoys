@@ -24,12 +24,6 @@ typedef struct {
     pthread_t thread;
 } Student;
 
-//typedef struct ThreadParams{
-//	Student student;
-//
-//	Sections sections[3];
-//} ThreadParams;
-
 /*
  Returns a new student with the specified ID.
  */

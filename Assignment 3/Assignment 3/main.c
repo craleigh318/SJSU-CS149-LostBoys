@@ -14,6 +14,14 @@
 
 #define END_TIME 120
 
+char* create_time_stamp(int time) {
+	char complete[10];
+	int minute = time / 60;
+	int seconds = time % 60;
+	sprintf(complete, "%i:%02d", minute, seconds);
+	return (char*) complete;
+}
+
 void start_enrollment_process() {
     pthread_t studentsThread[MAX_STUDENTS];
     StudentQueue studentList = new_student_queue();
@@ -33,7 +41,7 @@ void start_enrollment_process() {
 	Sections sect3 = newSections();
 
 	int currTime = 0;
-	while(currTime < END_TIME) {
+	while(currTime <= END_TIME) {
 		while(studentList.length > 0 &&
 				peek_student_queue(studentList).arrivalTime == currTime) {
 			Student currStudent = pop_student_queue(&studentList);
@@ -53,7 +61,7 @@ void start_enrollment_process() {
 			process_student_queue(&rsQueue);
 		if(eeQueue.length > 0)
 			process_student_queue(&eeQueue);
-
+//		printf("%s \n", create_time_stamp(currTime));
 		currTime = currTime + 1;
 	}
 }

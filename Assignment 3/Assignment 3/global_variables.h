@@ -11,6 +11,12 @@
 
 #include "system_headers.h"
 
+//typedef struct ThreadParams{
+//	Student student;
+//
+//	Sections sections[3];
+//} ThreadParams;
+
 static bool programIsEnding;
 
 /*
