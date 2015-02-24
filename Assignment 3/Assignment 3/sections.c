@@ -8,7 +8,7 @@
 
 Sections newSections() {
     Sections new_Sections = {
-        20
+        SIZE_OF_CLASS
     };
     return new_Sections;
 }

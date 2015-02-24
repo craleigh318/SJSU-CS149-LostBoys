@@ -10,11 +10,11 @@
 #include "print_queue.h"
 #include "student_queue.h"
 #include "student_type.h"
+#include "student.h"
+#include "sections.h"
 #include "global_variables.h"
 
-typedef struct threadParams {
-
-};
+#define END_TIME 120
 
 int main(int argc, const char * argv[]) {
     initialize_global_variables();
@@ -25,13 +25,12 @@ int main(int argc, const char * argv[]) {
 	StudentQueue gsQueue = new_student_queue();
 	StudentQueue eeQueue = new_student_queue();
 
+	Sections sect1 = newSections();
+	Sections sect2 = newSections();
+	Sections sect3 = newSections();
+
 	for(int i = 0; i < MAX_STUDENTS; i++) {
 		Student currStudent = new_student(i + 1);
-		currStudent.thread = pthread_create(&studentsThread[i], NULL, process_student, (void *) i);
-		if(currStudent.thread) {
-			printf("ERROR: Could not create thread. Error code %i\n", (int) currStudent.thread);
-			return -1;
-		}
 
 		if(currStudent.type == gs)
 			push_student_queue(&gsQueue, currStudent);
@@ -49,6 +48,39 @@ int main(int argc, const char * argv[]) {
 	print_student_queue(gsQueue);
 	puts("eeQueue");
 	print_student_queue(eeQueue);
+
+//	int i = 0;
+//	ThreadParams pass = {
+//			rsQueue.students[0],
+//			{sect1, sect2, sect3}
+//	};
+//	ThreadParams* passed = &pass;
+//	pthread_t thread = pthread_create(&studentsThread[i], NULL, process_student, passed);
+//	if(thread) {
+//		printf("ERROR: Could not create thread. Error code %i\n", (int) thread);
+//		return -1;
+//	}
+
+//	int currTime = 0;
+//	while(currTime < END_TIME) {
+//		Student currStudent;
+//		if(peek_student_queue(gsQueue).arrivalTime < currTime) {
+//			currStudent = pop_student_queue(&gsQueue);
+//
+//			threadParams pass = {
+//					currStudent,
+//					{sect1, sect2, sect3}
+//			};
+//			threadParams* passed = &pass;
+//			currStudent.thread = pthread_create(&studentsThread[i], NULL, process_student, passed);
+//			if(currStudent.thread) {
+//				printf("ERROR: Could not create thread. Error code %i\n", (int) currStudent.thread);
+//				return -1;
+//			}
+//			i++;
+//		}
+//		currTime++;
+//	}
 
     // insert code here...
     

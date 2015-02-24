@@ -8,10 +8,14 @@
 #ifndef SECTIONS_H_
 #define SECTIONS_H_
 #include "system_headers.h"
+#include "student.h"
 
+#define SIZE_OF_CLASS 20
 
 typedef struct {
-    int seats_left;
+    int seatsLeft;
+
+    Student addedStudents[SIZE_OF_CLASS];
 
     pthread_mutex_t lock;
 } Sections;

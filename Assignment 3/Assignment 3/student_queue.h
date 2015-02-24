@@ -36,6 +36,10 @@ StudentQueue new_student_queue();
 void push_student_queue(StudentQueue* queue, Student student);
 
 /*
+ Peeks at the first student from the front of the queue
+ */
+Student peek_student_queue(StudentQueue queue);
+/*
  Get the first student from the front of the queue
  */
 Student pop_student_queue(StudentQueue* queue);
@@ -46,8 +50,8 @@ Student pop_student_queue(StudentQueue* queue);
 void print_student_queue(StudentQueue queue);
 
 /*
- Process a student by attempting to add them into the
+ Sort the StudentQueue by arrival time of students
  */
-void* process_student(void* threadId);
+void sort_students_arrival(StudentQueue* queue);
 
 #endif /* STUDENT_QUEUE_H_ */
