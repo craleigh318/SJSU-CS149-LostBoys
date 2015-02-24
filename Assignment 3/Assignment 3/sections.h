@@ -26,6 +26,10 @@ typedef struct {
  */
 Sections newSections();
 
+bool add_student_to_section(Sections* section, Student student);
+
+void print_section(Sections section);
+
 /*
  Returns a random section
  1 = Section 1

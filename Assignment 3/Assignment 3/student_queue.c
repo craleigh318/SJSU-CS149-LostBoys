@@ -93,14 +93,30 @@ void sort_students_arrival(StudentQueue* queue) {
 	quick_sort_arrival_time(queue->students, 0, queue->length - 1);
 }
 
-void process_student_queue(StudentQueue* a){
-	int processTime = 0;
-	if(a->students[0].sectionNum == gs)
-		processTime = (rand() % 2) + 1;
-	else if(a->students[0].sectionNum == rs)
-		processTime = (rand() % 3) + 2;
-	else if(a->students[0].sectionNum == ee)
-		processTime = (rand() % 4) + 3;
+void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sections* s3, pthread_t* studentThreads) {
+	print_student_queue(*queue);
+	Student currStudent = pop_student_queue(queue);
 
-	pop_student_queue(a);
+	//Need to free this in student.c
+	ThreadParams* params = malloc(sizeof(Student) + (sizeof(Sections) * 3));
+	params->student = currStudent;
+	params->s1 = s1;
+	params->s2 = s2;
+	params->s3 = s3;
+
+	int processTime;
+	if(currStudent.type == gs)
+		processTime = rand() % 2 + 1;
+	else if(currStudent.type == rs)
+		processTime = rand() % 3 + 2;
+	else if(currStudent.type == ee)
+		processTime = rand() % 4 + 3;
+	params->processTime = processTime;
+
+	pthread_t thread = pthread_create(&studentThreads[threadCount++], NULL, process_student, params);
+	if (thread) {
+		printf("ERROR: Could not create thread. Error code %i\n", (int) thread);
+		exit(0);
+	}
+
 }

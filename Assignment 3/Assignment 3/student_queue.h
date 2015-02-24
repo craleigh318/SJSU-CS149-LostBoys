@@ -25,6 +25,18 @@ typedef struct {
 	Student students[MAX_STUDENTS];
 } StudentQueue;
 
+typedef struct ThreadParams{
+	Student student;
+
+	Sections* s1;
+
+	Sections* s2;
+
+	Sections* s3;
+
+	int processTime;
+} ThreadParams;
+
 /*
  Returns a StudentQueue
  */
@@ -56,6 +68,6 @@ void sort_students_arrival(StudentQueue* queue);
 
 void quick_sort_arrival_time(Student * a, int l, int r);
 
-void process_student_queue(StudentQueue* a);
+void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sections* s3, pthread_t* studentThreads);
 
 #endif /* STUDENT_QUEUE_H_ */

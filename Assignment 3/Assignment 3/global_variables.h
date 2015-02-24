@@ -11,13 +11,11 @@
 
 #include "system_headers.h"
 
-//typedef struct ThreadParams{
-//	Student student;
-//
-//	Sections sections[3];
-//} ThreadParams;
+#define END_TIME 120
 
 static bool programIsEnding;
+
+static int threadCount = 0;
 
 /*
  Call this near the beginning of the main function.

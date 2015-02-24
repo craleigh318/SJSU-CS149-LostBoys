@@ -12,8 +12,6 @@
 #include "student_type.h"
 #include "global_variables.h"
 
-#define END_TIME 120
-
 char* create_time_stamp(int time) {
 	char complete[10];
 	int minute = time / 60;
@@ -56,14 +54,21 @@ void start_enrollment_process() {
 		}
 
 		if(gsQueue.length > 0)
-			process_student_queue(&gsQueue);
+			process_student_queue(&gsQueue, &sect1, &sect2, &sect3, studentsThread);
 		if(rsQueue.length > 0)
-			process_student_queue(&rsQueue);
+			process_student_queue(&rsQueue, &sect1, &sect2, &sect3, studentsThread);
 		if(eeQueue.length > 0)
-			process_student_queue(&eeQueue);
-//		printf("%s \n", create_time_stamp(currTime));
+			process_student_queue(&eeQueue, &sect1, &sect2, &sect3, studentsThread);
+		printf("%s \n", create_time_stamp(currTime));
 		currTime = currTime + 1;
 	}
+
+	puts("Section 1");
+	print_section(sect1);
+	puts("Section 2");
+	print_section(sect2);
+	puts("Section 3");
+	print_section(sect3);
 }
 
 int main(int argc, const char * argv[]) {
@@ -71,48 +76,17 @@ int main(int argc, const char * argv[]) {
     srand((unsigned int)time(NULL));
 
 	start_enrollment_process();
-
-//	threadParams pass = {
-//			rsQueue.students[0],
-//			{sect1, sect2, sect3}
-//	};
-//	threadParams* passed = &pass;
-//	pthread_t thread = pthread_create(&studentsThread[i], NULL, process_student, passed);
-//	if(thread) {
-//		printf("ERROR: Could not create thread. Error code %i\n", (int) thread);
-//		return -1;
-//	}
-
-//	int currTime = 0;
-//	while(currTime < END_TIME) {
-//		Student currStudent;
-//		if(peek_student_queue(gsQueue).arrivalTime < currTime) {
-//			currStudent = pop_student_queue(&gsQueue);
-//
-//			threadParams pass = {
-//					currStudent,
-//					{sect1, sect2, sect3}
-//			};
-//			threadParams* passed = &pass;
-//			currStudent.thread = pthread_create(&studentsThread[i], NULL, process_student, passed);
-//			if(currStudent.thread) {
-//				printf("ERROR: Could not create thread. Error code %i\n", (int) currStudent.thread);
-//				return -1;
-//			}
-//			i++;
-//		}
-//		currTime++;
-//	}
+	printf("FINISHED");
 
     // insert code here...
     
-    char string1[] = "Hello, World!";
-    char string2[] = "Hello, Self!";
-    PrintQueue mainPrintQueue = new_print_queue();
-    PrintQueue * mainPrintQueuePtr = &mainPrintQueue;
-    add_print_job(mainPrintQueuePtr, string1);
-    add_print_job(mainPrintQueuePtr, string2);
-    pthread_join(mainPrintThread, NULL);
+//    char string1[] = "Hello, World!";
+//    char string2[] = "Hello, Self!";
+//    PrintQueue mainPrintQueue = new_print_queue();
+//    PrintQueue * mainPrintQueuePtr = &mainPrintQueue;
+//    add_print_job(mainPrintQueuePtr, string1);
+//    add_print_job(mainPrintQueuePtr, string2);
+//    pthread_join(mainPrintThread, NULL);
 
     pthread_exit(NULL);
 

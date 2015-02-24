@@ -10,6 +10,7 @@
 #define __Assignment_3__student__
 #include "system_headers.h"
 #include "student_type.h"
+//#include "student_queue.h"
 #include "global_variables.h"
 
 typedef struct {
