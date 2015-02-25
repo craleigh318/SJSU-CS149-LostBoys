@@ -23,7 +23,7 @@ Student new_student(int idNumber) {
     return newStudent;
 }
 
-void student_to_string(Student student, char ** destination) {
+void student_to_string(Student student, char * destination) {
     StudentType type = student.type;
     char * strType;
     switch (type) {
@@ -37,7 +37,7 @@ void student_to_string(Student student, char ** destination) {
             strType = "EE";
             break;
     }
-    sprintf(*destination, "#%d.%s", student.idNumber, strType);
+    sprintf(destination, "#%d.%s", student.idNumber, strType);
 }
 
 void* process_student(void* threadId) {

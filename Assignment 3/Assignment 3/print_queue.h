@@ -21,6 +21,8 @@ typedef struct {
 
 static pthread_t mainPrintThread;
 
+static pthread_mutex_t mainPrintThreadLock;
+
 /*
  Returns a new print queue.
  */

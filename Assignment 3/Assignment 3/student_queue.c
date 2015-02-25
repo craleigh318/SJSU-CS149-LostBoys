@@ -113,7 +113,7 @@ void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sect
 		processTime = rand() % 4 + 3;
 	params->processTime = processTime;
 
-	pthread_t thread = pthread_create(&studentThreads[threadCount++], NULL, process_student, params);
+	int thread = pthread_create(&studentThreads[threadCount++], NULL, process_student, params);
 	if (thread) {
 		printf("ERROR: Could not create thread. Error code %i\n", (int) thread);
 		exit(0);

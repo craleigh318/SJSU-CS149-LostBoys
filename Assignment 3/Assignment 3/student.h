@@ -34,7 +34,7 @@ Student new_student(int idNumber);
  Writes the specified student as a string to the specified char array.
  Have at least 7 chars in the array before calling.
  */
-void student_to_string(Student student, char ** destination);
+void student_to_string(Student student, char * destination);
 
 /*
  Process a student by attempting to add them into the

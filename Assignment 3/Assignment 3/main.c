@@ -12,12 +12,10 @@
 #include "student_type.h"
 #include "global_variables.h"
 
-char* create_time_stamp(int time) {
-	char complete[10];
+void create_time_stamp(int time, char * destination) {
 	int minute = time / 60;
 	int seconds = time % 60;
-	sprintf(complete, "%i:%02d", minute, seconds);
-	return (char*) complete;
+	sprintf(destination, "%i:%02d", minute, seconds);
 }
 
 void start_enrollment_process() {
@@ -62,7 +60,9 @@ void start_enrollment_process() {
 			process_student_queue(&rsQueue, &sect1, &sect2, &sect3, studentsThread);
 		if(eeQueue.length > 0)
 			process_student_queue(&eeQueue, &sect1, &sect2, &sect3, studentsThread);
-		printf("%s \n", create_time_stamp(currTime));
+        char complete[10];
+        create_time_stamp(currTime, complete);
+		printf("%s \n", complete);
 		currTime = currTime + 1;
 	}
 
@@ -79,7 +79,7 @@ int main(int argc, const char * argv[]) {
     srand((unsigned int)time(NULL));
 
 	start_enrollment_process();
-	printf("FINISHED");
+	puts("FINISHED");
 
     // insert code here...
     

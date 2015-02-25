@@ -17,14 +17,15 @@ Sections newSections() {
 THREAD 1                        THREAD 2
 pthread_mutex_lock (&mut);      
                                 pthread_mutex_lock (&mut); 
-a = data;                       /* blocked */
-// a++;                            /* blocked */
-//data = a;                       /* blocked */
-// pthread_mutex_unlock (&mut);    /* blocked */
-                                // b = data;
-                                // b--;
-                                // data = b;
-                                //pthread_mutex_unlock (&mut);
+a = data;                       blocked
+a++;                            blocked
+data = a;                       blocked
+pthread_mutex_unlock (&mut);    blocked
+                                b = data;
+                                b--;
+                                data = b;
+                                pthread_mutex_unlock (&mut);
+*/
 
 bool add_student_to_section(Sections* section, Student student) {
 	if(section->seatsLeft > 0) {
