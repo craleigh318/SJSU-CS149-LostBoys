@@ -25,7 +25,7 @@ a = data;                       /* blocked */
                                 // b--;
                                 // data = b;
                                 //pthread_mutex_unlock (&mut);
-*/
+
 bool add_student_to_section(Sections* section, Student student) {
 	if(section->seatsLeft > 0) {
 		section->addedStudents[SIZE_OF_CLASS - section->seatsLeft] = student;
