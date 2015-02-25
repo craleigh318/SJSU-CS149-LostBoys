@@ -9,7 +9,7 @@
 #ifndef __Assignment_3__print_queue__
 #define __Assignment_3__print_queue__
 #include "system_headers.h"
-#define PRINT_QUEUE_MAX_SIZE 8
+#define PRINT_QUEUE_MAX_SIZE 64
 
 /*
  Prints to the console.
@@ -18,6 +18,8 @@ typedef struct {
     int size;
     char * jobs[PRINT_QUEUE_MAX_SIZE];
 } PrintQueue;
+
+static PrintQueue mainPrintQueue;
 
 static pthread_t mainPrintThread;
 

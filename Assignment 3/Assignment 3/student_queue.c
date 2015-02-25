@@ -6,6 +6,7 @@
  */
 
 #include "student_queue.h"
+#include "print_queue.h"
 
 StudentQueue new_student_queue() {
 	StudentQueue new_queue = {
@@ -57,7 +58,7 @@ void push_student_queue(StudentQueue* queue, Student student) {
 		queue->students[queue->length] = student;
 		queue->length++;
 	} else
-		puts("ERROR: Could not push Student to Queue. Enlarge the queue.");
+        add_print_job(&mainPrintQueue, "ERROR: Could not push Student to Queue. Enlarge the queue.");
 }
 
 Student peek_student_queue(StudentQueue queue) {
@@ -66,7 +67,7 @@ Student peek_student_queue(StudentQueue queue) {
 		ret_student = queue.students[0];
 	}
 	else
-		puts("ERROR: Could not peek a Student from queue. No more students in queue.");
+        add_print_job(&mainPrintQueue, "ERROR: Could not peek a Student from queue. No more students in queue.");
 	return ret_student;
 }
 
@@ -78,7 +79,7 @@ Student pop_student_queue(StudentQueue* queue)  {
 		memmove(&queue->students[0], &queue->students[1], sizeof(queue->students) - sizeof(*queue->students));
 	}
 	else
-		puts("ERROR: Could not pop a Student from queue. No more students in queue.");
+		add_print_job(&mainPrintQueue, "ERROR: Could not pop a Student from queue. No more students in queue.");
 	return ret_student;
 }
 
@@ -115,7 +116,7 @@ void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sect
 
 	int thread = pthread_create(&studentThreads[threadCount++], NULL, process_student, params);
 	if (thread) {
-		printf("ERROR: Could not create thread. Error code %i\n", (int) thread);
+        printf("ERROR: Could not create thread. Error code %i\n", thread);
 		exit(0);
 	}
 

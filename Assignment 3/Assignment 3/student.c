@@ -8,6 +8,7 @@
 
 #include "student.h"
 #include "student_queue.h"
+#include "print_queue.h"
 
 int get_arrival_time() {
 	return rand() % END_TIME;
@@ -66,7 +67,7 @@ void* process_student(void* threadId) {
 }
 
 void print_student(Student student) {
-	printf("Student %2i   Type: %i   Section: %i   Arrival: %i \n",
+    printf("Student %2i   Type: %i   Section: %i   Arrival: %i \n",
 			student.idNumber,
 			student.type,
 			student.sectionNum,
