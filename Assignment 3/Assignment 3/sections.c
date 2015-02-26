@@ -34,7 +34,7 @@ bool add_student_to_section(Sections* section, Student student) {
 		return true;
 	}
 	else
-		++studentDropped; 
+		++studentsDropped;
 		return false; // Student unable to be added into section
 	
 }
