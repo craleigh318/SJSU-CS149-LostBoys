@@ -83,9 +83,6 @@ int main(int argc, const char * argv[]) {
     add_print_job(&mainPrintQueue, "FINISHED");
 
     // insert code here...
-    
-    char string1[] = "Hello, World!";
-    char string2[] = "Hello, Self!";
     PrintQueue * mainPrintQueuePtr = &mainPrintQueue;
     add_print_job(mainPrintQueuePtr, string1);
     add_print_job(mainPrintQueuePtr, string2);

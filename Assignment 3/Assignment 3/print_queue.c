@@ -22,13 +22,12 @@ bool print_next_job(PrintQueue * queue) {
     if (queueSize > 0) {
         pthread_mutex_lock(&mainPrintThreadLock);
         char * nextJob = queue->jobs[0];
+        puts(nextJob);
         int i;
         for (i = 0; i < queueSize; ++i) {
             queue->jobs[i] = queue->jobs[i + 1];
-            queueSize = queue->size;
         }
         --queue->size;
-        puts(nextJob);
         pthread_mutex_unlock(&mainPrintThreadLock);
         return true;
     }
@@ -51,7 +50,7 @@ void * thread_for_print_queue(void * params) {
 bool add_print_job(PrintQueue * queue, char * job) {
     pthread_mutex_lock(&mainPrintThreadLock);
     int queueSize = queue->size;
-    queue->jobs[queueSize] = job;
+    queue->jobs[queueSize] = strdup(job);
     if (queueSize <= 0) {
         pthread_create(&mainPrintThread, NULL, &thread_for_print_queue, queue);
     }

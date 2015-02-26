@@ -67,9 +67,11 @@ void* process_student(void* threadId) {
 }
 
 void print_student(Student student) {
-    printf("Student %2i   Type: %i   Section: %i   Arrival: %i \n",
+    char studentString[64];
+    sprintf(studentString, "Student %2i   Type: %i   Section: %i   Arrival: %i",
 			student.idNumber,
 			student.type,
 			student.sectionNum,
 			student.arrivalTime);
+    add_print_job(&mainPrintQueue, studentString);
 }

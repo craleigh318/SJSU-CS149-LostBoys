@@ -116,7 +116,9 @@ void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sect
 
 	int thread = pthread_create(&studentThreads[threadCount++], NULL, process_student, params);
 	if (thread) {
-        printf("ERROR: Could not create thread. Error code %i\n", thread);
+        char strTemp[64];
+        sprintf(strTemp, "ERROR: Could not create thread. Error code %i", thread);
+        add_print_job(&mainPrintQueue, strTemp);
 		exit(0);
 	}
 

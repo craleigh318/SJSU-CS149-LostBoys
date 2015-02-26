@@ -9,7 +9,7 @@
 #ifndef __Assignment_3__print_queue__
 #define __Assignment_3__print_queue__
 #include "system_headers.h"
-#define PRINT_QUEUE_MAX_SIZE 64
+#define PRINT_QUEUE_MAX_SIZE 128
 
 /*
  Prints to the console.
