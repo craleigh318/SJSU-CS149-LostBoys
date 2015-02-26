@@ -51,7 +51,7 @@ void start_enrollment_process() {
 			else if (currStudent.type == ee)
 				push_student_queue(&eeQueue, currStudent);
 			else
-                add_print_job(&mainPrintQueue, "ERROR: Invalid Student type");
+                print_pq("ERROR: Invalid Student type");
 		}
 
 		if(gsQueue.length > 0)
@@ -62,25 +62,25 @@ void start_enrollment_process() {
 			process_student_queue(&eeQueue, &sect1, &sect2, &sect3, studentsThread);
         char complete[10];
         create_time_stamp(currTime, complete);
-        add_print_job(&mainPrintQueue, complete);
+        print_pq(complete);
 		currTime = currTime + 1;
 	}
 
-    add_print_job(&mainPrintQueue, "Section 1");
+    print_pq("Section 1");
 	print_section(sect1);
-    add_print_job(&mainPrintQueue, "Section 2");
+    print_pq("Section 2");
 	print_section(sect2);
-    add_print_job(&mainPrintQueue, "Section 3");
+    print_pq("Section 3");
 	print_section(sect3);
 }
 
 int main(int argc, const char * argv[]) {
-    mainPrintQueue = new_print_queue();
+    printQueueHead = NULL;
     initialize_global_variables();
     srand((unsigned int)time(NULL));
 
 	start_enrollment_process();
-    add_print_job(&mainPrintQueue, "FINISHED");
+    print_pq("FINISHED");
 
     // insert code here...
     pthread_join(mainPrintThread, NULL);

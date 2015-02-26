@@ -17,7 +17,7 @@ static bool programIsEnding;
 
 static int threadCount = 0;
 
-int studentsDropped = 0; 
+static int studentsDropped = 0;
 
 /*
  Call this near the beginning of the main function.

@@ -73,5 +73,5 @@ void print_student(Student student) {
 			student.type,
 			student.sectionNum,
 			student.arrivalTime);
-    add_print_job(&mainPrintQueue, studentString);
+    print_pq(studentString);
 }

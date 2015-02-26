@@ -58,7 +58,7 @@ void push_student_queue(StudentQueue* queue, Student student) {
 		queue->students[queue->length] = student;
 		queue->length++;
 	} else
-        add_print_job(&mainPrintQueue, "ERROR: Could not push Student to Queue. Enlarge the queue.");
+        print_pq("ERROR: Could not push Student to Queue. Enlarge the queue.");
 }
 
 Student peek_student_queue(StudentQueue queue) {
@@ -67,7 +67,7 @@ Student peek_student_queue(StudentQueue queue) {
 		ret_student = queue.students[0];
 	}
 	else
-        add_print_job(&mainPrintQueue, "ERROR: Could not peek a Student from queue. No more students in queue.");
+        print_pq("ERROR: Could not peek a Student from queue. No more students in queue.");
 	return ret_student;
 }
 
@@ -79,7 +79,7 @@ Student pop_student_queue(StudentQueue* queue)  {
 		memmove(&queue->students[0], &queue->students[1], sizeof(queue->students) - sizeof(*queue->students));
 	}
 	else
-		add_print_job(&mainPrintQueue, "ERROR: Could not pop a Student from queue. No more students in queue.");
+		print_pq("ERROR: Could not pop a Student from queue. No more students in queue.");
 	return ret_student;
 }
 
@@ -118,7 +118,7 @@ void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sect
 	if (thread) {
         char strTemp[64];
         sprintf(strTemp, "ERROR: Could not create thread. Error code %i", thread);
-        add_print_job(&mainPrintQueue, strTemp);
+        print_pq(strTemp);
 		exit(0);
 	}
 

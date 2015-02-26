@@ -9,17 +9,16 @@
 #ifndef __Assignment_3__print_queue__
 #define __Assignment_3__print_queue__
 #include "system_headers.h"
-#define PRINT_QUEUE_MAX_SIZE 128
 
 /*
  Prints to the console.
  */
-typedef struct {
-    int size;
-    char * jobs[PRINT_QUEUE_MAX_SIZE];
+typedef struct _printQueue {
+    char * string;
+    struct _printQueue * tail;
 } PrintQueue;
 
-static PrintQueue mainPrintQueue;
+static PrintQueue * printQueueHead;
 
 static pthread_t mainPrintThread;
 
@@ -28,7 +27,13 @@ static pthread_mutex_t mainPrintThreadLock;
 /*
  Returns a new print queue.
  */
-PrintQueue new_print_queue();
+PrintQueue * new_print_queue(char * string);
+
+/*
+ Removes this print queue.
+ Returns its tail.
+ */
+PrintQueue * delete_print_queue(PrintQueue * queue);
 
 /*
  Adds a string to a print queue.
@@ -38,11 +43,18 @@ PrintQueue new_print_queue();
 bool add_print_job(PrintQueue * queue, char * job);
 
 /*
- Prints the first-added job in a queue.
+ Adds a string to the main print queue.
  
  Returns true if successful.
  */
-bool print_next_job(PrintQueue * queue);
+bool print_pq(char * job);
+
+/*
+ Prints the first-added job in a queue.
+ 
+ Returns the tail if successful.
+ */
+PrintQueue * print_next_job(PrintQueue * queue);
 
 /*
  Entry point for the print queue thread.
