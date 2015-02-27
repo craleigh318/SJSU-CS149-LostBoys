@@ -75,15 +75,15 @@ void start_enrollment_process() {
 }
 
 int main(int argc, const char * argv[]) {
-    printQueueHead = NULL;
     initialize_global_variables();
+    printQueue = new_threaded_queue();
     srand((unsigned int)time(NULL));
 
 	start_enrollment_process();
     print_pq("FINISHED");
 
     // insert code here...
-    pthread_join(mainPrintThread, NULL);
+    pthread_join(printThread, NULL);
 
     pthread_exit(NULL);
 

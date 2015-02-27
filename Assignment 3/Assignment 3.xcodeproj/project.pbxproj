@@ -14,6 +14,9 @@
 		A480D4E01A95554A003ABCC2 /* sections.c in Sources */ = {isa = PBXBuildFile; fileRef = A480D4DC1A95554A003ABCC2 /* sections.c */; };
 		A480D4E11A95554A003ABCC2 /* student_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = A480D4DE1A95554A003ABCC2 /* student_queue.c */; };
 		A4F6218D1A972CF50081EB6E /* global_variables.c in Sources */ = {isa = PBXBuildFile; fileRef = A4F6218B1A972CF50081EB6E /* global_variables.c */; };
+		A4F9A3EF1AA0539700C31C37 /* threaded_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = A4F9A3E91AA0539700C31C37 /* threaded_queue.c */; };
+		A4F9A3F01AA0539700C31C37 /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = A4F9A3EB1AA0539700C31C37 /* queue.c */; };
+		A4F9A3F11AA0539700C31C37 /* queue_element.c in Sources */ = {isa = PBXBuildFile; fileRef = A4F9A3ED1AA0539700C31C37 /* queue_element.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +47,12 @@
 		A480D4DF1A95554A003ABCC2 /* student_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = student_queue.h; sourceTree = "<group>"; };
 		A4F6218B1A972CF50081EB6E /* global_variables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = global_variables.c; sourceTree = "<group>"; };
 		A4F6218C1A972CF50081EB6E /* global_variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global_variables.h; sourceTree = "<group>"; };
+		A4F9A3E91AA0539700C31C37 /* threaded_queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threaded_queue.c; sourceTree = "<group>"; };
+		A4F9A3EA1AA0539700C31C37 /* threaded_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threaded_queue.h; sourceTree = "<group>"; };
+		A4F9A3EB1AA0539700C31C37 /* queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = queue.c; sourceTree = "<group>"; };
+		A4F9A3EC1AA0539700C31C37 /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
+		A4F9A3ED1AA0539700C31C37 /* queue_element.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = queue_element.c; sourceTree = "<group>"; };
+		A4F9A3EE1AA0539700C31C37 /* queue_element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue_element.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +85,12 @@
 		A43ADFCC1A9432ED005220F2 /* Assignment 3 */ = {
 			isa = PBXGroup;
 			children = (
+				A4F9A3E91AA0539700C31C37 /* threaded_queue.c */,
+				A4F9A3EA1AA0539700C31C37 /* threaded_queue.h */,
+				A4F9A3EB1AA0539700C31C37 /* queue.c */,
+				A4F9A3EC1AA0539700C31C37 /* queue.h */,
+				A4F9A3ED1AA0539700C31C37 /* queue_element.c */,
+				A4F9A3EE1AA0539700C31C37 /* queue_element.h */,
 				A480D4DC1A95554A003ABCC2 /* sections.c */,
 				A480D4DD1A95554A003ABCC2 /* sections.h */,
 				A480D4DE1A95554A003ABCC2 /* student_queue.c */,
@@ -154,8 +169,11 @@
 				A43ADFDB1A94984C005220F2 /* student.c in Sources */,
 				A43ADFD71A94735C005220F2 /* print_queue.c in Sources */,
 				A4F6218D1A972CF50081EB6E /* global_variables.c in Sources */,
+				A4F9A3F11AA0539700C31C37 /* queue_element.c in Sources */,
 				A480D4E11A95554A003ABCC2 /* student_queue.c in Sources */,
 				A43ADFDD1A949B40005220F2 /* student_type.c in Sources */,
+				A4F9A3F01AA0539700C31C37 /* queue.c in Sources */,
+				A4F9A3EF1AA0539700C31C37 /* threaded_queue.c in Sources */,
 				A480D4E01A95554A003ABCC2 /* sections.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +258,10 @@
 		A43ADFD21A9432ED005220F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SJSU-CS149-LostBoys-etupzljkzsmkkdaohyezkgwvvser/Build/Products/Debug",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,6 +269,10 @@
 		A43ADFD31A9432ED005220F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SJSU-CS149-LostBoys-etupzljkzsmkkdaohyezkgwvvser/Build/Products/Debug",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
