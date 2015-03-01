@@ -55,13 +55,14 @@ void start_enrollment_process() {
                 print_pq("ERROR: Invalid Student type"); // There was a problem with the student's type, they were not a GS,RS,EE 
 		}
 
-		if(gsQueue.length > 0)
-			process_student_queue(&gsQueue, &sect1, &sect2, &sect3, studentsThread);
+		if(gsQueue.length > 0) // if there are some GS in that queue
+			process_student_queue(&gsQueue, &sect1, &sect2, &sect3, studentsThread); // Try to enroll them into section 1,2,3
 		if(rsQueue.length > 0)
 			process_student_queue(&rsQueue, &sect1, &sect2, &sect3, studentsThread);
 		if(eeQueue.length > 0)
 			process_student_queue(&eeQueue, &sect1, &sect2, &sect3, studentsThread);
-        char complete[10];
+
+        char complete[10]; // Puts the minutes and seconds to be displayed 
         create_time_stamp(currTime, complete);
         print_pq(complete);
 		currTime = currTime + 1;
@@ -84,9 +85,9 @@ int main(int argc, const char * argv[]) {
     print_pq("FINISHED");
 
     // insert code here...
-    pthread_join(printThread, NULL);
+    pthread_join(printThread, NULL); // Wait for a specific thread to exit
 
-    pthread_exit(NULL);
+    pthread_exit(NULL); // Terminate the calling thread
 
     return 0;
 }

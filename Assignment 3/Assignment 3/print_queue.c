@@ -23,9 +23,9 @@ void * thread_for_print_queue(void * params) {
 }
 
 bool print_pq(char * job) {
-    bool emptyPrintQueue = threaded_queue_is_empty(&printQueue);
-    char * jobCopy = strdup(job);
-    add_to_threaded_queue(&printQueue, jobCopy);
+    bool emptyPrintQueue = threaded_queue_is_empty(&printQueue); // Checks to see if the threaded_queue is empty or not 
+    char * jobCopy = strdup(job); // Keeps the old string 
+    add_to_threaded_queue(&printQueue, jobCopy); 
     if (emptyPrintQueue) {
         pthread_create(&printThread, NULL, &thread_for_print_queue, NULL);
     }
