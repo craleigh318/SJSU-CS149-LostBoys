@@ -19,15 +19,15 @@ void create_time_stamp(int time, char * destination) {
 }
 
 void start_enrollment_process() {
-    pthread_t studentsThread[MAX_STUDENTS];
-    StudentQueue studentList = new_student_queue();
+    pthread_t studentsThread[MAX_STUDENTS]; // Creating 75 student threads 
+    StudentQueue studentList = new_student_queue(); // Create a student thread queue 
 	
 	// Simulate each student with a thread , there will be 75 students 
 	for(int i = 0; i < MAX_STUDENTS; i++) {
-		Student currStudent = new_student(i + 1);
-		push_student_queue(&studentList, currStudent);
+		Student currStudent = new_student(i + 1); // Gets an ID number with random student_type, section , and arrival time 
+		push_student_queue(&studentList, currStudent); // Get currStudent and push them into their respectful queue depending on student_type 
 	}
-	sort_students_arrival(&studentList); // sort simulated students in arrival time order starting at 0 to 2 minutes 
+	sort_students_arrival(&studentList); // sort simulated students in arrival time order starting at 0 to 2 minutes in student_queue.c file
 	
 	// Student enters at tail of queue and exits at head & all three work simulatenously , but can only enroll 1 student at a time 
 	StudentQueue rsQueue = new_student_queue(); // A queue for regular seniors 
@@ -40,18 +40,19 @@ void start_enrollment_process() {
 	Sections sect3 = newSections();
 
 	int currTime = 0;
-	while(currTime <= END_TIME) {
-		while(studentList.length > 0 &&
-				peek_student_queue(studentList).arrivalTime == currTime) {
-			Student currStudent = pop_student_queue(&studentList);
-			if (currStudent.type == gs)
-				push_student_queue(&gsQueue, currStudent);
-			else if (currStudent.type == rs)
+	while(currTime <= END_TIME) // while 0 seconds <= 180 seconds 
+		 {
+		while(studentList.length > 0 & peek_student_queue(studentList).arrivalTime == currTime) // While students in studentList and one of them arrive
+		 {
+			Student currStudent = pop_student_queue(&studentList); // Pop that student from their respectful queue & // Identify are they GS,RS,EE 
+			if (currStudent.type == gs) 
+				push_student_queue(&gsQueue, currStudent); // push into GS queue 
+			else if (currStudent.type == rs) // Push into RS queue 
 				push_student_queue(&rsQueue, currStudent);
-			else if (currStudent.type == ee)
+			else if (currStudent.type == ee) // Push into EE queue 
 				push_student_queue(&eeQueue, currStudent);
 			else
-                print_pq("ERROR: Invalid Student type");
+                print_pq("ERROR: Invalid Student type"); // There was a problem with the student's type, they were not a GS,RS,EE 
 		}
 
 		if(gsQueue.length > 0)
@@ -75,11 +76,11 @@ void start_enrollment_process() {
 }
 
 int main(int argc, const char * argv[]) {
-    initialize_global_variables();
-    printQueue = new_threaded_queue();
+    initialize_global_variables(); // set ProgramIsEnding to false;
+    printQueue = new_threaded_queue(); // Create threads for queues 
     srand((unsigned int)time(NULL));
 
-	start_enrollment_process();
+	start_enrollment_process(); // Add students from queues into sections 
     print_pq("FINISHED");
 
     // insert code here...
