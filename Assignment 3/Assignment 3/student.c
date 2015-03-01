@@ -11,15 +11,15 @@
 #include "print_queue.h"
 
 int get_arrival_time() {
-	return rand() % END_TIME;
+	return rand() % END_TIME; // Gets a number from 0 to 120 seconds
 }
 
 Student new_student(int idNumber) {
     Student newStudent = {
         idNumber,
-        get_random_student_type(),
-        get_random_section(),
-        get_arrival_time()
+        get_random_student_type(), // returns a number 0 - 2 of student type
+        get_random_section(), // section.c class returns 0 - 4 of sections 
+        get_arrival_time() // 0 to 120 seconds
     };
     return newStudent;
 }
@@ -41,7 +41,8 @@ void student_to_string(Student student, char * destination) {
     sprintf(destination, "#%d.%s", student.idNumber, strType);
 }
 
-void* process_student(void* threadId) {
+void* process_student(void* threadId)
+{
 	ThreadParams* params = threadId;
 	Student student = params->student;
 	print_student(student);
@@ -66,8 +67,9 @@ void* process_student(void* threadId) {
 	pthread_exit(NULL);
 }
 
-void print_student(Student student) {
-    char studentString[64];
+void print_student(Student student)
+    {
+    char studentString[65];
     sprintf(studentString, "Student %2i   Type: %i   Section: %i   Arrival: %i",
 			student.idNumber,
 			student.type,

@@ -8,6 +8,7 @@
 
 #include "print_queue.h"
 
+// prints to console
 void thread_loop_for_print_queue() {
     if (!threaded_queue_is_empty(&printQueue)) {
         char * nextJob = remove_from_threaded_queue(&printQueue);

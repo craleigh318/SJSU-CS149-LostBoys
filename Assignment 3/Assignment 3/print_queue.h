@@ -23,7 +23,6 @@ static pthread_t printThread;
 
 /*
  Adds a string to the print queue.
- 
  Returns true if successful.
  */
 bool print_pq(char * job);
