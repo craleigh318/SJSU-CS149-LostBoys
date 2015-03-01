@@ -25,6 +25,12 @@ typedef struct {
 	Student students[MAX_STUDENTS];
 } StudentQueue;
 
+static StudentQueue gsQueue;
+
+static StudentQueue rsQueue;
+
+static StudentQueue eeQueue;
+
 typedef struct ThreadParams{
 	Student student;
 

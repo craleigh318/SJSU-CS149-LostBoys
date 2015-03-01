@@ -34,9 +34,8 @@ bool add_student_to_section(Sections* section, Student student) {
 		pthread_mutex_t * mutex = &section->lock;
         pthread_mutex_lock(mutex);
         // TODO: pass student queue into this function and uncomment the line below.
-		//Student std = pop_student_queue(&student); // Pop the student from the head of the queue
         int seatsTaken = SIZE_OF_CLASS - section->seatsLeft;
-        section->addedStudents[seatsTaken] = std; // Add the student into the section
+        section->addedStudents[seatsTaken] = student; // Add the student into the section
 		section->seatsLeft--;
 		pthread_mutex_unlock(mutex);
 		return true;
