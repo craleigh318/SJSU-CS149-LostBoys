@@ -31,11 +31,14 @@ sem_post(&filledSlotsAvailable) - signal the "filledslotsavailable semaphore wak
 bool add_student_to_section(Sections* section, Student student) {
 	if(section->seatsLeft > 0) // If the section the student is trying to add into has seats open to be added into 
 	{
-		pthread_mutex_lock(&mutex);
-		Student std = pop_student_queue(student); // Pop the student from the head of the queue 
-		section->addedStudents[SIZE_OF_CLASS - section->seatsLeft] = std; // Add the student into the section 
+		pthread_mutex_t * mutex = &section->lock;
+        pthread_mutex_lock(mutex);
+        // TODO: pass student queue into this function and uncomment the line below.
+		//Student std = pop_student_queue(&student); // Pop the student from the head of the queue
+        int seatsTaken = SIZE_OF_CLASS - section->seatsLeft;
+        section->addedStudents[seatsTaken] = std; // Add the student into the section
 		section->seatsLeft--;
-		pthread_mutex_unlock(&mutex);
+		pthread_mutex_unlock(mutex);
 		return true;
 	}
 	else

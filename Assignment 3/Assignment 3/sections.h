@@ -10,6 +10,7 @@
 
 #include "system_headers.h"
 #include "student.h"
+#include "student_queue.h"
 
 #define SIZE_OF_CLASS 20
 

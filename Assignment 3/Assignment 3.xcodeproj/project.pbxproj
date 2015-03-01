@@ -13,6 +13,7 @@
 		A43ADFDD1A949B40005220F2 /* student_type.c in Sources */ = {isa = PBXBuildFile; fileRef = A43ADFDC1A949B40005220F2 /* student_type.c */; };
 		A480D4E01A95554A003ABCC2 /* sections.c in Sources */ = {isa = PBXBuildFile; fileRef = A480D4DC1A95554A003ABCC2 /* sections.c */; };
 		A480D4E11A95554A003ABCC2 /* student_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = A480D4DE1A95554A003ABCC2 /* student_queue.c */; };
+		A4B1C0A51AA2FCE500F79679 /* enrollmentSystem.c in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C0A41AA2FCE500F79679 /* enrollmentSystem.c */; };
 		A4F6218D1A972CF50081EB6E /* global_variables.c in Sources */ = {isa = PBXBuildFile; fileRef = A4F6218B1A972CF50081EB6E /* global_variables.c */; };
 		A4F9A3EF1AA0539700C31C37 /* threaded_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = A4F9A3E91AA0539700C31C37 /* threaded_queue.c */; };
 		A4F9A3F01AA0539700C31C37 /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = A4F9A3EB1AA0539700C31C37 /* queue.c */; };
@@ -45,6 +46,7 @@
 		A480D4DD1A95554A003ABCC2 /* sections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sections.h; sourceTree = "<group>"; };
 		A480D4DE1A95554A003ABCC2 /* student_queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = student_queue.c; sourceTree = "<group>"; };
 		A480D4DF1A95554A003ABCC2 /* student_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = student_queue.h; sourceTree = "<group>"; };
+		A4B1C0A41AA2FCE500F79679 /* enrollmentSystem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enrollmentSystem.c; sourceTree = "<group>"; };
 		A4F6218B1A972CF50081EB6E /* global_variables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = global_variables.c; sourceTree = "<group>"; };
 		A4F6218C1A972CF50081EB6E /* global_variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global_variables.h; sourceTree = "<group>"; };
 		A4F9A3E91AA0539700C31C37 /* threaded_queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threaded_queue.c; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		A43ADFCC1A9432ED005220F2 /* Assignment 3 */ = {
 			isa = PBXGroup;
 			children = (
+				A4B1C0A41AA2FCE500F79679 /* enrollmentSystem.c */,
 				A4F9A3E91AA0539700C31C37 /* threaded_queue.c */,
 				A4F9A3EA1AA0539700C31C37 /* threaded_queue.h */,
 				A4F9A3EB1AA0539700C31C37 /* queue.c */,
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A43ADFCE1A9432ED005220F2 /* main.c in Sources */,
+				A4B1C0A51AA2FCE500F79679 /* enrollmentSystem.c in Sources */,
 				A43ADFDB1A94984C005220F2 /* student.c in Sources */,
 				A43ADFD71A94735C005220F2 /* print_queue.c in Sources */,
 				A4F6218D1A972CF50081EB6E /* global_variables.c in Sources */,
@@ -185,7 +189,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -200,7 +204,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_C_LANGUAGE_STANDARD = c89;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -225,7 +229,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -242,7 +246,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_C_LANGUAGE_STANDARD = c89;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
