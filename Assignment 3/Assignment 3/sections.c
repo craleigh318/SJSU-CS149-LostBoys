@@ -13,6 +13,21 @@ Sections newSections() {
     return new_Sections;
 }
 
+/*
+Pthread_create | Create a new thread
+Pthread_exit | Terminate the calling thread
+Pthread_join | Wait for a specific thread to exit
+Pthread_yield | Release the CPU to let another thread run
+Pthread_attr_init | Create and initialize a thread's attribute structure
+Pthread_attr_destory | Remove a thread's attribute structure 
+Actually, the PThreads function names are all in lower case:
+pthread_create, pthread_exit, pthread_attr_init
+Sem_wait(&emptySlotsAvailable) - wait on the emptySlotsAvailable semaphore (lock)
+sem_post(&filledSlotsAvailable) - signal the "filledslotsavailable semaphore wake up (unlock)
+*/
+
+
+
 bool add_student_to_section(Sections* section, Student student) {
 	if(section->seatsLeft > 0) // If the section the student is trying to add into has seats open to be added into 
 	{
