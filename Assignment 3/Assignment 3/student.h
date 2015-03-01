@@ -14,6 +14,7 @@
 #include "global_variables.h"
 
 typedef struct {
+    
     int idNumber;
 
     StudentType type;
@@ -23,6 +24,7 @@ typedef struct {
     int arrivalTime;
 
     pthread_t thread;
+    
 } Student;
 
 /*

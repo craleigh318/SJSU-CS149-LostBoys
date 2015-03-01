@@ -49,14 +49,18 @@ void* process_student(void* threadId)
 
 	Sections* addingSection;
 	if(student.sectionNum == 1)
-		addingSection = params->s1;
+        add_student_to_section(addingSection,student); // Sends the student to the section they want to apply to
+        // addingSection = params->s1;
 	else if(student.sectionNum == 2)
-		addingSection = params->s2;
+         add_student_to_section(addingSection,student);
+        // addingSection = params->s2;
 	else if(student.sectionNum == 3)
-		addingSection = params->s3;
+         add_student_to_section(addingSection,student);
+    // addingSection = params->s3;
 	else if(student.sectionNum == 4) {
-		//change this algorithm
-		addingSection = params->s1;
+         add_student_to_section(addingSection,student);
+        addingSection = params->s1;
+        // Steve said change alogrithm
 	}
 
 	pthread_mutex_lock(&addingSection->lock);
@@ -69,11 +73,11 @@ void* process_student(void* threadId)
 
 void print_student(Student student)
     {
-    char studentString[65];
+    char studentString[65]; // A string with a length of 65 characters
     sprintf(studentString, "Student %2i   Type: %i   Section: %i   Arrival: %i",
 			student.idNumber,
 			student.type,
 			student.sectionNum,
 			student.arrivalTime);
-    print_pq(studentString);
-}
+        print_pq(studentString); // sends the studentString to the print queue
+    }

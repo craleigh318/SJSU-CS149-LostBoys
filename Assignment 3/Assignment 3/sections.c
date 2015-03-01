@@ -32,17 +32,20 @@ bool add_student_to_section(Sections* section, Student student) {
 	if(section->seatsLeft > 0) // If the section the student is trying to add into has seats open to be added into 
 	{
 		pthread_mutex_t *mutex = &section->lock;
-        pthread_mutex_lock(mutex);
+        pthread_mutex_lock(mutex); // Lock this method so no other processes or queues can come in
         // TODO: pass student queue into this function and uncomment the line below.
         int seatsTaken = SIZE_OF_CLASS - section->seatsLeft;
-        section->addedStudents[seatsTaken] = student; // Add the student into the section
-		section->seatsLeft--;
-		pthread_mutex_unlock(mutex);
+        if( seatsTaken != 0 ) // If there is still room in the section
+        {
+            section->addedStudents[seatsTaken] = student; // Add the student into the section
+            section->seatsLeft--;
+        }
+		pthread_mutex_unlock(mutex); // Unlock so other processes or queus can come in
 		return true;
 	}
 	else
-		++studentsDropped;
-		return false; // Student unable to be added into section
+        ++studentsDropped; // Student unable to be added into section
+		return false;
 	
 }
 
