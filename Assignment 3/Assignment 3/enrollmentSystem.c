@@ -38,8 +38,110 @@ int arrivalsCount = 0;
 int waitCount = 0;
 int dropCount = 0;
 int enrollmentCount = 0;
+//int parforeCount = 0;
+
+int firstPrint = 1;
+
+// Print a line for each event:
+//   elapsed time
+//   who is enrolling with the system
+//   who is waiting in the chairs
+//   what event occurred
+void print(char *event)
+{
+    time_t now;
+    time(&now);
+    double elapsed = difftime(now, startTime);
+    int min = 0;
+    int sec = (int) elapsed;
+
+    if (sec >= 60) {
+        min++;
+        sec -= 60;
+    }
+
+    // Acquire the mutex lock to protect the printing.
+    pthread_mutex_lock(&printMutex);
+
+    if (firstPrint) {
+        printf("TIME |ENROLLING| WAITING                 | EVENT\n");
+        firstPrint = 0;
+    }
+
+    if (sec >= 60) {
+            min++;
+            sec -= 60;
+        }
+
+    // Elapsed time.
+    printf("%1d:%02d | ", min, sec);
+
+    // Who's enrolling with the system.
     if (enrollmentId > 0) {
         printf("%5d   |", enrollmentId);
+    }
+    else {
+        printf("        |");
+    }
+
+    // Acquire the mutex lock to protect the chairs and the wait count.
+    pthread_mutex_lock(&chairMutex);
+
+    int i = out;
+    int j = waitCount;
+    int k = 0;
+
+    // Who's waiting in the chairs.
+    while (j-- > 0 && k < 5) {
+        printf("%4d", chairs[i]);
+        i = (i+1)%CHAIR_COUNT;
+        k++;
+    }
+
+    // Release the mutex lock.
+    pthread_mutex_unlock(&chairMutex);
+
+    // What event occurred.
+    while (k++ < 5) printf("    ");
+    if(j > 0) {
+    printf(" ...");
+    }
+    else {
+    printf("    ");
+    }
+
+    printf(" | %s\n", event);
+
+    // Release the mutex lock.
+    pthread_mutex_unlock(&printMutex);
+}
+
+// A student arrives.
+void studentArrives(int id)
+{
+    char event[80];
+    arrivalsCount++;
+
+    if (waitCount < CHAIR_COUNT) {
+
+        // Acquire the mutex lock to protect the chairs and the wait count.
+        pthread_mutex_lock(&chairMutex);
+
+        // Seat a student into a chair.
+        chairs[in] = id;
+        in = (in+1)%CHAIR_COUNT;
+        waitCount++;
+
+        // Release the mutex lock.
+        pthread_mutex_unlock(&chairMutex);
+
+        sprintf(event, "Student %d arrives and waits", id);
+        print(event);
+
+        // Signal the "filledSlots" semaphore.
+        sem_post(&filledChairs);  // signal
+    }
+    else {
         dropCount++;
         sprintf(event, "Student %d arrives and leaves", id);
         print(event);
@@ -86,36 +188,103 @@ void SystemEnrollsStudent()
 
         //For option '3': checks if there is space in sec1 and sec2, if not then section = sec3
         if(section == 3) {
-            if(sections[0] > 0)
-                section = 0;
-            else if(sections[1] > 0)
-                section = 1;
-            else
-                section = 2;
+			if(sections[0] > 0)
+				section = 0;
+			else if(sections[1] > 0)
+				section = 1;
+			else
+				section = 2;
         }
 
         //Checks for available space in section and starts to enroll student
         if(sections[section] > 0) {
-            char event[80];
-            sprintf(event, "System begins processing student %d",  enrollmentId);
-            print(event);
+			char event[80];
+			sprintf(event, "System begins processing student %d",  enrollmentId);
+			print(event);
 
-            // Enroll the student based on priority.
-            if(priority == 0) {
-            sleep(rand()%2 + 1);
-            }
-            else if(priority == 1) {
-            sleep(rand()%3 + 2);
-            }
-            else {
-            sleep(rand()%4 + 3);
-            }
+			// Enroll the student based on priority.
+			if(priority == 0) {
+			sleep(rand()%2 + 1);
+			}
+			else if(priority == 1) {
+			sleep(rand()%3 + 2);
+			}
+			else {
+			sleep(rand()%4 + 3);
+			}
 
-            //Completing enrollment of student
-            enrollmentCount++;
-            sprintf(event, "System finished enrolling student %d in section %d",  enrollmentId, section + 1);
-            enrolledChairs++;
-            enrollmentId = 0;
+			//Completing enrollment of student
+			enrollmentCount++;
+			sprintf(event, "System finished enrolling student %d in section %d",  enrollmentId, section + 1);
+			enrolledChairs++;
+			enrollmentId = 0;
+			print(event);
+			sections[section]--;
+        }
+    }
+}
+
+// The enrollment system thread.
+void *enroll_System(void *param)
+{
+    print("System begins enrollment period");
+
+    // Set the timer for enrollment period.
+    sysTimer.it_value.tv_sec = SYSTEM_ENROLLMENT_DURATION;
+    setitimer(ITIMER_REAL, &sysTimer, NULL);
+
+    // Enroll students until the enrollment period is over.
+    do {
+    SystemEnrollsStudent();
+    } while (!timesUp && enrolledChairs < CHAIR_COUNT);
+
+    print("Enrollment period ends");
+    return NULL;
+}
+
+// Timer signal handler.
+void timerHandler(int signal)
+{
+    timesUp = 1;  // office hour is over
+}
+
+// Main.
+int main(int argc, char *argv[])
+{
+    int studentIds[STUDENT_COUNT];
+    int systemId = 0;
+
+    // Initialize the mutexes and the semaphore.
+    pthread_mutex_init(&chairMutex, NULL);
+    pthread_mutex_init(&printMutex, NULL);
+    sem_init(&filledChairs, 0, 0);
+
+    srand(time(0));
+    time(&startTime);
+
+    // Create the system thread.
+    pthread_t systemThreadId;
+    pthread_attr_t profAttr;
+    pthread_attr_init(&profAttr);
+    pthread_create(&systemThreadId, &profAttr, enroll_System, &systemId);
+
+    // Create the student threads.
+    int i;
+    for (i = 0; i < STUDENT_COUNT; i++) {
+        studentIds[i] = ID_BASE + i;
+        pthread_t studentThreadId;
+        pthread_attr_t studentAttr;
+        pthread_attr_init(&studentAttr);
+        pthread_create(&studentThreadId, &studentAttr, student, &studentIds[i]);
+    }
+
+    // Set the timer signal handler.
+    signal(SIGALRM, timerHandler);
+
+    // Wait for the enrollment system to complete the enrollment period.
+    pthread_join(systemThreadId, NULL);
+
+    // Remaining waiting students leave.
     enrollmentId = 0;
     while (waitCount-- > 0) {
         int studentId = chairs[out];
