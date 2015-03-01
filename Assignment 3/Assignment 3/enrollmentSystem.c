@@ -249,7 +249,7 @@ void timerHandler(int signal)
 }
 
 // Main.
-int esMain(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     int studentIds[STUDENT_COUNT];
     int systemId = 0;
