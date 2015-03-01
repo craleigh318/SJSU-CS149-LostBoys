@@ -249,7 +249,7 @@ void timerHandler(int signal)
 }
 
 // Main.
-int main(int argc, char *argv[])
+int esMain(int argc, char *argv[])
 {
     int studentIds[STUDENT_COUNT];
     int systemId = 0;
@@ -259,7 +259,7 @@ int main(int argc, char *argv[])
     pthread_mutex_init(&printMutex, NULL);
     sem_init(&filledChairs, 0, 0);
 
-    srand(time(0));
+    srand((unsigned int)time(0));
     time(&startTime);
 
     // Create the system thread.
