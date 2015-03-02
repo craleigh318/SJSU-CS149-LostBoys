@@ -8,10 +8,9 @@
 
 #include "queue_element.h"
 
-QueueElement * new_queue_element(void * datum)
-    {
+QueueElement * new_queue_element(void * datum) {
     QueueElement * newQueueElement = malloc(sizeof(QueueElement));
-    newQueueElement->datum = datum; 
+    newQueueElement->datum = datum;
     newQueueElement->next = NULL;
     return newQueueElement;
 }

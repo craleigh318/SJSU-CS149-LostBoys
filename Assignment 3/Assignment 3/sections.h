@@ -14,12 +14,11 @@
 #define SIZE_OF_CLASS 20
 
 typedef struct {
-    int seatsLeft; // how many remaining seats for the sections are left
+    int seatsLeft;
 
-    Student addedStudents[SIZE_OF_CLASS]; // Each section has 20 seats for 20 studnts
+    Student addedStudents[SIZE_OF_CLASS];
 
-    pthread_mutex_t lock; // Set this to either 1 or 0
-    
+    pthread_mutex_t lock;
 } Sections;
 
 /*
@@ -27,19 +26,16 @@ typedef struct {
  */
 Sections newSections();
 
-/*
- Add students in the section they belong to
- */
-
 bool add_student_to_section(Sections* section, Student student);
 
-/*
- print the section
- */
 void print_section(Sections section);
 
 /*
- Returns a random section:  1 = Section 1,  2 = Section 2,  3 = Section 3, 4 = no preference
+ Returns a random section
+ 1 = Section 1
+ 2 = Section 2
+ 3 = Section 3
+ 4 = no preference
  */
 int get_random_section();
 

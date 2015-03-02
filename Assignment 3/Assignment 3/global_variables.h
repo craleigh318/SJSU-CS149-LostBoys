@@ -11,13 +11,13 @@
 
 #include "system_headers.h"
 
-#define END_TIME 120 // 120 seconds or 2 minutes
+#define END_TIME 120
 
-static bool programIsEnding; // Notifies when the program is ending
+static bool programIsEnding;
 
-static int threadCount = 0; // How many threads we have created
+static int threadCount = 0;
 
-static int studentsDropped = 0; // How many students were dropped
+static int studentsDropped = 0;
 
 /*
  Call this near the beginning of the main function.

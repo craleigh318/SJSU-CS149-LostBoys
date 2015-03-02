@@ -24,7 +24,6 @@ typedef struct _threadedQueue {
      Locks when the queue is in use.
      */
     pthread_mutex_t mutex;
-    
 } ThreadedQueue;
 
 /*

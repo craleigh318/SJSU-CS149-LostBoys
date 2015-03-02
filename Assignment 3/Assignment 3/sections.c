@@ -7,21 +7,21 @@
 #include "sections.h"
 
 Sections newSections() {
-    // Creat a new section
     Sections new_Sections = {
-        SIZE_OF_CLASS // 20????
+        SIZE_OF_CLASS
     };
-    return new_Sections; // return a new section
+    return new_Sections;
 }
 
 /*
-pthread_create | Create a new thread
-pthread_exit | Terminate the calling thread
-pthread_join | Wait for a specific thread to exit
-pthread_yield | Release the CPU to let another thread run
-pthread_attr_init | Create and initialize a thread's attribute structure
-pthread_attr_destory | Remove a thread's attribute structure
- 
+Pthread_create | Create a new thread
+Pthread_exit | Terminate the calling thread
+Pthread_join | Wait for a specific thread to exit
+Pthread_yield | Release the CPU to let another thread run
+Pthread_attr_init | Create and initialize a thread's attribute structure
+Pthread_attr_destory | Remove a thread's attribute structure 
+Actually, the PThreads function names are all in lower case:
+pthread_create, pthread_exit, pthread_attr_init
 Sem_wait(&emptySlotsAvailable) - wait on the emptySlotsAvailable semaphore (lock)
 sem_post(&filledSlotsAvailable) - signal the "filledslotsavailable semaphore wake up (unlock)
 */
@@ -31,33 +31,28 @@ sem_post(&filledSlotsAvailable) - signal the "filledslotsavailable semaphore wak
 bool add_student_to_section(Sections* section, Student student) {
 	if(section->seatsLeft > 0) // If the section the student is trying to add into has seats open to be added into 
 	{
-		pthread_mutex_t *mutex = &section->lock;
-        pthread_mutex_lock(mutex); // Lock this method so no other processes or queues can come in
+		pthread_mutex_t * mutex = &section->lock;
+        pthread_mutex_lock(mutex);
         // TODO: pass student queue into this function and uncomment the line below.
         int seatsTaken = SIZE_OF_CLASS - section->seatsLeft;
-        if( seatsTaken != 0 ) // If there is still room in the section
-        {
-            section->addedStudents[seatsTaken] = student; // Add the student into the section
-            section->seatsLeft--;
-        }
-		pthread_mutex_unlock(mutex); // Unlock so other processes or queus can come in
+        section->addedStudents[seatsTaken] = student; // Add the student into the section
+		section->seatsLeft--;
+		pthread_mutex_unlock(mutex);
 		return true;
 	}
 	else
-        ++studentsDropped; // Student unable to be added into section
-		return false;
+		++studentsDropped;
+		return false; // Student unable to be added into section
 	
 }
 
 void print_section(Sections section) {
-    int i;
-	for(i = 0; i < SIZE_OF_CLASS - section.seatsLeft; i++) // i = 0; i < 20 - section.seatsLeft; i++
-    {
-		print_student(section.addedStudents[i]); // print out the students that were added into the given section
+	for(int i = 0; i < SIZE_OF_CLASS - section.seatsLeft; i++) {
+		print_student(section.addedStudents[i]);
 	}
 }
 
 
 int get_random_section() {
-	return (rand() % 4) + 1; // returns random int from 1 -> 4
+	return (rand() % 4) + 1;
 }

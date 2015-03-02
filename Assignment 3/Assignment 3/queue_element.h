@@ -14,7 +14,6 @@
  Points to a datum and the next element.
  */
 typedef struct _queueElement {
-    
     /*
      The datum for this element to hold.
      */
@@ -24,9 +23,7 @@ typedef struct _queueElement {
      The element added after this element, if one exists.
      */
     struct _queueElement * next;
-    
 } QueueElement;
-
 
 /*
  Creates a new queue element that points to the specified datum.
