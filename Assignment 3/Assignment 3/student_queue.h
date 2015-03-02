@@ -51,8 +51,10 @@ StudentQueue new_student_queue();
 
 /*
  Pushes a student to the passed StudentQueue
+ 
+ Returns turnaround time.
  */
-void push_student_queue(StudentQueue* queue, Student student);
+int push_student_queue(StudentQueue* queue, Student student, int currentTime);
 
 /*
  Peeks at the first student from the front of the queue

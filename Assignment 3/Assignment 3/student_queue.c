@@ -53,14 +53,16 @@ void quick_sort_arrival_time(Student * a, int l, int r) {
     }
 }
 
-void push_student_queue(StudentQueue* queue, Student student) {
-	if (queue->length < MAX_STUDENTS) {
+int push_student_queue(StudentQueue* queue, Student student, int currentTime) {
+	int turnaroundTime = currentTime - student.arrivalTime;
+    if (queue->length < MAX_STUDENTS) {
         Student * newStudent = malloc(sizeof(student));
         *newStudent = student;
         add_to_threaded_queue(&queue->tq, newStudent);
 		queue->length++;
 	} else
         print_pq("ERROR: Could not push Student to Queue. Enlarge the queue.");
+    return  turnaroundTime;
 }
 
 Student peek_student_queue(StudentQueue queue) {

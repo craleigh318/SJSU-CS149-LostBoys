@@ -29,9 +29,12 @@ void start_enrollment_process() {
 	}
 	sort_students_arrival(studentList); // sort simulated students in arrival time order starting at 0 to 2 minutes in student_queue.c file
     StudentQueue mainStudentQueue = new_student_queue();
+    
+    int currTime = 0;
+    
     int j;
     for (j = 0; j < MAX_STUDENTS; ++j) {
-        push_student_queue(&mainStudentQueue, studentList[j]);
+        push_student_queue(&mainStudentQueue, studentList[j], currTime);
     }
 	// Student enters at tail of queue and exits at head & all three work simulatenously , but can only enroll 1 student at a time 
 	StudentQueue rsQueue = new_student_queue(); // A queue for regular seniors 
@@ -43,18 +46,17 @@ void start_enrollment_process() {
 	Sections sect2 = newSections();
 	Sections sect3 = newSections();
 
-	int currTime = 0;
 	while(currTime <= END_TIME) // while 0 seconds <= 180 seconds 
 		 {
 		while(mainStudentQueue.length > 0 & peek_student_queue(mainStudentQueue).arrivalTime == currTime) // While students in studentList and one of them arrive
 		 {
 			Student currStudent = pop_student_queue(&mainStudentQueue); // Pop that student from their respectful queue & // Identify are they GS,RS,EE
 			if (currStudent.type == gs) 
-				push_student_queue(&gsQueue, currStudent); // push into GS queue 
+				push_student_queue(&gsQueue, currStudent, currTime); // push into GS queue
 			else if (currStudent.type == rs) // Push into RS queue 
-				push_student_queue(&rsQueue, currStudent);
+				push_student_queue(&rsQueue, currStudent, currTime);
 			else if (currStudent.type == ee) // Push into EE queue 
-				push_student_queue(&eeQueue, currStudent);
+				push_student_queue(&eeQueue, currStudent, currTime);
 			else
                 print_pq("ERROR: Invalid Student type"); // There was a problem with the student's type, they were not a GS,RS,EE 
 		}
