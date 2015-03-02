@@ -73,11 +73,12 @@ void* process_student(void* threadId)
 
 void print_student(Student student)
 {
-    char studentString[65]; // A string with a length of 65 characters
-    sprintf(studentString, "Student %2i   Type: %i   Section: %i   Arrival: %i",
-            student.idNumber,
-            student.type,
+    char studentString1[65];
+    student_to_string(student, studentString1);
+    char studentString2[65]; // A string with a length of 65 characters
+    sprintf(studentString2, "Student %s (Section: %i   Arrival: %i)",
+            studentString1,
             student.sectionNum,
             student.arrivalTime);
-    print_pq(studentString); // sends the studentString to the print queue
+    print_pq(studentString2); // sends the studentString to the print queue
 }
