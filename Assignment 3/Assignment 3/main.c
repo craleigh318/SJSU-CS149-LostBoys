@@ -89,7 +89,10 @@ int main(int argc, const char * argv[]) {
 
 	start_enrollment_process(); // Add students from queues into sections 
     print_pq("FINISHED");
-
+    
+    printf("%d students enrolled into their sections\n", studentsAdded);
+    printf("%d students that were dropped\n", studentsDropped);
+    
     // insert code here...
     pthread_join(printThread, NULL); // Wait for a specific thread to exit
 

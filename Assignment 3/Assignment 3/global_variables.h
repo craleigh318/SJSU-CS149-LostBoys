@@ -19,6 +19,8 @@ static int threadCount = 0; // How many threads we have created
 
 static int studentsDropped = 0; // How many students were dropped
 
+static int studentsAdded = 0; // How many students were added
+
 /*
  Call this near the beginning of the main function.
  */

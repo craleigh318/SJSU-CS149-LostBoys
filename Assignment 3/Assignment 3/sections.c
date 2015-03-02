@@ -14,19 +14,6 @@ Sections newSections() {
     return new_Sections; // return a new section
 }
 
-/*
-pthread_create | Create a new thread
-pthread_exit | Terminate the calling thread
-pthread_join | Wait for a specific thread to exit
-pthread_yield | Release the CPU to let another thread run
-pthread_attr_init | Create and initialize a thread's attribute structure
-pthread_attr_destory | Remove a thread's attribute structure
- 
-Sem_wait(&emptySlotsAvailable) - wait on the emptySlotsAvailable semaphore (lock)
-sem_post(&filledSlotsAvailable) - signal the "filledslotsavailable semaphore wake up (unlock)
-*/
-
-
 
 bool add_student_to_section(Sections* section, Student student) {
 	if(section->seatsLeft > 0) // If the section the student is trying to add into has seats open to be added into 
@@ -39,13 +26,14 @@ bool add_student_to_section(Sections* section, Student student) {
         {
             section->addedStudents[seatsTaken] = student; // Add the student into the section
             section->seatsLeft--;
+            studentAdded++; // Student succesfully added to class
         }
-		pthread_mutex_unlock(mutex); // Unlock so other processes or queus can come in
+		pthread_mutex_unlock(mutex);
 		return true;
 	}
 	else
-        ++studentsDropped; // Student unable to be added into section
-		return false;
+        ++studentsDropped;
+    return false;
 	
 }
 
