@@ -20,15 +20,19 @@ void create_time_stamp(int time, char * destination) {
 
 void start_enrollment_process() {
     pthread_t studentsThread[MAX_STUDENTS]; // Creating 75 student threads 
-    StudentQueue studentList = new_student_queue(); // Create a student thread queue 
+    Student studentList[MAX_STUDENTS]; // Create a student thread queue
 	
 	// Simulate each student with a thread , there will be 75 students 
 	for(int i = 0; i < MAX_STUDENTS; i++) {
 		Student currStudent = new_student(i + 1); // Gets an ID number with random student_type, section , and arrival time 
-		push_student_queue(&studentList, currStudent); // Get currStudent and push them into their respectful queue depending on student_type 
+        studentList[i] = currStudent; // Get currStudent and push them into their respectful queue depending on student_type
 	}
-	sort_students_arrival(&studentList); // sort simulated students in arrival time order starting at 0 to 2 minutes in student_queue.c file
-	
+	sort_students_arrival(studentList); // sort simulated students in arrival time order starting at 0 to 2 minutes in student_queue.c file
+    StudentQueue mainStudentQueue = new_student_queue();
+    int j;
+    for (j = 0; j < MAX_STUDENTS; ++j) {
+        push_student_queue(&mainStudentQueue, studentList[j]);
+    }
 	// Student enters at tail of queue and exits at head & all three work simulatenously , but can only enroll 1 student at a time 
 	StudentQueue rsQueue = new_student_queue(); // A queue for regular seniors 
 	StudentQueue gsQueue = new_student_queue(); // A queue for graduating seniors 
@@ -42,9 +46,9 @@ void start_enrollment_process() {
 	int currTime = 0;
 	while(currTime <= END_TIME) // while 0 seconds <= 180 seconds 
 		 {
-		while(studentList.length > 0 & peek_student_queue(studentList).arrivalTime == currTime) // While students in studentList and one of them arrive
+		while(mainStudentQueue.length > 0 & peek_student_queue(mainStudentQueue).arrivalTime == currTime) // While students in studentList and one of them arrive
 		 {
-			Student currStudent = pop_student_queue(&studentList); // Pop that student from their respectful queue & // Identify are they GS,RS,EE 
+			Student currStudent = pop_student_queue(&mainStudentQueue); // Pop that student from their respectful queue & // Identify are they GS,RS,EE
 			if (currStudent.type == gs) 
 				push_student_queue(&gsQueue, currStudent); // push into GS queue 
 			else if (currStudent.type == rs) // Push into RS queue 

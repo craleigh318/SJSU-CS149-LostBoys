@@ -10,7 +10,8 @@
 
 StudentQueue new_student_queue() {
 	StudentQueue new_queue = {
-			0, -1 //???
+			0,
+        new_threaded_queue()
 	};
 	return new_queue;
 }
@@ -54,7 +55,9 @@ void quick_sort_arrival_time(Student * a, int l, int r) {
 
 void push_student_queue(StudentQueue* queue, Student student) {
 	if (queue->length < MAX_STUDENTS) {
-		queue->students[queue->length] = student;
+        Student * newStudent = malloc(sizeof(student));
+        *newStudent = student;
+        add_to_threaded_queue(&queue->tq, newStudent);
 		queue->length++;
 	} else
         print_pq("ERROR: Could not push Student to Queue. Enlarge the queue.");
@@ -63,7 +66,8 @@ void push_student_queue(StudentQueue* queue, Student student) {
 Student peek_student_queue(StudentQueue queue) {
 	Student ret_student = new_student(-1);
 	if(queue.length > 0) {
-		ret_student = queue.students[0];
+        Student * retStudentPtr = queue.tq.queue.head->datum;
+        ret_student = *retStudentPtr;
 	}
 	else
         print_pq("ERROR: Could not peek a Student from queue. No more students in queue.");
@@ -73,9 +77,10 @@ Student peek_student_queue(StudentQueue queue) {
 Student pop_student_queue(StudentQueue* queue)  {
 	Student ret_student = new_student(-1);
 	if(queue->length > 0) {
-		ret_student = queue->students[0];
+        Student * retStudentPtr = remove_from_threaded_queue(&queue->tq);
+        ret_student = *retStudentPtr;
 		queue->length--;
-		memmove(&queue->students[0], &queue->students[1], sizeof(queue->students) - sizeof(*queue->students));
+        free(retStudentPtr);
 	}
 	else
 		print_pq("ERROR: Could not pop a Student from queue. No more students in queue.");
@@ -83,14 +88,14 @@ Student pop_student_queue(StudentQueue* queue)  {
 }
 
 void print_student_queue(StudentQueue queue) {
-	for(int i = 0; i < queue.length; i++) {
+	/*for(int i = 0; i < queue.length; i++) {
 		Student curr_student = queue.students[i];
 		print_student(curr_student);
-	}
+	}*/
 }
 
-void sort_students_arrival(StudentQueue* queue) {
-	quick_sort_arrival_time(queue->students, 0, queue->length - 1);
+void sort_students_arrival(Student * queue) {
+	quick_sort_arrival_time(queue, 0, MAX_STUDENTS - 1);
 }
 
 void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sections* s3, pthread_t* studentThreads) {

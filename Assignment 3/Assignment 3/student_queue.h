@@ -11,6 +11,7 @@
 #include "system_headers.h"
 #include "sections.h"
 #include "student.h"
+#include "threaded_queue.h"
 #define MAX_STUDENTS 75
 
 typedef struct {
@@ -20,9 +21,9 @@ typedef struct {
 	int length;
 
 	/*
-	 Array of students in currently in the queue
+	 ThreadedQueue of students in currently in the queue
 	 */
-	Student students[MAX_STUDENTS];
+    ThreadedQueue tq;
 } StudentQueue;
 
 static StudentQueue gsQueue;
@@ -70,7 +71,7 @@ void print_student_queue(StudentQueue queue);
 /*
  Sort the StudentQueue by arrival time of students
  */
-void sort_students_arrival(StudentQueue* queue);
+void sort_students_arrival(Student * queue);
 
 void quick_sort_arrival_time(Student * a, int l, int r);
 
