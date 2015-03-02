@@ -11,7 +11,7 @@
 #include "print_queue.h"
 
 int get_arrival_time() {
-    return rand() % END_TIME; // Gets a number from 0 to 120 seconds
+    return rand() % END_TIME;
 }
 
 Student new_student(int idNumber) {
@@ -62,11 +62,11 @@ void* process_student(void* threadId)
     {
         addingSection = NULL;
     }
-    add_student_to_section(addingSection,student); // Sends the student to the section they want to apply to
+    // add_student_to_section(addingSection,student);
     pthread_mutex_lock(&addingSection->lock);
     add_student_to_section(addingSection, student);
     sleep(params->processTime);
-    //pthread_mutex_unlock(&addingSection->lock);
+    pthread_mutex_unlock(&addingSection->lock);
     free(params);
     pthread_exit(NULL);
 }

@@ -35,8 +35,3 @@ void * remove_from_threaded_queue(ThreadedQueue * threadedQueue) {
     return returnDatum;
 }
 
-/*
-If Steve comes back, let him know that he can use my threaded_queue file to help maintain the queue. His current student queue is not thread-safe, which means multiple threads can be changing it at once.
-I mean, he doesn't have to use my code, but he should at least mutex lock when changes are being made.
-The mutex is the important part.
-*/

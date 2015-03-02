@@ -11,7 +11,7 @@
 
 #include "system_headers.h"
 
-#define END_TIME 120 /
+#define END_TIME 120
 
 static bool programIsEnding;
 static int threadCount = 0;
