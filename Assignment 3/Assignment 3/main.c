@@ -19,56 +19,50 @@ void create_time_stamp(int time, char * destination) {
 }
 
 void start_enrollment_process() {
-    pthread_t studentsThread[MAX_STUDENTS]; // Creating 75 student threads 
-    Student studentList[MAX_STUDENTS]; // Create a student thread queue
-	
-	// Simulate each student with a thread , there will be 75 students 
+    pthread_t studentsThread[MAX_STUDENTS];
+    Student studentList[MAX_STUDENTS];
 	for(int i = 0; i < MAX_STUDENTS; i++) {
-		Student currStudent = new_student(i + 1); // Gets an ID number with random student_type, section , and arrival time 
-        studentList[i] = currStudent; // Get currStudent and push them into their respectful queue depending on student_type
+		Student currStudent = new_student(i + 1);
+        studentList[i] = currStudent;
 	}
-	sort_students_arrival(studentList); // sort simulated students in arrival time order starting at 0 to 2 minutes in student_queue.c file
+	sort_students_arrival(studentList);
+    
     StudentQueue mainStudentQueue = new_student_queue();
     
     int currTime = 0;
-    
     int j;
     for (j = 0; j < MAX_STUDENTS; ++j) {
         push_student_queue(&mainStudentQueue, studentList[j], currTime);
     }
-	// Student enters at tail of queue and exits at head & all three work simulatenously , but can only enroll 1 student at a time 
-	StudentQueue rsQueue = new_student_queue(); // A queue for regular seniors 
-	StudentQueue gsQueue = new_student_queue(); // A queue for graduating seniors 
-	StudentQueue eeQueue = new_student_queue(); // A queue for everyone else 
+	StudentQueue rsQueue = new_student_queue();
+    StudentQueue gsQueue = new_student_queue();
+	StudentQueue eeQueue = new_student_queue();
 
-	// Create 3 sections 
-	Sections sect1 = newSections(); 
+    Sections sect1 = newSections();
 	Sections sect2 = newSections();
 	Sections sect3 = newSections();
 
-	while(currTime <= END_TIME) // while 0 seconds <= 180 seconds 
+	while(currTime <= END_TIME)
+    {
+		while(mainStudentQueue.length > 0 & peek_student_queue(mainStudentQueue).arrivalTime == currTime)
 		 {
-		while(mainStudentQueue.length > 0 & peek_student_queue(mainStudentQueue).arrivalTime == currTime) // While students in studentList and one of them arrive
-		 {
-			Student currStudent = pop_student_queue(&mainStudentQueue); // Pop that student from their respectful queue & // Identify are they GS,RS,EE
+			Student currStudent = pop_student_queue(&mainStudentQueue);
 			if (currStudent.type == gs) 
-				push_student_queue(&gsQueue, currStudent, currTime); // push into GS queue
-			else if (currStudent.type == rs) // Push into RS queue 
-				push_student_queue(&rsQueue, currStudent, currTime);
-			else if (currStudent.type == ee) // Push into EE queue 
-				push_student_queue(&eeQueue, currStudent, currTime);
+				push_student_queue(&gsQueue, currStudent, currTime);
+			else if (currStudent.type == rs) 				push_student_queue(&rsQueue, currStudent, currTime);
+			else if (currStudent.type == ee) 				push_student_queue(&eeQueue, currStudent, currTime);
 			else
-                print_pq("ERROR: Invalid Student type"); // There was a problem with the student's type, they were not a GS,RS,EE 
-		}
+                print_pq("ERROR: Invalid Student type");
+         }
 
-		if(gsQueue.length > 0) // if there are some GS in that queue
-			process_student_queue(&gsQueue, &sect1, &sect2, &sect3, studentsThread); // Try to enroll them into section 1,2,3
+		if(gsQueue.length > 0)
+			process_student_queue(&gsQueue, &sect1, &sect2, &sect3, studentsThread);
 		if(rsQueue.length > 0)
 			process_student_queue(&rsQueue, &sect1, &sect2, &sect3, studentsThread);
 		if(eeQueue.length > 0)
 			process_student_queue(&eeQueue, &sect1, &sect2, &sect3, studentsThread);
 
-        char complete[10]; // Puts the minutes and seconds to be displayed 
+        char complete[10];
         create_time_stamp(currTime, complete);
         print_pq(complete);
 		currTime = currTime + 1;
@@ -83,20 +77,18 @@ void start_enrollment_process() {
 }
 
 int main(int argc, const char * argv[]) {
-    initialize_global_variables(); // set ProgramIsEnding to false;
-    printQueue = new_threaded_queue(); // Create threads for queues 
+    printf("Start of program\n");
+    initialize_global_variables();
+    printQueue = new_threaded_queue();
     srand((unsigned int)time(NULL));
-
-	start_enrollment_process(); // Add students from queues into sections 
+	start_enrollment_process();
+    printf("%d students enrolled \n", studentsAdded);
+    printf("%d students dropped\n", studentsDropped);
     print_pq("FINISHED");
+    // insert code here above here not below or it won't show
+    pthread_join(printThread, NULL);
+    pthread_exit(NULL);
+  
     
-    printf("%d students enrolled into their sections\n", studentsAdded);
-    printf("%d students that were dropped\n", studentsDropped);
-    
-    // insert code here...
-    pthread_join(printThread, NULL); // Wait for a specific thread to exit
-
-    pthread_exit(NULL); // Terminate the calling thread
-
     return 0;
 }

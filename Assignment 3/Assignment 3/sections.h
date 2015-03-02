@@ -14,11 +14,9 @@
 #define SIZE_OF_CLASS 20
 
 typedef struct {
-    int seatsLeft; // how many remaining seats for the sections are left
-
-    Student addedStudents[SIZE_OF_CLASS]; // Each section has 20 seats for 20 studnts
-
-    pthread_mutex_t lock; // Set this to either 1 or 0
+    int seatsLeft;
+    Student addedStudents[SIZE_OF_CLASS];
+    pthread_mutex_t lock;
     
 } Sections;
 
@@ -30,7 +28,6 @@ Sections newSections();
 /*
  Add students in the section they belong to
  */
-
 bool add_student_to_section(Sections* section, Student student);
 
 /*

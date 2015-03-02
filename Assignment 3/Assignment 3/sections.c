@@ -7,45 +7,45 @@
 #include "sections.h"
 
 Sections newSections() {
-    // Creat a new section
-    Sections new_Sections = {
-        SIZE_OF_CLASS // 20????
-    };
-    return new_Sections; // return a new section
+        Sections new_Sections = {
+        SIZE_OF_CLASS
+        };
+    return new_Sections;
 }
 
-
 bool add_student_to_section(Sections* section, Student student) {
-	if(section->seatsLeft > 0) // If the section the student is trying to add into has seats open to be added into 
+	if(section->seatsLeft > 0)
 	{
 		pthread_mutex_t *mutex = &section->lock;
-        pthread_mutex_lock(mutex); // Lock this method so no other processes or queues can come in
+        pthread_mutex_lock(mutex);
         // TODO: pass student queue into this function and uncomment the line below.
         int seatsTaken = SIZE_OF_CLASS - section->seatsLeft;
-        if( seatsTaken != 0 ) // If there is still room in the section
-        {
-            section->addedStudents[seatsTaken] = student; // Add the student into the section
-            section->seatsLeft--;
-            studentAdded++; // Student succesfully added to class
-        }
-		pthread_mutex_unlock(mutex);
+        section->addedStudents[seatsTaken] = student;
+        section->seatsLeft--;
+        studentsAdded++; // succesfully added student
+        printf("Student: %d enrolled\n", student.idNumber);
+        pthread_mutex_unlock(mutex);
 		return true;
 	}
-	else
-        ++studentsDropped;
+    /*
+	else if (student.idNumber == 4) // No more open sections
+    {
+        return false;
+    }
+    */
+    else // All are filled
+    {
+    printf("Student: %d dropped\n", student.idNumber);
+    ++studentsDropped;
     return false;
-	
+    }
 }
 
 void print_section(Sections section) {
-    int i;
-	for(i = 0; i < SIZE_OF_CLASS - section.seatsLeft; i++) // i = 0; i < 20 - section.seatsLeft; i++
-    {
-		print_student(section.addedStudents[i]); // print out the students that were added into the given section
-	}
+	for(int i = 0; i < SIZE_OF_CLASS - section.seatsLeft;i++)
+		print_student(section.addedStudents[i]);
 }
 
-
 int get_random_section() {
-	return (rand() % 4) + 1; // returns random int from 1 -> 4
+	return (rand() % 4) + 1;
 }
