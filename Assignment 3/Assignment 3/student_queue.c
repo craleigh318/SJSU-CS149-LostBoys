@@ -56,11 +56,11 @@ void quick_sort_arrival_time(Student * a, int l, int r) {
 void push_student_queue(StudentQueue* queue, Student student, int currentTime) {
     if (queue->length < MAX_STUDENTS) {
         int time = END_TIME - currentTime;
+        setTurnAroundTime(time,&student);
         Student * newStudent = malloc(sizeof(student));
         *newStudent = student;
         add_to_threaded_queue(&queue->tq, newStudent);
 		queue->length++;
-        setTurnAroundTime(time,student);
 	}
     else
     {

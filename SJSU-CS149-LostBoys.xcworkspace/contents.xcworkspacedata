@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Queues for C/Queues for C.xcodeproj">
+      location = "group:Assignment 3/Assignment 3.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Assignment 3/Assignment 3.xcodeproj">
+      location = "group:Queues for C/Queues for C.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Assignment 1/Assignment 1.xcodeproj">

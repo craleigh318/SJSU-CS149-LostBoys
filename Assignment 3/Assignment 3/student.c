@@ -21,7 +21,7 @@ Student new_student(int idNumber) {
     newStudent.sectionNum = get_random_section();
     newStudent.arrivalTime = get_arrival_time();
     newStudent.result = 0;
-    newStudent.turnAroundTime = 0;
+    newStudent.turnAroundTime = -1;
     return newStudent;
 }
 
@@ -71,9 +71,9 @@ void* process_student(void* threadId)
     pthread_exit(NULL);
 }
 
-void setTurnAroundTime(int time,Student student)
+void setTurnAroundTime(int time,Student * student)
 {
-    student.turnAroundTime = time;
+    student->turnAroundTime = time;
 }
 
 void print_student(Student student)
