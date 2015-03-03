@@ -15,13 +15,12 @@ int get_arrival_time() {
 }
 
 Student new_student(int idNumber) {
-    Student newStudent;
-    newStudent.idNumber = idNumber;
-    newStudent.type = get_random_student_type();
-    newStudent.sectionNum = get_random_section();
-    newStudent.arrivalTime = get_arrival_time();
-    newStudent.result = 0;
-    newStudent.turnAroundTime = -1;
+    Student newStudent = {
+        idNumber,
+        get_random_student_type(), // returns a number 0 - 2 of student type
+        get_random_section(), // section.c class returns 0 - 4 of sections
+        get_arrival_time() // 0 to 120 seconds
+    };
     return newStudent;
 }
 
@@ -46,6 +45,7 @@ void* process_student(void* threadId)
 {
     ThreadParams* params = threadId;
     Student student = params->student;
+    print_student(student);
     
     Sections* addingSection = NULL;
     if(student.sectionNum == 1)
@@ -61,35 +61,33 @@ void* process_student(void* threadId)
     {
         addingSection = NULL;
     }
-    // add_student_to_section(addingSection,student);
+
+    bool retval = true;
     pthread_mutex_lock(&addingSection->lock);
-    student.result = add_student_to_section(addingSection, student);
-    print_student(student);
+    retval = add_student_to_section(addingSection, student);
     sleep(params->processTime);
+    while(!retval && student.sectionNum == 4) {
+    	if(addingSection == params->s1)
+    		retval = add_student_to_section(params->s2, student);
+    	else if(addingSection == params->s2)
+    		retval = add_student_to_section(params->s3, student);
+    	else
+    		retval = true;
+    }
     pthread_mutex_unlock(&addingSection->lock);
     free(params);
     pthread_exit(NULL);
 }
 
-void setTurnAroundTime(int time,Student * student)
-{
-    student->turnAroundTime = time;
-}
-
 void print_student(Student student)
 {
-    char *tf;
-    if ( student.result == 0 ) // 0 meaning they are enrolled
-        tf = "true";
-    else
-        tf = "false";
-    char studentString1[100];
+    char studentString1[65];
     student_to_string(student, studentString1);
-    char studentString2[100]; // A string with a length of 65 characters
-    sprintf(studentString2, "Student %s (Section: %i, Arrival: %i secs, Enrolled in section:%s, Turnaround:%i)",
+    char studentString2[65]; // A string with a length of 65 characters
+    sprintf(studentString2, "Student %s (Section: %i   Arrival: %i)",
             studentString1,
             student.sectionNum,
-            student.arrivalTime,
-            tf, student.turnAroundTime);
+            student.arrivalTime)
+            ;
     print_pq(studentString2); // sends the studentString to the print queue
 }
