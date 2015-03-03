@@ -45,7 +45,6 @@ void* process_student(void* threadId)
 {
     ThreadParams* params = threadId;
     Student student = params->student;
-    print_student(student);
     
     Sections* addingSection = NULL;
     if(student.sectionNum == 1)
@@ -63,7 +62,8 @@ void* process_student(void* threadId)
     }
     // add_student_to_section(addingSection,student);
     pthread_mutex_lock(&addingSection->lock);
-    add_student_to_section(addingSection, student);
+    student.result = add_student_to_section(addingSection, student);
+    print_student(student);
     sleep(params->processTime);
     pthread_mutex_unlock(&addingSection->lock);
     free(params);
@@ -72,13 +72,14 @@ void* process_student(void* threadId)
 
 void print_student(Student student)
 {
-    char studentString1[65];
+    char studentString1[80];
     student_to_string(student, studentString1);
-    char studentString2[65]; // A string with a length of 65 characters
-    sprintf(studentString2, "Student %s (Section: %i   Arrival: %i)",
+    char studentString2[80]; // A string with a length of 65 characters
+    sprintf(studentString2, "Student %s (Section: %i   Arrival: %i Enrolled: %i)",
             studentString1,
             student.sectionNum,
-            student.arrivalTime)
+            student.arrivalTime,
+            student.result)
             ;
     print_pq(studentString2); // sends the studentString to the print queue
 }

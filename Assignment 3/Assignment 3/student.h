@@ -25,6 +25,8 @@ typedef struct {
 
     pthread_t thread;
     
+    bool result;
+    
 } Student;
 
 /*
