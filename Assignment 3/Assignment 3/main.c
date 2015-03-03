@@ -91,6 +91,7 @@ void start_enrollment_process() {
         create_time_stamp(currTime, complete);
         print_pq(complete);
         currTime = currTime + 1;
+        sleep(1);
     }
     
     print_pq("Section 1");
