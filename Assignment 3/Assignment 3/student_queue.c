@@ -56,7 +56,7 @@ void quick_sort_arrival_time(Student * a, int l, int r) {
 int push_student_queue(StudentQueue* queue, Student student, int currentTime) {
     int turnaroundTime = 0;
     if (queue->length < MAX_STUDENTS) {
-        int time = END_TIME - currentTime;
+        int time = currentTime - student.arrivalTime;
         setTurnAroundTime(time,&student);
         turnaroundTime = student.turnAroundTime;
         Student * newStudent = malloc(sizeof(student));

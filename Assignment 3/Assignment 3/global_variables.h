@@ -19,6 +19,7 @@ static int studentsDropped = 0;
 static int studentsAdded = 0;
 static int totalTurnAroundTime = 0;
 static pthread_t studentsThread[75];
+static int currTime = 0;
 
 /*
  Call this near the beginning of the main function.

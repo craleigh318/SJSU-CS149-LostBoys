@@ -49,7 +49,7 @@ void start_enrollment_process() {
     
     StudentQueue mainStudentQueue = new_student_queue();
     
-    int currTime = 0;
+    
     int j;
     for (j = 0; j < MAX_STUDENTS; ++j) {
         push_student_queue(&mainStudentQueue, studentList[j], currTime);
