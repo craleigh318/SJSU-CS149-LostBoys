@@ -78,10 +78,10 @@ void print_student(Student student)
         tf = "true";
     else
         tf = "false";
-    char studentString1[80];
+    char studentString1[100];
     student_to_string(student, studentString1);
-    char studentString2[80]; // A string with a length of 65 characters
-    sprintf(studentString2, "Student %s (Section: %i   Arrival: %i Enrolled: %s Turnaround: %i)",
+    char studentString2[100]; // A string with a length of 65 characters
+    sprintf(studentString2, "Student %s (Section: %i, Arrival: %i secs, Enrolled in section:%s, Turnaround:%i)",
             studentString1,
             student.sectionNum,
             student.arrivalTime,
