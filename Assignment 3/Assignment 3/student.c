@@ -17,9 +17,9 @@ int get_arrival_time() {
 Student new_student(int idNumber) {
     Student newStudent;
     newStudent.idNumber = idNumber;
-    newStudent.type = get_random_student_type();    // returns a number 0 - 2 of student type
-    newStudent.sectionNum = get_random_section();   // section.c class returns 0 - 4 of sections
-    newStudent.arrivalTime = get_arrival_time();    // 0 to 120 seconds
+    newStudent.type = get_random_student_type();
+    newStudent.sectionNum = get_random_section();
+    newStudent.arrivalTime = get_arrival_time();
     newStudent.result = 0;
     newStudent.turnAroundTime = -1;
     return newStudent;
