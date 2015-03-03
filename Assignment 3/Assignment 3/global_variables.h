@@ -18,6 +18,7 @@ static int threadCount = 0;
 static int studentsDropped = 0;
 static int studentsAdded = 0;
 static int totalTurnAroundTime = 0;
+static pthread_t studentsThread[75];
 
 /*
  Call this near the beginning of the main function.
