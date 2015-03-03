@@ -30,6 +30,9 @@ void print_results()
     print_pq(str);
     print_pq(strr);
     int totalTime = getTotal();
+    char num2[50];
+    sprintf(num2,"%i : total turnaround time seconds", totalTime);
+    print_pq(num2);
     float averageTime = ((float)totalTime)/75.0f;
     char num[50];
     sprintf(num, "%f : average turnaround time seconds" , averageTime);
