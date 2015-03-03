@@ -72,14 +72,19 @@ void* process_student(void* threadId)
 
 void print_student(Student student)
 {
+    char *tf;
+    if ( student.result == 0 ) // 0 meaning they are enrolled
+        tf = "true";
+    else
+        tf = "false";
     char studentString1[80];
     student_to_string(student, studentString1);
     char studentString2[80]; // A string with a length of 65 characters
-    sprintf(studentString2, "Student %s (Section: %i   Arrival: %i Enrolled: %i)",
+    sprintf(studentString2, "Student %s (Section: %i   Arrival: %i Enrolled: %s)",
             studentString1,
             student.sectionNum,
             student.arrivalTime,
-            student.result)
+            tf)
             ;
     print_pq(studentString2); // sends the studentString to the print queue
 }

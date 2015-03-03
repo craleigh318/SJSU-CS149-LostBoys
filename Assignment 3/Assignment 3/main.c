@@ -21,12 +21,12 @@ void create_time_stamp(int time, char * destination) {
 void print_results()
 {
     char str[30], strr[30];
-    char str1[] = "%i students enrolled";
-    char str2[] = "%i students dropped";
+    char *str1 = "students enrolled.";
+    char *str2 = "students dropped.";
     int add = getStudentAdded();
     int drop = getStudentDropped();
-    sprintf(str,str1, add);
-    sprintf(strr,str2, drop);
+    sprintf(str, "%i %s " , add , str1);
+    sprintf(strr,"%i %s " , drop, str2);
     print_pq(str);
     print_pq(strr);
 }

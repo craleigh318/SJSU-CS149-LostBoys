@@ -73,7 +73,7 @@ Student peek_student_queue(StudentQueue queue) {
         ret_student = *retStudentPtr;
 	}
 	else
-        print_pq("ERROR: Could not peek a Student from queue. No more students in queue.");
+        print_pq("No more students in queue.");
 	return ret_student;
 }
 
