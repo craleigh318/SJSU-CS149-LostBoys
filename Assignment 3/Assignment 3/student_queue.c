@@ -117,11 +117,11 @@ void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sect
 
 	int processTime;
 	if(currStudent.type == gs)
-		processTime = rand() % 2 + 1;
+		processTime = rand() % 2 + 1; // 1 to 2
 	else if(currStudent.type == rs)
-		processTime = rand() % 3 + 2;
+		processTime = rand() % 3 + 2; // 2 to 4
 	else if(currStudent.type == ee)
-		processTime = rand() % 4 + 3;
+		processTime = rand() % 4 + 3; // 3 to 6
 	params->processTime = processTime;
 
 	int thread = pthread_create(&studentThreads[threadCount++], NULL, process_student, params);

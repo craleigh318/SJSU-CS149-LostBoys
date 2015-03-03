@@ -17,6 +17,7 @@ static bool programIsEnding;
 static int threadCount = 0;
 static int studentsDropped = 0;
 static int studentsAdded = 0;
+static int totalTurnAroundTime = 0;
 
 /*
  Call this near the beginning of the main function.
@@ -30,5 +31,9 @@ void dropStudent();
 int getStudentAdded();
 
 int getStudentDropped();
+
+void addTotal();
+
+int getTotal();
 
 #endif /* defined(__Assignment_3__global_variables__) */

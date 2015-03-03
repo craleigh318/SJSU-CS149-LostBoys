@@ -31,3 +31,13 @@ int getStudentDropped()
 {
     return studentsDropped;
 }
+
+void addTotal(int time)
+{
+    totalTurnAroundTime += time;
+}
+
+int getTotal()
+{
+    return totalTurnAroundTime;
+}

@@ -29,6 +29,11 @@ void print_results()
     sprintf(strr,"%i %s " , drop, str2);
     print_pq(str);
     print_pq(strr);
+    int totalTime = getTotal();
+    float averageTime = ((float)totalTime)/75.0f;
+    char num[50];
+    sprintf(num, "%f : average turnaround time seconds" , averageTime);
+    print_pq(num);
 }
 
 void start_enrollment_process() {
@@ -60,10 +65,16 @@ void start_enrollment_process() {
 		while(mainStudentQueue.length > 0 & peek_student_queue(mainStudentQueue).arrivalTime == currTime)
 		 {
 			Student currStudent = pop_student_queue(&mainStudentQueue);
-			if (currStudent.type == gs) 
+             if (currStudent.type == gs) {
 				push_student_queue(&gsQueue, currStudent, currTime);
-			else if (currStudent.type == rs) 				push_student_queue(&rsQueue, currStudent, currTime);
-			else if (currStudent.type == ee) 				push_student_queue(&eeQueue, currStudent, currTime);
+             addTotal(currStudent.turnAroundTime-currStudent.arrivalTime);
+             }
+             else if (currStudent.type == rs) 	{			push_student_queue(&rsQueue, currStudent, currTime);
+             addTotal(currStudent.turnAroundTime-currStudent.arrivalTime);
+             }
+             else if (currStudent.type == ee) 	{			push_student_queue(&eeQueue, currStudent, currTime);
+             addTotal(currStudent.turnAroundTime-currStudent.arrivalTime);
+             }
 			else
                 print_pq("ERROR: Invalid Student type");
          }
