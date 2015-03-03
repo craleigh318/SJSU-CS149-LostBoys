@@ -49,4 +49,6 @@ void* process_student(void* threadId);
 
 void print_student(Student student);
 
+void setTurnAroundTime(int time);
+
 #endif /* defined(__Assignment_3__student__) */

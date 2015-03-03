@@ -32,6 +32,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6EFF103A1AA55CA5003E4235 /* Part A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Part A.png"; sourceTree = "<group>"; };
+		6EFF103B1AA55CA5003E4235 /* Part B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Part B.png"; sourceTree = "<group>"; };
+		6EFF103C1AA55CA5003E4235 /* Part C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Part C.png"; sourceTree = "<group>"; };
+		6EFF103D1AA55CA5003E4235 /* Part D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Part D.png"; sourceTree = "<group>"; };
+		6EFF103E1AA55CA5003E4235 /* Part F.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Part F.png"; sourceTree = "<group>"; };
 		A43ADFCA1A9432ED005220F2 /* Assignment 3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 3"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43ADFD41A94330C005220F2 /* system_headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system_headers.h; sourceTree = "<group>"; };
 		A43ADFD51A94735C005220F2 /* print_queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print_queue.c; sourceTree = "<group>"; };
@@ -95,15 +100,15 @@
 				A4F9A3EE1AA0539700C31C37 /* queue_element.h */,
 				A480D4DC1A95554A003ABCC2 /* sections.c */,
 				A480D4DD1A95554A003ABCC2 /* sections.h */,
-				A480D4DE1A95554A003ABCC2 /* student_queue.c */,
 				A480D4DF1A95554A003ABCC2 /* student_queue.h */,
+				A480D4DE1A95554A003ABCC2 /* student_queue.c */,
+				A43ADFD91A94984C005220F2 /* student.c */,
+				A43ADFDA1A94984C005220F2 /* student.h */,
 				A43ADFD41A94330C005220F2 /* system_headers.h */,
 				A43ADFD51A94735C005220F2 /* print_queue.c */,
 				A43ADFD61A94735C005220F2 /* print_queue.h */,
 				A43ADFD81A949612005220F2 /* student_type.h */,
 				A43ADFDC1A949B40005220F2 /* student_type.c */,
-				A43ADFD91A94984C005220F2 /* student.c */,
-				A43ADFDA1A94984C005220F2 /* student.h */,
 				A4F6218B1A972CF50081EB6E /* global_variables.c */,
 				A4F6218C1A972CF50081EB6E /* global_variables.h */,
 			);
@@ -113,6 +118,11 @@
 		A4666C6E1AA54773009B4275 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6EFF103A1AA55CA5003E4235 /* Part A.png */,
+				6EFF103B1AA55CA5003E4235 /* Part B.png */,
+				6EFF103C1AA55CA5003E4235 /* Part C.png */,
+				6EFF103D1AA55CA5003E4235 /* Part D.png */,
+				6EFF103E1AA55CA5003E4235 /* Part F.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
