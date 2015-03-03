@@ -73,7 +73,7 @@ void* process_student(void* threadId)
 
 void setTurnAroundTime(int time)
 {
-    student->turnAroundTime = time;
+    student.turnAroundTime = time;
 }
 
 void print_student(Student student)

@@ -19,24 +19,15 @@ bool add_student_to_section(Sections* section, Student student) {
         addStudent(); // succesfully added student
 		pthread_mutex_t *mutex = &section->lock;
         pthread_mutex_lock(mutex);
-        // TODO: pass student queue into this function and uncomment the line below.
         int seatsTaken = SIZE_OF_CLASS - section->seatsLeft;
         section->addedStudents[seatsTaken] = student;
         section->seatsLeft--;
-        // printf("Student: %d enrolled\n", student.idNumber);
         pthread_mutex_unlock(mutex);
 		return true;
 	}
-    /*
-	else if (student.idNumber == 4) // No more open sections
+    else
     {
-        return false;
-    }
-    */
-    else // All are filled
-    {
-    dropStudent();
-    // printf("Student: %d dropped\n", student.idNumber);
+    dropStudent(); //unsuccessful at adding
     return false;
     }
 }
