@@ -17,12 +17,12 @@ bool add_student_to_section(Sections* section, Student student) {
 	if(section->seatsLeft > 0)
 	{
         addStudent(); // succesfully added student
-		pthread_mutex_t *mutex = &section->lock;
-        pthread_mutex_lock(mutex);
+		// pthread_mutex_t *mutex = &section->lock;
+        // pthread_mutex_lock(mutex);
         int seatsTaken = SIZE_OF_CLASS - section->seatsLeft;
         section->addedStudents[seatsTaken] = student;
         section->seatsLeft--;
-        pthread_mutex_unlock(mutex);
+        // pthread_mutex_unlock(mutex);
 		return true;
 	}
     else
