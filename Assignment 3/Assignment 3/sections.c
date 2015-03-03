@@ -23,7 +23,7 @@ bool add_student_to_section(Sections* section, Student student) {
         int seatsTaken = SIZE_OF_CLASS - section->seatsLeft;
         section->addedStudents[seatsTaken] = student;
         section->seatsLeft--;
-        printf("Student: %d enrolled\n", student.idNumber);
+        // printf("Student: %d enrolled\n", student.idNumber);
         pthread_mutex_unlock(mutex);
 		return true;
 	}
@@ -36,7 +36,7 @@ bool add_student_to_section(Sections* section, Student student) {
     else // All are filled
     {
     dropStudent();
-    printf("Student: %d dropped\n", student.idNumber);
+    // printf("Student: %d dropped\n", student.idNumber);
     return false;
     }
 }

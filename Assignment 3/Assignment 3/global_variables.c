@@ -14,16 +14,12 @@ void initialize_global_variables() {
 
 void addStudent()
 {
-    pthread_mutex_lock(&results);
     ++studentsAdded;
-    pthread_mutex_unlock(&results);
 }
 
 void dropStudent()
 {
-    pthread_mutex_lock(&results);
     ++studentsDropped;
-    pthread_mutex_unlock(&results);
 }
 
 int getStudentAdded()

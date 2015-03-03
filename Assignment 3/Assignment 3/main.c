@@ -20,8 +20,15 @@ void create_time_stamp(int time, char * destination) {
 
 void print_results()
 {
-    printf("%d students enrolled \n", getStudentAdded());
-    printf("%d students dropped\n", getStudentDropped());
+    char str[30], strr[30];
+    char str1[] = "%i students enrolled";
+    char str2[] = "%i students dropped";
+    int add = getStudentAdded();
+    int drop = getStudentDropped();
+    sprintf(str,str1, add);
+    sprintf(strr,str2, drop);
+    print_pq(str);
+    print_pq(strr);
 }
 
 void start_enrollment_process() {
@@ -80,7 +87,6 @@ void start_enrollment_process() {
 	print_section(sect2);
     print_pq("Section 3");
 	print_section(sect3);
-    print_results();
 }
 
 
@@ -91,10 +97,9 @@ int main(int argc, const char * argv[]) {
     srand((unsigned int)time(NULL));
 	start_enrollment_process();
     print_pq("FINISHED");
+    print_results();
     // insert code here above here not below or it won't show
     pthread_join(printThread, NULL);
     pthread_exit(NULL);
-  
-    
     return 0;
 }

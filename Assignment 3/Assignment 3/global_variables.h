@@ -17,7 +17,6 @@ static bool programIsEnding;
 static int threadCount = 0;
 static int studentsDropped = 0;
 static int studentsAdded = 0;
-static pthread_mutex_t results;
 
 /*
  Call this near the beginning of the main function.

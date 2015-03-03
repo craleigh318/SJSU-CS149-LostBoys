@@ -78,6 +78,7 @@ void print_student(Student student)
     sprintf(studentString2, "Student %s (Section: %i   Arrival: %i)",
             studentString1,
             student.sectionNum,
-            student.arrivalTime);
+            student.arrivalTime)
+            ;
     print_pq(studentString2); // sends the studentString to the print queue
 }
