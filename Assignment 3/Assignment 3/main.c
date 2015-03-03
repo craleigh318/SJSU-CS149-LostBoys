@@ -109,7 +109,7 @@ int main(int argc, const char * argv[]) {
     srand((unsigned int)time(NULL));
     start_enrollment_process();
     pthread_join(printThread, NULL);
-    print_pq("FINISHED");
+    print_pq("JOINING THREADS. PLEASE WAIT.");
     
     // insert code here above here. Not below because it won't show
     int i;
@@ -117,6 +117,7 @@ int main(int argc, const char * argv[]) {
         pthread_join(studentsThread[i], NULL);
     }
     print_results();
+    print_pq("FINISHED");
     pthread_join(printThread, NULL);
     pthread_exit(NULL);
     return 0;

@@ -17,5 +17,7 @@ QueueElement * new_queue_element(void * datum)
 }
 
 void delete_queue_element(QueueElement * element) {
-    free(element);
+    if (element) {
+        free(element);
+    }
 }
