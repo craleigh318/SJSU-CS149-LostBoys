@@ -27,6 +27,8 @@ typedef struct {
     
     bool result;
     
+    int turnAroundTime;
+    
 } Student;
 
 /*

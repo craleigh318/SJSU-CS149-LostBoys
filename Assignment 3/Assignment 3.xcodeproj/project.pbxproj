@@ -100,8 +100,8 @@
 				A43ADFD41A94330C005220F2 /* system_headers.h */,
 				A43ADFD51A94735C005220F2 /* print_queue.c */,
 				A43ADFD61A94735C005220F2 /* print_queue.h */,
-				A43ADFDC1A949B40005220F2 /* student_type.c */,
 				A43ADFD81A949612005220F2 /* student_type.h */,
+				A43ADFDC1A949B40005220F2 /* student_type.c */,
 				A43ADFD91A94984C005220F2 /* student.c */,
 				A43ADFDA1A94984C005220F2 /* student.h */,
 				A4F6218B1A972CF50081EB6E /* global_variables.c */,
@@ -113,12 +113,6 @@
 		A4666C6E1AA54773009B4275 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				6EBD387B1AA541CE00BE0427 /* Part A .png */,
-				6EBD387C1AA541CE00BE0427 /* Part B.png */,
-				6EBD387D1AA541CE00BE0427 /* Part C.png */,
-				6EBD387E1AA541CE00BE0427 /* Part D.png */,
-				6EBD387F1AA541CE00BE0427 /* Part E.png */,
-				6EBD38801AA541CE00BE0427 /* Part F.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";

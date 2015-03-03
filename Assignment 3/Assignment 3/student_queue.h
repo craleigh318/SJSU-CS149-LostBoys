@@ -19,8 +19,8 @@ typedef struct {
 	 Length of the queue
 	 */
 	int length;
-
-	/*
+    
+    /*
 	 ThreadedQueue of students in currently in the queue
 	 */
     ThreadedQueue tq;
@@ -54,8 +54,10 @@ StudentQueue new_student_queue();
  
  Returns turnaround time.
  */
-int push_student_queue(StudentQueue* queue, Student student, int currentTime);
+void push_student_queue(StudentQueue* queue, Student student, int currentTime);
 
+/* Return turnaroundTime if enrolled */
+int turnAroundTime(bool tf, int currentTime, Student student);
 /*
  Peeks at the first student from the front of the queue
  */
