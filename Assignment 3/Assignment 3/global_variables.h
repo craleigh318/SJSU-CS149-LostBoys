@@ -17,10 +17,19 @@ static bool programIsEnding;
 static int threadCount = 0;
 static int studentsDropped = 0;
 static int studentsAdded = 0;
+static pthread_mutex_t results;
 
 /*
  Call this near the beginning of the main function.
  */
 void initialize_global_variables();
+
+void addStudent();
+
+void dropStudent();
+
+int getStudentAdded();
+
+int getStudentDropped();
 
 #endif /* defined(__Assignment_3__global_variables__) */

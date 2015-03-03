@@ -102,7 +102,7 @@ void sort_students_arrival(Student * queue) {
 }
 
 void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sections* s3, pthread_t* studentThreads) {
-	print_student_queue(*queue);
+	// print_student_queue(*queue);
 	Student currStudent = pop_student_queue(queue);
 
 	//Need to free this in student.c

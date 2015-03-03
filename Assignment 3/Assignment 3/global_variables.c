@@ -11,3 +11,27 @@
 void initialize_global_variables() {
     programIsEnding = false;
 }
+
+void addStudent()
+{
+    pthread_mutex_lock(&results);
+    ++studentsAdded;
+    pthread_mutex_unlock(&results);
+}
+
+void dropStudent()
+{
+    pthread_mutex_lock(&results);
+    ++studentsDropped;
+    pthread_mutex_unlock(&results);
+}
+
+int getStudentAdded()
+{
+    return studentsAdded;
+}
+
+int getStudentDropped()
+{
+    return studentsDropped;
+}

@@ -56,7 +56,6 @@ void* process_student(void* threadId)
         addingSection = params->s3;
     else if(student.sectionNum == 4) {
         addingSection = params->s1;
-        // Steve said change alogrithm
     }
     else
     {

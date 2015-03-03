@@ -18,6 +18,12 @@ void create_time_stamp(int time, char * destination) {
 	sprintf(destination, "%i:%02d", minute, seconds);
 }
 
+void print_results()
+{
+    printf("%d students enrolled \n", getStudentAdded());
+    printf("%d students dropped\n", getStudentDropped());
+}
+
 void start_enrollment_process() {
     pthread_t studentsThread[MAX_STUDENTS];
     Student studentList[MAX_STUDENTS];
@@ -74,7 +80,9 @@ void start_enrollment_process() {
 	print_section(sect2);
     print_pq("Section 3");
 	print_section(sect3);
+    print_results();
 }
+
 
 int main(int argc, const char * argv[]) {
     printf("Start of program\n");
@@ -82,8 +90,6 @@ int main(int argc, const char * argv[]) {
     printQueue = new_threaded_queue();
     srand((unsigned int)time(NULL));
 	start_enrollment_process();
-    printf("%d students enrolled \n", studentsAdded);
-    printf("%d students dropped\n", studentsDropped);
     print_pq("FINISHED");
     // insert code here above here not below or it won't show
     pthread_join(printThread, NULL);
