@@ -32,12 +32,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6EBD387B1AA541CE00BE0427 /* Part A .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part A .png"; path = "Outputs /Part A .png"; sourceTree = "<group>"; };
-		6EBD387C1AA541CE00BE0427 /* Part B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part B.png"; path = "Outputs /Part B.png"; sourceTree = "<group>"; };
-		6EBD387D1AA541CE00BE0427 /* Part C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part C.png"; path = "Outputs /Part C.png"; sourceTree = "<group>"; };
-		6EBD387E1AA541CE00BE0427 /* Part D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part D.png"; path = "Outputs /Part D.png"; sourceTree = "<group>"; };
-		6EBD387F1AA541CE00BE0427 /* Part E.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part E.png"; path = "Outputs /Part E.png"; sourceTree = "<group>"; };
-		6EBD38801AA541CE00BE0427 /* Part F.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part F.png"; path = "Outputs /Part F.png"; sourceTree = "<group>"; };
+		6EBD387B1AA541CE00BE0427 /* Part A .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part A .png"; path = "Assignment 3/Outputs /Part A .png"; sourceTree = "<group>"; };
+		6EBD387C1AA541CE00BE0427 /* Part B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part B.png"; path = "Assignment 3/Outputs /Part B.png"; sourceTree = "<group>"; };
+		6EBD387D1AA541CE00BE0427 /* Part C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part C.png"; path = "Assignment 3/Outputs /Part C.png"; sourceTree = "<group>"; };
+		6EBD387E1AA541CE00BE0427 /* Part D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part D.png"; path = "Assignment 3/Outputs /Part D.png"; sourceTree = "<group>"; };
+		6EBD387F1AA541CE00BE0427 /* Part E.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part E.png"; path = "Assignment 3/Outputs /Part E.png"; sourceTree = "<group>"; };
+		6EBD38801AA541CE00BE0427 /* Part F.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Part F.png"; path = "Assignment 3/Outputs /Part F.png"; sourceTree = "<group>"; };
 		A43ADFCA1A9432ED005220F2 /* Assignment 3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 3"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43ADFD41A94330C005220F2 /* system_headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system_headers.h; sourceTree = "<group>"; };
 		A43ADFD51A94735C005220F2 /* print_queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print_queue.c; sourceTree = "<group>"; };
@@ -75,6 +75,7 @@
 		A43ADFC11A9432ED005220F2 = {
 			isa = PBXGroup;
 			children = (
+				A4666C6E1AA54773009B4275 /* Images */,
 				A43ADFCC1A9432ED005220F2 /* Assignment 3 */,
 				A43ADFCB1A9432ED005220F2 /* Products */,
 			);
@@ -91,12 +92,6 @@
 		A43ADFCC1A9432ED005220F2 /* Assignment 3 */ = {
 			isa = PBXGroup;
 			children = (
-				6EBD387B1AA541CE00BE0427 /* Part A .png */,
-				6EBD387C1AA541CE00BE0427 /* Part B.png */,
-				6EBD387D1AA541CE00BE0427 /* Part C.png */,
-				6EBD387E1AA541CE00BE0427 /* Part D.png */,
-				6EBD387F1AA541CE00BE0427 /* Part E.png */,
-				6EBD38801AA541CE00BE0427 /* Part F.png */,
 				A4778D791AA3FFE800B71EDA /* main.c */,
 				A4F9A3E91AA0539700C31C37 /* threaded_queue.c */,
 				A4F9A3EA1AA0539700C31C37 /* threaded_queue.h */,
@@ -119,6 +114,19 @@
 				A4F6218C1A972CF50081EB6E /* global_variables.h */,
 			);
 			path = "Assignment 3";
+			sourceTree = "<group>";
+		};
+		A4666C6E1AA54773009B4275 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				6EBD387B1AA541CE00BE0427 /* Part A .png */,
+				6EBD387C1AA541CE00BE0427 /* Part B.png */,
+				6EBD387D1AA541CE00BE0427 /* Part C.png */,
+				6EBD387E1AA541CE00BE0427 /* Part D.png */,
+				6EBD387F1AA541CE00BE0427 /* Part E.png */,
+				6EBD38801AA541CE00BE0427 /* Part F.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
