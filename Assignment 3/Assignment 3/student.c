@@ -71,7 +71,7 @@ void* process_student(void* threadId)
     pthread_exit(NULL);
 }
 
-void setTurnAroundTime(int time)
+void setTurnAroundTime(int time,Student student)
 {
     student.turnAroundTime = time;
 }

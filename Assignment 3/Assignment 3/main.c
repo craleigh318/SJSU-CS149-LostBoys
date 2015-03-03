@@ -98,7 +98,7 @@ int main(int argc, const char * argv[]) {
 	start_enrollment_process();
     print_pq("FINISHED");
     print_results();
-    // insert code here above here not below or it won't show
+    // insert code here above here. Not below because it won't show
     pthread_join(printThread, NULL);
     pthread_exit(NULL);
     return 0;

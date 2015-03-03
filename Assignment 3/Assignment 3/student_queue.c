@@ -60,7 +60,7 @@ void push_student_queue(StudentQueue* queue, Student student, int currentTime) {
         *newStudent = student;
         add_to_threaded_queue(&queue->tq, newStudent);
 		queue->length++;
-        setTurnAroundTime(time);
+        setTurnAroundTime(time,student);
 	}
     else
     {
