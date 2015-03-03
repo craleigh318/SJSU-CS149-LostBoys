@@ -13,9 +13,9 @@
 #include "global_variables.h"
 
 void create_time_stamp(int time, char * destination) {
-	int minute = time / 60;
-	int seconds = time % 60;
-	sprintf(destination, "%i:%02d", minute, seconds);
+    int minute = time / 60;
+    int seconds = time % 60;
+    sprintf(destination, "%i:%02d", minute, seconds);
 }
 
 void print_results()
@@ -39,11 +39,11 @@ void print_results()
 void start_enrollment_process() {
     pthread_t studentsThread[MAX_STUDENTS];
     Student studentList[MAX_STUDENTS];
-	for(int i = 0; i < MAX_STUDENTS; i++) {
-		Student currStudent = new_student(i + 1);
+    for(int i = 0; i < MAX_STUDENTS; i++) {
+        Student currStudent = new_student(i + 1);
         studentList[i] = currStudent;
-	}
-	sort_students_arrival(studentList);
+    }
+    sort_students_arrival(studentList);
     
     StudentQueue mainStudentQueue = new_student_queue();
     
@@ -52,52 +52,51 @@ void start_enrollment_process() {
     for (j = 0; j < MAX_STUDENTS; ++j) {
         push_student_queue(&mainStudentQueue, studentList[j], currTime);
     }
-	StudentQueue rsQueue = new_student_queue();
+    StudentQueue rsQueue = new_student_queue();
     StudentQueue gsQueue = new_student_queue();
-	StudentQueue eeQueue = new_student_queue();
-
+    StudentQueue eeQueue = new_student_queue();
+    
     Sections sect1 = newSections();
-	Sections sect2 = newSections();
-	Sections sect3 = newSections();
-
-	while(currTime <= END_TIME)
+    Sections sect2 = newSections();
+    Sections sect3 = newSections();
+    
+    while(currTime <= END_TIME)
     {
-		while(mainStudentQueue.length > 0 & peek_student_queue(mainStudentQueue).arrivalTime == currTime)
-		 {
-			Student currStudent = pop_student_queue(&mainStudentQueue);
-             if (currStudent.type == gs) {
-				push_student_queue(&gsQueue, currStudent, currTime);
-             addTotal(currStudent.turnAroundTime-currStudent.arrivalTime);
-             }
-             else if (currStudent.type == rs) 	{			push_student_queue(&rsQueue, currStudent, currTime);
-             addTotal(currStudent.turnAroundTime-currStudent.arrivalTime);
-             }
-             else if (currStudent.type == ee) 	{			push_student_queue(&eeQueue, currStudent, currTime);
-             addTotal(currStudent.turnAroundTime-currStudent.arrivalTime);
-             }
-			else
+        while(mainStudentQueue.length > 0 & peek_student_queue(mainStudentQueue).arrivalTime == currTime)
+        {
+            Student currStudent = pop_student_queue(&mainStudentQueue);
+            if (currStudent.type == gs) {
+                addTotal(push_student_queue(&gsQueue, currStudent, currTime));
+            }
+            else if (currStudent.type == rs) 	{
+                addTotal(push_student_queue(&rsQueue, currStudent, currTime));
+            }
+            else if (currStudent.type == ee) 	{
+                addTotal(push_student_queue(&eeQueue, currStudent, currTime));
+            }
+            else
                 print_pq("ERROR: Invalid Student type");
-         }
-
-		if(gsQueue.length > 0)
-			process_student_queue(&gsQueue, &sect1, &sect2, &sect3, studentsThread);
-		if(rsQueue.length > 0)
-			process_student_queue(&rsQueue, &sect1, &sect2, &sect3, studentsThread);
-		if(eeQueue.length > 0)
-			process_student_queue(&eeQueue, &sect1, &sect2, &sect3, studentsThread);
-
+        }
+        
+        if(gsQueue.length > 0)
+            process_student_queue(&gsQueue, &sect1, &sect2, &sect3, studentsThread);
+        if(rsQueue.length > 0)
+            process_student_queue(&rsQueue, &sect1, &sect2, &sect3, studentsThread);
+        if(eeQueue.length > 0)
+            process_student_queue(&eeQueue, &sect1, &sect2, &sect3, studentsThread);
+        
         char complete[10];
         create_time_stamp(currTime, complete);
         print_pq(complete);
-		currTime = currTime + 1;
-	}
-
+        currTime = currTime + 1;
+    }
+    
     print_pq("Section 1");
-	print_section(sect1);
+    print_section(sect1);
     print_pq("Section 2");
-	print_section(sect2);
+    print_section(sect2);
     print_pq("Section 3");
-	print_section(sect3);
+    print_section(sect3);
 }
 
 
@@ -106,7 +105,7 @@ int main(int argc, const char * argv[]) {
     initialize_global_variables();
     printQueue = new_threaded_queue();
     srand((unsigned int)time(NULL));
-	start_enrollment_process();
+    start_enrollment_process();
     print_pq("FINISHED");
     print_results();
     // insert code here above here. Not below because it won't show

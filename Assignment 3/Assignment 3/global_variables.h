@@ -32,7 +32,7 @@ int getStudentAdded();
 
 int getStudentDropped();
 
-void addTotal();
+void addTotal(int time);
 
 int getTotal();
 
