@@ -64,7 +64,7 @@ void start_enrollment_process() {
     
     while(currTime <= END_TIME)
     {
-        while(mainStudentQueue.length > 0 & peek_student_queue(mainStudentQueue).arrivalTime == currTime)
+        if (peek_student_queue(mainStudentQueue).arrivalTime <= currTime)
         {
             Student currStudent = pop_student_queue(&mainStudentQueue);
             if (currStudent.type == gs) {
