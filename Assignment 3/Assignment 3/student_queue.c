@@ -126,6 +126,7 @@ void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sect
 	else if(currStudent.type == ee)
 		processTime = rand() % 4 + 3; // 3 to 6
 	params->processTime = processTime;
+    
 
 	int thread = pthread_create(&studentThreads[threadCount++], NULL, process_student, params);
 	if (thread) {
