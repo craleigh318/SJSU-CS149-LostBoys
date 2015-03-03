@@ -69,6 +69,7 @@
 		A43ADFC11A9432ED005220F2 = {
 			isa = PBXGroup;
 			children = (
+				A4666C6E1AA54773009B4275 /* Images */,
 				A43ADFCC1A9432ED005220F2 /* Assignment 3 */,
 				A43ADFCB1A9432ED005220F2 /* Products */,
 			);
@@ -107,6 +108,19 @@
 				A4F6218C1A972CF50081EB6E /* global_variables.h */,
 			);
 			path = "Assignment 3";
+			sourceTree = "<group>";
+		};
+		A4666C6E1AA54773009B4275 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				6EBD387B1AA541CE00BE0427 /* Part A .png */,
+				6EBD387C1AA541CE00BE0427 /* Part B.png */,
+				6EBD387D1AA541CE00BE0427 /* Part C.png */,
+				6EBD387E1AA541CE00BE0427 /* Part D.png */,
+				6EBD387F1AA541CE00BE0427 /* Part E.png */,
+				6EBD38801AA541CE00BE0427 /* Part F.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
