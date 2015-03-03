@@ -40,7 +40,6 @@ void print_results()
 }
 
 void start_enrollment_process() {
-    pthread_t studentsThread[MAX_STUDENTS];
     Student studentList[MAX_STUDENTS];
     for(int i = 0; i < MAX_STUDENTS; i++) {
         Student currStudent = new_student(i + 1);
@@ -113,6 +112,11 @@ int main(int argc, const char * argv[]) {
     print_results();
     // insert code here above here. Not below because it won't show
     pthread_join(printThread, NULL);
+    for(int i = 0; i < MAX_STUDENTS; ++i)
+    {
+        pthread_join(studentsThread[i], NULL );
+        // pthread_join (pthread_t thread, void **status_ptr);
+    }
     pthread_exit(NULL);
     return 0;
 }
