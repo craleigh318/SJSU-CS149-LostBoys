@@ -49,7 +49,7 @@ int Process::getRandomIntFromArray(const int array[], const int arraySize, int m
     int i;
     int numSizesWithinMax = 0;
     for (i = 0; i < arraySize; ++i) {
-        if (allowedSizes[i]) {
+        if (allowedSizes[i] <= max) {
             ++numSizesWithinMax;
         } else {
             break;
