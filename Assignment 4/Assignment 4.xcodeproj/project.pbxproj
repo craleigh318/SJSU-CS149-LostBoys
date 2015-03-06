@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A457E7F01AA982C7002C29C3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7EF1AA982C7002C29C3 /* main.cpp */; };
+		A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7F71AA9880C002C29C3 /* MainMemory.cpp */; };
+		A457E7FC1AA98B5A002C29C3 /* Process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7FA1AA98B5A002C29C3 /* Process.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,11 @@
 /* Begin PBXFileReference section */
 		A457E7EC1AA982C7002C29C3 /* Assignment 4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 4"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A457E7EF1AA982C7002C29C3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A457E7F61AA9872B002C29C3 /* SystemHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHeaders.h; sourceTree = "<group>"; };
+		A457E7F71AA9880C002C29C3 /* MainMemory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMemory.cpp; sourceTree = "<group>"; };
+		A457E7F81AA9880C002C29C3 /* MainMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMemory.h; sourceTree = "<group>"; };
+		A457E7FA1AA98B5A002C29C3 /* Process.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process.cpp; sourceTree = "<group>"; };
+		A457E7FB1AA98B5A002C29C3 /* Process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Process.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				A457E7EF1AA982C7002C29C3 /* main.cpp */,
+				A457E7F61AA9872B002C29C3 /* SystemHeaders.h */,
+				A457E7F71AA9880C002C29C3 /* MainMemory.cpp */,
+				A457E7F81AA9880C002C29C3 /* MainMemory.h */,
+				A457E7FA1AA98B5A002C29C3 /* Process.cpp */,
+				A457E7FB1AA98B5A002C29C3 /* Process.h */,
 			);
 			path = "Assignment 4";
 			sourceTree = "<group>";
@@ -119,6 +131,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A457E7F01AA982C7002C29C3 /* main.cpp in Sources */,
+				A457E7FC1AA98B5A002C29C3 /* Process.cpp in Sources */,
+				A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +143,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -144,7 +158,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -169,7 +183,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -186,7 +200,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
