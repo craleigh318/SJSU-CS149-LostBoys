@@ -10,6 +10,7 @@
 #define __Assignment_4__MainMemory__
 #include "SystemHeaders.h"
 #include "Process.h"
+#define MAIN_MEMORY_SIZE 100
 
 /*
  Contains 100 MB to create proceseses.
@@ -17,13 +18,13 @@
 typedef struct {
     
     /*
-     Amount of memory left, in MB.
+     100 MB of memory.
+     Each MB of memory points to the process using it.
+     Available MBs point to null.
      */
-    int availableMemory;
+    Process * memory[MAIN_MEMORY_SIZE];
     
 } MainMemory;
-
-static const int maxMainMemorySize = 100;
 
 /*
  Constructs and returns a new block of main memory.
@@ -31,8 +32,10 @@ static const int maxMainMemorySize = 100;
 MainMemory newMainMemory();
 
 /*
- Creates and returns a new process from this memory.
+ Adds the specified process to the main memory at the specified address.
+ If a 5 MB process is added to 10, then blocks 10 through 15 will be occupied.
+ Returns true if successful.
  */
-Process getNewProcessFromMemory(MainMemory * mainMemory);
+bool addProcessToMainMemory(MainMemory * mainMemory, Process * process, int location);
 
 #endif /* defined(__Assignment_4__MainMemory__) */

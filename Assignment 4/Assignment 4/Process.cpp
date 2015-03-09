@@ -8,33 +8,24 @@
 
 #include "Process.h"
 
-Process newProcess(int size, int duration) {
+Process newProcess() {
     Process newProcess;
-    newProcess.size = size;
-    newProcess.duration = duration;
+    newProcess.size = getRandomSize();
+    newProcess.duration = getRandomDuration();
     return newProcess;
 }
 
-int getRandomIntFromArray(const int * array, const int arraySize, int max) {
-    int i;
-    int numSizesWithinMax = 0;
-    for (i = 0; i < arraySize; ++i) {
-        if (allowedSizes[i] <= max) {
-            ++numSizesWithinMax;
-        } else {
-            break;
-        }
-    }
-    int randomInt = rand() % numSizesWithinMax;
+int getRandomIntFromArray(const int * array, const int arraySize) {
+    int randomInt = rand() % arraySize;
     int returnValue = array[randomInt];
     return returnValue;
 }
 
-int getRandomSize(int max) {
-    return getRandomIntFromArray(allowedSizes, 4, max);
+int getRandomSize() {
+    return getRandomIntFromArray(allowedSizes, 4);
 }
 
-int getRandomDuration(int max) {
-    return getRandomIntFromArray(allowedDurations, 5, max);
+int getRandomDuration() {
+    return getRandomIntFromArray(allowedDurations, 5);
 }
 

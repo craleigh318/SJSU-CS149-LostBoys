@@ -10,14 +10,24 @@
 
 MainMemory newMainMemory() {
     MainMemory newMainMemory;
-    newMainMemory.availableMemory = maxMainMemorySize;
     return newMainMemory;
 }
 
-Process getNewProcessFromMemory(MainMemory * mainMemory) {
-    int newProcessSize = getRandomSize(maxMainMemorySize);
-    int newProcessDuration = getRandomDuration(maxMainMemorySize);
-    Process createdProcess = newProcess(newProcessSize, newProcessDuration);
-    mainMemory->availableMemory -= newProcessSize;
-    return createdProcess;
+bool addProcessToMainMemory(MainMemory * mainMemory, Process * process, int location) {
+    int finalAddress = location + process->size;
+    if (finalAddress >= MAIN_MEMORY_SIZE) {
+        return false;
+    }
+    int currentAddress;
+    for (currentAddress = location; currentAddress <= finalAddress; ++currentAddress) {
+        Process * processPointer = mainMemory->memory[currentAddress];
+        // If memory block is occupied.
+        if (processPointer) {
+            return false;
+        }
+    }
+    for (currentAddress = location; currentAddress <= finalAddress; ++currentAddress) {
+        mainMemory->memory[currentAddress] = process;
+    }
+    return true;
 }

@@ -9,8 +9,8 @@
 #include "Swapping.h"
 
 void swappingStart() {
-    MainMemory mainMemory;
-    Process exampleProcess = getNewProcessFromMemory(&mainMemory);
+    //MainMemory mainMemory;
+    Process exampleProcess = newProcess();
     std::cout << "Example Process:\nSize:\t\t" << exampleProcess.size
     << " MB\nDuration:\t" << exampleProcess.duration << " s\n";
 }

@@ -45,21 +45,21 @@ static const int allowedDurations[] = {
 /*
  Constructs and returns a new process.
  */
-Process newProcess(int size, int duration);
+Process newProcess();
 
 /*
  Returns a random int from the specified array.
  */
-int getRandomIntFromArray(const int * array, const int arraySize, int max);
+int getRandomIntFromArray(const int * array, const int arraySize);
 
 /*
  Returns a random size less than or equal to the specified max.
  */
-int getRandomSize(int max);
+int getRandomSize();
 
 /*
  Returns a random duration less than or equal to the specified max.
  */
-int getRandomDuration(int max);
+int getRandomDuration();
 
 #endif /* defined(__Assignment_4__Process__) */
