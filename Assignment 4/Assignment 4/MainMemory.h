@@ -14,23 +14,25 @@
 /*
  Contains 100 MB to create proceseses.
  */
-class MainMemory {
-    
-public:
-    static const int size = 100;
+typedef struct {
     
     /*
-     Constructor.
+     Amount of memory left, in MB.
      */
-    MainMemory();
-    
-    /*
-     Creates and returns a new process from this memory.
-     */
-    Process getNewProcess();
-    
-private:
     int availableMemory;
-};
+    
+} MainMemory;
+
+static const int maxMainMemorySize = 100;
+
+/*
+ Constructs and returns a new block of main memory.
+ */
+MainMemory newMainMemory();
+
+/*
+ Creates and returns a new process from this memory.
+ */
+Process getNewProcessFromMemory(MainMemory * mainMemory);
 
 #endif /* defined(__Assignment_4__MainMemory__) */

@@ -13,47 +13,53 @@
 /*
  Represents a process on the PC.
  */
-class Process {
-    
-public:
-    static const int allowedSizes[];
-    
-    static const int allowedDurations[];
+typedef struct {
     
     /*
-     Returns a random size less than or equal to the specified max.
-     */
-    static int getRandomSize(int max);
-    
-    /*
-     Returns a random duration less than or equal to the specified max.
-     */
-    static int getRandomDuration(int max);
-    
-    /*
-     Constructor.
-     */
-    Process(int size, int duration);
-    
-    /*
-     Returns the size in MB.
-     */
-    int getSize();
-    
-    /*
-     Returns the duration in seconds.
-     */
-    int getDuration();
-    
-private:
+    The size in MB.
+    */
     int size;
     
+    /*
+     The duration in seconds.
+     */
     int duration;
     
-    /*
-     Returns a random int from the specified array.
-     */
-    static int getRandomIntFromArray(const int array[], const int arraySize, int max);
+} Process;
+
+static const int allowedSizes[] = {
+    5,
+    11,
+    17,
+    31
 };
+
+static const int allowedDurations[] = {
+    1,
+    2,
+    3,
+    4,
+    5
+};
+
+/*
+ Constructs and returns a new process.
+ */
+Process newProcess(int size, int duration);
+
+/*
+ Returns a random int from the specified array.
+ */
+int getRandomIntFromArray(const int * array, const int arraySize, int max);
+
+/*
+ Returns a random size less than or equal to the specified max.
+ */
+int getRandomSize(int max);
+
+/*
+ Returns a random duration less than or equal to the specified max.
+ */
+int getRandomDuration(int max);
 
 #endif /* defined(__Assignment_4__Process__) */

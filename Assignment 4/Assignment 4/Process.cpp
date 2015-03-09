@@ -8,44 +8,14 @@
 
 #include "Process.h"
 
-const int Process::allowedSizes[] = {
-    5,
-    11,
-    17,
-    31
-};
-
-const int Process::allowedDurations[] = {
-    1,
-    2,
-    3,
-    4,
-    5
-};
-
-int Process::getRandomSize(int max) {
-    return getRandomIntFromArray(allowedSizes, 4, max);
+Process newProcess(int size, int duration) {
+    Process newProcess;
+    newProcess.size = size;
+    newProcess.duration = duration;
+    return newProcess;
 }
 
-int Process::getRandomDuration(int max) {
-    return getRandomIntFromArray(allowedDurations, 5, max);
-}
-
-Process::Process(int size, int duration) :
-size(size),
-duration(duration)
-{
-}
-
-int Process::getSize() {
-    return size;
-}
-
-int Process::getDuration() {
-    return duration;
-}
-
-int Process::getRandomIntFromArray(const int array[], const int arraySize, int max) {
+int getRandomIntFromArray(const int * array, const int arraySize, int max) {
     int i;
     int numSizesWithinMax = 0;
     for (i = 0; i < arraySize; ++i) {
@@ -59,3 +29,12 @@ int Process::getRandomIntFromArray(const int array[], const int arraySize, int m
     int returnValue = array[randomInt];
     return returnValue;
 }
+
+int getRandomSize(int max) {
+    return getRandomIntFromArray(allowedSizes, 4, max);
+}
+
+int getRandomDuration(int max) {
+    return getRandomIntFromArray(allowedDurations, 5, max);
+}
+

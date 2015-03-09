@@ -8,15 +8,16 @@
 
 #include "MainMemory.h"
 
-MainMemory::MainMemory() :
-availableMemory(size)
-{
+MainMemory newMainMemory() {
+    MainMemory newMainMemory;
+    newMainMemory.availableMemory = maxMainMemorySize;
+    return newMainMemory;
 }
 
-Process MainMemory::getNewProcess() {
-    int newProcessSize = Process::getRandomSize(size);
-    int newProcessDuration = Process::getRandomDuration(size);
-    Process newProcess(newProcessSize, newProcessDuration);
-    availableMemory -= newProcessSize;
-    return newProcess;
+Process getNewProcessFromMemory(MainMemory * mainMemory) {
+    int newProcessSize = getRandomSize(maxMainMemorySize);
+    int newProcessDuration = getRandomDuration(maxMainMemorySize);
+    Process createdProcess = newProcess(newProcessSize, newProcessDuration);
+    mainMemory->availableMemory -= newProcessSize;
+    return createdProcess;
 }
