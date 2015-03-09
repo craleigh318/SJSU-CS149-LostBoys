@@ -7,15 +7,12 @@
 //
 
 #include "SystemHeaders.h"
-#include "MainMemory.h"
+#include "Swapping.h"
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     srand((unsigned int)time(NULL));
     std::cout << "Hello, World!\n";
-    MainMemory mainMemory;
-    Process exampleProcess = getNewProcessFromMemory(&mainMemory);
-    std::cout << "Example Process:\nSize:\t\t" << exampleProcess.size
-    << " MB\nDuration:\t" << exampleProcess.duration << " s\n";
+    swappingStart();
     return 0;
 }
