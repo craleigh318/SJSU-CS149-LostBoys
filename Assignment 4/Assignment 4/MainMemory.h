@@ -32,6 +32,12 @@ typedef struct {
 MainMemory newMainMemory();
 
 /*
+ Returns true if the specified process can be added to the main memory at the specified address.
+ If a 5 MB process is added to 10, then blocks 10 through 15 will be occupied.
+ */
+bool processWillFit(MainMemory * mainMemory, Process * process, int location);
+
+/*
  Adds the specified process to the main memory at the specified address.
  If a 5 MB process is added to 10, then blocks 10 through 15 will be occupied.
  Returns true if successful.
