@@ -14,7 +14,10 @@ MainMemory newMainMemory() {
 }
 
 bool processWillFit(MainMemory * mainMemory, Process * process, int location) {
-    int finalAddress = location + process->size;
+    int finalAddress = location + process->size - 1;
+    if (finalAddress >= MAIN_MEMORY_SIZE) {
+        return false;
+    }
     int currentAddress;
     for (currentAddress = location; currentAddress <= finalAddress; ++currentAddress) {
         Process * processPointer = mainMemory->memory[currentAddress];
@@ -27,14 +30,11 @@ bool processWillFit(MainMemory * mainMemory, Process * process, int location) {
 }
 
 bool addProcessToMainMemory(MainMemory * mainMemory, Process * process, int location) {
-    int finalAddress = location + process->size;
-    if (finalAddress >= MAIN_MEMORY_SIZE) {
-        return false;
-    }
     if (!processWillFit(mainMemory, process, location)) {
         return false;
     }
     int currentAddress;
+    int finalAddress = location + process->size - 1;
     for (currentAddress = location; currentAddress <= finalAddress; ++currentAddress) {
         mainMemory->memory[currentAddress] = process;
     }
