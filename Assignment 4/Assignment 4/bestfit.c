@@ -1,8 +1,8 @@
 //
-//  bestift.c
+//  bestfit.c
 //  Assignment 4
 //
-//  Created by William Chan on 2015/05/03.
+//  Created by Will Chan on 3/10/15.
 //  Copyright (c) 2015 Lost Boys. All rights reserved.
 //
 
@@ -10,5 +10,5 @@
 
 void runBestFit()
 {
-	return; // Want to see if this works
+    return; // Want to see if this works
 }
