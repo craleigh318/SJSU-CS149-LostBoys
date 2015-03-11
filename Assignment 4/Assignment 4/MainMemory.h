@@ -13,6 +13,24 @@
 #define MAIN_MEMORY_SIZE 100
 
 /*
+ Constructs and returns a new block of main memory.
+ A block of main memory is an array of 100 process pointers.
+ */
+Process ** newMainMemory();
+
+/*
+ Deletes this block of main memory.
+ */
+void deleteMainMemory(Process ** mainMemory);
+
+/*
+ Prints this block of main memory.
+ */
+void printMainMemory(Process ** mainMemory);
+
+
+
+/*
  Contains 100 MB to create proceseses.
  */
 typedef struct {
@@ -26,10 +44,7 @@ typedef struct {
     
 } MainMemory;
 
-/*
- Constructs and returns a new block of main memory.
- */
-MainMemory newMainMemory();
+
 
 /*
  Returns true if the specified process can be added to the main memory at the specified address.
