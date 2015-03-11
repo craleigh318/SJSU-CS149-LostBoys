@@ -10,6 +10,7 @@
 #define __Assignment_4__Swapping__
 #include "SystemHeaders.h"
 #include "MainMemory.h"
+#include "Partition.h"
 
 /*
  Starts the swapping part of the assignment.

@@ -24,7 +24,7 @@ void printMainMemory(Process ** mainMemory) {
     for (i = 0; i < numRows; ++i) {
         int j;
         for (j = 0; j < numColumns; ++j) {
-            int index = (numRows * i) + j;
+            int index = (numColumns * i) + j;
             Process * currentProcess = mainMemory[index];
             if (currentProcess) {
                 std::cout << getProcessName(currentProcess);

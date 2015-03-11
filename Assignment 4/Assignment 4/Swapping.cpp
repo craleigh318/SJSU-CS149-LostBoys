@@ -13,8 +13,11 @@ void swappingStart() {
     Process * exampleProcess = newProcess();
     std::cout << "Example Process:\nSize:\t\t" << getProcessSize(exampleProcess)
     << " MB\nDuration:\t" << getProcessDuration(exampleProcess) << " s\n";
-    deleteProcess(exampleProcess);
     Process ** exampleMemory = newMainMemory();
+    std::vector<Partition *> holes = getHolesInMemory(exampleMemory);
+    addProcessToHole(holes.at(0), exampleProcess);
     printMainMemory(exampleMemory);
+    std::cout << "Hole Size: " << getPartitionSize(holes.at(0)) << '\n';
+    deleteProcess(exampleProcess);
     deleteMainMemory(exampleMemory);
 }

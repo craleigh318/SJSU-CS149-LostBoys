@@ -15,7 +15,7 @@ struct _Partition {
 };
 
 Partition * newPartition(Process ** mainMemory, int firstMB, int finalMB) {
-    Partition * newPartition;
+    Partition * newPartition = (Partition *)malloc(sizeof(Partition));
     newPartition->mainMemory = mainMemory;
     newPartition->firstMB = firstMB;
     newPartition->finalMB = finalMB;
@@ -51,6 +51,9 @@ std::vector<Partition *> getHolesInMemory(Process ** mainMemory) {
                 currentPartition = newPartition(mainMemory, i, i);
             }
         }
+    }
+    if (currentPartition) {
+        memoryHoles.push_back(currentPartition);
     }
     return memoryHoles;
 }
