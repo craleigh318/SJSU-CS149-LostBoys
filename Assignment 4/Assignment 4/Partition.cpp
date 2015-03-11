@@ -62,7 +62,7 @@ int getPartitionSize(Partition * partition) {
 
 bool addProcessToHole(Partition * hole, Process * process) {
     int i;
-    for (i = hole->firstMB; i < getProcessSize(process); ++i) {
+    for (i = hole->firstMB; i < (getProcessSize(process) + hole->firstMB); ++i) {
         hole->mainMemory[i] = process;
     }
     hole->firstMB = i;

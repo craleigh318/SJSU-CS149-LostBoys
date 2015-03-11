@@ -7,6 +7,7 @@
 //
 
 #include "Swapping.h"
+#include "NextFitSwapping.h"
 
 void swappingStart() {
     //MainMemory mainMemory;
@@ -20,4 +21,19 @@ void swappingStart() {
     std::cout << "Hole Size: " << getPartitionSize(holes.at(0)) << '\n';
     deleteProcess(exampleProcess);
     deleteMainMemory(exampleMemory);
+
+    //NextFit
+    int currTime = 0;
+    Process ** NextFitMemory = newMainMemory();
+    while(currTime < RUNTIME) {
+    	Process* passProcess = newProcess();
+        std::cout << "Example Process:\nSize:\t\t" << getProcessSize(passProcess)
+        << " MB\nDuration:\t" << getProcessDuration(passProcess) << " s\n";
+    	if(startNextFit(NextFitMemory, passProcess)) {
+    		printMainMemory(NextFitMemory);
+    	}
+    	currTime++;
+    }
+
+    deleteMainMemory(NextFitMemory);
 }

@@ -12,6 +12,8 @@
 #include "MainMemory.h"
 #include "Partition.h"
 
+#define RUNTIME 10
+
 /*
  Starts the swapping part of the assignment.
  */
