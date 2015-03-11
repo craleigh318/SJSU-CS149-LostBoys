@@ -10,5 +10,6 @@
 
 void runBestFit()
 {
-    return; // See this comment 
+    Process *memory = newMainMemory(); // Gets a new block of main memory as an array of 100 process pointers 
+    
 }
