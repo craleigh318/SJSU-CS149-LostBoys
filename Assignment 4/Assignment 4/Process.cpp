@@ -8,12 +8,6 @@
 
 #include "Process.h"
 
-struct _Process {
-    int size;
-    int duration;
-    char name;
-};
-
 static const int allowedSizes[] = {
     5,
     11,

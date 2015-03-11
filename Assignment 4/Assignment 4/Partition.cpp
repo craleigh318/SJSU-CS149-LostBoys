@@ -8,12 +8,6 @@
 
 #include "Partition.h"
 
-struct _Partition {
-    Process ** mainMemory;
-    int firstMB;
-    int finalMB;
-};
-
 Partition * newPartition(Process ** mainMemory, int firstMB, int finalMB) {
     Partition * newPartition = (Partition *)malloc(sizeof(Partition));
     newPartition->mainMemory = mainMemory;

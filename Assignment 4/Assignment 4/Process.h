@@ -13,7 +13,11 @@
 /*
  Represents a process on the PC.
  */
-typedef struct _Process Process;
+typedef struct _Process {
+    int size;
+    int duration;
+    char name;
+} Process;
 
 /*
  Constructs and returns a new process.

@@ -13,7 +13,7 @@
 		A49ACF3D1AAFD13500FA6BA2 /* Partition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A49ACF3B1AAFD13500FA6BA2 /* Partition.cpp */; };
 		A4AD12081AAD789800D3EF3B /* Swapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4AD12061AAD789800D3EF3B /* Swapping.cpp */; };
 		A4AD120B1AAD78E500D3EF3B /* Paging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4AD12091AAD78E500D3EF3B /* Paging.cpp */; };
-		F8A56AA91AB01F2C00BED1F9 /* bestfit.c in Sources */ = {isa = PBXBuildFile; fileRef = F8A56AA71AB01F2C00BED1F9 /* bestfit.c */; };
+		F8A56AA91AB01F2C00BED1F9 /* bestfit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8A56AA71AB01F2C00BED1F9 /* bestfit.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +31,7 @@
 /* Begin PBXFileReference section */
 		A457E7EC1AA982C7002C29C3 /* Assignment 4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 4"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A457E7EF1AA982C7002C29C3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		A457E7F61AA9872B002C29C3 /* SystemHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHeaders.h; sourceTree = "<group>"; };
+		A457E7F61AA9872B002C29C3 /* SystemHeaders.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = SystemHeaders.h; sourceTree = "<group>"; };
 		A457E7F71AA9880C002C29C3 /* MainMemory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMemory.cpp; sourceTree = "<group>"; };
 		A457E7F81AA9880C002C29C3 /* MainMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMemory.h; sourceTree = "<group>"; };
 		A457E7FA1AA98B5A002C29C3 /* Process.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process.cpp; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		A4AD12071AAD789800D3EF3B /* Swapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swapping.h; sourceTree = "<group>"; };
 		A4AD12091AAD78E500D3EF3B /* Paging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Paging.cpp; sourceTree = "<group>"; };
 		A4AD120A1AAD78E500D3EF3B /* Paging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paging.h; sourceTree = "<group>"; };
-		F8A56AA71AB01F2C00BED1F9 /* bestfit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bestfit.c; sourceTree = "<group>"; };
+		F8A56AA71AB01F2C00BED1F9 /* bestfit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bestfit.cpp; sourceTree = "<group>"; };
 		F8A56AA81AB01F2C00BED1F9 /* bestfit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bestfit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				A457E7EF1AA982C7002C29C3 /* main.cpp */,
-				F8A56AA71AB01F2C00BED1F9 /* bestfit.c */,
+				F8A56AA71AB01F2C00BED1F9 /* bestfit.cpp */,
 				F8A56AA81AB01F2C00BED1F9 /* bestfit.h */,
 				A457E7F61AA9872B002C29C3 /* SystemHeaders.h */,
 				A457E7F71AA9880C002C29C3 /* MainMemory.cpp */,
@@ -150,7 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8A56AA91AB01F2C00BED1F9 /* bestfit.c in Sources */,
+				F8A56AA91AB01F2C00BED1F9 /* bestfit.cpp in Sources */,
 				A49ACF3D1AAFD13500FA6BA2 /* Partition.cpp in Sources */,
 				A457E7F01AA982C7002C29C3 /* main.cpp in Sources */,
 				A457E7FC1AA98B5A002C29C3 /* Process.cpp in Sources */,

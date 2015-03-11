@@ -15,7 +15,11 @@
 /*
  A block of continuous memory owned by one process (or lack thereof).
  */
-typedef struct _Partition Partition;
+typedef struct _Partition {
+    Process ** mainMemory;
+    int firstMB;
+    int finalMB;
+} Partition;
 
 /*
  New partition.
