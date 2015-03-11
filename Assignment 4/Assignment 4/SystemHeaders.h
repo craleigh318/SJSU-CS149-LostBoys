@@ -10,4 +10,5 @@
 #define Assignment_4_SystemHeaders_h
 #include <iostream>
 #include <cstdlib>
+#include <vector>
 #endif

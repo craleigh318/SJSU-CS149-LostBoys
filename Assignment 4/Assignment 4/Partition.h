@@ -10,11 +10,27 @@
 #define __Assignment_4__Partition__
 #include "SystemHeaders.h"
 #include "Process.h"
+#include "MainMemory.h"
 
 /*
  A block of continuous memory owned by one process (or lack thereof).
  */
 typedef struct _Partition Partition;
+
+/*
+ New partition.
+ */
+Partition * newPartition(Process ** mainMemory, int firstMB, int finalMB);
+
+/*
+ Deletes partition.
+ */
+void deletePartition(Partition * partition);
+
+/*
+ Returns a vector of any unused partitions in this memory.
+ */
+std::vector<Partition *> getHolesInMemory(Process ** mainMemory);
 
 /*
  Returns the process running on this partition.
@@ -30,9 +46,8 @@ int getPartitionSize(Partition * partition);
 /*
  Adds the specified process to the hole.
  A hole is an unoccupied partition.
- Returns a new partition for the process if successful.
- Returns null if unsuccessful.
+ Returns true if successful.
  */
-Partition * addProcessToHole(Partition * hole, Process * process);
+bool addProcessToHole(Partition * hole, Process * process);
 
 #endif /* defined(__Assignment_4__Partition__) */
