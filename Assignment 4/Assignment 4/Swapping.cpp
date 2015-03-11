@@ -7,7 +7,6 @@
 //
 
 #include "Swapping.h"
-#include "NextFitSwapping.h"
 
 void swappingStart() {
     //MainMemory mainMemory;

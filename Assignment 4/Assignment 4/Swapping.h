@@ -11,6 +11,7 @@
 #include "SystemHeaders.h"
 #include "MainMemory.h"
 #include "Partition.h"
+#include "NextFitSwapping.h"
 
 #define RUNTIME 10
 
