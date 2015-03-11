@@ -10,5 +10,6 @@
 
 void runBestFit()
 {
-    return; // Want to see if this works
+    Process **mem = newMainMemory(); // A block of main memory is an array of 100 process pointers
+    Process *process = newProcess(); // A randomly simulated process with size and duration
 }

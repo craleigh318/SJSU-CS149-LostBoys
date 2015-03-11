@@ -15,5 +15,4 @@ int main(int argc, const char * argv[]) {
     std::cout << "Hello, World!\n";
     swappingStart();
     return 0;
-    // Where is my bestfit
 }
