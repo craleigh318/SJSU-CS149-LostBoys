@@ -10,6 +10,7 @@
 
 void runBestFit()
 {
+    /*
     Process **memory = newMainMemory(); // Gets a new block of main memory as an array of 100 process pointers 
     std::vector<Partition *> holes = getHolesInMemory(memory);  // Get and find holes in memory
     int startOfVector = 0, startOfMain = 0;
@@ -26,4 +27,6 @@ void runBestFit()
             }
         }
     }
+    */
+    return;
 }
