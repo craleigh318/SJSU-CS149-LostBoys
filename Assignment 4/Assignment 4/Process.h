@@ -36,12 +36,19 @@ public:
      */
     char getName();
     
+    /*
+     Prints the attributes of this process.
+     */
+    void print();
+    
 private:
     static const int allowedSizes[];
     
     static const int allowedDurations[];
     
     static char currentLetter;
+    
+    static const int timeLimit = 100;
     
     /*
      Returns a random int from the specified array.
@@ -63,11 +70,18 @@ private:
      */
     char getUniqueName();
     
+    /*
+     Returns a random arrival time.
+     */
+    int getRandomArrivalTime();
+    
     int size;
     
     int duration;
     
     char name;
+    
+    int arrivalTime;
 };
 
 #endif /* defined(__Assignment_4__Process__) */
