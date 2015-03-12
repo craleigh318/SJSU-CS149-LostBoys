@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A432F9021AB1543800BE4AF5 /* NextFitSwapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A432F9001AB1543800BE4AF5 /* NextFitSwapping.cpp */; };
 		A457E7F01AA982C7002C29C3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7EF1AA982C7002C29C3 /* main.cpp */; };
 		A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7F71AA9880C002C29C3 /* MainMemory.cpp */; };
 		A457E7FC1AA98B5A002C29C3 /* Process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7FA1AA98B5A002C29C3 /* Process.cpp */; };
@@ -29,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A432F9001AB1543800BE4AF5 /* NextFitSwapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NextFitSwapping.cpp; sourceTree = "<group>"; };
+		A432F9011AB1543800BE4AF5 /* NextFitSwapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextFitSwapping.h; sourceTree = "<group>"; };
 		A457E7EC1AA982C7002C29C3 /* Assignment 4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 4"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A457E7EF1AA982C7002C29C3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A457E7F61AA9872B002C29C3 /* SystemHeaders.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = SystemHeaders.h; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 		A457E7EE1AA982C7002C29C3 /* Assignment 4 */ = {
 			isa = PBXGroup;
 			children = (
+				A432F9001AB1543800BE4AF5 /* NextFitSwapping.cpp */,
+				A432F9011AB1543800BE4AF5 /* NextFitSwapping.h */,
 				A457E7EF1AA982C7002C29C3 /* main.cpp */,
 				F8A56AA71AB01F2C00BED1F9 /* bestfit.cpp */,
 				F8A56AA81AB01F2C00BED1F9 /* bestfit.h */,
@@ -157,6 +162,7 @@
 				A4AD12081AAD789800D3EF3B /* Swapping.cpp in Sources */,
 				A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */,
 				A4AD120B1AAD78E500D3EF3B /* Paging.cpp in Sources */,
+				A432F9021AB1543800BE4AF5 /* NextFitSwapping.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
