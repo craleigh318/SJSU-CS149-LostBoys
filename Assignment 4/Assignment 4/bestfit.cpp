@@ -20,9 +20,9 @@ bool runBestFit()
         {
             if ( holes.at(startOfVector) == NULL && startOfVector < getProcessSize(process) ) // if the vector at that index is null ( or  0 )
             {
-                bool added = addProcessToHole(holes,process);
+                bool added = addProcessToHole(holes.at(startOfVector),process);
                 startOfVector++;  // moves the index to the start
-                startOfMain++;
+                startOfMain++; // moves the index of the start of main to how many MBs the process has
             }
         }
     }
