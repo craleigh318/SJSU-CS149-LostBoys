@@ -14,6 +14,7 @@
 #include "MainMemory.h"
 #include "Process.h"
 #include "Partition.h"
+#include "Swapping.h"
 
 bool runBestFit();
 
