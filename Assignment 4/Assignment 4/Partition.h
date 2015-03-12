@@ -16,7 +16,7 @@
  A block of continuous memory owned by one process (or lack thereof).
  */
 typedef struct _Partition {
-    Process ** mainMemory;
+    MainMemory * mainMemory;
     int firstMB;
     int finalMB;
 } Partition;
@@ -24,7 +24,7 @@ typedef struct _Partition {
 /*
  New partition.
  */
-Partition * newPartition(Process ** mainMemory, int firstMB, int finalMB);
+Partition * newPartition(MainMemory * mainMemory, int firstMB, int finalMB);
 
 /*
  Deletes partition.
@@ -34,13 +34,13 @@ void deletePartition(Partition * partition);
 /*
  Returns a vector of any unused partitions in this memory.
  */
-std::vector<Partition *> getHolesInMemory(Process ** mainMemory);
+std::vector<Partition *> getHolesInMemory(MainMemory * mainMemory);
 
 /*
  Returns the process running on this partition.
  Returns null if this partition is available.
  */
-Process * getProcessFromPartition(Partition * partition);
+const Process * const getProcessFromPartition(Partition * partition);
 
 /*
  Returns the size of this partition, in MB.

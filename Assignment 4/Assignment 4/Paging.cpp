@@ -7,3 +7,7 @@
 //
 
 #include "Paging.h"
+
+void pagingStart() {
+    
+}

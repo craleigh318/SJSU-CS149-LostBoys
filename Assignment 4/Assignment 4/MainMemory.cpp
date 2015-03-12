@@ -8,16 +8,20 @@
 
 #include "MainMemory.h"
 
-Process ** newMainMemory() {
-    Process ** newMainMemory = (Process **)calloc(MAIN_MEMORY_SIZE, sizeof(Process *));
-    return newMainMemory;
+MainMemory::MainMemory() :
+mbs()
+{
 }
 
-void deleteMainMemory(Process ** mainMemory) {
-    free(mainMemory);
+const Process * const MainMemory::getMB(int mb) {
+    return mbs[mb];
 }
 
-void printMainMemory(Process ** mainMemory) {
+void MainMemory::setMB(int mb, Process * value) {
+    mbs[mb] = value;
+}
+
+void MainMemory::print() {
     int i;
     const int numRows = 5;
     const int numColumns = 20;
@@ -25,9 +29,9 @@ void printMainMemory(Process ** mainMemory) {
         int j;
         for (j = 0; j < numColumns; ++j) {
             int index = (numColumns * i) + j;
-            Process * currentProcess = mainMemory[index];
+            Process * currentProcess = mbs[index];
             if (currentProcess) {
-                std::cout << getProcessName(currentProcess);
+                std::cout << currentProcess->getName();
             } else {
                 std::cout << '.';
             }

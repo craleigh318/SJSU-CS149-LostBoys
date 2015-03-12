@@ -8,14 +8,14 @@
 
 #include "Process.h"
 
-static const int allowedSizes[] = {
+const int Process::allowedSizes[] = {
     5,
     11,
     17,
     31
 };
 
-static const int allowedDurations[] = {
+ const int Process::allowedDurations[] = {
     1,
     2,
     3,
@@ -23,60 +23,43 @@ static const int allowedDurations[] = {
     5
 };
 
-static char currentLetter = 'A';
+char Process::currentLetter = 'A';
 
-/*
- Returns a random int from the specified array.
- */
-int getRandomIntFromArray(const int * array, const int arraySize) {
+int Process::getRandomIntFromArray(const int * array, const int arraySize) {
     int randomInt = rand() % arraySize;
     int returnValue = array[randomInt];
     return returnValue;
 }
 
-/*
- Returns a random size less than or equal to the specified max.
- */
-int getRandomSize() {
+int Process::getRandomSize() {
     return getRandomIntFromArray(allowedSizes, 4);
 }
 
-/*
- Returns a random duration less than or equal to the specified max.
- */
-int getRandomDuration() {
+int Process::getRandomDuration() {
     return getRandomIntFromArray(allowedDurations, 5);
 }
 
-/*
- Returns a unique name.
- */
-char getUniqueName() {
+char Process::getUniqueName() {
     char uniqueName = currentLetter;
     ++currentLetter;
     return uniqueName;
 }
 
-Process * newProcess() {
-    Process * newProcess = (Process *)malloc(sizeof(Process));
-    newProcess->size = getRandomSize();
-    newProcess->duration = getRandomDuration();
-    newProcess->name = getUniqueName();
-    return newProcess;
+Process::Process() :
+size(getRandomSize()),
+duration(getRandomDuration()),
+name(getUniqueName())
+{
 }
 
-void deleteProcess(Process * process) {
-    free(process);
+int Process::getSize() {
+    return size;
 }
 
-int getProcessSize(Process * process) {
-    return process->size;
+int Process::getDuration() {
+    return duration;
 }
 
-int getProcessDuration(Process * process) {
-    return process->duration;
-}
-
-char getProcessName(Process * process) {
-    return  process->name;
+char Process::getName() {
+    return name;
 }

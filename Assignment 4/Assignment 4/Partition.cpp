@@ -8,7 +8,7 @@
 
 #include "Partition.h"
 
-Partition * newPartition(Process ** mainMemory, int firstMB, int finalMB) {
+Partition * newPartition(MainMemory * mainMemory, int firstMB, int finalMB) {
     Partition * newPartition = (Partition *)malloc(sizeof(Partition));
     newPartition->mainMemory = mainMemory;
     newPartition->firstMB = firstMB;
@@ -20,14 +20,14 @@ void deletePartition(Partition * partition) {
     free(partition);
 }
 
-std::vector<Partition *> getHolesInMemory(Process ** mainMemory) {
+std::vector<Partition *> getHolesInMemory(MainMemory * mainMemory) {
     std::vector<Partition *> memoryHoles;
     Partition * currentPartition = NULL;
     int i;
     // For each element in main memory.
     for (i = 0; i < MAIN_MEMORY_SIZE; ++i) {
         // If this MB is in use.
-        if (mainMemory[i]) {
+        if (mainMemory->getMB(i)) {
             // If a hole was being recorded, then it must stop and be added to the vetor.
             if (currentPartition) {
                 memoryHoles.push_back(currentPartition);
@@ -52,8 +52,8 @@ std::vector<Partition *> getHolesInMemory(Process ** mainMemory) {
     return memoryHoles;
 }
 
-Process * getProcessFromPartition(Partition * partition) {
-    return partition->mainMemory[partition->firstMB];
+const Process * const getProcessFromPartition(Partition * partition) {
+    return partition->mainMemory->getMB(partition->firstMB);
 }
 
 int getPartitionSize(Partition * partition) {
@@ -62,8 +62,8 @@ int getPartitionSize(Partition * partition) {
 
 bool addProcessToHole(Partition * hole, Process * process) {
     int i;
-    for (i = hole->firstMB; i < (getProcessSize(process) + hole->firstMB); ++i) {
-        hole->mainMemory[i] = process;
+    for (i = hole->firstMB; i < (process->getSize() + hole->firstMB); ++i) {
+        hole->mainMemory->setMB(i, process);
     }
     hole->firstMB = i;
     return true;

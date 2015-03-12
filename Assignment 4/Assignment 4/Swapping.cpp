@@ -23,17 +23,27 @@ void swappingStart() {
     deleteMainMemory(exampleMemory);*/
 
     //NextFit
-    int currTime = 0;
+    /*int currTime = 0;
     Process ** NextFitMemory = newMainMemory();
     while(currTime < RUNTIME) {
-    	Process* passProcess = newProcess();
-        std::cout << "Example Process:\nSize:\t\t" << getProcessSize(passProcess)
-        << " MB\nDuration:\t" << getProcessDuration(passProcess) << " s\n";
-    	if(startNextFit(NextFitMemory, passProcess)) {
+    	Process passProcess;
+        std::cout << "Example Process:\nSize:\t\t" << passProcess.getSize()
+        << " MB\nDuration:\t" << passProcess.getDuration() << " s\n";
+    	if(startNextFit(NextFitMemory, &passProcess)) {
     		printMainMemory(NextFitMemory);
     	}
     	currTime++;
     }
 
-    deleteMainMemory(NextFitMemory);
+    deleteMainMemory(NextFitMemory);*/
+    MainMemory mainMemory;
+    Process process1;
+    Process process2;
+    mainMemory.print();
+    std::vector<Partition *> holes = getHolesInMemory(&mainMemory);
+    addProcessToHole(holes.at(0), &process1);
+    mainMemory.print();
+    holes = getHolesInMemory(&mainMemory);
+    addProcessToHole(holes.at(0), &process2);
+    mainMemory.print();
 }

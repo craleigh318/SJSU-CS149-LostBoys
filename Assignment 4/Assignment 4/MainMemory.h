@@ -12,20 +12,32 @@
 #include "Process.h"
 #define MAIN_MEMORY_SIZE 100
 
-/*
- Constructs and returns a new block of main memory.
- A block of main memory is an array of 100 process pointers.
- */
-Process ** newMainMemory();
-
-/*
- Deletes this block of main memory.
- */
-void deleteMainMemory(Process ** mainMemory);
-
-/*
- Prints this block of main memory.
- */
-void printMainMemory(Process ** mainMemory);
+class MainMemory {
+    
+public:
+    /*
+     Constructs a new block of main memory.
+     A block of main memory is an array of 100 process pointers.
+     */
+    MainMemory();
+    
+    /*
+     Returns the process using this MB.
+     */
+    const Process * const getMB(int mb);
+    
+    /*
+     Assigns this MB to a process
+     */
+    void setMB(int mb, Process * value);
+    
+    /*
+     Prints this block of main memory.
+     */
+    void print();
+    
+private:
+    Process * mbs[MAIN_MEMORY_SIZE];
+};
 
 #endif /* defined(__Assignment_4__MainMemory__) */

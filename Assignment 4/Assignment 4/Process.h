@@ -13,35 +13,61 @@
 /*
  Represents a process on the PC.
  */
-typedef struct _Process {
+class Process {
+    
+public:
+    /*
+     Constructs a new process.
+     */
+    Process();
+    
+    /*
+     The size, in MB.
+     */
+    int getSize();
+    
+    /*
+     The duration, in seconds.
+     */
+    int getDuration();
+    
+    /*
+     The one-letter name of this process.
+     */
+    char getName();
+    
+private:
+    static const int allowedSizes[];
+    
+    static const int allowedDurations[];
+    
+    static char currentLetter;
+    
+    /*
+     Returns a random int from the specified array.
+     */
+    int getRandomIntFromArray(const int * array, const int arraySize);
+    
+    /*
+     Returns a random size less than or equal to the specified max.
+     */
+    int getRandomSize();
+    
+    /*
+     Returns a random duration less than or equal to the specified max.
+     */
+    int getRandomDuration();
+    
+    /*
+     Returns a unique name.
+     */
+    char getUniqueName();
+    
     int size;
+    
     int duration;
+    
     char name;
-} Process;
-
-/*
- Constructs and returns a new process.
- */
-Process * newProcess();
-
-/*
- Constructs and returns a new process.
- */
-void deleteProcess(Process * process);
-
-/*
- The size, in MB.
- */
-int getProcessSize(Process * process);
-
-/*
- The duration, in seconds.
- */
-int getProcessDuration(Process * process);
-
-/*
- The one-letter name of this process.
- */
-char getProcessName(Process * process);
+};
 
 #endif /* defined(__Assignment_4__Process__) */
