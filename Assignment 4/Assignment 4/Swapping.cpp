@@ -36,14 +36,5 @@ void swappingStart() {
     }
 
     deleteMainMemory(NextFitMemory);*/
-    MainMemory mainMemory;
-    Process process1;
-    Process process2;
-    mainMemory.print();
-    std::vector<Partition *> holes = getHolesInMemory(&mainMemory);
-    addProcessToHole(holes.at(0), &process1);
-    mainMemory.print();
-    holes = getHolesInMemory(&mainMemory);
-    addProcessToHole(holes.at(0), &process2);
-    mainMemory.print();
+    startFirstFitSwapping();
 }

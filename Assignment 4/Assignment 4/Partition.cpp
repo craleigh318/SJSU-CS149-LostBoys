@@ -8,20 +8,15 @@
 
 #include "Partition.h"
 
-Partition * newPartition(MainMemory * mainMemory, int firstMB, int finalMB) {
-    Partition * newPartition = (Partition *)malloc(sizeof(Partition));
-    newPartition->mainMemory = mainMemory;
-    newPartition->firstMB = firstMB;
-    newPartition->finalMB = finalMB;
-    return newPartition;
+Partition::Partition(MainMemory * mainMemory, int firstMB, int finalMB) :
+mainMemory(mainMemory),
+firstMB(firstMB),
+finalMB(finalMB)
+{
 }
 
-void deletePartition(Partition * partition) {
-    free(partition);
-}
-
-std::vector<Partition *> getHolesInMemory(MainMemory * mainMemory) {
-    std::vector<Partition *> memoryHoles;
+std::vector<Partition> Partition::getHolesInMemory(MainMemory * mainMemory) {
+    std::vector<Partition> memoryHoles;
     Partition * currentPartition = NULL;
     int i;
     // For each element in main memory.
@@ -30,7 +25,8 @@ std::vector<Partition *> getHolesInMemory(MainMemory * mainMemory) {
         if (mainMemory->getMB(i)) {
             // If a hole was being recorded, then it must stop and be added to the vetor.
             if (currentPartition) {
-                memoryHoles.push_back(currentPartition);
+                memoryHoles.push_back(*currentPartition);
+                delete currentPartition;
                 currentPartition = NULL;
             }
         }
@@ -42,29 +38,33 @@ std::vector<Partition *> getHolesInMemory(MainMemory * mainMemory) {
             }
             // Else, this is the first MB of the hole.
             else {
-                currentPartition = newPartition(mainMemory, i, i);
+                currentPartition = new Partition(mainMemory, i, i);
             }
         }
     }
     if (currentPartition) {
-        memoryHoles.push_back(currentPartition);
+        memoryHoles.push_back(*currentPartition);
+        delete currentPartition;
     }
     return memoryHoles;
 }
 
-const Process * const getProcessFromPartition(Partition * partition) {
-    return partition->mainMemory->getMB(partition->firstMB);
+const Process * const Partition::getProcess() {
+    return mainMemory->getMB(firstMB);
 }
 
-int getPartitionSize(Partition * partition) {
-    return partition->finalMB - partition->firstMB + 1;
+int Partition::getSize() {
+    return finalMB - firstMB + 1;
 }
 
-bool addProcessToHole(Partition * hole, Process * process) {
-    int i;
-    for (i = hole->firstMB; i < (process->getSize() + hole->firstMB); ++i) {
-        hole->mainMemory->setMB(i, process);
+bool Partition::addProcess(Process * process) {
+    if (firstMB > finalMB) {
+        return false;
     }
-    hole->firstMB = i;
+    int i;
+    for (i = firstMB; i < (process->getSize() + firstMB); ++i) {
+        mainMemory->setMB(i, process);
+    }
+    firstMB = i;
     return true;
 }

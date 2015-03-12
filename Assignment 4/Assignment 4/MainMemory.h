@@ -12,6 +12,9 @@
 #include "Process.h"
 #define MAIN_MEMORY_SIZE 100
 
+/*
+ A block of main memory is an array of 100 process pointers.
+ */
 class MainMemory {
     
 public:

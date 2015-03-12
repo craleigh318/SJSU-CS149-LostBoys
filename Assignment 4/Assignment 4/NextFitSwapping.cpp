@@ -10,11 +10,11 @@
 static int LASTPOS = 0;
 
 bool startNextFit(MainMemory memory, Process* process) {
-	std::vector<Partition *> holes = getHolesInMemory(&memory);
+	std::vector<Partition> holes = Partition::getHolesInMemory(&memory);
 	for(int i = 0; i < (signed) holes.size(); i++) {
-		Partition * hole = holes.at(i);
-		if(process->getSize() <= getPartitionSize(hole)) {
-			addProcessToHole(holes.at(i), process);
+		Partition hole = holes.at(i);
+		if(process->getSize() <= hole.getSize()) {
+            holes.at(i).addProcess(process);
 			return true;
 		}
 	}

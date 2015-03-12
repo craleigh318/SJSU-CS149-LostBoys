@@ -12,7 +12,7 @@
 #include "MainMemory.h"
 #include "Partition.h"
 #include "NextFitSwapping.h"
-
+#include "FirstFitSwapping.h"
 #define RUNTIME 10
 
 /*
