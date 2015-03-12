@@ -13,6 +13,7 @@
 #include "Partition.h"
 #include "NextFitSwapping.h"
 #include "FirstFitSwapping.h"
+#include "bestfit.h"
 #define RUNTIME 10
 
 /*
