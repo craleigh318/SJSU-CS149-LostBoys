@@ -13,8 +13,9 @@
 #include "SystemHeaders.h"
 #include "MainMemory.h"
 #include "Process.h"
+#include "Partition.h"
 
-void runBestFit();
+bool runBestFit();
 
 #endif /* defined(__Assignment_4__bestfit__) */
 

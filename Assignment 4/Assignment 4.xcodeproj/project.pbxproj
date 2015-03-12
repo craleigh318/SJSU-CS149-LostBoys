@@ -83,18 +83,18 @@
 				A432F9011AB1543800BE4AF5 /* NextFitSwapping.h */,
 				A457E7EF1AA982C7002C29C3 /* main.cpp */,
 				F8A56AA71AB01F2C00BED1F9 /* bestfit.cpp */,
+				A457E7FA1AA98B5A002C29C3 /* Process.cpp */,
+				A49ACF3B1AAFD13500FA6BA2 /* Partition.cpp */,
+				A49ACF3C1AAFD13500FA6BA2 /* Partition.h */,
 				F8A56AA81AB01F2C00BED1F9 /* bestfit.h */,
 				A457E7F61AA9872B002C29C3 /* SystemHeaders.h */,
 				A457E7F71AA9880C002C29C3 /* MainMemory.cpp */,
 				A457E7F81AA9880C002C29C3 /* MainMemory.h */,
-				A457E7FA1AA98B5A002C29C3 /* Process.cpp */,
 				A457E7FB1AA98B5A002C29C3 /* Process.h */,
 				A4AD12061AAD789800D3EF3B /* Swapping.cpp */,
 				A4AD12071AAD789800D3EF3B /* Swapping.h */,
 				A4AD12091AAD78E500D3EF3B /* Paging.cpp */,
 				A4AD120A1AAD78E500D3EF3B /* Paging.h */,
-				A49ACF3B1AAFD13500FA6BA2 /* Partition.cpp */,
-				A49ACF3C1AAFD13500FA6BA2 /* Partition.h */,
 			);
 			path = "Assignment 4";
 			sourceTree = "<group>";
