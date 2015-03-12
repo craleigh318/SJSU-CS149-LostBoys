@@ -17,6 +17,12 @@
 #define RUNTIME 10
 
 /*
+ Memory swaps using the specified algorithm.
+ */
+void swapWithAlgorithm(std::priority_queue<Process *> processQueue,
+                       void (* algorithm)(MainMemory * memory, Process * process));
+
+/*
  Starts the swapping part of the assignment.
  */
 void swappingStart();

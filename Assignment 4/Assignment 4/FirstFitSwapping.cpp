@@ -8,18 +8,16 @@
 
 #include "FirstFitSwapping.h"
 
-void startFirstFitSwapping() {
-    MainMemory mainMemory;
-    Process process1;
-    Process process2;
-    mainMemory.print();
-    std::cout << '\n';
-    std::vector<Partition> holes = Partition::getHolesInMemory(&mainMemory);
-    holes.at(0).addProcess(&process1);
-    mainMemory.print();
-    std::cout << '\n';
-    std::vector<Partition> holes2 = Partition::getHolesInMemory(&mainMemory);
-    holes2.at(0).addProcess(&process2);
-    mainMemory.print();
-    std::cout << '\n';
+void startFirstFitSwapping(MainMemory * memory, Process * process) {
+    std::vector<Partition> holes = Partition::getHolesInMemory(memory);
+    int i;
+    for (i = 0; i < holes.size(); ++i) {
+        int processSize = process->getSize();
+        Partition & thisHole = holes.at(i);
+        int holeSize = thisHole.getSize();
+        if (processSize <= holeSize) {
+            thisHole.addProcess(process);
+            break;
+        }
+    }
 }

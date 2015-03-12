@@ -46,7 +46,7 @@ char Process::getUniqueName() {
 }
 
 int Process::getRandomArrivalTime() {
-    return (rand() % timeLimit);
+    return (rand() % TIME_LIMIT);
 }
 
 Process::Process() :
@@ -69,12 +69,16 @@ char Process::getName() {
     return name;
 }
 
+int Process::getArrivalTime() {
+    return arrivalTime;
+}
+
 void Process::print() {
     std::cout << "Process: " << name << "\nSize: " << size << " MB\nArrival Time: "
     << arrivalTime << " s\nDuration: " << duration << "s\n";
 }
 
-bool Process::operator<(Process& other) const
+bool Process::operator<(const Process& other) const
 {
     return arrivalTime > other.arrivalTime;
 }

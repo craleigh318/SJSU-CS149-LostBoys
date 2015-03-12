@@ -9,6 +9,7 @@
 #ifndef __Assignment_4__Process__
 #define __Assignment_4__Process__
 #include "SystemHeaders.h"
+#define TIME_LIMIT 60
 
 /*
  Represents a process on the PC.
@@ -37,6 +38,11 @@ public:
     char getName();
     
     /*
+     Returns the arrival time.
+     */
+    int getArrivalTime();
+    
+    /*
      Prints the attributes of this process.
      */
     void print();
@@ -44,7 +50,7 @@ public:
     /*
      Overrides comparison method.
      */
-    bool operator<(Process& other) const;
+    bool operator<(const Process& other) const;
 
     
 private:
@@ -53,8 +59,6 @@ private:
     static const int allowedDurations[];
     
     static char currentLetter;
-    
-    static const int timeLimit = 100;
     
     /*
      Returns a random int from the specified array.

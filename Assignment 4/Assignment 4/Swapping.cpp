@@ -8,26 +8,37 @@
 
 #include "Swapping.h"
 
+void swapWithAlgorithm(std::priority_queue<Process *> processQueue,
+                       void (* algorithm)(MainMemory * memory, Process * process)) {
+    MainMemory memory;
+    int currentTime;
+    for (currentTime = 0; currentTime < TIME_LIMIT; ++currentTime) {
+        Process * nextProcess = processQueue.top();
+        if (nextProcess->getArrivalTime() <= currentTime) {
+            processQueue.pop();
+            algorithm(&memory, nextProcess);
+        }
+        std::cout << "Second " << currentTime << '\n';
+        memory.print();
+        std::cout << '\n';
+    }
+}
+
 void swappingStart() {
     std::cout << "Swapping:\n";
-
-    //NextFit
-    /*int currTime = 0;
-    Process ** NextFitMemory = newMainMemory();
-    while(currTime < RUNTIME) {
-    	Process passProcess;
-        std::cout << "Example Process:\nSize:\t\t" << passProcess.getSize()
-        << " MB\nDuration:\t" << passProcess.getDuration() << " s\n";
-    	if(startNextFit(NextFitMemory, &passProcess)) {
-    		printMainMemory(NextFitMemory);
-    	}
-    	currTime++;
+    std::priority_queue<Process *> orderedProcesses;
+    const int queueSize = 26;
+    int i;
+    for (i = 0; i < queueSize; ++i) {
+        Process * newProcess = new Process();
+        newProcess->print();
+        orderedProcesses.push(newProcess);
     }
-
-    deleteMainMemory(NextFitMemory);*/
-    startFirstFitSwapping();
-    MainMemory memoryForNextFit;
-    Process processForNextFit;
-    startNextFit(memoryForNextFit, &processForNextFit);
-    //runBestFit();
+    std::cout << "First Fit:\n";
+    swapWithAlgorithm(orderedProcesses, &startFirstFitSwapping);
+    for (i = 0; i < queueSize; ++i) {
+        Process * nextProcess = orderedProcesses.top();
+        delete nextProcess;
+        orderedProcesses.pop();
+    }
 }
