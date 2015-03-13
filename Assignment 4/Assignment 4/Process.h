@@ -38,6 +38,11 @@ public:
     char getName();
     
     /*
+     Gets the time added from the process
+     */
+    int getTimeAdded();
+
+    /*
      Sets the time added to main memory
      */
     void setTimeAdded(int time);

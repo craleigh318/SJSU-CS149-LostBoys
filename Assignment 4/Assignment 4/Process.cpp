@@ -65,6 +65,10 @@ char Process::getName() {
     return name;
 }
 
+int Process::getTimeAdded() {
+	return timeAdded;
+}
+
 void Process::setTimeAdded(int time) {
 	timeAdded = time;
 }
