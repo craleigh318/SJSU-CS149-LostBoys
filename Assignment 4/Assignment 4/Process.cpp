@@ -41,7 +41,11 @@ int Process::getRandomDuration() {
 
 char Process::getUniqueName() {
     char uniqueName = currentLetter;
-    ++currentLetter;
+    if (currentLetter == 'Z') {
+        currentLetter = 'a';
+    } else {
+        ++currentLetter;
+    }
     return uniqueName;
 }
 
