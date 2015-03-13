@@ -9,14 +9,26 @@
 
 static int LASTPOS = 0;
 
+int incrementI(int i, int addition, int numHoles) {
+    int newPos = LASTPOS + addition;
+    newPos %= numHoles;
+    return newPos;
+}
+
 bool startNextFit(MainMemory * memory, Process* process) {
 	std::vector<Partition> holes = Partition::getHolesInMemory(memory);
-	for(int i = 0; i < (signed) holes.size(); i++) {
-		Partition hole = holes.at(i);
-		if(process->getSize() <= hole.getSize()) {
+    int holesSize = (signed) holes.size();
+    if (holesSize <= 0) {
+        return false;
+    }
+    int i = LASTPOS;
+    do {
+        Partition hole = holes.at(i);
+        if(process->getSize() <= hole.getSize()) {
             holes.at(i).addProcess(process);
-			return true;
-		}
-	}
+            return true;
+        }
+        i = incrementI(i, 1, holesSize);
+    } while (i != LASTPOS);
 	return false;
 }
