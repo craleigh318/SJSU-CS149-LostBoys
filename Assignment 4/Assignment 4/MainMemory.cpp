@@ -13,7 +13,7 @@ mbs()
 {
 }
 
-const Process * MainMemory::getMB(int mb) {
+Process * MainMemory::getMB(int mb) {
     return mbs[mb];
 }
 

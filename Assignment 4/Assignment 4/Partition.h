@@ -31,7 +31,7 @@ public:
     /*
      Returns a vector of any running processes in this memory.
      */
-    static std::vector<const Process *> getProcessesInMemory(MainMemory * mainMemory);
+    static std::vector<Process *> getProcessesInMemory(MainMemory * mainMemory);
     
     /*
      New partition.
@@ -42,7 +42,7 @@ public:
      Returns the process running on this partition.
      Returns null if this partition is available.
      */
-    const Process * getProcess();
+    Process * getProcess();
     
     /*
      Returns the size of this partition, in MB.

@@ -59,8 +59,8 @@ std::vector<Partition> Partition::getHolesInMemory(MainMemory * mainMemory) {
     return memoryHoles;
 }
 
-std::vector<const Process *> Partition::getProcessesInMemory(MainMemory * mainMemory) {
-    std::vector<const Process *> processes;
+std::vector<Process *> Partition::getProcessesInMemory(MainMemory * mainMemory) {
+    std::vector<Process *> processes;
     std::vector<Partition> partitions = getPartitionsInMemory(mainMemory);
     int i;
     for (i = 0; i < partitions.size(); ++i) {
@@ -72,7 +72,7 @@ std::vector<const Process *> Partition::getProcessesInMemory(MainMemory * mainMe
     return processes;
 }
 
-const Process * Partition::getProcess() {
+Process * Partition::getProcess() {
     return mainMemory->getMB(firstMB);
 }
 
