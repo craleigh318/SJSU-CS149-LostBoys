@@ -8,7 +8,11 @@
 
 #include "Swapping.h"
 
-void swapWithAlgorithm(std::priority_queue<Process *> processQueue,
+bool CompareProcesses::operator()(Process * process1, Process * process2) {
+    return (process1->getArrivalTime() > process2->getArrivalTime());
+}
+
+void swapWithAlgorithm(std::priority_queue<Process *, std::vector<Process *>, CompareProcesses> processQueue,
                        void (* algorithm)(MainMemory * memory, Process * process)) {
     MainMemory memory;
     int currentTime;
@@ -26,12 +30,13 @@ void swapWithAlgorithm(std::priority_queue<Process *> processQueue,
 
 void swappingStart() {
     std::cout << "Swapping:\n";
-    std::priority_queue<Process *> orderedProcesses;
+    std::priority_queue<Process *, std::vector<Process *>, CompareProcesses> orderedProcesses;
     const int queueSize = 26;
     int i;
     for (i = 0; i < queueSize; ++i) {
         Process * newProcess = new Process();
         newProcess->print();
+        std::cout << '\n';
         orderedProcesses.push(newProcess);
     }
     std::cout << "First Fit:\n";

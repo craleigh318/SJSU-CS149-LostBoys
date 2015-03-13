@@ -77,8 +77,3 @@ void Process::print() {
     std::cout << "Process: " << name << "\nSize: " << size << " MB\nArrival Time: "
     << arrivalTime << " s\nDuration: " << duration << "s\n";
 }
-
-bool Process::operator<(const Process& other) const
-{
-    return arrivalTime > other.arrivalTime;
-}

@@ -47,12 +47,6 @@ public:
      */
     void print();
     
-    /*
-     Overrides comparison method.
-     */
-    bool operator<(const Process& other) const;
-
-    
 private:
     static const int allowedSizes[];
     

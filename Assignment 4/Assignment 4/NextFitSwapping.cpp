@@ -9,8 +9,8 @@
 
 static int LASTPOS = 0;
 
-bool startNextFit(MainMemory memory, Process* process) {
-	std::vector<Partition> holes = Partition::getHolesInMemory(&memory);
+bool startNextFit(MainMemory * memory, Process* process) {
+	std::vector<Partition> holes = Partition::getHolesInMemory(memory);
 	for(int i = 0; i < (signed) holes.size(); i++) {
 		Partition hole = holes.at(i);
 		if(process->getSize() <= hole.getSize()) {

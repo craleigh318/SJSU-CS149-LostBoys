@@ -13,6 +13,6 @@
 #include "Process.h"
 #include "MainMemory.h"
 
-bool startNextFit(MainMemory memory, Process* process);
+bool startNextFit(MainMemory * memory, Process* process);
 
 #endif /* NEXTFITSWAPPING_H_ */

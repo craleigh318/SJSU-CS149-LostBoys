@@ -17,9 +17,17 @@
 #define RUNTIME 10
 
 /*
+ Overrides comparison method.
+ */
+class CompareProcesses {
+public:
+    bool operator()(Process * process1, Process * process2);
+};
+
+/*
  Memory swaps using the specified algorithm.
  */
-void swapWithAlgorithm(std::priority_queue<Process *> processQueue,
+void swapWithAlgorithm(std::priority_queue<Process *, std::vector<Process *>, CompareProcesses> processQueue,
                        void (* algorithm)(MainMemory * memory, Process * process));
 
 /*
