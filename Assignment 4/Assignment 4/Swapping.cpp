@@ -39,9 +39,10 @@ void swappingStart() {
         std::cout << '\n';
         orderedProcesses.push(newProcess);
     }
-    std::cout << "First Fit:\n";
     // Put your algorithms here.
+    std::cout << "First Fit:\n";
     swapWithAlgorithm(orderedProcesses, &startFirstFitSwapping);
+    std::cout << "Next Fit:\n";
     swapWithAlgorithm(orderedProcesses, &startNextFit);
     // Deleting processes when done.
     for (i = 0; i < queueSize; ++i) {
