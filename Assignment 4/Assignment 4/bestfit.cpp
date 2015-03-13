@@ -7,8 +7,9 @@
 //
 
 #include "bestfit.h"
+#define MAIN_MEMORY_SIZE 100
 
-bool runBestFit()
+/*bool runBestFit()
 {
     MainMemory memory; // Gets a new block of main memory as an array of 100 process pointers
     std::vector<Partition> holes = Partition::getHolesInMemory(&memory);  // Returns a vector that has found holes in the main memory
@@ -27,4 +28,23 @@ bool runBestFit()
         }
     }
     return false;
+}*/
+
+
+bool startBestFit(MainMemory * memory, Process* process) {
+	std::vector<Partition> holes = Partition::getHolesInMemory(memory);
+	int holeSize = 0;
+	int minSize = MAIN_MEMORY_SIZE;
+	int minindex = 0;
+	for (int i=0; i < holes.size(); i++) {
+			holeSize = holes.at(i).getSize();
+			if(holeSize < minSize && process->getSize() <= holeSize) {
+				minSize = holeSize;
+				minindex = i;
+			}
+		}
+
+    return holes.at(minindex).addProcess(process);
 }
+
+

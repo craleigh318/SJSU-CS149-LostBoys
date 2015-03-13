@@ -16,7 +16,9 @@
 #include "Partition.h"
 #include "Swapping.h"
 
-bool runBestFit();
+//bool runBestFit();
+
+bool startBestFit(MainMemory * memory, Process* process);
 
 #endif /* defined(__Assignment_4__bestfit__) */
 

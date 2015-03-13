@@ -46,8 +46,11 @@ void swappingStart() {
     std::cout << "Next Fit:\n";
     swapWithAlgorithm(orderedProcesses, &startNextFit);
 
+    std::cout << "Best Fit:\n";
+    swapWithAlgorithm(orderedProcesses, &startBestFit);
+
     std::cout << "Worst Fit:\n";
-        swapWithAlgorithm(orderedProcesses, &startWorstFit);
+    swapWithAlgorithm(orderedProcesses, &startWorstFit);
     // Deleting processes when done.
     for (i = 0; i < queueSize; ++i) {
         Process * nextProcess = orderedProcesses.top();
