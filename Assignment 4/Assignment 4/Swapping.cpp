@@ -24,6 +24,7 @@ void swapWithAlgorithm(std::queue<Process *> processQueue,
         	processAdded = algorithm(&memory, nextProcess);
 			if (processAdded) {
 				nextProcess->setTimeAdded(currentTime);
+				std::cout << "Added process " << nextProcess->getName() << "\n";
 				processQueue.pop();
 				printLine = true;
 			}
@@ -37,6 +38,7 @@ void swapWithAlgorithm(std::queue<Process *> processQueue,
         std::vector<Partition> allProcess = Partition::getPartitionsInMemoryWithProcesses(&memory);
         for(std::vector<Process*>::size_type i = 0; i != allProcess.size(); i++) {
         	if(allProcess[i].getProcess()->getDuration() + allProcess[i].getProcess()->getTimeAdded() == currentTime) {
+        		std::cout << "Removed process " << allProcess[i].getProcess()->getName() << "\n";
         		allProcess[i].removeProcess();
         		printLine = true;
         	}
