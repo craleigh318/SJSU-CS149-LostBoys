@@ -60,7 +60,7 @@ public:
      Removes the specified process from the partition.
      Returns true if successful.
      */
-    bool removeProcess(Process * process);
+    bool removeProcess();
 
 private:
     MainMemory * mainMemory;
