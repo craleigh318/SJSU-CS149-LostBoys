@@ -38,6 +38,11 @@ public:
     char getName();
     
     /*
+     Sets the time added to main memory
+     */
+    void setTimeAdded(int time);
+
+    /*
      Prints the attributes of this process.
      */
     void print();
@@ -74,6 +79,8 @@ private:
     int duration;
     
     char name;
+
+    int timeAdded;
 };
 
 #endif /* defined(__Assignment_4__Process__) */

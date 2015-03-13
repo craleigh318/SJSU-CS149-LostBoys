@@ -48,7 +48,8 @@ char Process::getUniqueName() {
 Process::Process() :
 size(getRandomSize()),
 duration(getRandomDuration()),
-name(getUniqueName())
+name(getUniqueName()),
+timeAdded(-1)
 {
 }
 
@@ -62,6 +63,10 @@ int Process::getDuration() {
 
 char Process::getName() {
     return name;
+}
+
+void Process::setTimeAdded(int time) {
+	timeAdded = time;
 }
 
 void Process::print() {

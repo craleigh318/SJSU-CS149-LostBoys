@@ -20,12 +20,12 @@ void swapWithAlgorithm(std::queue<Process *> processQueue,
         Process * nextProcess = processQueue.front();
         bool processAdded = algorithm(&memory, nextProcess);
         if (processAdded) {
+        	nextProcess->setTimeAdded(currentTime);
             processQueue.pop();
             std::cout << "Second " << currentTime << '\n';
             memory.print();
             std::cout << '\n';
         }
-
     }
 }
 
