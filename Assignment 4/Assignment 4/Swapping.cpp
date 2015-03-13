@@ -13,7 +13,7 @@ bool CompareProcesses::operator()(Process * process1, Process * process2) {
 }
 
 void swapWithAlgorithm(std::priority_queue<Process *, std::vector<Process *>, CompareProcesses> processQueue,
-                       void (* algorithm)(MainMemory * memory, Process * process)) {
+                       bool (* algorithm)(MainMemory * memory, Process * process)) {
     MainMemory memory;
     int currentTime;
     for (currentTime = 0; currentTime < TIME_LIMIT; ++currentTime) {
@@ -40,7 +40,10 @@ void swappingStart() {
         orderedProcesses.push(newProcess);
     }
     std::cout << "First Fit:\n";
+    // Put your algorithms here.
     swapWithAlgorithm(orderedProcesses, &startFirstFitSwapping);
+    swapWithAlgorithm(orderedProcesses, &startNextFit);
+    // Deleting processes when done.
     for (i = 0; i < queueSize; ++i) {
         Process * nextProcess = orderedProcesses.top();
         delete nextProcess;

@@ -8,7 +8,7 @@
 
 #include "FirstFitSwapping.h"
 
-void startFirstFitSwapping(MainMemory * memory, Process * process) {
+bool startFirstFitSwapping(MainMemory * memory, Process * process) {
     std::vector<Partition> holes = Partition::getHolesInMemory(memory);
     int i;
     for (i = 0; i < holes.size(); ++i) {
@@ -17,7 +17,8 @@ void startFirstFitSwapping(MainMemory * memory, Process * process) {
         int holeSize = thisHole.getSize();
         if (processSize <= holeSize) {
             thisHole.addProcess(process);
-            break;
+            return true;
         }
     }
+    return false;
 }

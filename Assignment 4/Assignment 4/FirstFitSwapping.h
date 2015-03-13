@@ -11,6 +11,6 @@
 #include "SystemHeaders.h"
 #include "Partition.h"
 
-void startFirstFitSwapping(MainMemory * memory, Process * process);
+bool startFirstFitSwapping(MainMemory * memory, Process * process);
 
 #endif /* defined(__Assignment_4__FirstFitSwapping__) */
