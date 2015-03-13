@@ -59,14 +59,14 @@ std::vector<Partition> Partition::getHolesInMemory(MainMemory * mainMemory) {
     return memoryHoles;
 }
 
-std::vector<Process *> Partition::getProcessesInMemory(MainMemory * mainMemory) {
-    std::vector<Process *> processes;
+std::vector<Partition> Partition::getPartitionsInMemoryWithProcesses(MainMemory * mainMemory) {
+    std::vector<Partition> processes;
     std::vector<Partition> partitions = getPartitionsInMemory(mainMemory);
     int i;
     for (i = 0; i < partitions.size(); ++i) {
         Partition currentPartition = partitions.at(i);
         if (!currentPartition.getProcess()) {
-            processes.push_back(currentPartition.getProcess());
+            processes.push_back(currentPartition);
         }
     }
     return processes;
