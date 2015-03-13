@@ -33,6 +33,10 @@
 
 bool startBestFit(MainMemory * memory, Process* process) {
 	std::vector<Partition> holes = Partition::getHolesInMemory(memory);
+    if(holes.size() == 0)
+    {
+        return false;
+    }
 	int holeSize = 0;
 	int minSize = MAIN_MEMORY_SIZE;
 	int minindex = 0;
@@ -43,7 +47,6 @@ bool startBestFit(MainMemory * memory, Process* process) {
 				minindex = i;
 			}
 		}
-
     return holes.at(minindex).addProcess(process);
 }
 
