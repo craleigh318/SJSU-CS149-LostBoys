@@ -14,6 +14,7 @@
 #include "NextFitSwapping.h"
 #include "FirstFitSwapping.h"
 #include "bestfit.h"
+#include "WorstFitSwapping.h"
 #define RUNTIME 10
 
 /*
