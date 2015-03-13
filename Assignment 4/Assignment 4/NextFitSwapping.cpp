@@ -21,6 +21,9 @@ bool startNextFit(MainMemory * memory, Process* process) {
     if (holesSize <= 0) {
         return false;
     }
+    if (LASTPOS >= holesSize) {
+        LASTPOS = holesSize - 1;
+    }
     int i = LASTPOS;
     do {
         Partition hole = holes.at(i);
