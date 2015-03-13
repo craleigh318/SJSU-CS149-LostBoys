@@ -29,7 +29,7 @@ public:
     static std::vector<Partition> getHolesInMemory(MainMemory * mainMemory);
     
     /*
-     Returns a vector of any unused partitions in this memory.
+     Returns a vector of any running processes in this memory.
      */
     static std::vector<const Process *> getProcessesInMemory(MainMemory * mainMemory);
     
