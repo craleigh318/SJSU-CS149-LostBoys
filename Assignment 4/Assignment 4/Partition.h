@@ -29,6 +29,11 @@ public:
     static std::vector<Partition> getHolesInMemory(MainMemory * mainMemory);
     
     /*
+     Returns a vector of any unused partitions in this memory.
+     */
+    static std::vector<const Process *> getProcessesInMemory(MainMemory * mainMemory);
+    
+    /*
      New partition.
      */
     Partition(MainMemory * mainMemory, int firstMB, int finalMB);
@@ -37,7 +42,7 @@ public:
      Returns the process running on this partition.
      Returns null if this partition is available.
      */
-    const Process * const getProcess();
+    const Process * getProcess();
     
     /*
      Returns the size of this partition, in MB.

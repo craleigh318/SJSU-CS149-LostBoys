@@ -27,7 +27,7 @@ public:
     /*
      Returns the process using this MB.
      */
-    const Process * const getMB(int mb);
+    const Process * getMB(int mb);
     
     /*
      Assigns this MB to a process
