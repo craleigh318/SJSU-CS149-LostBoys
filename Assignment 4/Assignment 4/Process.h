@@ -35,7 +35,7 @@ public:
     /*
      The one-letter name of this process.
      */
-    char getName();
+    int getName();
     
     /*
      Gets the time added from the process
@@ -57,7 +57,7 @@ private:
     
     static const int allowedDurations[];
     
-    static char currentLetter;
+    static int currentLetter;
     
     /*
      Returns a random int from the specified array.
@@ -77,13 +77,13 @@ private:
     /*
      Returns a unique name.
      */
-    char getUniqueName();
+    int getUniqueName();
     
     int size;
     
     int duration;
     
-    char name;
+    int name;
 
     int timeAdded;
 };

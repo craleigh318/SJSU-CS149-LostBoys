@@ -23,7 +23,7 @@ const int Process::allowedSizes[] = {
     5
 };
 
-char Process::currentLetter = 'A';
+int Process::currentLetter = 0;
 
 int Process::getRandomIntFromArray(const int * array, const int arraySize) {
     int randomInt = rand() % arraySize;
@@ -39,13 +39,9 @@ int Process::getRandomDuration() {
     return getRandomIntFromArray(allowedDurations, 5);
 }
 
-char Process::getUniqueName() {
+int Process::getUniqueName() {
     char uniqueName = currentLetter;
-    if (currentLetter == 'Z') {
-        currentLetter = 'a';
-    } else {
-        ++currentLetter;
-    }
+    ++currentLetter;
     return uniqueName;
 }
 
@@ -65,7 +61,7 @@ int Process::getDuration() {
     return duration;
 }
 
-char Process::getName() {
+int Process::getName() {
     return name;
 }
 

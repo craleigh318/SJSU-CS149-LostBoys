@@ -31,9 +31,9 @@ void MainMemory::print() {
             int index = (numColumns * i) + j;
             Process * currentProcess = mbs[index];
             if (currentProcess) {
-                std::cout << currentProcess->getName();
+                std::cout << currentProcess->getName() << ' ';
             } else {
-                std::cout << '.';
+                std::cout << ". ";
             }
         }
         std::cout << '\n';
