@@ -61,6 +61,9 @@ bool Partition::addProcess(Process * process) {
     if (firstMB > finalMB) {
         return false;
     }
+    if ((firstMB + process->getSize()) > finalMB) {
+        return false;
+    }
     int i;
     for (i = firstMB; i < (process->getSize() + firstMB); ++i) {
         mainMemory->setMB(i, process);
