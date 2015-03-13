@@ -94,3 +94,17 @@ bool Partition::addProcess(Process * process) {
     firstMB = i;
     return true;
 }
+
+
+bool Partition::removeProcess(Process * process) {
+    if (firstMB > finalMB) {
+        return false;
+    }
+
+    int i;
+    for (i = firstMB; i < (process->getSize() + firstMB); ++i) {
+        mainMemory->setMB(i, NULL);
+    }
+    firstMB = i;
+    return true;
+}

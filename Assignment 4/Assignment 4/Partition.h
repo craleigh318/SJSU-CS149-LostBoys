@@ -56,6 +56,12 @@ public:
      */
     bool addProcess(Process * process);
     
+    /*
+     Removes the specified process from the partition.
+     Returns true if successful.
+     */
+    bool removeProcess(Process * process);
+
 private:
     MainMemory * mainMemory;
     
