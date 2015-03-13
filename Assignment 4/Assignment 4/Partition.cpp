@@ -65,7 +65,7 @@ std::vector<Partition> Partition::getPartitionsInMemoryWithProcesses(MainMemory 
     int i;
     for (i = 0; i < partitions.size(); ++i) {
         Partition currentPartition = partitions.at(i);
-        if (!currentPartition.getProcess()) {
+        if (currentPartition.getProcess()) {
             processes.push_back(currentPartition);
         }
     }
