@@ -46,7 +46,6 @@ bool startBestFit(MainMemory * memory, Process* process) {
 				minindex = i;
 			}
 		}
-
     return holes.at(minindex).addProcess(process);
 }
 
