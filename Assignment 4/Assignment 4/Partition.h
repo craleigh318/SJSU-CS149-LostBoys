@@ -29,9 +29,9 @@ public:
     static std::vector<Partition> getHolesInMemory(MainMemory * mainMemory);
     
     /*
-     Returns a vector of any partitions in this memory that are in use.
+     Returns a vector of any running processes in this memory.
      */
-    static std::vector<Partition> getPartitionsInMemoryWithProcesses(MainMemory * mainMemory);
+    static std::vector<const Process *> getProcessesInMemory(MainMemory * mainMemory);
     
     /*
      New partition.
