@@ -15,36 +15,46 @@ finalMB(finalMB)
 {
 }
 
-std::vector<Partition> Partition::getHolesInMemory(MainMemory * mainMemory) {
-    std::vector<Partition> memoryHoles;
+std::vector<Partition> Partition::getPartitionsInMemory(MainMemory * mainMemory) {
+    std::vector<Partition> partitions;
     Partition * currentPartition = NULL;
     int i;
     // For each element in main memory.
     for (i = 0; i < MAIN_MEMORY_SIZE; ++i) {
-        // If this MB is in use.
-        if (mainMemory->getMB(i)) {
-            // If a hole was being recorded, then it must stop and be added to the vetor.
-            if (currentPartition) {
-                memoryHoles.push_back(*currentPartition);
-                delete currentPartition;
-                currentPartition = NULL;
-            }
-        }
-        // Else, this MB is part of a hole.
-        else {
-            // If this is not the first MB of the hole.
-            if (currentPartition) {
+        // If a partition is being recorded.
+        if (currentPartition) {
+            // If this is the same process, keep adding to it.
+            if (mainMemory->getMB(i - 1) == mainMemory->getMB(i)) {
                 currentPartition->finalMB = i;
             }
-            // Else, this is the first MB of the hole.
+            // Else, finish the partition.
             else {
+                partitions.push_back(*currentPartition);
+                delete currentPartition;
                 currentPartition = new Partition(mainMemory, i, i);
             }
         }
+        // Else, a partition is not being recorded.
+        else {
+            currentPartition = new Partition(mainMemory, i, i);
+        }
     }
     if (currentPartition) {
-        memoryHoles.push_back(*currentPartition);
+        partitions.push_back(*currentPartition);
         delete currentPartition;
+    }
+    return partitions;
+}
+
+std::vector<Partition> Partition::getHolesInMemory(MainMemory * mainMemory) {
+    std::vector<Partition> memoryHoles;
+    std::vector<Partition> partitions = getPartitionsInMemory(mainMemory);
+    int i;
+    for (i = 0; i < partitions.size(); ++i) {
+        Partition currentPartition = partitions.at(i);
+        if (!currentPartition.getProcess()) {
+            memoryHoles.push_back(currentPartition);
+        }
     }
     return memoryHoles;
 }

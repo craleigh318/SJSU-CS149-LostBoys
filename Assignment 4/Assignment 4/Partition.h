@@ -19,6 +19,11 @@ class Partition {
     
 public:
     /*
+     Returns a vector of all partitions in this memory.
+     */
+    static std::vector<Partition> getPartitionsInMemory(MainMemory * mainMemory);
+    
+    /*
      Returns a vector of any unused partitions in this memory.
      */
     static std::vector<Partition> getHolesInMemory(MainMemory * mainMemory);
