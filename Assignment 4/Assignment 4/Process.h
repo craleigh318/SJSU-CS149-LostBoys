@@ -38,11 +38,6 @@ public:
     char getName();
     
     /*
-     Returns the arrival time.
-     */
-    int getArrivalTime();
-    
-    /*
      Prints the attributes of this process.
      */
     void print();
@@ -74,18 +69,11 @@ private:
      */
     char getUniqueName();
     
-    /*
-     Returns a random arrival time.
-     */
-    int getRandomArrivalTime();
-    
     int size;
     
     int duration;
     
     char name;
-    
-    int arrivalTime;
 };
 
 #endif /* defined(__Assignment_4__Process__) */

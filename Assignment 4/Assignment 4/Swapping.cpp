@@ -8,19 +8,19 @@
 
 #include "Swapping.h"
 
-bool CompareProcesses::operator()(Process * process1, Process * process2) {
+/*bool CompareProcesses::operator()(Process * process1, Process * process2) {
     return (process1->getArrivalTime() > process2->getArrivalTime());
-}
+}*/
 
-void swapWithAlgorithm(std::priority_queue<Process *, std::vector<Process *>, CompareProcesses> processQueue,
+void swapWithAlgorithm(std::queue<Process *> processQueue,
                        bool (* algorithm)(MainMemory * memory, Process * process)) {
     MainMemory memory;
     int currentTime;
     for (currentTime = 0; currentTime < TIME_LIMIT; ++currentTime) {
-        Process * nextProcess = processQueue.top();
-        if (nextProcess->getArrivalTime() <= currentTime) {
+        Process * nextProcess = processQueue.front();
+        bool processAdded = algorithm(&memory, nextProcess);
+        if (processAdded) {
             processQueue.pop();
-            algorithm(&memory, nextProcess);
         }
         std::cout << "Second " << currentTime << '\n';
         memory.print();
@@ -30,7 +30,7 @@ void swapWithAlgorithm(std::priority_queue<Process *, std::vector<Process *>, Co
 
 void swappingStart() {
     std::cout << "Swapping:\n";
-    std::priority_queue<Process *, std::vector<Process *>, CompareProcesses> orderedProcesses;
+    std::queue<Process *> orderedProcesses;
     const int queueSize = 26;
     int i;
     for (i = 0; i < queueSize; ++i) {
@@ -53,7 +53,7 @@ void swappingStart() {
     swapWithAlgorithm(orderedProcesses, &startWorstFit);
     // Deleting processes when done.
     for (i = 0; i < queueSize; ++i) {
-        Process * nextProcess = orderedProcesses.top();
+        Process * nextProcess = orderedProcesses.front();
         delete nextProcess;
         orderedProcesses.pop();
     }

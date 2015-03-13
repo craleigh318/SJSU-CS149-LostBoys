@@ -45,15 +45,10 @@ char Process::getUniqueName() {
     return uniqueName;
 }
 
-int Process::getRandomArrivalTime() {
-    return (rand() % TIME_LIMIT);
-}
-
 Process::Process() :
 size(getRandomSize()),
 duration(getRandomDuration()),
-name(getUniqueName()),
-arrivalTime(getRandomArrivalTime())
+name(getUniqueName())
 {
 }
 
@@ -69,11 +64,7 @@ char Process::getName() {
     return name;
 }
 
-int Process::getArrivalTime() {
-    return arrivalTime;
-}
-
 void Process::print() {
-    std::cout << "Process: " << name << "\nSize: " << size << " MB\nArrival Time: "
-    << arrivalTime << " s\nDuration: " << duration << "s\n";
+    std::cout << "Process: " << name << "\nSize: " << size
+    << " MB\nDuration: " << duration << "s\n";
 }

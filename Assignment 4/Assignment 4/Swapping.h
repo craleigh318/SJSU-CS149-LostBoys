@@ -20,15 +20,15 @@
 /*
  Overrides comparison method.
  */
-class CompareProcesses {
+/*class CompareProcesses {
 public:
     bool operator()(Process * process1, Process * process2);
-};
+};*/
 
 /*
  Memory swaps using the specified algorithm.
  */
-void swapWithAlgorithm(std::priority_queue<Process *, std::vector<Process *>, CompareProcesses> processQueue,
+void swapWithAlgorithm(std::queue<Process *> processQueue,
                        void (* algorithm)(MainMemory * memory, Process * process));
 
 /*
