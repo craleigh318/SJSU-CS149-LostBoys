@@ -49,9 +49,9 @@ public:
     */
     int getProcessAdded();
     
-    
 private:
     Process * mbs[MAIN_MEMORY_SIZE];
+    
     int processesAdded = 0;
 };
 

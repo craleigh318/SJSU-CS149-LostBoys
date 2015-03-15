@@ -57,7 +57,7 @@ void swapWithAlgorithm(std::queue<Process *> processQueue,
 void swappingStart() {
     std::cout << "Swapping:\n";
     std::queue<Process *> orderedProcesses;
-    const int queueSize = 100;
+    const int queueSize = 200;
     int i;
     for (i = 0; i < queueSize; ++i) {
         Process * newProcess = new Process();
@@ -67,17 +67,17 @@ void swappingStart() {
     }
     // Put your algorithms here.
     std::cout << "First Fit:\n";
-    //swapWithAlgorithm(orderedProcesses, &startFirstFitSwapping);
+    swapWithAlgorithm(orderedProcesses, &startFirstFitSwapping);
     
 
     std::cout << "Next Fit:\n";
     swapWithAlgorithm(orderedProcesses, &startNextFit);
 
     std::cout << "Best Fit:\n";
-    //swapWithAlgorithm(orderedProcesses, &startBestFit);
+    swapWithAlgorithm(orderedProcesses, &startBestFit);
 
     std::cout << "Worst Fit:\n";
-    //swapWithAlgorithm(orderedProcesses, &startWorstFit);
+    swapWithAlgorithm(orderedProcesses, &startWorstFit);
     // Deleting processes when done.
     for (i = 0; i < queueSize; ++i) {
         Process * nextProcess = orderedProcesses.front();
