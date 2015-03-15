@@ -9,5 +9,6 @@
 #include "Paging.h"
 
 void pagingStart() {
-    
+    PageFrameSet physicalMemory(4);
+    PageFrameSet disk(10);
 }

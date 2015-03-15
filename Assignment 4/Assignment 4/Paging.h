@@ -9,6 +9,7 @@
 #ifndef __Assignment_4__Paging__
 #define __Assignment_4__Paging__
 #include "SystemHeaders.h"
+#include "PageFrameSet.h"
 
 /*
  Starts the paging part of the assignment.
