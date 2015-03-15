@@ -12,6 +12,7 @@
 		A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7F71AA9880C002C29C3 /* MainMemory.cpp */; };
 		A457E7FC1AA98B5A002C29C3 /* Process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7FA1AA98B5A002C29C3 /* Process.cpp */; };
 		A476070F1AB29C8E00AFEF30 /* WorstFitSwapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A476070D1AB29C8E00AFEF30 /* WorstFitSwapping.cpp */; };
+		A48EDA331AB53108001EC1CC /* Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A48EDA311AB53108001EC1CC /* Page.cpp */; };
 		A49ACF3D1AAFD13500FA6BA2 /* Partition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A49ACF3B1AAFD13500FA6BA2 /* Partition.cpp */; };
 		A4AD12081AAD789800D3EF3B /* Swapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4AD12061AAD789800D3EF3B /* Swapping.cpp */; };
 		A4AD120B1AAD78E500D3EF3B /* Paging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4AD12091AAD78E500D3EF3B /* Paging.cpp */; };
@@ -43,6 +44,8 @@
 		A457E7FB1AA98B5A002C29C3 /* Process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Process.h; sourceTree = "<group>"; };
 		A476070D1AB29C8E00AFEF30 /* WorstFitSwapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorstFitSwapping.cpp; sourceTree = "<group>"; };
 		A476070E1AB29C8E00AFEF30 /* WorstFitSwapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorstFitSwapping.h; sourceTree = "<group>"; };
+		A48EDA311AB53108001EC1CC /* Page.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Page.cpp; sourceTree = "<group>"; };
+		A48EDA321AB53108001EC1CC /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		A49ACF3B1AAFD13500FA6BA2 /* Partition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Partition.cpp; sourceTree = "<group>"; };
 		A49ACF3C1AAFD13500FA6BA2 /* Partition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Partition.h; sourceTree = "<group>"; };
 		A4AD12061AAD789800D3EF3B /* Swapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Swapping.cpp; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 			children = (
 				A4AD12091AAD78E500D3EF3B /* Paging.cpp */,
 				A4AD120A1AAD78E500D3EF3B /* Paging.h */,
+				A48EDA311AB53108001EC1CC /* Page.cpp */,
+				A48EDA321AB53108001EC1CC /* Page.h */,
 			);
 			name = Paging;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */,
 				A4AD120B1AAD78E500D3EF3B /* Paging.cpp in Sources */,
 				A432F9021AB1543800BE4AF5 /* NextFitSwapping.cpp in Sources */,
+				A48EDA331AB53108001EC1CC /* Page.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
