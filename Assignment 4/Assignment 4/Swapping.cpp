@@ -27,6 +27,7 @@ void swapWithAlgorithm(std::queue<Process *> processQueue,
 				std::cout << "Added process " << nextProcess->getName() << "\n";
 				processQueue.pop();
 				printLine = true;
+                memory.incrementProcessAdded(1);
 			}
         }
         if(printLine) {
@@ -41,6 +42,7 @@ void swapWithAlgorithm(std::queue<Process *> processQueue,
         		std::cout << "Removed process " << allProcess[i].getProcess()->getName() << "\n";
         		allProcess[i].removeProcess();
         		printLine = true;
+                memory.incrementProcessAdded(-1);
         	}
         }
         if(printLine) {
@@ -49,6 +51,7 @@ void swapWithAlgorithm(std::queue<Process *> processQueue,
             std::cout << '\n';
         }
     }
+    std::cout << "Number of processes added " << memory.getProcessAdded() << '\n';
 }
 
 void swappingStart() {
@@ -65,6 +68,7 @@ void swappingStart() {
     // Put your algorithms here.
     std::cout << "First Fit:\n";
     swapWithAlgorithm(orderedProcesses, &startFirstFitSwapping);
+    
 
     std::cout << "Next Fit:\n";
     //swapWithAlgorithm(orderedProcesses, &startNextFit);

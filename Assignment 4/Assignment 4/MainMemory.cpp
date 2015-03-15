@@ -39,3 +39,13 @@ void MainMemory::print() {
         std::cout << '\n';
     }
 }
+
+void MainMemory::incrementProcessAdded(int m)
+{
+    processesAdded += m;
+}
+
+int MainMemory::getProcessAdded()
+{
+    return processesAdded;
+}

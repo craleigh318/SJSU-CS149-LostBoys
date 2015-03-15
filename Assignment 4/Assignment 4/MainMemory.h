@@ -39,8 +39,20 @@ public:
      */
     void print();
     
+    /*
+    increment & decrement the number of processes by m
+    */
+    void incrementProcessAdded(int m);
+    
+    /*
+    Get the number of processes added
+    */
+    int getProcessAdded();
+    
+    
 private:
     Process * mbs[MAIN_MEMORY_SIZE];
+    int processesAdded = 0;
 };
 
 #endif /* defined(__Assignment_4__MainMemory__) */
