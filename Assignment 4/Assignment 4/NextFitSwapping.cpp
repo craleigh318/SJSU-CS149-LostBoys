@@ -18,9 +18,8 @@ bool startNextFit(MainMemory * memory, Process* process) {
     int i;
     for (i = LASTPOS; i < holesSize; ++i) {
         Partition & currentPartition = holes.at(i);
-        if ((currentPartition.getSize() >= process->getSize())
-            && (currentPartition.getFinalMB() >= LASTPOS)) {
-            currentPartition.addProcess(process);
+        if ((currentPartition.getFinalMB() >= LASTPOS)
+            && currentPartition.addProcess(process)) {
             LASTPOS = currentPartition.getFirstMB();
             return true;
         }
@@ -28,8 +27,7 @@ bool startNextFit(MainMemory * memory, Process* process) {
     // Loop if processes not added.
     for (i = 0; i < holesSize; ++i) {
         Partition & currentPartition = holes.at(i);
-        if (currentPartition.getSize() >= process->getSize()) {
-            currentPartition.addProcess(process);
+        if (currentPartition.addProcess(process)) {
             LASTPOS = currentPartition.getFirstMB();
             return true;
         }
