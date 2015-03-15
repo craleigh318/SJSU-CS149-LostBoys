@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A432F9021AB1543800BE4AF5 /* NextFitSwapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A432F9001AB1543800BE4AF5 /* NextFitSwapping.cpp */; };
+		A4354EB71AB5433D00427C86 /* PageFrameSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4354EB51AB5433D00427C86 /* PageFrameSet.cpp */; };
 		A457E7F01AA982C7002C29C3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7EF1AA982C7002C29C3 /* main.cpp */; };
 		A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7F71AA9880C002C29C3 /* MainMemory.cpp */; };
 		A457E7FC1AA98B5A002C29C3 /* Process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7FA1AA98B5A002C29C3 /* Process.cpp */; };
@@ -35,6 +36,8 @@
 /* Begin PBXFileReference section */
 		A432F9001AB1543800BE4AF5 /* NextFitSwapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NextFitSwapping.cpp; sourceTree = "<group>"; };
 		A432F9011AB1543800BE4AF5 /* NextFitSwapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextFitSwapping.h; sourceTree = "<group>"; };
+		A4354EB51AB5433D00427C86 /* PageFrameSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PageFrameSet.cpp; sourceTree = "<group>"; };
+		A4354EB61AB5433D00427C86 /* PageFrameSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFrameSet.h; sourceTree = "<group>"; };
 		A457E7EC1AA982C7002C29C3 /* Assignment 4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 4"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A457E7EF1AA982C7002C29C3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A457E7F61AA9872B002C29C3 /* SystemHeaders.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = SystemHeaders.h; sourceTree = "<group>"; };
@@ -126,6 +129,8 @@
 				A4AD120A1AAD78E500D3EF3B /* Paging.h */,
 				A48EDA311AB53108001EC1CC /* Page.cpp */,
 				A48EDA321AB53108001EC1CC /* Page.h */,
+				A4354EB51AB5433D00427C86 /* PageFrameSet.cpp */,
+				A4354EB61AB5433D00427C86 /* PageFrameSet.h */,
 			);
 			name = Paging;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				A49ACF3D1AAFD13500FA6BA2 /* Partition.cpp in Sources */,
 				A457E7F01AA982C7002C29C3 /* main.cpp in Sources */,
 				A476070F1AB29C8E00AFEF30 /* WorstFitSwapping.cpp in Sources */,
+				A4354EB71AB5433D00427C86 /* PageFrameSet.cpp in Sources */,
 				A457E7FC1AA98B5A002C29C3 /* Process.cpp in Sources */,
 				A4AD12081AAD789800D3EF3B /* Swapping.cpp in Sources */,
 				A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */,
