@@ -40,7 +40,7 @@ int Process::getRandomDuration() {
 }
 
 int Process::getUniqueName() {
-    char uniqueName = currentLetter;
+    int uniqueName = currentLetter;
     ++currentLetter;
     return uniqueName;
 }
