@@ -80,6 +80,15 @@ int Partition::getSize() {
     return finalMB - firstMB + 1;
 }
 
+
+int Partition::getFirstMB() {
+    return firstMB;
+}
+
+int Partition::getFinalMB() {
+    return finalMB;
+}
+
 bool Partition::addProcess(Process * process) {
     if (firstMB > finalMB) {
         return false;

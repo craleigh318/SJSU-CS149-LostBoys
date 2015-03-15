@@ -13,8 +13,6 @@
 #include "Process.h"
 #include "MainMemory.h"
 
-int incrementI(int i, int addition, int numHoles);
-
 bool startNextFit(MainMemory * memory, Process* process);
 
 #endif /* NEXTFITSWAPPING_H_ */

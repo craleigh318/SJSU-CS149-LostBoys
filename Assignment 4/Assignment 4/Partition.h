@@ -61,6 +61,16 @@ public:
      Returns true if successful.
      */
     bool removeProcess();
+    
+    /*
+     Returns the first MB.
+     */
+    int getFirstMB();
+    
+    /*
+     Returns the first MB.
+     */
+    int getFinalMB();
 
 private:
     MainMemory * mainMemory;

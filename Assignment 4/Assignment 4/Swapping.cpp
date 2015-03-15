@@ -67,11 +67,11 @@ void swappingStart() {
     }
     // Put your algorithms here.
     std::cout << "First Fit:\n";
-    swapWithAlgorithm(orderedProcesses, &startFirstFitSwapping);
+    //swapWithAlgorithm(orderedProcesses, &startFirstFitSwapping);
     
 
     std::cout << "Next Fit:\n";
-    //swapWithAlgorithm(orderedProcesses, &startNextFit);
+    swapWithAlgorithm(orderedProcesses, &startNextFit);
 
     std::cout << "Best Fit:\n";
     //swapWithAlgorithm(orderedProcesses, &startBestFit);
