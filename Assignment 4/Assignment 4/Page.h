@@ -31,7 +31,7 @@ public:
     /*
      Sets last time used.
      */
-    int setLastTimeUsed(int time);
+    void setLastTimeUsed(int time);
     
     /*
      Returns number of times used.
@@ -40,8 +40,14 @@ public:
     
     /*
      Increases number times used by 1.
+     Returns the new value.
      */
     int increaseNumTimesUsed();
+    
+    /*
+     Sets number times used to 0.
+     */
+    void resetNumTimesUsed();
     
 private:
     int name;
