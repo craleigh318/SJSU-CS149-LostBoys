@@ -48,6 +48,11 @@ public:
     void setTimeAdded(int time);
 
     /*
+     Resets the Process name back to 0
+     */
+    static void resetNameCounter();
+
+    /*
      Prints the attributes of this process.
      */
     void print();
@@ -73,7 +78,7 @@ private:
      Returns a random duration less than or equal to the specified max.
      */
     int getRandomDuration();
-    
+
     /*
      Returns a unique name.
      */

@@ -73,6 +73,10 @@ void Process::setTimeAdded(int time) {
 	timeAdded = time;
 }
 
+void Process::resetNameCounter() {
+	currentLetter = 0;
+}
+
 void Process::print() {
     std::cout << "Process: " << name << "\nSize: " << size
     << " MB\nDuration: " << duration << "s\n";

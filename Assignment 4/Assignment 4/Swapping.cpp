@@ -12,7 +12,7 @@
     return (process1->getArrivalTime() > process2->getArrivalTime());
 }*/
 
-void swapWithAlgorithm(std::queue<Process *> processQueue,
+int swapWithAlgorithm(std::queue<Process *> processQueue,
                        bool (* algorithm)(MainMemory * memory, Process * process)) {
     MainMemory memory;
     int currentTime;
@@ -51,35 +51,56 @@ void swapWithAlgorithm(std::queue<Process *> processQueue,
         }
     }
     std::cout << "Number of processes added " << memory.getProcessAdded() << '\n';
+    return memory.getProcessAdded();
 }
 
 void swappingStart() {
     std::cout << "Swapping:\n";
-    std::queue<Process *> orderedProcesses;
+    const int executeTimes = 5;
+    std::queue<Process *> orderedProcesses[executeTimes];
     const int queueSize = 200;
     int i;
-    for (i = 0; i < queueSize; ++i) {
-        Process * newProcess = new Process();
-        newProcess->print();
-        std::cout << '\n';
-        orderedProcesses.push(newProcess);
+    for (int j = 0; j < executeTimes; j++) {
+    	for(i = 0; i < queueSize; i++){
+			Process * newProcess = new Process();
+			newProcess->print();
+			std::cout << '\n';
+			orderedProcesses[j].push(newProcess);
+    	}
+    	Process::resetNameCounter();
     }
+
     // Put your algorithms here.
+    int avgProcessInMemory = 0;
     std::cout << "First Fit:\n";
-    //swapWithAlgorithm(orderedProcesses, &startFirstFitSwapping);
-    
+    for(int i = 0; i < executeTimes; i++)
+    	avgProcessInMemory += swapWithAlgorithm(orderedProcesses[i], &startFirstFitSwapping);
+    std::cout << "First Fit Average number of processes: " << avgProcessInMemory / executeTimes;
+
+    avgProcessInMemory = 0;
     std::cout << "Next Fit:\n";
-    swapWithAlgorithm(orderedProcesses, &startNextFit);
+    for(int i = 0; i < executeTimes; i++)
+    	avgProcessInMemory += swapWithAlgorithm(orderedProcesses[i], &startNextFit);
+    std::cout << "Next Fit Average number of processes: " << avgProcessInMemory / executeTimes;
 
+    avgProcessInMemory = 0;
     std::cout << "Best Fit:\n";
-    //swapWithAlgorithm(orderedProcesses, &startBestFit);
+    for(int i = 0; i < executeTimes; i++)
+    	avgProcessInMemory += swapWithAlgorithm(orderedProcesses[i], &startBestFit);
+    std::cout << "Best Fit Average number of processes: " << avgProcessInMemory / executeTimes;
 
+    avgProcessInMemory = 0;
     std::cout << "Worst Fit:\n";
-    //swapWithAlgorithm(orderedProcesses, &startWorstFit);
+    for(int i = 0; i < executeTimes; i++)
+    	avgProcessInMemory += swapWithAlgorithm(orderedProcesses[i], &startWorstFit);
+    std::cout << "Worst Fit Average number of processes: " << avgProcessInMemory / executeTimes;
+
     // Deleting processes when done.
-    for (i = 0; i < queueSize; ++i) {
-        Process * nextProcess = orderedProcesses.front();
-        delete nextProcess;
-        orderedProcesses.pop();
+    for (int j = 0; j < executeTimes; j++) {
+    	for(i = 0; i < queueSize; i++) {
+			Process * nextProcess = orderedProcesses[j].front();
+			delete nextProcess;
+			orderedProcesses[j].pop();
+    	}
     }
 }
