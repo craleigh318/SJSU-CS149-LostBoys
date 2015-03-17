@@ -29,6 +29,18 @@ public:
      */
     void setPage(int index, Page * value);
     
+    /*
+     Moves the page at the specified index to a new index.
+     For example, the page at index 0 can be moved to 2,
+     shifting pages 1 and 2 to the front.
+     */
+    void movePageTo(int index, int destination);
+    
+    /*
+     Prints the names of the pages in this set.
+     */
+    void print();
+    
 private:
     std::vector<Page *> frames;
     

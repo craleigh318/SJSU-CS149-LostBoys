@@ -29,3 +29,35 @@ Page * PageFrameSet::getPage(int index) {
 void PageFrameSet::setPage(int index, Page * value) {
     frames.at(index) = value;
 }
+
+void PageFrameSet::movePageTo(int index, int destination) {
+    int i;
+    size_t framesSize = frames.size();
+    for (i = 0; i < framesSize; ++i) {
+        bool startSwapping = ((i <= index) || (i <= destination));
+        if (startSwapping) {
+            bool stopSwapping = ((i >= index) && (i >= destination));
+            if (stopSwapping) {
+                return;
+            }
+            Page * tempPage = frames.at(i);
+            frames.at(i) = frames.at(i + 1);
+            frames.at(i + 1) = tempPage;
+        }
+    }
+}
+
+void PageFrameSet::print() {
+    std::cout << '[';
+    int i;
+    size_t framesSize = frames.size();
+    bool putComma = false;
+    for (i = 0; i < framesSize; ++i) {
+        if (putComma) {
+            std::cout << ", ";
+        }
+        std::cout << frames.at(i)->getName();
+        putComma = true;
+    }
+    std::cout << "]\n";
+}

@@ -8,11 +8,12 @@
 
 #include "SystemHeaders.h"
 #include "Swapping.h"
+#include "Paging.h"
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     srand((unsigned int)time(NULL));
-    std::cout << "Hello, World!\n";
-    swappingStart();
+    //swappingStart();
+    pagingStart();
     return 0;
 }
