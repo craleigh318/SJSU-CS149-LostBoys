@@ -48,7 +48,7 @@ public:
     Get the number of processes added
     */
     int getProcessAdded();
-    
+
 private:
     Process * mbs[MAIN_MEMORY_SIZE];
     

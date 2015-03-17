@@ -49,3 +49,4 @@ int MainMemory::getProcessAdded()
 {
     return processesAdded;
 }
+

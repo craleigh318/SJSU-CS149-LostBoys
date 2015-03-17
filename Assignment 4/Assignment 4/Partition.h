@@ -63,6 +63,12 @@ public:
     bool removeProcess();
     
     /*
+	 Moves a passed process
+	 Returns true if successful
+     */
+    bool movePartition(Partition* process);
+
+    /*
      Returns the first MB.
      */
     int getFirstMB();

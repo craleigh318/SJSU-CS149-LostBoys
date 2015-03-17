@@ -104,6 +104,23 @@ bool Partition::addProcess(Process * process) {
     return true;
 }
 
+bool Partition::movePartition(Partition* partition) {
+	int i;
+	int partitionSize = partition->getSize();
+    for (i = firstMB; i < (partitionSize + firstMB); ++i) {
+        mainMemory->setMB(i, partition->getProcess());
+    }
+    partition->firstMB = firstMB;
+    partition->finalMB = firstMB + partitionSize;
+    firstMB = i;
+
+    for (i = firstMB; i < (partitionSize + finalMB + 1); ++i) {
+        mainMemory->setMB(i, NULL);
+    }
+    finalMB = i;
+
+    return true;
+}
 
 bool Partition::removeProcess() {
     Process * process = getProcess();
