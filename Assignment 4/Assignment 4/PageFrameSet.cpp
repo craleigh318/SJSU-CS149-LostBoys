@@ -55,13 +55,18 @@ void PageFrameSet::movePageTo(int index, int destination) {
 void PageFrameSet::print() {
     std::cout << '[';
     int i;
-    size_t framesSize = frames.size();
     bool putComma = false;
-    for (i = 0; i < framesSize; ++i) {
-        if (putComma) {
-            std::cout << ", ";
+    for (i = 0; i < size; ++i) {
+        Page * currentPage = frames.at(i);
+        if (currentPage) {
+            if (putComma) {
+                std::cout << ", ";
+            }
+            std::cout << currentPage->getName();
+        } else {
+            break;
         }
-        std::cout << frames.at(i)->getName();
+        
         putComma = true;
     }
     std::cout << "]\n";

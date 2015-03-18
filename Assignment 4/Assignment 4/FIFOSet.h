@@ -15,6 +15,8 @@ class FIFOSet :
 public SwappingAlgorithm
 {
 public:
+    FIFOSet(PageFrameSet underlyingContainer);
+    
     Page * addPage(Page * page);
 };
 

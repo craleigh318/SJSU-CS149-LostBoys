@@ -16,3 +16,7 @@ underlyingContainer(underlyingContainer)
 void SwappingAlgorithm::print() {
     underlyingContainer.print();
 }
+
+PageFrameSet * SwappingAlgorithm::getUnderlyingContainer() {
+    return &underlyingContainer;
+}

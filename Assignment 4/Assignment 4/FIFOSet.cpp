@@ -8,12 +8,17 @@
 
 #include "FIFOSet.h"
 
+FIFOSet::FIFOSet(PageFrameSet underlyingContainer) :
+SwappingAlgorithm(underlyingContainer)
+{
+}
+
 Page * FIFOSet::addPage(Page * page) {
     PageFrameSet * frames = getUnderlyingContainer();
     int framesSize = frames->getSize();
     Page * victim = frames->getPage(framesSize - 1);
     int i;
-    for (i = 0; i < (framesSize - 1); ++i) {
+    for (i = (framesSize - 2); i >= 0; --i) {
         Page * currentPage = frames->getPage(i);
         frames->setPage(i + 1, currentPage);
     }

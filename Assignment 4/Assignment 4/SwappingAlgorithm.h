@@ -15,13 +15,7 @@
  Abstract class for FIFO, LRU, LFU, MFU and random pick.
  */
 class SwappingAlgorithm {
-    
 public:
-    /*
-     Constructs a new algorithm that uses a copy of the specified page frame set.
-     */
-    SwappingAlgorithm(PageFrameSet underlyingContainer);
-    
     /*
      Adds the specified page pointer to a frame.
      Returns a pointer to the evicted page, if applicable.
@@ -35,6 +29,11 @@ public:
     void print();
     
 protected:
+    /*
+     Constructs a new algorithm that uses a copy of the specified page frame set.
+     */
+    SwappingAlgorithm(PageFrameSet underlyingContainer);
+    
     /*
      Returns the underlying container.
      */
