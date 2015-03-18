@@ -16,12 +16,8 @@ public SwappingAlgorithm
 {
 public:
     RandomPage(PageFrameSet underlyingContainer);
-    
     Page * addPage(Page * page);
 };
 
-#endif /* defined(__Assignment_4__FIFOSet__) */
-
-
-#endif	/* RANDOMPAGE_H */
+#endif /* defined(__Assignment_4__RANDOMPAGE__) */
 
