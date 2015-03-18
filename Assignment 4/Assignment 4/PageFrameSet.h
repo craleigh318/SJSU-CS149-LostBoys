@@ -20,6 +20,11 @@ public:
     PageFrameSet(int numFrames);
     
     /*
+     Returns the number of frames in this set.
+     */
+    int getSize();
+    
+    /*
      Returns the page at the specified index.
      */
     Page * getPage(int index);
@@ -45,6 +50,8 @@ private:
     std::vector<Page *> frames;
     
     std::vector<Page *> initializeFramesVector(int vectorSize);
+    
+    int size;
 };
 
 #endif /* defined(__Assignment_4__PageFrameSet__) */

@@ -18,8 +18,13 @@ std::vector<Page *> PageFrameSet::initializeFramesVector(int vectorSize) {
 }
 
 PageFrameSet::PageFrameSet(int numFrames) :
-frames(initializeFramesVector(numFrames))
+frames(initializeFramesVector(numFrames)),
+size(numFrames)
 {
+}
+
+int PageFrameSet::getSize() {
+    return size;
 }
 
 Page * PageFrameSet::getPage(int index) {

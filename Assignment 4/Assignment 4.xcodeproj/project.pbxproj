@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A432F9021AB1543800BE4AF5 /* NextFitSwapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A432F9001AB1543800BE4AF5 /* NextFitSwapping.cpp */; };
 		A4354EB71AB5433D00427C86 /* PageFrameSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4354EB51AB5433D00427C86 /* PageFrameSet.cpp */; };
+		A45067411AB9761F0036A52C /* SwappingAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A450673F1AB9761F0036A52C /* SwappingAlgorithm.cpp */; };
+		A45067441AB97A060036A52C /* FIFOSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A45067421AB97A060036A52C /* FIFOSet.cpp */; };
 		A457E7F01AA982C7002C29C3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7EF1AA982C7002C29C3 /* main.cpp */; };
 		A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7F71AA9880C002C29C3 /* MainMemory.cpp */; };
 		A457E7FC1AA98B5A002C29C3 /* Process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A457E7FA1AA98B5A002C29C3 /* Process.cpp */; };
@@ -38,6 +40,10 @@
 		A432F9011AB1543800BE4AF5 /* NextFitSwapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextFitSwapping.h; sourceTree = "<group>"; };
 		A4354EB51AB5433D00427C86 /* PageFrameSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PageFrameSet.cpp; sourceTree = "<group>"; };
 		A4354EB61AB5433D00427C86 /* PageFrameSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFrameSet.h; sourceTree = "<group>"; };
+		A450673F1AB9761F0036A52C /* SwappingAlgorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SwappingAlgorithm.cpp; sourceTree = "<group>"; };
+		A45067401AB9761F0036A52C /* SwappingAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwappingAlgorithm.h; sourceTree = "<group>"; };
+		A45067421AB97A060036A52C /* FIFOSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FIFOSet.cpp; sourceTree = "<group>"; };
+		A45067431AB97A060036A52C /* FIFOSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIFOSet.h; sourceTree = "<group>"; };
 		A457E7EC1AA982C7002C29C3 /* Assignment 4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 4"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A457E7EF1AA982C7002C29C3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A457E7F61AA9872B002C29C3 /* SystemHeaders.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = SystemHeaders.h; sourceTree = "<group>"; };
@@ -131,6 +137,10 @@
 				A48EDA321AB53108001EC1CC /* Page.h */,
 				A4354EB51AB5433D00427C86 /* PageFrameSet.cpp */,
 				A4354EB61AB5433D00427C86 /* PageFrameSet.h */,
+				A450673F1AB9761F0036A52C /* SwappingAlgorithm.cpp */,
+				A45067401AB9761F0036A52C /* SwappingAlgorithm.h */,
+				A45067421AB97A060036A52C /* FIFOSet.cpp */,
+				A45067431AB97A060036A52C /* FIFOSet.h */,
 			);
 			name = Paging;
 			sourceTree = "<group>";
@@ -161,7 +171,7 @@
 		A457E7E41AA982C7002C29C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Lost Boys";
 				TargetAttributes = {
 					A457E7EB1AA982C7002C29C3 = {
@@ -203,6 +213,8 @@
 				A4AD120B1AAD78E500D3EF3B /* Paging.cpp in Sources */,
 				A432F9021AB1543800BE4AF5 /* NextFitSwapping.cpp in Sources */,
 				A48EDA331AB53108001EC1CC /* Page.cpp in Sources */,
+				A45067441AB97A060036A52C /* FIFOSet.cpp in Sources */,
+				A45067411AB9761F0036A52C /* SwappingAlgorithm.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +257,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -279,7 +291,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
