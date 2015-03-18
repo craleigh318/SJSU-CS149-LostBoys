@@ -85,7 +85,7 @@ void swappingStart() {
     std::cout << "Swapping:\n";
     const int executeTimes = 5;
     std::queue<Process *> orderedProcesses[executeTimes];
-    const int queueSize = 100;
+    const int queueSize = 150;
     int i;
     for (int j = 0; j < executeTimes; j++) {
     	for(i = 0; i < queueSize; i++){
