@@ -19,8 +19,8 @@ void addPage(SwappingAlgorithm * algorithm, Page * page) {
 }
 
 void pagingStart() {
-    PageFrameSet physicalMemory(4);
-    PageFrameSet disk(10);
+    PageFrameSet physicalMemory(PHYS_NUM_FRAMES);
+    PageFrameSet disk(PAGE_NUM_FRAMES);
     FIFOSet fifoSet(physicalMemory);
     RandomPage randomSet(physicalMemory);
     std::vector<Page> pages;

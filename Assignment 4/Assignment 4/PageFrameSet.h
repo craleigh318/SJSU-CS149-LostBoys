@@ -11,6 +11,9 @@
 #include "SystemHeaders.h"
 #include "Page.h"
 
+#define PHYS_NUM_FRAMES 4
+#define PAGE_NUM_FRAMES 10
+
 class PageFrameSet {
     
 public:
