@@ -24,6 +24,11 @@ public:
     virtual Page * addPage(Page * page) = 0;
     
     /*
+     Returns true if this page is either null or has no duplicates in the set.
+     */
+    bool canAddPage(Page * page);
+    
+    /*
      Prints the names of the pages in this set.
      */
     void print();

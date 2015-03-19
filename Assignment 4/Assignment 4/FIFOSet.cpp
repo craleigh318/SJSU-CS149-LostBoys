@@ -15,8 +15,7 @@ SwappingAlgorithm(underlyingContainer)
 
 Page * FIFOSet::addPage(Page * page) {
     PageFrameSet * frames = getUnderlyingContainer();
-    bool cannotAdd= page && frames->containsPage(page);
-    if (cannotAdd) {
+    if (!canAddPage(page)) {
         return NULL;
     }
     int framesSize = frames->getSize();
