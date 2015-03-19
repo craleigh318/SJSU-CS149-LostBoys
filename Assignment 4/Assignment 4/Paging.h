@@ -14,6 +14,7 @@
 #include "RandomPage.h"
 #include "LRU.h"
 #include "MFU.h"
+#include "LFU.h"
 
 void addPage(SwappingAlgorithm * algorithm, Page * page);
 

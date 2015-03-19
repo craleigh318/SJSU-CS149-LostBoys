@@ -12,7 +12,7 @@ void addPage(SwappingAlgorithm * algorithm, Page * page) {
     std::cout << "Adding Page " << page->getName() << ".\n";
     Page * victim = algorithm->addPage(page);
     if (victim) {
-        std::cout << "Victim at index: " << victim->getName() << '\n';
+        std::cout << "Victim page is: " << victim->getName() << '\n';
     }
     algorithm->print();
     std::cout << '\n';
@@ -25,6 +25,7 @@ void pagingStart() {
     RandomPage randomSet(physicalMemory);
     LRU lruSet(physicalMemory);
     MFU mfuSet(physicalMemory);
+    LFU lfuSet(physicalMemory);
 
     std::vector<Page> pages;
     int i;
@@ -52,6 +53,13 @@ void pagingStart() {
 	for (i = 0; i < 20; ++i) {
 		int randomPage = rand() % (10);
 		addPage(&mfuSet, &pages.at(randomPage));
+	}
+
+
+	std::cout << "LFU Paging\n";
+	for (i = 0; i < 20; ++i) {
+		int randomPage = rand() % (10);
+		addPage(&lfuSet, &pages.at(randomPage));
 	}
 
 
