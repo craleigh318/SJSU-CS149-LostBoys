@@ -22,14 +22,20 @@ void pagingStart() {
     PageFrameSet physicalMemory(4);
     PageFrameSet disk(10);
     FIFOSet fifoSet(physicalMemory);
+    RandomPage randomSet(physicalMemory);
     std::vector<Page> pages;
     int i;
     for (i = 0; i < 10; ++i) {
         pages.push_back(Page(i));
     }
     // Add pages to memory.
+    std::cout << "First in, First Out\n";
     for (i = 0; i < 8; ++i) {
         addPage(&fifoSet, &pages.at(i));
     }
     addPage(&fifoSet, &pages.at(6));
+    std::cout << "Random Pick\n";
+    for (i = 0; i < 8; ++i) {
+        addPage(&randomSet, &pages.at(i));
+    }
 }

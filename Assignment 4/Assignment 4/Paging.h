@@ -11,6 +11,7 @@
 #include "SystemHeaders.h"
 #include "PageFrameSet.h"
 #include "FIFOSet.h"
+#include "RandomPage.h"
 
 void addPage(SwappingAlgorithm * algorithm, Page * page);
 

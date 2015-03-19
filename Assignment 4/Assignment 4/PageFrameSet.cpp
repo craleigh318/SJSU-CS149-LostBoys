@@ -65,19 +65,18 @@ bool PageFrameSet::containsPage(Page * page) {
 void PageFrameSet::print() {
     std::cout << '[';
     int i;
-    bool putComma = false;
+    bool putSpace = false;
     for (i = 0; i < size; ++i) {
         Page * currentPage = frames.at(i);
+        if (putSpace) {
+            std::cout << " ";
+        }
         if (currentPage) {
-            if (putComma) {
-                std::cout << ", ";
-            }
             std::cout << currentPage->getName();
         } else {
-            break;
+            std::cout << ".";
         }
-        
-        putComma = true;
+        putSpace = true;
     }
     std::cout << "]\n";
 }
