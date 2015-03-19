@@ -34,47 +34,49 @@ void pagingStart() {
     MFU mfuSet(physicalMemory);
     LFU lfuSet(physicalMemory);
 
-    std::vector<Page> pages;
     int i;
+    int executeTimes = 5;
     int pageReferences = 100;
     int delta = rand() % 10;
+    std::vector<Page> pages[executeTimes];
     // Create all the page references
-    for (i = 0; i < pageReferences; ++i) {
-    	int randNum = rand() % 10;
-    	if(randNum < 7) {
-    		delta += (rand() % 3) - 1;
-    	}
-    	else {
-    		delta += (rand() % 7) + 2;
-    	}
-    	if(delta < 0)
-    		delta = 9;
-		delta %= NUM_PAGES;
-        pages.push_back(Page(delta));
+    for(int j = 0; j < executeTimes; j++) {
+		for (i = 0; i < pageReferences; ++i) {
+			int randNum = rand() % 10;
+			if(randNum < 7) {
+				delta += (rand() % 3) - 1;
+			}
+			else {
+				delta += (rand() % 7) + 2;
+			}
+			if(delta < 0)
+				delta = 9;
+			delta %= NUM_PAGES;
+			pages[j].push_back(Page(delta));
+		}
     }
     // Add pages to memory.
     std::cout << "First in, First Out\n";
-    for (i = 0; i < pageReferences; ++i) {
-        addPage(&fifoSet, &pages.at(i));
+    for (i = 0; i < executeTimes; ++i) {
+        addAllPages(&fifoSet, &pages[i]);
     }
     std::cout << "Random Pick\n";
-    for (i = 0; i < pageReferences; ++i) {
-        addPage(&randomSet, &pages.at(i));
+    for (i = 0; i < executeTimes; ++i) {
+        addAllPages(&randomSet, &pages[i]);
     }
 
     std::cout << "LRU Paging\n";
-    for (i = 0; i < pageReferences; ++i) {
-        addPage(&lruSet, &pages.at(i));
+    for (i = 0; i < executeTimes; ++i) {
+        addAllPages(&lruSet, &pages[i]);
     }
 
-    //Pages should be referenced randomly
     std::cout << "MFU Paging\n";
-	for (i = 0; i < pageReferences; ++i) {
-		addPage(&mfuSet, &pages.at(i));
+	for (i = 0; i < executeTimes; ++i) {
+        addAllPages(&mfuSet, &pages[i]);
 	}
 
 	std::cout << "LFU Paging\n";
-	for (i = 0; i < pageReferences; ++i) {
-		addPage(&lfuSet, &pages.at(i));
+	for (i = 0; i < executeTimes; ++i) {
+        addAllPages(&lfuSet, &pages[i]);
 	}
 }
