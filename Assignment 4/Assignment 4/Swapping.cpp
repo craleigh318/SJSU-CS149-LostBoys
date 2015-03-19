@@ -100,6 +100,7 @@ void swappingStart() {
     // Put your algorithms here.
     int avgProcessInMemory = 0;
     int compactionAvgProcessInMemory = 0;
+    int memoryCompact = 0;
     for(int i = 0; i < executeTimes; i++) {
     	std::cout << "\nFirst Fit Run " << i + 1 << ":\n";
     	avgProcessInMemory += swapWithAlgorithm(orderedProcesses[i], &startFirstFitSwapping, false);
@@ -108,9 +109,18 @@ void swappingStart() {
     }
     std::cout << "First Fit Average number of processes: " << avgProcessInMemory / executeTimes << "\n";
     std::cout << "First Fit w/ Compaction Average number of processes: " << compactionAvgProcessInMemory / executeTimes << "\n";
-    std::cout << "Memory compaction yielded in " <<
-    		(compactionAvgProcessInMemory / executeTimes) - (avgProcessInMemory / executeTimes) <<
-    		" process swapped than without memory compaction\n";
+    memoryCompact = (compactionAvgProcessInMemory / executeTimes) - (avgProcessInMemory / executeTimes);
+    if (memoryCompact > 0)
+    {
+        std::cout << "Memory compaction yielded in " << memoryCompact << " process swapped in main memory\n";
+    }
+    else
+    {
+        memoryCompact = abs(memoryCompact);
+        std::cout << "Memory compaction yielded in " << memoryCompact << " fewer process swapped in main memory\n";
+    }
+    memoryCompact = 0;
+    
 
     avgProcessInMemory = compactionAvgProcessInMemory = 0;
     for(int i = 0; i < executeTimes; i++) {
@@ -121,10 +131,17 @@ void swappingStart() {
     }
     std::cout << "Next Fit Average number of processes: " << avgProcessInMemory / executeTimes << "\n";
     std::cout << "Next Fit w/ Compaction Average number of processes: " << compactionAvgProcessInMemory / executeTimes << "\n";
-    std::cout << "Memory compaction yielded in " <<
-    		(compactionAvgProcessInMemory / executeTimes) - (avgProcessInMemory / executeTimes) <<
-    		" process swapped than without memory compaction\n";
-
+    memoryCompact = (compactionAvgProcessInMemory / executeTimes) - (avgProcessInMemory / executeTimes);
+    if (memoryCompact > 0)
+    {
+        std::cout << "Memory compaction yielded in " << memoryCompact << " process swapped in main memory\n";
+    }
+    else
+    {
+        memoryCompact = abs(memoryCompact);
+        std::cout << "Memory compaction yielded in " << memoryCompact << " fewer process swapped in main memory\n";
+    }
+    memoryCompact = 0;
 
     avgProcessInMemory = compactionAvgProcessInMemory = 0;
     for(int i = 0; i < executeTimes; i++) {
@@ -135,9 +152,17 @@ void swappingStart() {
     }
     std::cout << "Best Fit Average number of processes: " << avgProcessInMemory / executeTimes << "\n";
     std::cout << "Best Fit w/ Compaction Average number of processes: " << compactionAvgProcessInMemory / executeTimes << "\n";
-    std::cout << "Memory compaction yielded in " <<
-    		(compactionAvgProcessInMemory / executeTimes) - (avgProcessInMemory / executeTimes) <<
-    		" process swapped than without memory compaction\n";
+    memoryCompact = (compactionAvgProcessInMemory / executeTimes) - (avgProcessInMemory / executeTimes);
+    if (memoryCompact > 0)
+    {
+        std::cout << "Memory compaction yielded in " << memoryCompact << " process swapped in main memory\n";
+    }
+    else
+    {
+        memoryCompact = abs(memoryCompact);
+        std::cout << "Memory compaction yielded in " << memoryCompact << " fewer process swapped in main memory\n";
+    }
+    memoryCompact = 0;
 
     avgProcessInMemory = compactionAvgProcessInMemory = 0;
     for(int i = 0; i < executeTimes; i++) {
@@ -148,9 +173,17 @@ void swappingStart() {
     }
     std::cout << "Worst Fit Average number of processes: " << avgProcessInMemory / executeTimes << "\n";
     std::cout << "Worst Fit w/ Compaction Average number of processes: " << compactionAvgProcessInMemory / executeTimes << "\n";
-    std::cout << "Memory compaction yielded in " <<
-    		(compactionAvgProcessInMemory / executeTimes) - (avgProcessInMemory / executeTimes) <<
-    		" process swapped than without memory compaction\n";
+    
+    memoryCompact = (compactionAvgProcessInMemory / executeTimes) - (avgProcessInMemory / executeTimes);
+    if (memoryCompact > 0)
+    {
+        std::cout << "Memory compaction yielded in " << memoryCompact << " process swapped in main memory\n";
+    }
+    else
+    {
+        memoryCompact = abs(memoryCompact);
+        std::cout << "Memory compaction yielded in " << memoryCompact << " fewer process swapped in main memory\n";
+    }
 
     // Deleting processes when done.
     for (int j = 0; j < executeTimes; j++) {
