@@ -55,7 +55,7 @@ int swapWithAlgorithm(std::queue<Process *> processQueue,
         	std::cout << "Start Compaction\n";
         	std::vector<Partition> holes = Partition::getHolesInMemory(&memory);
         	int nextProcess = 0;
-        	int processSize = Partition::getPartitionsInMemoryWithProcesses(&memory).size();
+        	size_t processSize = Partition::getPartitionsInMemoryWithProcesses(&memory).size();
         	// Loop while there are more than one holes, the last hole isn't in the last position
         	while(holes.size() != 1 && holes[holes.size() -1].getFinalMB() != 100 && nextProcess < processSize) {
         		std::vector<Partition> allProcess = Partition::getPartitionsInMemoryWithProcesses(&memory);

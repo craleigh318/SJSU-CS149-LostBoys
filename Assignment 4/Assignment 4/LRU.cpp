@@ -47,7 +47,7 @@ Page* LRU::addPage(Page* page) {
 	PageFrameSet* frames = getUnderlyingContainer();
 	int frameSize = frames->getSize();
 
-	Page* victim;
+	Page* victim = NULL;
 	decrementCountArray();
 	if(frames->containsPage(page)) {
 		referencePageInCountArray(page->getName());

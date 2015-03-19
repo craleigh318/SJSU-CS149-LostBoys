@@ -21,6 +21,7 @@
 		A4AD12081AAD789800D3EF3B /* Swapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4AD12061AAD789800D3EF3B /* Swapping.cpp */; };
 		A4AD120B1AAD78E500D3EF3B /* Paging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4AD12091AAD78E500D3EF3B /* Paging.cpp */; };
 		A4DC41871AB1845100D35A0A /* FirstFitSwapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DC41851AB1845100D35A0A /* FirstFitSwapping.cpp */; };
+		A4E1BB5F1ABAA9D400D86351 /* LRU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4E1BB5D1ABAA9D400D86351 /* LRU.cpp */; };
 		F8A56AA91AB01F2C00BED1F9 /* bestfit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8A56AA71AB01F2C00BED1F9 /* bestfit.cpp */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,8 @@
 		A4AD120A1AAD78E500D3EF3B /* Paging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paging.h; sourceTree = "<group>"; };
 		A4DC41851AB1845100D35A0A /* FirstFitSwapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirstFitSwapping.cpp; sourceTree = "<group>"; };
 		A4DC41861AB1845100D35A0A /* FirstFitSwapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFitSwapping.h; sourceTree = "<group>"; };
+		A4E1BB5D1ABAA9D400D86351 /* LRU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LRU.cpp; sourceTree = "<group>"; };
+		A4E1BB5E1ABAA9D400D86351 /* LRU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRU.h; sourceTree = "<group>"; };
 		F8A56AA71AB01F2C00BED1F9 /* bestfit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bestfit.cpp; sourceTree = "<group>"; };
 		F8A56AA81AB01F2C00BED1F9 /* bestfit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bestfit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +137,8 @@
 		A4DC41841AB179E100D35A0A /* Paging */ = {
 			isa = PBXGroup;
 			children = (
+				A4E1BB5D1ABAA9D400D86351 /* LRU.cpp */,
+				A4E1BB5E1ABAA9D400D86351 /* LRU.h */,
 				A46725E11ABA4CAD006E8E27 /* RandomPage.cpp */,
 				A46725E21ABA4CAD006E8E27 /* RandomPage.h */,
 				A4AD12091AAD78E500D3EF3B /* Paging.cpp */,
@@ -217,6 +222,7 @@
 				A457E7F91AA9880C002C29C3 /* MainMemory.cpp in Sources */,
 				A4AD120B1AAD78E500D3EF3B /* Paging.cpp in Sources */,
 				A432F9021AB1543800BE4AF5 /* NextFitSwapping.cpp in Sources */,
+				A4E1BB5F1ABAA9D400D86351 /* LRU.cpp in Sources */,
 				A48EDA331AB53108001EC1CC /* Page.cpp in Sources */,
 				A46725E31ABA4CAD006E8E27 /* RandomPage.cpp in Sources */,
 				A45067441AB97A060036A52C /* FIFOSet.cpp in Sources */,
