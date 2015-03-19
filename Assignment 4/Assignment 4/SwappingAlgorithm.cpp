@@ -14,7 +14,7 @@ underlyingContainer(underlyingContainer)
 }
 
 bool SwappingAlgorithm::canAddPage(Page * page) {
-    return !(page && getUnderlyingContainer()->containsPage(page));
+    return !page || !getUnderlyingContainer()->containsPage(page);
 }
 
 void SwappingAlgorithm::print() {

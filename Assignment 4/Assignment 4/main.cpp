@@ -13,7 +13,7 @@
 int main(int argc, const char * argv[]) {
     // insert code here...
     srand((unsigned int)time(NULL));
-    swappingStart();
-    // pagingStart();
+    //swappingStart();
+    pagingStart();
     return 0;
 }

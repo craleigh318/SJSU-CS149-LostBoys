@@ -53,9 +53,12 @@ void PageFrameSet::movePageTo(int index, int destination) {
 }
 
 bool PageFrameSet::containsPage(Page * page) {
+    if (!page) {
+        return false;
+    }
     int i;
     for (i = 0; i < size; ++i) {
-        if (page == frames.at(i)) {
+        if ((frames.at(i)) && (page->getName() == frames.at(i)->getName())) {
             return true;
         }
     }
