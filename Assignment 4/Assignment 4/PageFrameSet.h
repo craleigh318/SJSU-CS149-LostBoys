@@ -12,7 +12,8 @@
 #include "Page.h"
 
 #define PHYS_NUM_FRAMES 4
-#define PAGE_NUM_FRAMES 10
+#define DISK_NUM_FRAMES 10
+#define NUM_PAGES 10
 
 class PageFrameSet {
     

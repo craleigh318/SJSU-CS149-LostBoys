@@ -1,23 +1,27 @@
-/* 
- * File:   LRU.h
- * Author: will
+/*
+ * LRU.h
  *
- * Created on March 18, 2015, 5:56 PM
+ *  Created on: Mar 18, 2015
+ *      Author: Steve
  */
 
-#ifndef LRU_H
-#define	LRU_H
+#ifndef LRU_H_
+#define LRU_H_
+
+#include "SystemHeaders.h"
 #include "SwappingAlgorithm.h"
 
-class LRU: public SwappingAlgorithm {
+class LRU:
+public SwappingAlgorithm {
 public:
-    LRU(PageFrameSet underlyingContainer);
-    
-        Page * addPage(Page * page);
-        
+	LRU(PageFrameSet underlyingContainer);
+	Page* addPage(Page* page);
 private:
-
+	int getLowestCountArrayPOS();
+	void decrementCountArray();
+	void referencePageInCountArray(int position);
+    int countArray[NUM_PAGES];
 };
 
-#endif	/* LRU_H */
 
+#endif /* LRU_H_ */

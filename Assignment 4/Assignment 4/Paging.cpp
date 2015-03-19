@@ -19,14 +19,14 @@ void addPage(SwappingAlgorithm * algorithm, Page * page) {
 }
 
 void pagingStart() {
-    PageFrameSet physicalMemory(4);
-    PageFrameSet disk(10);
+    PageFrameSet physicalMemory(PHYS_NUM_FRAMES);
+    PageFrameSet disk(DISK_NUM_FRAMES);
     FIFOSet fifoSet(physicalMemory);
     RandomPage randomSet(physicalMemory);
     LRU lruSet(physicalMemory);
     std::vector<Page> pages;
     int i;
-    for (i = 0; i < 10; ++i) {
+    for (i = 0; i < NUM_PAGES; ++i) {
         pages.push_back(Page(i));
     }
     // Add pages to memory.
@@ -40,8 +40,12 @@ void pagingStart() {
         addPage(&randomSet, &pages.at(i));
     }
     
-    std::cout << "Least Recently Used\n";
+    std::cout << "LRU Paging\n";
     for (i = 0; i < 8; ++i) {
         addPage(&lruSet, &pages.at(i));
     }
+    addPage(&lruSet, &pages.at(6));
+    addPage(&lruSet, &pages.at(1));
+    addPage(&lruSet, &pages.at(2));
+    addPage(&lruSet, &pages.at(3));
 }
