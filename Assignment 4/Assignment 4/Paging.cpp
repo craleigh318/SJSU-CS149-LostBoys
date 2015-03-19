@@ -18,10 +18,10 @@ void addPage(SwappingAlgorithm * algorithm, Page * page) {
     std::cout << '\n';
 }
 
-void addAllPages(SwappingAlgorithm * algorithm, std::vector<Page *> * pageVector) {
+void addAllPages(SwappingAlgorithm * algorithm, std::vector<Page> * pageVector) {
     size_t vectorSize = pageVector->size();
     for (int i = 0; i < vectorSize; ++i) {
-        addPage(algorithm, pageVector->at(i));
+        addPage(algorithm, &pageVector->at(i));
     }
 }
 
