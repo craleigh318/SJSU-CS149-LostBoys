@@ -29,42 +29,45 @@ void pagingStart() {
 
     std::vector<Page> pages;
     int i;
-    for (i = 0; i < NUM_PAGES; ++i) {
-        pages.push_back(Page(i));
+    int pageReferences = 100;
+    int delta = rand() % 10;
+    // Create all the page references
+    for (i = 0; i < pageReferences; ++i) {
+    	int randNum = rand() % 10;
+    	if(randNum < 7) {
+    		delta += (rand() % 3) - 1;
+    	}
+    	else {
+    		delta += (rand() % 7) + 2;
+    	}
+    	if(delta < 0)
+    		delta = 9;
+		delta %= NUM_PAGES;
+        pages.push_back(Page(delta));
     }
     // Add pages to memory.
     std::cout << "First in, First Out\n";
-    for (i = 0; i < 8; ++i) {
+    for (i = 0; i < pageReferences; ++i) {
         addPage(&fifoSet, &pages.at(i));
     }
-    addPage(&fifoSet, &pages.at(6));
     std::cout << "Random Pick\n";
-    for (i = 0; i < 8; ++i) {
+    for (i = 0; i < pageReferences; ++i) {
         addPage(&randomSet, &pages.at(i));
     }
-    
+
     std::cout << "LRU Paging\n";
-    for (i = 0; i < 8; ++i) {
+    for (i = 0; i < pageReferences; ++i) {
         addPage(&lruSet, &pages.at(i));
     }
 
     //Pages should be referenced randomly
     std::cout << "MFU Paging\n";
-	for (i = 0; i < 20; ++i) {
-		int randomPage = rand() % (10);
-		addPage(&mfuSet, &pages.at(randomPage));
+	for (i = 0; i < pageReferences; ++i) {
+		addPage(&mfuSet, &pages.at(i));
 	}
-
 
 	std::cout << "LFU Paging\n";
-	for (i = 0; i < 20; ++i) {
-		int randomPage = rand() % (10);
-		addPage(&lfuSet, &pages.at(randomPage));
+	for (i = 0; i < pageReferences; ++i) {
+		addPage(&lfuSet, &pages.at(i));
 	}
-
-
-    /*addPage(&lruSet, &pages.at(6));
-    addPage(&lruSet, &pages.at(1));
-    addPage(&lruSet, &pages.at(2));
-    addPage(&lruSet, &pages.at(3));*/
 }
