@@ -12,6 +12,8 @@
 #include "PageFrameSet.h"
 #include "FIFOSet.h"
 
+void addPage(SwappingAlgorithm * algorithm, Page * page);
+
 /*
  Starts the paging part of the assignment.
  */

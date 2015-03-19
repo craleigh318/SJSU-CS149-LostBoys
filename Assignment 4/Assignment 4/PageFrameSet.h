@@ -31,6 +31,7 @@ public:
     
     /*
      Sets the page pointer at the specified index.
+     Returns false if page cannot be set.
      */
     void setPage(int index, Page * value);
     
@@ -40,6 +41,11 @@ public:
      shifting pages 1 and 2 to the front.
      */
     void movePageTo(int index, int destination);
+    
+    /*
+     Returns true if this set already contains the specified page.
+     */
+    bool containsPage(Page * page);
     
     /*
      Prints the names of the pages in this set.

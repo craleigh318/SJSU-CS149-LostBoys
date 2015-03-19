@@ -52,6 +52,16 @@ void PageFrameSet::movePageTo(int index, int destination) {
     }
 }
 
+bool PageFrameSet::containsPage(Page * page) {
+    int i;
+    for (i = 0; i < size; ++i) {
+        if (page == frames.at(i)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void PageFrameSet::print() {
     std::cout << '[';
     int i;

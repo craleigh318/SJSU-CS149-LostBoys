@@ -8,6 +8,16 @@
 
 #include "Paging.h"
 
+void addPage(SwappingAlgorithm * algorithm, Page * page) {
+    std::cout << "Adding Page " << page->getName() << ".\n";
+    Page * victim = algorithm->addPage(page);
+    algorithm->print();
+    if (victim) {
+        std::cout << "Victim: " << victim->getName() << '\n';
+    }
+    std::cout << '\n';
+}
+
 void pagingStart() {
     PageFrameSet physicalMemory(4);
     PageFrameSet disk(10);
@@ -19,11 +29,7 @@ void pagingStart() {
     }
     // Add pages to memory.
     for (i = 0; i < 8; ++i) {
-        Page * victim = fifoSet.addPage(&pages.at(i));
-        fifoSet.print();
-        if (victim) {
-            std::cout << "Victim: " << victim->getName() << '\n';
-        }
-        std::cout << '\n';
+        addPage(&fifoSet, &pages.at(i));
     }
+    addPage(&fifoSet, &pages.at(6));
 }
