@@ -24,6 +24,8 @@ void pagingStart() {
     FIFOSet fifoSet(physicalMemory);
     RandomPage randomSet(physicalMemory);
     LRU lruSet(physicalMemory);
+    MFU mfuSet(physicalMemory);
+
     std::vector<Page> pages;
     int i;
     for (i = 0; i < NUM_PAGES; ++i) {
@@ -44,8 +46,17 @@ void pagingStart() {
     for (i = 0; i < 8; ++i) {
         addPage(&lruSet, &pages.at(i));
     }
-    addPage(&lruSet, &pages.at(6));
+
+    //Pages should be referenced randomly
+    std::cout << "MFU Paging\n";
+	for (i = 0; i < 20; ++i) {
+		int randomPage = rand() % (10);
+		addPage(&mfuSet, &pages.at(randomPage));
+	}
+
+
+    /*addPage(&lruSet, &pages.at(6));
     addPage(&lruSet, &pages.at(1));
     addPage(&lruSet, &pages.at(2));
-    addPage(&lruSet, &pages.at(3));
+    addPage(&lruSet, &pages.at(3));*/
 }
