@@ -11,18 +11,19 @@
 void addPage(SwappingAlgorithm * algorithm, Page * page) {
     std::cout << "Adding Page " << page->getName() << ".\n";
     Page * victim = algorithm->addPage(page);
-    algorithm->print();
     if (victim) {
-        std::cout << "Victim: " << victim->getName() << '\n';
+        std::cout << "Victim at index: " << victim->getName() << '\n';
     }
+    algorithm->print();
     std::cout << '\n';
 }
 
 void pagingStart() {
-    PageFrameSet physicalMemory(PHYS_NUM_FRAMES);
-    PageFrameSet disk(PAGE_NUM_FRAMES);
+    PageFrameSet physicalMemory(4);
+    PageFrameSet disk(10);
     FIFOSet fifoSet(physicalMemory);
     RandomPage randomSet(physicalMemory);
+    LRU lruSet(physicalMemory);
     std::vector<Page> pages;
     int i;
     for (i = 0; i < 10; ++i) {
@@ -37,5 +38,10 @@ void pagingStart() {
     std::cout << "Random Pick\n";
     for (i = 0; i < 8; ++i) {
         addPage(&randomSet, &pages.at(i));
+    }
+    
+    std::cout << "Least Recently Used\n";
+    for (i = 0; i < 8; ++i) {
+        addPage(&lruSet, &pages.at(i));
     }
 }
