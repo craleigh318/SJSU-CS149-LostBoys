@@ -53,12 +53,8 @@ void quick_sort_arrival_time(Student * a, int l, int r) {
     }
 }
 
-int push_student_queue(StudentQueue* queue, Student student, int currentTime) {
-    int turnaroundTime = 0;
+void push_student_queue(StudentQueue* queue, Student student) {
     if (queue->length < MAX_STUDENTS) {
-        int time = currentTime - student.arrivalTime;
-        setTurnAroundTime(time,&student);
-        turnaroundTime = student.turnAroundTime;
         Student * newStudent = malloc(sizeof(student));
         *newStudent = student;
         add_to_threaded_queue(&queue->tq, newStudent);
@@ -68,7 +64,6 @@ int push_student_queue(StudentQueue* queue, Student student, int currentTime) {
     {
         print_pq("ERROR: Could not push Student to Queue. Enlarge the queue.");
     }
-    return turnaroundTime;
 }
 
 
@@ -85,14 +80,17 @@ Student peek_student_queue(StudentQueue queue) {
 
 Student pop_student_queue(StudentQueue* queue)  {
 	Student ret_student = new_student(-1);
+	if(currTime < 120) {
 	if(queue->length > 0) {
         Student * retStudentPtr = remove_from_threaded_queue(&queue->tq);
         ret_student = *retStudentPtr;
 		queue->length--;
         free(retStudentPtr);
 	}
-	else
-		print_pq("ERROR: Could not pop a Student from queue. No more students in queue.");
+	//else
+		//print_pq("ERROR: Could not pop a Student from queue. No more students in queue.");
+
+	}
 	return ret_student;
 }
 
@@ -107,33 +105,38 @@ void sort_students_arrival(Student * queue) {
 	quick_sort_arrival_time(queue, 0, MAX_STUDENTS - 1);
 }
 
-void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sections* s3, pthread_t* studentThreads) {
+void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sections* s3, pthread_t* studentThreads, int time) {
 	// print_student_queue(*queue);
 	Student currStudent = pop_student_queue(queue);
+	if(time < 120 && currStudent.idNumber != -1) {
 
-	//Need to free this in student.c
-	ThreadParams* params = malloc(sizeof(Student) + (sizeof(Sections) * 3));
-	params->student = currStudent;
-	params->s1 = s1;
-	params->s2 = s2;
-	params->s3 = s3;
 
-	int processTime;
-	if(currStudent.type == gs)
-		processTime = rand() % 2 + 1; // 1 to 2
-	else if(currStudent.type == rs)
-		processTime = rand() % 3 + 2; // 2 to 4
-	else if(currStudent.type == ee)
-		processTime = rand() % 4 + 3; // 3 to 6
-	params->processTime = processTime;
-    
 
-	int thread = pthread_create(&studentThreads[threadCount++], NULL, process_student, params);
-	if (thread) {
-        char strTemp[64];
-        sprintf(strTemp, "ERROR: Could not create thread. Error code %i", thread);
-        print_pq(strTemp);
-		exit(0);
+		//Need to free this in student.c
+		ThreadParams* params = malloc(sizeof(Student) + (sizeof(Sections) * 3));
+		params->student = currStudent;
+		params->s1 = s1;
+		params->s2 = s2;
+		params->s3 = s3;
+		params->currTime = time;
+
+		int processTime;
+		if(currStudent.type == gs)
+			processTime = rand() % 2 + 1; // 1 to 2
+		else if(currStudent.type == rs)
+			processTime = rand() % 3 + 2; // 2 to 4
+		else if(currStudent.type == ee)
+			processTime = rand() % 4 + 3; // 3 to 6
+		params->processTime = processTime;
+
+
+		int thread = pthread_create(&studentThreads[threadCount++], NULL, process_student, params);
+		if (thread) {
+			char strTemp[64];
+			sprintf(strTemp, "ERROR: Could not create thread. Error code %i", thread);
+			print_pq(strTemp);
+			exit(0);
+		}
 	}
 
 }

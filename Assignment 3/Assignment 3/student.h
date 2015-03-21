@@ -25,7 +25,7 @@ typedef struct {
 
     pthread_t thread;
     
-    bool result;
+    int result;
     
     int turnAroundTime;
     
@@ -46,6 +46,10 @@ void student_to_string(Student student, char * destination);
  Process a student by attempting to add them into the
  */
 void* process_student(void* threadId);
+
+void setStudentResultTrue(Student * student);
+
+void setStudentResultFalse(Student * student);
 
 void print_student(Student student);
 

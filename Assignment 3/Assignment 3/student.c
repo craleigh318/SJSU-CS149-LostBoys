@@ -55,20 +55,53 @@ void* process_student(void* threadId)
     else if(student.sectionNum == 3)
         addingSection = params->s3;
     else if(student.sectionNum == 4) {
-        addingSection = params->s1;
+    	if(params->s1->seatsLeft > 0) {
+    		addingSection = params->s1;
+    	}
+    	else if(params->s2->seatsLeft > 0) {
+    		addingSection = params->s2;
+    	}
+    	else {
+    		addingSection = params->s3;
+    	}
+
     }
     else
     {
         addingSection = NULL;
     }
-    // add_student_to_section(addingSection,student);
     pthread_mutex_lock(&addingSection->lock);
-    student.result = add_student_to_section(addingSection, student);
+    int turnAroundTime = (params->currTime + params->processTime)-student.arrivalTime;
+    setTurnAroundTime(turnAroundTime, &student);
+    addTotal(turnAroundTime);
+    if(student.type == 0) {
+    	addTotalGS(turnAroundTime);
+    }
+    else if(student.type == 1) {
+    	addTotalRS(turnAroundTime);
+    }
+    else {
+    	addTotalEE(turnAroundTime);
+    }
+    setStudentResultTrue(&student);
+    if(!add_student_to_section(addingSection, student)){
+    	setStudentResultFalse(&student);
+    }
     print_student(student);
     sleep(params->processTime);
     pthread_mutex_unlock(&addingSection->lock);
     free(params);
     pthread_exit(NULL);
+}
+
+void setStudentResultFalse(Student * student)
+{
+    student->result = 0;
+}
+
+void setStudentResultTrue(Student * student)
+{
+    student->result = 1;
 }
 
 void setTurnAroundTime(int time,Student * student)
@@ -79,7 +112,7 @@ void setTurnAroundTime(int time,Student * student)
 void print_student(Student student)
 {
     char *tf;
-    if ( student.result == 0 ) // 0 meaning they are enrolled
+    if ( student.result != 0 ) // 0 meaning they are not enrolled
         tf = "true";
     else
         tf = "false";

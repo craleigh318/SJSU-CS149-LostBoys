@@ -37,7 +37,38 @@ void addTotal(int time)
     totalTurnAroundTime += time;
 }
 
+void addTotalGS(int time)
+{
+    totalGS += time;
+}
+
+void addTotalRS(int time)
+{
+	totalRS += time;
+}
+
+void addTotalEE(int time)
+{
+	totalEE += time;
+}
+
 int getTotal()
 {
     return totalTurnAroundTime;
 }
+
+int getTotalGS()
+{
+    return totalGS;
+}
+
+int getTotalRS()
+{
+    return totalRS;
+}
+
+int getTotalEE()
+{
+    return totalEE;
+}
+

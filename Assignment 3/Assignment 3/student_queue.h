@@ -42,6 +42,8 @@ typedef struct ThreadParams{
 	Sections* s3;
 
 	int processTime;
+
+	int currTime;
 } ThreadParams;
 
 /*
@@ -54,7 +56,7 @@ StudentQueue new_student_queue();
  
  Returns turnaround time.
  */
-int push_student_queue(StudentQueue* queue, Student student, int currentTime);
+void push_student_queue(StudentQueue* queue, Student student);
 
 /*
  Peeks at the first student from the front of the queue
@@ -77,6 +79,6 @@ void sort_students_arrival(Student * queue);
 
 void quick_sort_arrival_time(Student * a, int l, int r);
 
-void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sections* s3, pthread_t* studentThreads);
+void process_student_queue(StudentQueue* queue, Sections* s1, Sections* s2, Sections* s3, pthread_t* studentThreads, int time);
 
 #endif /* STUDENT_QUEUE_H_ */
