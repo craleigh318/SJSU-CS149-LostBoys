@@ -38,9 +38,10 @@ void pagingStart() {
     int executeTimes = 5;
     int pageReferences = 100;
     int delta = rand() % 10;
-    std::vector<Page> pages[executeTimes];
+    std::vector<std::vector<Page> > pages;
     // Create all the page references
     for(int j = 0; j < executeTimes; j++) {
+        std::vector<Page> currentVector;
 		for (i = 0; i < pageReferences; ++i) {
 			int randNum = rand() % 10;
 			if(randNum < 7) {
@@ -52,8 +53,9 @@ void pagingStart() {
 			if(delta < 0)
 				delta = 9;
 			delta %= NUM_PAGES;
-			pages[j].push_back(Page(delta));
+			currentVector.push_back(Page(delta));
 		}
+        pages.push_back(currentVector);
     }
     // Add pages to memory.
     std::cout << "First in, First Out\n";
