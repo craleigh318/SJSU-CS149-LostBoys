@@ -16,9 +16,9 @@
 #include "MFU.h"
 #include "LFU.h"
 
-void addPage(SwappingAlgorithm * algorithm, Page * page);
+bool addPage(SwappingAlgorithm * algorithm, Page * page);
 
-void addAllPages(SwappingAlgorithm * algorithm, std::vector<Page> * pageVector);
+int addAllPages(SwappingAlgorithm * algorithm, std::vector<Page> * pageVector);
 
 /*
  Starts the paging part of the assignment.
