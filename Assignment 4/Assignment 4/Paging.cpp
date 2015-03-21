@@ -64,7 +64,7 @@ void pagingStart() {
         pages.push_back(currentVector);
      }
     // Add pages to memory.
-    int numHits;
+    int numHits = 0;
     for (i = 0; i < executeTimes; ++i) {
     	std::cout << "First in, First Out. Run " << i + 1 << "\n";
         numHits += addAllPages(&fifoSet, &pages[i]);
