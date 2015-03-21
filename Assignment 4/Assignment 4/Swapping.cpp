@@ -88,6 +88,7 @@ void swappingStart() {
     const int queueSize = 150;
     int i;
     for (int j = 0; j < executeTimes; j++) {
+        std::cout << "Generating Processes Set : " << j << "\n";
     	for(i = 0; i < queueSize; i++){
 			Process * newProcess = new Process();
 			newProcess->print();
