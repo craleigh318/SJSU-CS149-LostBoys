@@ -75,6 +75,8 @@
 		A4DC41861AB1845100D35A0A /* FirstFitSwapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFitSwapping.h; sourceTree = "<group>"; };
 		A4E1BB5D1ABAA9D400D86351 /* LRU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LRU.cpp; sourceTree = "<group>"; };
 		A4E1BB5E1ABAA9D400D86351 /* LRU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRU.h; sourceTree = "<group>"; };
+		F83B4AA71ABE6645000D3E7A /* Swapping.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Swapping.txt; path = ../../../../Desktop/Swapping.txt; sourceTree = "<group>"; };
+		F83B4AA81ABE667B000D3E7A /* Paging.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Paging.txt; path = ../../../../Desktop/Paging.txt; sourceTree = "<group>"; };
 		F8A56AA71AB01F2C00BED1F9 /* bestfit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bestfit.cpp; sourceTree = "<group>"; };
 		F8A56AA81AB01F2C00BED1F9 /* bestfit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bestfit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +145,8 @@
 		A4DC41841AB179E100D35A0A /* Paging */ = {
 			isa = PBXGroup;
 			children = (
+				F83B4AA81ABE667B000D3E7A /* Paging.txt */,
+				F83B4AA71ABE6645000D3E7A /* Swapping.txt */,
 				A45FEB981ABB8A5C00C07E34 /* LFU.cpp */,
 				A45FEB991ABB8A5C00C07E34 /* LFU.h */,
 				A45FEB9A1ABB8A5C00C07E34 /* MFU.cpp */,
