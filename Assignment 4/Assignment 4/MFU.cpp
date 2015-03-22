@@ -16,20 +16,10 @@ SwappingAlgorithm(underlyingContainer)
 }
 
 
-/*void MFU::clearMain() {
-	PageFrameSet * frames = getUnderlyingContainer();
-	for(int i = 0; i < frames->getSize(); i++) {
-		frames->setPage(i, NULL);
-	}
-}*/
-
 Page * MFU::addPage(Page * page) {
     PageFrameSet * frames = getUnderlyingContainer();
     int framesSize = frames->getSize();
     int repeatIndex = 0;
-    //page->increaseNumTimesUsed();
-
-    //std::cout << "Page frequency: " << page->getNumTimesUsed() << "\n";
 
     if (!canAddPage(page)) {
     	int k;
@@ -41,7 +31,7 @@ Page * MFU::addPage(Page * page) {
     	}
 		Page * temp = frames->getPage(repeatIndex);
 		temp->increaseNumTimesUsed();
-		std::cout << "Page frequency: " << temp->getNumTimesUsed() << "\n";
+		//std::cout << "Page frequency: " << temp->getNumTimesUsed() << "\n";
 		return NULL;
     }
 
@@ -53,8 +43,7 @@ Page * MFU::addPage(Page * page) {
     		frames->setPage(j, page);
     		currentPage = frames->getPage(j);
     		currentPage->increaseNumTimesUsed();
-    		std::cout << "Page frequency: " << currentPage->getNumTimesUsed() << "\n";
-    		//page->increaseNumTimesUsed();
+    		//std::cout << "Page frequency: " << currentPage->getNumTimesUsed() << "\n";
     		return NULL;
     	}
     	else {
@@ -66,8 +55,7 @@ Page * MFU::addPage(Page * page) {
     Page * victim = frames->getPage(mfuPage);
     frames->setPage(mfuPage, page);
     Page * newCcurrentPage = frames->getPage(mfuPage);
-    //newCcurrentPage = frames->getPage(mfuPage);
     newCcurrentPage->increaseNumTimesUsed();
-    std::cout << "Page frequency: " << newCcurrentPage->getNumTimesUsed() << "\n";
+    //std::cout << "Page frequency: " << newCcurrentPage->getNumTimesUsed() << "\n";
     return victim;
 }

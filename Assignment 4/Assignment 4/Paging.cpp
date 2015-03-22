@@ -28,7 +28,6 @@ int addAllPages(SwappingAlgorithm * algorithm, std::vector<Page *> * pageVector)
         bool hit = addPage(algorithm, pageVector->at(i));
         numHits += hit ? 1 : 0;
     }
-    //algorithm->
     return numHits;
 }
 

@@ -20,8 +20,6 @@ public:
     MFU(PageFrameSet underlyingContainer);
 
     Page * addPage(Page * page);
-
-    //void clearMain();
 };
 
 
