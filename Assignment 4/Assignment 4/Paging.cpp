@@ -82,7 +82,7 @@ void pagingStart() {
         numHits += addAllPages(&randomSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
     }
-    std::cout << "Average Hit Ratio: " << numHits / executeTimes << "\n";
+    std::cout << "Average Hit Ratio: " << numHits / executeTimes << "%\n";
 
     numHits = 0;
     for (i = 0; i < executeTimes; ++i) {
@@ -90,7 +90,7 @@ void pagingStart() {
         numHits += addAllPages(&lruSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
     }
-    std::cout << "Average Hit Ratio: " << numHits / executeTimes << "\n";
+    std::cout << "Average Hit Ratio: " << numHits / executeTimes << "%\n";
 
     numHits = 0;
    	for (i = 0; i < executeTimes; ++i) {
@@ -98,7 +98,7 @@ void pagingStart() {
         numHits += addAllPages(&mfuSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
 	}
-   	std::cout << "Average Hit Ratio: " << numHits / executeTimes << "\n";
+   	std::cout << "Average Hit Ratio: " << numHits / executeTimes << "%\n";
 
 	numHits = 0;
 	for (i = 0; i < executeTimes; ++i) {
@@ -106,5 +106,5 @@ void pagingStart() {
         numHits += addAllPages(&lfuSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
 	}
-	std::cout << "Average Hit Ratio: " << numHits / executeTimes << "\n";
+	std::cout << "Average Hit Ratio: " << numHits / executeTimes << "%\n";
 }
