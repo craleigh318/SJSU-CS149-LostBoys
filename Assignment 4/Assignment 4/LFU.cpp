@@ -31,7 +31,7 @@ Page * LFU::addPage(Page * page) {
     	}
 		Page * temp = frames->getPage(repeatIndex);
 		temp->increaseNumTimesUsed();
-		std::cout << "Page frequency: " << temp->getNumTimesUsed() << "\n";
+		//std::cout << "Page frequency: " << temp->getNumTimesUsed() << "\n";
 		return NULL;
     }
 
@@ -43,7 +43,7 @@ Page * LFU::addPage(Page * page) {
     		frames->setPage(j, page);
     		currentPage = frames->getPage(j);
     		currentPage->increaseNumTimesUsed();
-    		std::cout << "Page frequency: " << currentPage->getNumTimesUsed() << "\n";
+    		//std::cout << "Page frequency: " << currentPage->getNumTimesUsed() << "\n";
     		return NULL;
     	}
     	else {
@@ -56,6 +56,6 @@ Page * LFU::addPage(Page * page) {
     frames->setPage(lfuPage, page);
     Page * newCcurrentPage = frames->getPage(lfuPage);
     newCcurrentPage->increaseNumTimesUsed();
-    std::cout << "Page frequency: " << newCcurrentPage->getNumTimesUsed() << "\n";
+    //std::cout << "Page frequency: " << newCcurrentPage->getNumTimesUsed() << "\n";
     return victim;
 }
