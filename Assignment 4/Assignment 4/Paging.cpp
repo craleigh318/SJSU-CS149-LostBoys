@@ -84,7 +84,7 @@ void pagingStart() {
 
     int numHits = 0;
     for (i = 0; i < executeTimes; ++i) {
-    	std::cout << "First in, First Out. Run " << i + 1 << "---------------------------------------\n";
+    	std::cout << "--------------------First in, First Out. Run " << i + 1 << "--------------------\n";
         numHits += addAllPages(&fifoSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
         clearAllPages(&disk.at(i));
@@ -95,7 +95,7 @@ void pagingStart() {
 
     numHits = 0;
     for (i = 0; i < executeTimes; ++i) {
-    	std::cout << "Random Pick. Run " << i + 1 << "---------------------------------------\n";
+    	std::cout << "--------------------Random Pick. Run " << i + 1 << "--------------------\n";
         numHits += addAllPages(&randomSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
         clearAllPages(&disk.at(i));
@@ -106,7 +106,7 @@ void pagingStart() {
 
     numHits = 0;
     for (i = 0; i < executeTimes; ++i) {
-    	std::cout << "LRU Paging. Run " << i + 1 << "---------------------------------------\n";
+    	std::cout << "--------------------LRU Paging. Run " << i + 1 << "--------------------\n";
         numHits += addAllPages(&lruSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
         clearAllPages(&disk.at(i));
@@ -117,7 +117,7 @@ void pagingStart() {
 
     numHits = 0;
    	for (i = 0; i < executeTimes; ++i) {
-   		std::cout << "MFU Paging. Run " << i + 1 << "---------------------------------------\n";
+   		std::cout << "--------------------MFU Paging. Run " << i + 1 << "--------------------\n";
         numHits += addAllPages(&mfuSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
         clearAllPages(&disk.at(i));
@@ -128,7 +128,7 @@ void pagingStart() {
 
 	numHits = 0;
 	for (i = 0; i < executeTimes; ++i) {
-		std::cout << "LFU Paging. Run " << i + 1 << "---------------------------------------\n";
+		std::cout << "--------------------LFU Paging. Run " << i + 1 << "--------------------\n";
         numHits += addAllPages(&lfuSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
         clearAllPages(&disk.at(i));

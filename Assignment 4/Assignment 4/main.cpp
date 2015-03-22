@@ -13,7 +13,9 @@
 int main(int argc, const char * argv[]) {
     // insert code here...
     srand((unsigned int)time(NULL));
-    // swappingStart();
+    std::cout << "----------------------SWAPPING START--------------------------" << "\n";
+    swappingStart();
+    std::cout <<"\n---------------------------PAGING START----------------------------" << "\n";
     pagingStart();
     return 0;
 }
