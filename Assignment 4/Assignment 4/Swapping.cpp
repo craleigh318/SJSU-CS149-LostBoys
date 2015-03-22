@@ -25,7 +25,7 @@ int swapWithAlgorithm(std::queue<Process *> processQueue,
         	processAdded = algorithm(&memory, nextProcess);
 			if (processAdded) {
 				nextProcess->setTimeAdded(currentTime);
-				std::cout << "Added process " << nextProcess->getName() << "\n";
+								std::cout << "Added process " << nextProcess->getName() << " (" << nextProcess->getSize() << "mb," << nextProcess->getDuration() << "s) \n";
 				processQueue.pop();
 				printLine = true;
                 memory.incrementProcessAdded(1);
