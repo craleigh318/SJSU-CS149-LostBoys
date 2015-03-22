@@ -21,6 +21,13 @@ void SwappingAlgorithm::print() {
     underlyingContainer.print();
 }
 
+void SwappingAlgorithm::clearMain() {
+	PageFrameSet * frames = getUnderlyingContainer();
+	for(int i = 0; i < frames->getSize(); i++) {
+		frames->setPage(i, NULL);
+	}
+}
+
 PageFrameSet * SwappingAlgorithm::getUnderlyingContainer() {
     return &underlyingContainer;
 }

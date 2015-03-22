@@ -20,6 +20,11 @@ bool addPage(SwappingAlgorithm * algorithm, Page * page);
 
 int addAllPages(SwappingAlgorithm * algorithm, std::vector<Page *> * pageVector);
 
+void clearAllPages(std::vector<Page *> * pageVector);
+
+void clearPage(Page * page);
+
+
 /*
  Starts the paging part of the assignment.
  */

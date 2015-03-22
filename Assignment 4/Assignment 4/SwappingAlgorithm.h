@@ -33,6 +33,9 @@ public:
      */
     void print();
     
+
+    void clearMain();
+
 protected:
     /*
      Constructs a new algorithm that uses a copy of the specified page frame set.

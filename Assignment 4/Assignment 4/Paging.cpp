@@ -28,8 +28,22 @@ int addAllPages(SwappingAlgorithm * algorithm, std::vector<Page *> * pageVector)
         bool hit = addPage(algorithm, pageVector->at(i));
         numHits += hit ? 1 : 0;
     }
+    //algorithm->
     return numHits;
 }
+
+void clearAllPages(std::vector<Page *> * pageVector) {
+    size_t vectorSize = pageVector->size();
+    for (int i = 0; i < vectorSize; ++i) {
+        clearPage(pageVector->at(i));
+    }
+}
+
+void clearPage(Page * page) {
+	page->resetNumTimesUsed();
+}
+
+
 
 void pagingStart() {
     PageFrameSet physicalMemory(PHYS_NUM_FRAMES);
@@ -68,43 +82,59 @@ void pagingStart() {
         disk.push_back(currentVector);
      }
     // Add pages to memory.
+
     int numHits = 0;
     for (i = 0; i < executeTimes; ++i) {
-    	std::cout << "First in, First Out. Run " << i + 1 << "\n";
+    	std::cout << "First in, First Out. Run " << i + 1 << "---------------------------------------\n";
         numHits += addAllPages(&fifoSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
-    }
-    std::cout << "Average Hit Ratio: " << numHits / executeTimes << "\n";
-
-    numHits = 0;
-    for (i = 0; i < executeTimes; ++i) {
-    	std::cout << "Random Pick. Run " << i + 1 << "\n";
-        numHits += addAllPages(&randomSet, &disk.at(i));
-        numHits = (numHits < 0) ? 0 : numHits;
+        clearAllPages(&disk.at(i));
+		SwappingAlgorithm * algorithm = &fifoSet;
+		algorithm->clearMain();
     }
     std::cout << "Average Hit Ratio: " << numHits / executeTimes << "%\n";
 
     numHits = 0;
     for (i = 0; i < executeTimes; ++i) {
-    	std::cout << "LRU Paging. Run " << i + 1 << "\n";
+    	std::cout << "Random Pick. Run " << i + 1 << "---------------------------------------\n";
+        numHits += addAllPages(&randomSet, &disk.at(i));
+        numHits = (numHits < 0) ? 0 : numHits;
+        clearAllPages(&disk.at(i));
+		SwappingAlgorithm * algorithm = &randomSet;
+		algorithm->clearMain();
+    }
+    std::cout << "Average Hit Ratio: " << numHits / executeTimes << "%\n";
+
+    numHits = 0;
+    for (i = 0; i < executeTimes; ++i) {
+    	std::cout << "LRU Paging. Run " << i + 1 << "---------------------------------------\n";
         numHits += addAllPages(&lruSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
+        clearAllPages(&disk.at(i));
+		SwappingAlgorithm * algorithm = &lruSet;
+		algorithm->clearMain();
     }
     std::cout << "Average Hit Ratio: " << numHits / executeTimes << "%\n";
 
     numHits = 0;
    	for (i = 0; i < executeTimes; ++i) {
-   		std::cout << "MFU Paging. Run " << i + 1 << "\n";
+   		std::cout << "MFU Paging. Run " << i + 1 << "---------------------------------------\n";
         numHits += addAllPages(&mfuSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
+        clearAllPages(&disk.at(i));
+        SwappingAlgorithm * algorithm = &mfuSet;
+        algorithm->clearMain();
 	}
    	std::cout << "Average Hit Ratio: " << numHits / executeTimes << "%\n";
 
 	numHits = 0;
 	for (i = 0; i < executeTimes; ++i) {
-		std::cout << "LFU Paging. Run " << i + 1 << "\n";
+		std::cout << "LFU Paging. Run " << i + 1 << "---------------------------------------\n";
         numHits += addAllPages(&lfuSet, &disk.at(i));
         numHits = (numHits < 0) ? 0 : numHits;
+        clearAllPages(&disk.at(i));
+        SwappingAlgorithm * algorithm = &lfuSet;
+        algorithm->clearMain();
 	}
 	std::cout << "Average Hit Ratio: " << numHits / executeTimes << "%\n";
 }
