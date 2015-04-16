@@ -10,5 +10,5 @@
 #define Assignment_6_SystemHeaders_h
 #include <stdio.h>
 #include <unistd.h>
-int randomSleepTime(); // return a random sleep time of 0,1,2 seconds
+void randomSleepTime(); // return a random sleep time of 0,1,2 seconds
 #endif
