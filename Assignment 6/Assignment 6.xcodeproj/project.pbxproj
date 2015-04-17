@@ -26,6 +26,7 @@
 		A42BEBF61ADF3C08000AE4E2 /* Assignment 6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 6"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42BEBF91ADF3C08000AE4E2 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		A42BEC001ADF4D13000AE4E2 /* SystemHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHeaders.h; sourceTree = "<group>"; };
+		A4E8A0931AE0936700A165FC /* GlobalVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalVariables.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +61,7 @@
 			children = (
 				A42BEBF91ADF3C08000AE4E2 /* main.c */,
 				A42BEC001ADF4D13000AE4E2 /* SystemHeaders.h */,
+				A4E8A0931AE0936700A165FC /* GlobalVariables.h */,
 			);
 			path = "Assignment 6";
 			sourceTree = "<group>";

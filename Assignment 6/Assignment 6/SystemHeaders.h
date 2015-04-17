@@ -10,6 +10,4 @@
 #define Assignment_6_SystemHeaders_h
 #include <stdio.h>
 #include <unistd.h>
-#define terminateProcessTime; 30 // terminate process after 30 seconds 
-void randomSleepTime(); // return a random sleep time of 0,1,2 seconds
 #endif
