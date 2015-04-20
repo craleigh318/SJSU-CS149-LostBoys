@@ -7,13 +7,21 @@
 //
 
 #include "SystemHeaders.h"
+#include "GlobalVariables.h"
 
 void sendMessages(int * pipe, int childID) {
     /*
      pipe[0] is for reading.
      pipe[1] is for writing.
      */
-    printf("This is Child %d.\n", childID);
+    char stringWrite[128];
+    char stringRead[128];
+    sprintf(stringWrite, "This is Child %d.\n", childID);
+    close(pipe[0]);
+    write(pipe[1], stringWrite, strlen(stringWrite + 1));
+    close(pipe[1]);
+    read(pipe[0], stringRead, sizeof(stringRead));
+    printf("%s\n", stringRead);
 }
 
 int main(int argc, const char * argv[]) {
@@ -23,11 +31,11 @@ int main(int argc, const char * argv[]) {
      Create 5 pipes.
      Each pipe has 2 integers.
      */
-    int pipes[2][5];
+    int pipes[NUM_CHILDREN][2];
     pid_t parentID = getpid();
-    const int NUM_CHILDREN = 5;
     int i = 0;
     for (i = 0; i < NUM_CHILDREN; ++i) {
+        pipe(pipes[i]);
         fork();
         if (parentID != getpid()) {
             sendMessages(pipes[i], i + 1);

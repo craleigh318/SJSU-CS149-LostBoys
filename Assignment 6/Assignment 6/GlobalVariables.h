@@ -9,6 +9,7 @@
 #ifndef Assignment_6_GlobalVariables_h
 #define Assignment_6_GlobalVariables_h
 #define terminateProcessTime 30    // terminate process after 30 seconds
+#define NUM_CHILDREN 5
 
 void randomSleepTime(); // return a random sleep time of 0,1,2 seconds
 
