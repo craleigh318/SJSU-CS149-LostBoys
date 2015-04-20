@@ -14,14 +14,15 @@ void sendMessages(int * pipe, int childID) {
      pipe[0] is for reading.
      pipe[1] is for writing.
      */
-    char stringWrite[128];
+    /*char stringWrite[128];
     char stringRead[128];
     sprintf(stringWrite, "This is Child %d.\n", childID);
     close(pipe[0]);
     write(pipe[1], stringWrite, strlen(stringWrite + 1));
     close(pipe[1]);
     read(pipe[0], stringRead, sizeof(stringRead));
-    printf("%s\n", stringRead);
+    printf("%s\n", stringRead);*/
+    printf("This is Child %d.\n", childID);
 }
 
 int main(int argc, const char * argv[]) {
