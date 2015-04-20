@@ -21,5 +21,28 @@ int main(int argc, const char * argv[]) {
     } else {
         printf("Pipe 0 succeeded");
     }
+    pid_t parentID = getpid();
+    if (parentID != fork()) {
+        /*
+         Child 1.
+         */
+        
+    } else if (parentID != fork()) {
+        /*
+         Child 2.
+         */
+    } else if (parentID != fork()) {
+        /*
+         Child 3.
+         */
+    } else if (parentID != fork()) {
+        /*
+         Child 4.
+         */
+    } else if (parentID != fork()) {
+        /*
+         Child 5.
+         */
+    }
     return 0;
 }
