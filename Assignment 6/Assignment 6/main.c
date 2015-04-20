@@ -27,6 +27,7 @@ void sendMessages(int * pipe, int childID) {
 
 int main(int argc, const char * argv[]) {
     // insert code here...
+    time(&initialTime);
     printf("Hello, World!\n");
     /*
      Create 5 pipes.

@@ -8,8 +8,13 @@
 
 #ifndef Assignment_6_GlobalVariables_h
 #define Assignment_6_GlobalVariables_h
+#include "SystemHeaders.h"
 #define terminateProcessTime 30    // terminate process after 30 seconds
 #define NUM_CHILDREN 5
+
+static time_t initialTime;
+
+time_t getCurrentTime();
 
 void randomSleepTime(); // return a random sleep time of 0,1,2 seconds
 

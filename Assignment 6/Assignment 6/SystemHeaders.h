@@ -10,5 +10,6 @@
 #define Assignment_6_SystemHeaders_h
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 #endif
