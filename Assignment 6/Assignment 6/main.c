@@ -8,13 +8,12 @@
 
 #include "SystemHeaders.h"
 
-void sendMessages(int * pipe) {
+void sendMessages(int * pipe, int childID) {
     /*
      pipe[0] is for reading.
      pipe[1] is for writing.
      */
-    pid_t childID = getpid();
-    printf("This is pipe %d.\n", childID);
+    printf("This is Child %d.\n", childID);
 }
 
 int main(int argc, const char * argv[]) {
@@ -31,7 +30,7 @@ int main(int argc, const char * argv[]) {
     for (i = 0; i < NUM_CHILDREN; ++i) {
         fork();
         if (parentID != getpid()) {
-            sendMessages(pipes[i]);
+            sendMessages(pipes[i], i + 1);
             break;
         }
     }
