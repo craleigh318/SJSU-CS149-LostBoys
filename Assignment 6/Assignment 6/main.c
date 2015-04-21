@@ -22,7 +22,22 @@ void sendMessages(int * pipe, int childID) {
     close(pipe[1]);
     read(pipe[0], stringRead, sizeof(stringRead));
     printf("%s\n", stringRead);*/
-    printf("This is Child %d.\n", childID);
+    //printf("This is Child %d.\n", childID);
+
+	char passString[100];
+	if(close(pipe[READ]) == -1) {
+		perror("ERROR: Child Closing Read");
+		exit(1);
+	}
+	sprintf(passString, "This is child %i\n", childID);
+	write(pipe[WRITE], passString, strlen(passString + 1));
+
+	if(close(pipe[WRITE]) == -1) {
+		perror("ERROR: Child Closing Write");
+		exit(1);
+	}
+	//Not sure if this exit call is needed
+	exit(0);
 }
 
 int main(int argc, const char * argv[]) {
@@ -35,14 +50,69 @@ int main(int argc, const char * argv[]) {
      */
     int pipes[NUM_CHILDREN][2];
     pid_t parentID = getpid();
+    pid_t childID[NUM_CHILDREN];
     int i = 0;
     for (i = 0; i < NUM_CHILDREN; ++i) {
-        pipe(pipes[i]);
-        fork();
+    	//Open pipe
+    	if(pipe(pipes[i]) == -1) {
+    		perror("ERROR: Pipe Creation");
+    		exit(1);
+    	}
+    	//Create new child
+    	fflush(0);
+    	if((childID[i] = fork()) == -1) {
+    		perror("ERROR: Fork");
+    		exit(1);
+    	}
+    	//Child process
         if (parentID != getpid()) {
             sendMessages(pipes[i], i + 1);
-            break;
         }
+    }
+    //Parent process
+    if(parentID == getpid()) {
+    	char readBuffer[100];
+		int activity, nbytes, max_fd;
+    	fd_set readfds;
+		FD_ZERO(&readfds);
+		for(i = 0; i < NUM_CHILDREN; i++) {
+	    	if(close(pipes[i][WRITE]) == -1){
+	    		perror("ERROR: Parent Closing Write");
+	    		exit(1);
+	    	}
+
+			FD_SET(pipes[i][READ], &readfds);
+
+			if(max_fd < pipes[i][READ])
+				max_fd = pipes[i][READ];
+		}
+
+		//Temporary while condition, change when we get timing solved
+		//Currently exiting when all children ports are read from
+		int count = 0;
+    	while(count < NUM_CHILDREN) {
+    		//Timeout struct
+    		struct timeval tv;
+    		tv.tv_sec = 4;
+    		tv.tv_usec = 0;
+    		activity = select(max_fd + 1, &readfds, NULL, NULL, &tv);
+    		if(activity) {
+				if(FD_ISSET(NUM_CHILDREN, &readfds)){
+					//Is there a way for select to give us which File Descriptor that woke it?
+					for(i = 0; i < NUM_CHILDREN; i++) {
+						nbytes = read(pipes[i][READ], readBuffer, sizeof(readBuffer));
+						if(nbytes > 0) {
+							printf("Received: %s\n", readBuffer);
+							count++;
+						}
+					}
+				}
+    		}
+    		else if(activity == 0){
+    			printf("Timed out\n");
+    			count++;
+    		}
+    	}
     }
     return 0;
 }

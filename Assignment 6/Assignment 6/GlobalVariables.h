@@ -11,6 +11,8 @@
 #include "SystemHeaders.h"
 #define terminateProcessTime 30    // terminate process after 30 seconds
 #define NUM_CHILDREN 5
+#define READ 0
+#define WRITE 1
 
 static time_t initialTime;
 
