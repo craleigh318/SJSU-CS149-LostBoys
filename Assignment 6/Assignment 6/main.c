@@ -10,6 +10,7 @@
 #include "GlobalVariables.h"
 
 double startTime;
+bool finished;
 
 //void writeToFile(char* message) {
 //    FILE *fp;
@@ -17,17 +18,18 @@ double startTime;
 //	fprintf(fp, message);
 //}
 
-struct timeval getTimeInMilli() {
+double getTimeInMilli() {
 	struct timeval  tv;
+	double retTimeInMilli;
 	gettimeofday(&tv, NULL);
-	return tv;
+	retTimeInMilli = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
+	return retTimeInMilli;
 }
 
 void createTimestamp(char *buf) {
 	char retString[10];
 	double curTime;
-	struct timeval tv = getTimeInMilli();
-    curTime = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
+	curTime = getTimeInMilli();
     int difference = curTime - startTime;
     int second = (int) floor((double) (difference / 1000));
     sprintf(retString, "%i:%02i.%03i", second / 60, second % 60, difference);
@@ -35,28 +37,18 @@ void createTimestamp(char *buf) {
 }
 
 void sendMessages(int * pipe, int childID) {
-    /*
-     pipe[0] is for reading.
-     pipe[1] is for writing.
-     */
-    /*char stringWrite[128];
-    char stringRead[128];
-    sprintf(stringWrite, "This is Child %d.\n", childID);
-    close(pipe[0]);
-    write(pipe[1], stringWrite, strlen(stringWrite + 1));
-    close(pipe[1]);
-    read(pipe[0], stringRead, sizeof(stringRead));
-    printf("%s\n", stringRead);*/
-    //printf("This is Child %d.\n", childID);
-
 	char passString[100];
+	int messageCount = 0;
 	if(close(pipe[READ]) == -1) {
 		perror("ERROR: Child Closing Read");
 		exit(1);
 	}
-    createTimestamp(passString);
-	sprintf(passString, "%s Child %i\n", passString, childID);
-	write(pipe[WRITE], passString, strlen(passString) + 1);
+	while(!finished) {
+		randomSleepTime();
+		createTimestamp(passString);
+		sprintf(passString, "%s: Child %i message %i\n", passString, childID, ++messageCount);
+		write(pipe[WRITE], passString, strlen(passString) + 1);
+	}
 
 	if(close(pipe[WRITE]) == -1) {
 		perror("ERROR: Child Closing Write");
@@ -78,6 +70,7 @@ int main(int argc, const char * argv[]) {
      Create 5 pipes.
      Each pipe has 2 integers.
      */
+    finished = false;
     int pipes[NUM_CHILDREN][2];
     pid_t parentID = getpid();
     pid_t childID[NUM_CHILDREN];
@@ -120,29 +113,35 @@ int main(int argc, const char * argv[]) {
 		//Temporary while condition, change when we get timing solved
 		//Currently exiting when all children ports are read from
 		int count = 0;
-    	while(count < NUM_CHILDREN) {
+    	while(!finished) {
     		//Timeout struct
     		struct timeval tv;
     		tv.tv_sec = 4;
     		tv.tv_usec = 0;
+
     		activity = select(max_fd + 1, &readfds, NULL, NULL, &tv);
-    		if(activity) {
-				if(FD_ISSET(NUM_CHILDREN, &readfds)) {
-					//Is there a way for select to give us which File Descriptor that woke it?
-					for(i = 0; i < NUM_CHILDREN; i++) {
-						nbytes = read(pipes[i][READ], readBuffer, sizeof(readBuffer));
-                        randomSleepTime();
-						if(nbytes > 0) {
-							printf(readBuffer);
-							//writeToFile(readBuffer);
-							count++;
-						}
+    		if(activity == 0) {
+    			printf("Timed out\n");
+    			count++;
+    		}
+    		else if(activity < 0) {
+    			printf("Error\n");
+    			exit(1);
+    		}
+    		else {
+				//Is there a way for select to give us which File Descriptor that woke it?
+				for(i = 0; i < NUM_CHILDREN; i++) {
+					nbytes = read(pipes[i][READ], readBuffer, sizeof(readBuffer));
+					if(nbytes > 0) {
+						printf(readBuffer);
+						//writeToFile(readBuffer);
+						count++;
 					}
 				}
     		}
-    		else if(activity == 0) {
-    			printf("Timed out\n");
-    			count++;
+    		//1000 converts millisecond to seconds
+    		if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
+    			finished = true;
     		}
     	}
     }

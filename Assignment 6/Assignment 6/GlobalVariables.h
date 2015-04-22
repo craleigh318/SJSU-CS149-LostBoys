@@ -9,10 +9,12 @@
 #ifndef Assignment_6_GlobalVariables_h
 #define Assignment_6_GlobalVariables_h
 #include "SystemHeaders.h"
-#define terminateProcessTime 30    // terminate process after 30 seconds
+#define terminateProcessTime 5    // terminate process after 30 seconds
 #define NUM_CHILDREN 5
 #define READ 0
 #define WRITE 1
+
+typedef enum { false, true } bool;
 
 static time_t initialTime;
 
