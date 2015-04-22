@@ -55,7 +55,7 @@ void sendMessages(int * pipe, int childID) {
 		exit(1);
 	}
     createTimestamp(passString);
-	sprintf(passString, "%s This is child %i\n", passString, childID);
+	sprintf(passString, "%s Child %i\n", passString, childID);
 	write(pipe[WRITE], passString, strlen(passString) + 1);
 
 	if(close(pipe[WRITE]) == -1) {
@@ -133,7 +133,7 @@ int main(int argc, const char * argv[]) {
 						nbytes = read(pipes[i][READ], readBuffer, sizeof(readBuffer));
                         randomSleepTime();
 						if(nbytes > 0) {
-							printf("Received: %s", readBuffer);
+							printf(readBuffer);
 							//writeToFile(readBuffer);
 							count++;
 						}
