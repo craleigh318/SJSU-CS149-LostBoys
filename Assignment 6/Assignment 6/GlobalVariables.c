@@ -14,3 +14,9 @@ time_t getCurrentTime() {
     currentTime -= initialTime;
     return currentTime;
 }
+
+void randomSleepTime()
+{
+    int sleepTime = rand() * 3; // randomly sleep for 0,1,2 seconds
+    sleep(sleepTime);
+}
