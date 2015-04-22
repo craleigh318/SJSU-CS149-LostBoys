@@ -23,7 +23,7 @@ struct timeval getTimeInMilli() {
 	return tv;
 }
 
-char* createTimestamp() {
+void createTimestamp(char *buf) {
 	char retString[10];
 	double curTime;
 	struct timeval tv = getTimeInMilli();
@@ -31,7 +31,7 @@ char* createTimestamp() {
     int difference = curTime - startTime;
     int second = (int) floor((double) (difference / 1000));
     sprintf(retString, "%i:%02i.%03i", second / 60, second % 60, difference);
-    return retString;
+    strcpy(buf,retString);
 }
 
 void sendMessages(int * pipe, int childID) {
@@ -54,7 +54,8 @@ void sendMessages(int * pipe, int childID) {
 		perror("ERROR: Child Closing Read");
 		exit(1);
 	}
-	sprintf(passString, "%s This is child %i\n", createTimestamp(), childID);
+    createTimestamp(passString);
+	sprintf(passString, "%s This is child %i\n", passString, childID);
 	write(pipe[WRITE], passString, strlen(passString) + 1);
 
 	if(close(pipe[WRITE]) == -1) {
@@ -66,7 +67,6 @@ void sendMessages(int * pipe, int childID) {
 }
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
     time(&initialTime);
     struct timeval  tv;
     gettimeofday(&tv, NULL);
@@ -131,6 +131,7 @@ int main(int argc, const char * argv[]) {
 					//Is there a way for select to give us which File Descriptor that woke it?
 					for(i = 0; i < NUM_CHILDREN; i++) {
 						nbytes = read(pipes[i][READ], readBuffer, sizeof(readBuffer));
+                        randomSleepTime();
 						if(nbytes > 0) {
 							printf("Received: %s", readBuffer);
 							//writeToFile(readBuffer);
