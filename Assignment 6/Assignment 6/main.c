@@ -9,6 +9,31 @@
 #include "SystemHeaders.h"
 #include "GlobalVariables.h"
 
+double startTime;
+
+//void writeToFile(char* message) {
+//    FILE *fp;
+//    fp = fopen("output.txt", "a+");
+//	fprintf(fp, message);
+//}
+
+struct timeval getTimeInMilli() {
+	struct timeval  tv;
+	gettimeofday(&tv, NULL);
+	return tv;
+}
+
+char* createTimestamp() {
+	char retString[10];
+	double curTime;
+	struct timeval tv = getTimeInMilli();
+    curTime = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
+    int difference = curTime - startTime;
+    int second = (int) floor((double) (difference / 1000));
+    sprintf(retString, "%i:%02i.%03i", second / 60, second % 60, difference);
+    return retString;
+}
+
 void sendMessages(int * pipe, int childID) {
     /*
      pipe[0] is for reading.
@@ -29,8 +54,8 @@ void sendMessages(int * pipe, int childID) {
 		perror("ERROR: Child Closing Read");
 		exit(1);
 	}
-	sprintf(passString, "This is child %i\n", childID);
-	write(pipe[WRITE], passString, strlen(passString + 1));
+	sprintf(passString, "%s This is child %i\n", createTimestamp(), childID);
+	write(pipe[WRITE], passString, strlen(passString) + 1);
 
 	if(close(pipe[WRITE]) == -1) {
 		perror("ERROR: Child Closing Write");
@@ -43,7 +68,12 @@ void sendMessages(int * pipe, int childID) {
 int main(int argc, const char * argv[]) {
     // insert code here...
     time(&initialTime);
+    struct timeval  tv;
+    gettimeofday(&tv, NULL);
+    double time_in_mill = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000 ;
+    startTime = time_in_mill;
     printf("Hello, World!\n");
+
     /*
      Create 5 pipes.
      Each pipe has 2 integers.
@@ -51,6 +81,7 @@ int main(int argc, const char * argv[]) {
     int pipes[NUM_CHILDREN][2];
     pid_t parentID = getpid();
     pid_t childID[NUM_CHILDREN];
+
     int i = 0;
     for (i = 0; i < NUM_CHILDREN; ++i) {
     	//Open pipe
@@ -80,7 +111,6 @@ int main(int argc, const char * argv[]) {
 	    		perror("ERROR: Parent Closing Write");
 	    		exit(1);
 	    	}
-
 			FD_SET(pipes[i][READ], &readfds);
 
 			if(max_fd < pipes[i][READ])
@@ -97,18 +127,19 @@ int main(int argc, const char * argv[]) {
     		tv.tv_usec = 0;
     		activity = select(max_fd + 1, &readfds, NULL, NULL, &tv);
     		if(activity) {
-				if(FD_ISSET(NUM_CHILDREN, &readfds)){
+				if(FD_ISSET(NUM_CHILDREN, &readfds)) {
 					//Is there a way for select to give us which File Descriptor that woke it?
 					for(i = 0; i < NUM_CHILDREN; i++) {
 						nbytes = read(pipes[i][READ], readBuffer, sizeof(readBuffer));
 						if(nbytes > 0) {
-							printf("Received: %s\n", readBuffer);
+							printf("Received: %s", readBuffer);
+							//writeToFile(readBuffer);
 							count++;
 						}
 					}
 				}
     		}
-    		else if(activity == 0){
+    		else if(activity == 0) {
     			printf("Timed out\n");
     			count++;
     		}
