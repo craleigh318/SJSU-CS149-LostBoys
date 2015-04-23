@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A42BEBFA1ADF3C08000AE4E2 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = A42BEBF91ADF3C08000AE4E2 /* main.c */; };
+		A43A8C681AE87737000DB807 /* Child.c in Sources */ = {isa = PBXBuildFile; fileRef = A43A8C661AE87737000DB807 /* Child.c */; };
 		A49E43CA1AE4A740007F583B /* GlobalVariables.c in Sources */ = {isa = PBXBuildFile; fileRef = A49E43C91AE4A740007F583B /* GlobalVariables.c */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,8 @@
 		A42BEBF61ADF3C08000AE4E2 /* Assignment 6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 6"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42BEBF91ADF3C08000AE4E2 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		A42BEC001ADF4D13000AE4E2 /* SystemHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHeaders.h; sourceTree = "<group>"; };
+		A43A8C661AE87737000DB807 /* Child.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Child.c; sourceTree = "<group>"; };
+		A43A8C671AE87737000DB807 /* Child.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Child.h; sourceTree = "<group>"; };
 		A49E43C91AE4A740007F583B /* GlobalVariables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GlobalVariables.c; sourceTree = "<group>"; };
 		A4E8A0931AE0936700A165FC /* GlobalVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalVariables.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +68,8 @@
 				A42BEC001ADF4D13000AE4E2 /* SystemHeaders.h */,
 				A4E8A0931AE0936700A165FC /* GlobalVariables.h */,
 				A49E43C91AE4A740007F583B /* GlobalVariables.c */,
+				A43A8C661AE87737000DB807 /* Child.c */,
+				A43A8C671AE87737000DB807 /* Child.h */,
 			);
 			path = "Assignment 6";
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43A8C681AE87737000DB807 /* Child.c in Sources */,
 				A49E43CA1AE4A740007F583B /* GlobalVariables.c in Sources */,
 				A42BEBFA1ADF3C08000AE4E2 /* main.c in Sources */,
 			);
