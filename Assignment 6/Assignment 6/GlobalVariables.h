@@ -9,7 +9,7 @@
 #ifndef Assignment_6_GlobalVariables_h
 #define Assignment_6_GlobalVariables_h
 #include "SystemHeaders.h"
-#define terminateProcessTime 10    // terminate process after 30 seconds
+#define terminateProcessTime 15    // terminate process after 30 seconds
 #define NUM_CHILDREN 5
 #define READ 0
 #define WRITE 1

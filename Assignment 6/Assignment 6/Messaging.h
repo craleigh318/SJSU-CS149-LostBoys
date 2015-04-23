@@ -24,4 +24,6 @@ void createMessage(char * passString, Child * child);
 
 void runChild(Child * child);
 
+void runParent(Child *pipes);
+
 #endif /* defined(__Assignment_6__Messaging__) */

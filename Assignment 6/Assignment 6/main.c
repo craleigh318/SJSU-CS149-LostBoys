@@ -17,28 +17,6 @@
 //	fprintf(fp, message);
 //}
 
-void sendMessages(int * pipe, int childID) {
-    char passString[100];
-    int messageCount = 0;
-    if(close(pipe[READ]) == -1) {
-        perror("ERROR: Child Closing Read");
-        exit(1);
-    }
-    while(!finished) {
-        randomSleepTime();
-        createTimestamp(passString);
-        sprintf(passString, "%s: Child %i message %i\n", passString, childID, ++messageCount);
-        write(pipe[WRITE], passString, strlen(passString) + 1);
-    }
-    
-    if(close(pipe[WRITE]) == -1) {
-        perror("ERROR: Child Closing Write");
-        exit(1);
-    }
-    //Not sure if this exit call is needed
-    exit(0);
-}
-
 void inputMessage(int * pipe, int childID) {
 	char passString[100];
 	if(close(pipe[READ]) == -1) {
@@ -62,10 +40,37 @@ void inputMessage(int * pipe, int childID) {
 }
 
 int main(int argc, const char * argv[]) {
+	srand(time(NULL));
+    printf("Hello, World!\n");
+    Child children[NUM_CHILDREN];
+    int i;
+    pid_t parent = getpid();
     initializeStartTime();
-    int pipe[2];
-    Child c = newChild(1, pipe);
-    runChild(&c);
+    int fd[NUM_CHILDREN][2];
+    for(i = 0; i < NUM_CHILDREN; i++) {
+		children[i] = newChild(i + 1, fd[i]);
+    }
+    for(i = 0; i < NUM_CHILDREN; i++) {
+		if(pipe(fd[i]) == -1) {
+			perror("ERROR: Pipe Creation");
+			exit(1);
+		}
+        fflush(0);
+        if(fork() == -1) {
+            perror("ERROR: Fork");
+            exit(1);
+        }
+		if(parent != getpid()) {
+			runChild(&children[i]);
+		}
+    }
+
+    if(parent == getpid()) {
+    	sleep(1);
+    	runParent(children);
+    }
+
+    return 0;
 }
 
 int main2(int argc, const char * argv[]) {
@@ -102,8 +107,8 @@ int main2(int argc, const char * argv[]) {
         if (parentID != getpid()) {
         	if(i == 4)
         		inputMessage(pipes[i], i + 1);
-        	else
-        		sendMessages(pipes[i], i + 1);
+//        	else
+//        		sendMessages(pipes[i], i + 1);
         }
     }
     //Parent process
