@@ -34,20 +34,35 @@ void createTimestamp(char *buf) {
 }
 
 void createMessage(char * passString, Child * child) {
-    createTimestamp(passString);
-    sprintf(passString, "%s: Child %i message %i\n", passString, child->id, ++(child->numMessages));
+    sprintf(passString, "Child %i message %i", child->id, ++(child->numMessages));
+}
+
+void createTimestampMessage(char * passString, char * originalMessage) {
+	char timestamp[20];
+    createTimestamp(timestamp);
+    sprintf(passString, "%s: %s\n", timestamp, originalMessage);
 }
 
 void runChild(Child * child) {
     char passString[100];
+    char tempString[100];
     if(close(child->pipe[READ]) == -1) {
         perror("ERROR: Child Closing Read");
         exit(1);
     }
     while(!finished) {
-        randomSleepTime();
-        createMessage(passString, child);
-        write(child->pipe[WRITE], passString, strlen(passString) + 1);
+		if(!child->input) {
+			randomSleepTime();
+			createMessage(tempString, child);
+			createTimestampMessage(passString, tempString);
+    	}
+		else{
+			char msg[100];
+			gets(msg);
+			createTimestamp(passString);
+			sprintf(passString, "%s: %s", passString, msg);
+		}
+		write(child->pipe[WRITE], passString, strlen(passString) + 1);
     }
     
     if(close(child->pipe[WRITE]) == -1) {
@@ -64,8 +79,6 @@ void runParent(Child *pipes) {
 		fd_set readfds;
 		FD_ZERO(&readfds);
 		for(i = 0; i < NUM_CHILDREN; i++) {
-			Child test = pipes[i];
-			int tests = test.pipe[WRITE];
 			if(close(pipes[i].pipe[WRITE]) == -1){
 				perror("ERROR: Parent Closing Write");
 				exit(1);

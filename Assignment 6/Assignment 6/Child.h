@@ -25,8 +25,15 @@ typedef struct _Child {
      The number of messages that this child has written.
      */
     int numMessages;
+
+    /*
+     Determines if the child is a default child or able to take in input
+     false = default
+     true = allows input
+     */
+    bool input;
 } Child;
 
-Child newChild(int id, int * pipe);
+Child newChild(int id, int * pipe, bool input);
 
 #endif /* defined(__Assignment_6__Child__) */

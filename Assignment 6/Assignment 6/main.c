@@ -48,7 +48,10 @@ int main(int argc, const char * argv[]) {
     initializeStartTime();
     int fd[NUM_CHILDREN][2];
     for(i = 0; i < NUM_CHILDREN; i++) {
-		children[i] = newChild(i + 1, fd[i]);
+    	if(i == NUM_CHILDREN - 1)
+    		children[i] = newChild(i + 1, fd[i], true);
+    	else
+    		children[i] = newChild(i + 1, fd[i], false);
     }
     for(i = 0; i < NUM_CHILDREN; i++) {
 		if(pipe(fd[i]) == -1) {
