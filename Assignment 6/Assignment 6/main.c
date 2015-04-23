@@ -83,7 +83,8 @@ void inputMessage(int * pipe, int childID) {
 
 int main(int argc, const char * argv[]) {
     int pipe[2];
-    newChild(1, pipe);
+    Child c = newChild(1, pipe);
+    runChild(&c);
 }
 
 int main2(int argc, const char * argv[]) {

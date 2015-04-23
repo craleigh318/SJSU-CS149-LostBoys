@@ -17,11 +17,6 @@ typedef struct _Child {
     int id;
     
     /*
-     An associated thread.
-     */
-    pthread_t thread;
-    
-    /*
      A two-integer array, for reading and writing.
      */
     int * pipe;
