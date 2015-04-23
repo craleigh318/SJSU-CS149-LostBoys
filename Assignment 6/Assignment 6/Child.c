@@ -8,11 +8,6 @@
 
 #include "Child.h"
 
-void runChild(Child * child) {
-    ++(child->numMessages);
-    printf("Child %d message %d", child->id, child->numMessages);
-}
-
 Child newChild(int id, int * pipe) {
     Child newChild;
     newChild.id = id;

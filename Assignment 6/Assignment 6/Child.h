@@ -27,8 +27,6 @@ typedef struct _Child {
     int numMessages;
 } Child;
 
-void runChild(Child * child);
-
 Child newChild(int id, int * pipe);
 
 #endif /* defined(__Assignment_6__Child__) */

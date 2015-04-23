@@ -64,6 +64,7 @@ void inputMessage(int * pipe, int childID) {
 }
 
 int main(int argc, const char * argv[]) {
+    initializeStartTime();
     int pipe[2];
     Child c = newChild(1, pipe);
     runChild(&c);
