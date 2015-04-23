@@ -59,6 +59,28 @@ void sendMessages(int * pipe, int childID) {
     exit(0);
 }
 
+void inputMessage(int * pipe, int childID) {
+	char passString[100];
+	if(close(pipe[READ]) == -1) {
+		perror("ERROR: Child Closing Read");
+		exit(1);
+	}
+	while(!finished) {
+		char msg[100];
+		gets(msg);
+		createTimestamp(passString);
+		sprintf(passString, "%s: %s", passString, msg);
+		write(pipe[WRITE], passString, strlen(passString) + 1);
+	}
+
+	if(close(pipe[WRITE]) == -1) {
+		perror("ERROR: Child Closing Write");
+		exit(1);
+	}
+	//Not sure if this exit call is needed
+	exit(0);
+}
+
 int main(int argc, const char * argv[]) {
     int pipe[2];
     newChild(1, pipe);
@@ -96,60 +118,66 @@ int main2(int argc, const char * argv[]) {
         }
         //Child process
         if (parentID != getpid()) {
-            sendMessages(pipes[i], i + 1);
+        	if(i == 4)
+        		inputMessage(pipes[i], i + 1);
+        	else
+        		sendMessages(pipes[i], i + 1);
         }
     }
     //Parent process
     if(parentID == getpid()) {
-        char readBuffer[100];
-        int activity, nbytes, max_fd;
-        fd_set readfds;
-        FD_ZERO(&readfds);
-        for(i = 0; i < NUM_CHILDREN; i++) {
-            if(close(pipes[i][WRITE]) == -1){
-                perror("ERROR: Parent Closing Write");
-                exit(1);
-            }
-            FD_SET(pipes[i][READ], &readfds);
-            
-            if(max_fd < pipes[i][READ])
-                max_fd = pipes[i][READ];
-        }
-        
-        //Temporary while condition, change when we get timing solved
-        //Currently exiting when all children ports are read from
-        int count = 0;
-        while(!finished) {
-            //Timeout struct
-            struct timeval tv;
-            tv.tv_sec = 4;
-            tv.tv_usec = 0;
-            
-            activity = select(max_fd + 1, &readfds, NULL, NULL, &tv);
-            if(activity == 0) {
-                printf("Timed out\n");
-                count++;
-            }
-            else if(activity < 0) {
-                printf("Error\n");
-                exit(1);
-            }
-            else {
-                //Is there a way for select to give us which File Descriptor that woke it?
-                for(i = 0; i < NUM_CHILDREN; i++) {
-                    nbytes = read(pipes[i][READ], readBuffer, sizeof(readBuffer));
-                    if(nbytes > 0) {
-                        printf(readBuffer);
-                        //writeToFile(readBuffer);
-                        count++;
-                    }
-                }
-            }
-            //1000 converts millisecond to seconds
-            if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
-                finished = true;
-            }
-        }
+    	char readBuffer[100];
+		int activity, nbytes, max_fd;
+    	fd_set readfds;
+		FD_ZERO(&readfds);
+		for(i = 0; i < NUM_CHILDREN; i++) {
+	    	if(close(pipes[i][WRITE]) == -1){
+	    		perror("ERROR: Parent Closing Write");
+	    		exit(1);
+	    	}
+	    	int flags = fcntl(pipes[i][READ], F_GETFL, 0);
+	    	fcntl(pipes[i][READ], F_SETFL, flags | O_NONBLOCK);
+
+			FD_SET(pipes[i][READ], &readfds);
+
+			if(max_fd < pipes[i][READ])
+				max_fd = pipes[i][READ];
+		}
+
+		//Temporary while condition, change when we get timing solved
+		//Currently exiting when all children ports are read from
+		int count = 0;
+    	while(!finished) {
+    		//Timeout struct
+    		struct timeval tv;
+    		tv.tv_sec = 4;
+    		tv.tv_usec = 0;
+
+    		activity = select(max_fd + 1, &readfds, NULL, NULL, &tv);
+    		if(activity == 0) {
+    			printf("Timed out\n");
+    			count++;
+    		}
+    		else if(activity < 0) {
+    			printf("Error\n");
+    			exit(1);
+    		}
+    		else {
+				//Is there a way for select to give us which File Descriptor that woke it?
+				for(i = 0; i < NUM_CHILDREN; i++) {
+					nbytes = read(pipes[i][READ], readBuffer, sizeof(readBuffer));
+					if(nbytes > 0) {
+						printf(readBuffer);
+						//writeToFile(readBuffer);
+						count++;
+					}
+				}
+    		}
+    		//1000 converts seconds to milliseconds
+    		if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
+    			finished = true;
+    		}
+    	}
     }
     return 0;
 }
