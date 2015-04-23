@@ -14,5 +14,6 @@
 #include <time.h>
 #include <math.h>
 #include <sys/time.h>
+#include <fcntl.h>
 #include <unistd.h>
 #endif

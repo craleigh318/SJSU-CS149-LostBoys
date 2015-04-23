@@ -58,6 +58,28 @@ void sendMessages(int * pipe, int childID) {
 	exit(0);
 }
 
+void inputMessage(int * pipe, int childID) {
+	char passString[100];
+	if(close(pipe[READ]) == -1) {
+		perror("ERROR: Child Closing Read");
+		exit(1);
+	}
+	while(!finished) {
+		char msg[100];
+		gets(msg);
+		createTimestamp(passString);
+		sprintf(passString, "%s: %s", passString, msg);
+		write(pipe[WRITE], passString, strlen(passString) + 1);
+	}
+
+	if(close(pipe[WRITE]) == -1) {
+		perror("ERROR: Child Closing Write");
+		exit(1);
+	}
+	//Not sure if this exit call is needed
+	exit(0);
+}
+
 int main(int argc, const char * argv[]) {
     time(&initialTime);
     struct timeval  tv;
@@ -90,7 +112,10 @@ int main(int argc, const char * argv[]) {
     	}
     	//Child process
         if (parentID != getpid()) {
-            sendMessages(pipes[i], i + 1);
+        	if(i == 4)
+        		inputMessage(pipes[i], i + 1);
+        	else
+        		sendMessages(pipes[i], i + 1);
         }
     }
     //Parent process
@@ -104,6 +129,9 @@ int main(int argc, const char * argv[]) {
 	    		perror("ERROR: Parent Closing Write");
 	    		exit(1);
 	    	}
+	    	int flags = fcntl(pipes[i][READ], F_GETFL, 0);
+	    	fcntl(pipes[i][READ], F_SETFL, flags | O_NONBLOCK);
+
 			FD_SET(pipes[i][READ], &readfds);
 
 			if(max_fd < pipes[i][READ])
@@ -139,7 +167,7 @@ int main(int argc, const char * argv[]) {
 					}
 				}
     		}
-    		//1000 converts millisecond to seconds
+    		//1000 converts seconds to milliseconds
     		if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
     			finished = true;
     		}
