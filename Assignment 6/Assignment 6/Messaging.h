@@ -9,6 +9,7 @@
 #ifndef __Assignment_6__Messaging__
 #define __Assignment_6__Messaging__
 #include "Child.h"
+#include "GlobalVariables.h"
 #include "SystemHeaders.h"
 
 static double startTime;

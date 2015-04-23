@@ -11,8 +11,6 @@
 #include "Messaging.h"
 #include "SystemHeaders.h"
 
-bool finished;
-
 //void writeToFile(char* message) {
 //    FILE *fp;
 //    fp = fopen("output.txt", "a+");

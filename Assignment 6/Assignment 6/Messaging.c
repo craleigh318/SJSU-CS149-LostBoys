@@ -39,7 +39,22 @@ void createMessage(char * passString, Child * child) {
 }
 
 void runChild(Child * child) {
-    char passString[128];
-    createMessage(passString, child);
-    printf("%s", passString);
+    char passString[100];
+    if(close(child->pipe[READ]) == -1) {
+        perror("ERROR: Child Closing Read");
+        exit(1);
+    }
+    while(!finished) {
+        randomSleepTime();
+        createMessage(passString, child);
+        write(child->pipe[WRITE], passString, strlen(passString) + 1);
+        finished = true;
+    }
+    
+    if(close(child->pipe[WRITE]) == -1) {
+        perror("ERROR: Child Closing Write");
+        exit(1);
+    }
+    //Not sure if this exit call is needed
+    exit(0);
 }

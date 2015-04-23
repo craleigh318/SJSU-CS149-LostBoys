@@ -18,6 +18,8 @@ typedef enum { false, true } bool;
 
 static time_t initialTime;
 
+static bool finished;
+
 time_t getCurrentTime();
 
 void randomSleepTime(); // return a random sleep time of 0,1,2 seconds
