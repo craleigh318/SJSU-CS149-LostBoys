@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Lost Boys. All rights reserved.
 //
 
-#include "SystemHeaders.h"
-#include "GlobalVariables.h"
 #include "Child.h"
+#include "GlobalVariables.h"
+#include "Messaging.h"
+#include "SystemHeaders.h"
 
-double startTime;
 bool finished;
 
 //void writeToFile(char* message) {
@@ -18,24 +18,6 @@ bool finished;
 //    fp = fopen("output.txt", "a+");
 //	fprintf(fp, message);
 //}
-
-double getTimeInMilli() {
-    struct timeval  tv;
-    double retTimeInMilli;
-    gettimeofday(&tv, NULL);
-    retTimeInMilli = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
-    return retTimeInMilli;
-}
-
-void createTimestamp(char *buf) {
-    char retString[10];
-    double curTime;
-    curTime = getTimeInMilli();
-    int difference = curTime - startTime;
-    int second = (int) floor((double) (difference / 1000));
-    sprintf(retString, "%i:%02i.%03i", second / 60, second % 60, difference);
-    strcpy(buf,retString);
-}
 
 void sendMessages(int * pipe, int childID) {
     char passString[100];

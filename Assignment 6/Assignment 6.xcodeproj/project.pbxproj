@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A42BEBFA1ADF3C08000AE4E2 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = A42BEBF91ADF3C08000AE4E2 /* main.c */; };
 		A43A8C681AE87737000DB807 /* Child.c in Sources */ = {isa = PBXBuildFile; fileRef = A43A8C661AE87737000DB807 /* Child.c */; };
+		A43A8C6B1AE89520000DB807 /* Messaging.c in Sources */ = {isa = PBXBuildFile; fileRef = A43A8C691AE89520000DB807 /* Messaging.c */; };
 		A49E43CA1AE4A740007F583B /* GlobalVariables.c in Sources */ = {isa = PBXBuildFile; fileRef = A49E43C91AE4A740007F583B /* GlobalVariables.c */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,8 @@
 		A42BEC001ADF4D13000AE4E2 /* SystemHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHeaders.h; sourceTree = "<group>"; };
 		A43A8C661AE87737000DB807 /* Child.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Child.c; sourceTree = "<group>"; };
 		A43A8C671AE87737000DB807 /* Child.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Child.h; sourceTree = "<group>"; };
+		A43A8C691AE89520000DB807 /* Messaging.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Messaging.c; sourceTree = "<group>"; };
+		A43A8C6A1AE89520000DB807 /* Messaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messaging.h; sourceTree = "<group>"; };
 		A49E43C91AE4A740007F583B /* GlobalVariables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GlobalVariables.c; sourceTree = "<group>"; };
 		A4E8A0931AE0936700A165FC /* GlobalVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalVariables.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +73,8 @@
 				A49E43C91AE4A740007F583B /* GlobalVariables.c */,
 				A43A8C661AE87737000DB807 /* Child.c */,
 				A43A8C671AE87737000DB807 /* Child.h */,
+				A43A8C691AE89520000DB807 /* Messaging.c */,
+				A43A8C6A1AE89520000DB807 /* Messaging.h */,
 			);
 			path = "Assignment 6";
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 			files = (
 				A43A8C681AE87737000DB807 /* Child.c in Sources */,
 				A49E43CA1AE4A740007F583B /* GlobalVariables.c in Sources */,
+				A43A8C6B1AE89520000DB807 /* Messaging.c in Sources */,
 				A42BEBFA1ADF3C08000AE4E2 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
