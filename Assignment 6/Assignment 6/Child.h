@@ -32,10 +32,8 @@ typedef struct _Child {
     int numMessages;
 } Child;
 
-void deleteChild(Child * deletingChild);
+void runChild(Child * child);
 
-void * runChild(void * params);
-
-void newChild(int id, int * pipe);
+Child newChild(int id, int * pipe);
 
 #endif /* defined(__Assignment_6__Child__) */

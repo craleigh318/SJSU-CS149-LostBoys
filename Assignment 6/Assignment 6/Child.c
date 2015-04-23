@@ -8,20 +8,15 @@
 
 #include "Child.h"
 
-void deleteChild(Child * deletingChild) {
-    free(deletingChild);
+void runChild(Child * child) {
+    ++(child->numMessages);
+    printf("Child %d message %d", child->id, child->numMessages);
 }
 
-void * runChild(void * params) {
-    Child * child = params;
-    deleteChild(child);
-    return NULL;
-}
-
-void newChild(int id, int * pipe) {
-    Child * newChild = malloc(sizeof(Child));
-    newChild->id = id;
-    newChild->pipe = pipe;
-    newChild->numMessages = 0;
-    pthread_create(&(newChild->thread), NULL, runChild, newChild);
+Child newChild(int id, int * pipe) {
+    Child newChild;
+    newChild.id = id;
+    newChild.pipe = pipe;
+    newChild.numMessages = 0;
+    return newChild;
 }
