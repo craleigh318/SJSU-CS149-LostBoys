@@ -40,7 +40,6 @@ void inputMessage(int * pipe, int childID) {
 }
 
 int main(int argc, const char * argv[]) {
-	srand(time(NULL));
     printf("Hello, World!\n");
     Child children[NUM_CHILDREN];
     int i;
@@ -64,6 +63,7 @@ int main(int argc, const char * argv[]) {
             exit(1);
         }
 		if(parent != getpid()) {
+            srand(getpid());    // Seed random values.
 			runChild(&children[i]);
 		}
     }
