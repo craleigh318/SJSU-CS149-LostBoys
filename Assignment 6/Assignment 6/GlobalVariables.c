@@ -17,6 +17,6 @@ time_t getCurrentTime() {
 
 void randomSleepTime()
 {
-    int sleepTime = (rand() % 3); // randomly sleep for 0,1,2 seconds
+    int sleepTime = (rand() % 3) + 1; // randomly sleep for 0,1,2 seconds
     sleep(sleepTime);
 }
