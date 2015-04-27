@@ -34,7 +34,8 @@ void createTimestamp(char *buf) {
 }
 
 void createMessage(char * passString, Child * child) {
-    sprintf(passString, "Child %i message %i", child->id, ++(child->numMessages));
+    sprintf(passString, "Child %i message %i", child->id, child->numMessages);
+    ++(child->numMessages);
 }
 
 void createTimestampMessage(char * passString, char * originalMessage) {
@@ -51,6 +52,7 @@ void runChild(Child * child) {
         exit(1);
     }
     while(!finished) {
+        pthread_mutex_lock(&readWriteMutex);
 		if(!child->input) {
 			randomSleepTime();
 			createMessage(tempString, child);
@@ -63,6 +65,7 @@ void runChild(Child * child) {
 			sprintf(passString, "%s: %s", passString, msg);
 		}
 		write(child->pipe[WRITE], passString, strlen(passString) + 1);
+        pthread_mutex_unlock(&readWriteMutex);
     }
     
     if(close(child->pipe[WRITE]) == -1) {
@@ -114,6 +117,7 @@ void runParent(Child *pipes) {
 			else {
 				//Is there a way for select to give us which File Descriptor that woke it?
 				for(i = 0; i < NUM_CHILDREN; i++) {
+                    pthread_mutex_lock(&readWriteMutex);
 					if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
 						nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
 						if(nbytes > 0) {
@@ -122,6 +126,7 @@ void runParent(Child *pipes) {
 							count++;
 						}
 					}
+                    pthread_mutex_unlock(&readWriteMutex);
 				}
 			}
 			//1000 converts seconds to milliseconds

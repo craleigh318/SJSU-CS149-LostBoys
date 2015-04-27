@@ -12,7 +12,7 @@ Child newChild(int id, int * pipe, bool input) {
     Child newChild;
     newChild.id = id;
     newChild.pipe = pipe;
-    newChild.numMessages = 0;
+    newChild.numMessages = 1;
     newChild.input = input;
     return newChild;
 }

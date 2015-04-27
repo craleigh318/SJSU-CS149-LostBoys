@@ -18,6 +18,8 @@ static time_t initialTime;
 
 static bool finished;
 
+static pthread_mutex_t readWriteMutex;
+
 time_t getCurrentTime();
 
 void randomSleepTime(); // return a random sleep time of 0,1,2 seconds
