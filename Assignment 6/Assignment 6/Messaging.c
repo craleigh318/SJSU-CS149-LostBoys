@@ -39,7 +39,7 @@ void createMessage(char * passString, Child * child) {
 }
 
 void createTimestampMessage(char * passString, char * originalMessage) {
-	char timestamp[128];
+    char timestamp[128];
     createTimestamp(timestamp);
     sprintf(passString, "%s: %s\n", timestamp, originalMessage);
 }
@@ -53,18 +53,18 @@ void runChild(Child * child) {
     }
     while(!finished) {
         pthread_mutex_lock(&readWriteMutex);
-		if(!child->input) {
-			randomSleepTime();
-			createMessage(tempString, child);
-			createTimestampMessage(passString, tempString);
-    	}
-		else{
-			char msg[100];
+        if(!child->input) {
+            randomSleepTime();
+            createMessage(tempString, child);
+            createTimestampMessage(passString, tempString);
+        }
+        else{
+            char msg[100];
             fgets(msg,100, stdin);
             createTimestamp(passString);
-			sprintf(passString, "%s: %s", passString, msg);
-		}
-		write(child->pipe[WRITE], passString, strlen(passString) + 1);
+            sprintf(passString, "%s: %s", passString, msg);
+        }
+        write(child->pipe[WRITE], passString, strlen(passString) + 1);
         pthread_mutex_unlock(&readWriteMutex);
     }
     
@@ -77,61 +77,62 @@ void runChild(Child * child) {
 }
 
 void runParent(Child *pipes) {
-		char readBuffer[100];
-		int activity, nbytes, max_fd, i;
-		fd_set readfds, reads;
-		FD_ZERO(&readfds);
-		for(i = 0; i < NUM_CHILDREN; i++) {
-			if(close(pipes[i].pipe[WRITE]) == -1){
-				perror("ERROR: Parent Closing Write");
-				exit(1);
-			}
-			//Makes the pipes nonblocking
-			int flags = fcntl(pipes[i].pipe[READ], F_GETFL, 0);
-			fcntl(pipes[i].pipe[READ], F_SETFL, flags | O_NONBLOCK);
-
-			FD_SET(pipes[i].pipe[READ], &readfds);
-
-			if(max_fd < pipes[i].pipe[READ])
-				max_fd = pipes[i].pipe[READ];
-		}
-
-		//Temporary while condition, change when we get timing solved
-		//Currently exiting when all children ports are read from
-		int count = 0;
-		while(!finished) {
-			reads = readfds;
-			//Timeout struct
-			struct timeval tv;
-			tv.tv_sec = 4;
-			tv.tv_usec = 0;
-			activity = select(max_fd + 1, &reads, NULL, NULL, &tv);
-			if(activity == 0) {
-				printf("Timed out\n");
-				count++;
-			}
-			else if(activity < 0) {
-				printf("Error On Select\n");
-				exit(1);
-			}
-			else {
-				//Is there a way for select to give us which File Descriptor that woke it?
-				for(i = 0; i < NUM_CHILDREN; i++) {
-                    pthread_mutex_lock(&readWriteMutex);
-					if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
-						nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
-						if(nbytes > 0) {
-							printf(readBuffer);
-							//writeToFile(readBuffer);
-							count++;
-						}
-					}
-                    pthread_mutex_unlock(&readWriteMutex);
-				}
-			}
-			//1000 converts seconds to milliseconds
-			if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
-				finished = true;
-			}
-		}
+    char readBuffer[100];
+    int activity, nbytes, max_fd, i;
+    max_fd = 0;
+    fd_set readfds, reads;
+    FD_ZERO(&readfds);
+    for(i = 0; i < NUM_CHILDREN; i++) {
+        if(close(pipes[i].pipe[WRITE]) == -1){
+            perror("ERROR: Parent Closing Write");
+            exit(1);
+        }
+        //Makes the pipes nonblocking
+        int flags = fcntl(pipes[i].pipe[READ], F_GETFL, 0);
+        fcntl(pipes[i].pipe[READ], F_SETFL, flags | O_NONBLOCK);
+        
+        FD_SET(pipes[i].pipe[READ], &readfds);
+        
+        if(max_fd < pipes[i].pipe[READ])
+            max_fd = pipes[i].pipe[READ];
+    }
+    
+    //Temporary while condition, change when we get timing solved
+    //Currently exiting when all children ports are read from
+    int count = 0;
+    while(!finished) {
+        reads = readfds;
+        //Timeout struct
+        struct timeval tv;
+        tv.tv_sec = 4;
+        tv.tv_usec = 0;
+        activity = select(max_fd + 1, &reads, NULL, NULL, &tv);
+        if(activity == 0) {
+            printf("Timed out\n");
+            count++;
+        }
+        else if(activity < 0) {
+            printf("Error On Select\n");
+            exit(1);
+        }
+        else {
+            //Is there a way for select to give us which File Descriptor that woke it?
+            for(i = 0; i < NUM_CHILDREN; i++) {
+                pthread_mutex_lock(&readWriteMutex);
+                if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
+                    nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
+                    if(nbytes > 0) {
+                        printf("%s", readBuffer);
+                        //writeToFile(readBuffer);
+                        count++;
+                    }
+                }
+                pthread_mutex_unlock(&readWriteMutex);
+            }
+        }
+        //1000 converts seconds to milliseconds
+        if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
+            finished = true;
+        }
+    }
 }
