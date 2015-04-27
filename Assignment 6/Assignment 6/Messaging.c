@@ -24,7 +24,7 @@ double getTimeInMilli() {
 }
 
 void createTimestamp(char *buf) {
-    char retString[10];
+    char retString[128];
     double curTime;
     curTime = getTimeInMilli();
     int difference = curTime - startTime;
@@ -38,7 +38,7 @@ void createMessage(char * passString, Child * child) {
 }
 
 void createTimestampMessage(char * passString, char * originalMessage) {
-	char timestamp[20];
+	char timestamp[128];
     createTimestamp(timestamp);
     sprintf(passString, "%s: %s\n", timestamp, originalMessage);
 }
