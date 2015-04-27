@@ -76,7 +76,7 @@ void runChild(Child * child) {
 void runParent(Child *pipes) {
 		char readBuffer[100];
 		int activity, nbytes, max_fd, i;
-		fd_set readfds;
+		fd_set readfds, reads;
 		FD_ZERO(&readfds);
 		for(i = 0; i < NUM_CHILDREN; i++) {
 			if(close(pipes[i].pipe[WRITE]) == -1){
@@ -97,11 +97,12 @@ void runParent(Child *pipes) {
 		//Currently exiting when all children ports are read from
 		int count = 0;
 		while(!finished) {
+			reads = readfds;
 			//Timeout struct
 			struct timeval tv;
 			tv.tv_sec = 4;
 			tv.tv_usec = 0;
-			activity = select(max_fd + 1, &readfds, NULL, NULL, &tv);
+			activity = select(max_fd + 1, &reads, NULL, NULL, &tv);
 			if(activity == 0) {
 				printf("Timed out\n");
 				count++;
@@ -113,11 +114,13 @@ void runParent(Child *pipes) {
 			else {
 				//Is there a way for select to give us which File Descriptor that woke it?
 				for(i = 0; i < NUM_CHILDREN; i++) {
-					nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
-					if(nbytes > 0) {
-						printf(readBuffer);
-						//writeToFile(readBuffer);
-						count++;
+					if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
+						nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
+						if(nbytes > 0) {
+							printf(readBuffer);
+							//writeToFile(readBuffer);
+							count++;
+						}
 					}
 				}
 			}
