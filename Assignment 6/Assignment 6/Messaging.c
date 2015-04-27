@@ -27,7 +27,7 @@ void createTimestamp(char *buf) {
     char retString[128];
     double curTime;
     curTime = getTimeInMilli();
-    int difference = curTime - startTime;
+    double difference = curTime - startTime;
     int second = (int) floor((double) (difference / 1000));
     sprintf(retString, "%i:%02.03f", second / 60, difference / 1000);
     strcpy(buf,retString);
