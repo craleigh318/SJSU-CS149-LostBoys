@@ -58,8 +58,8 @@ void runChild(Child * child) {
     	}
 		else{
 			char msg[100];
-			gets(msg);
-			createTimestamp(passString);
+            fgets(msg,100, stdin);
+            createTimestamp(passString);
 			sprintf(passString, "%s: %s", passString, msg);
 		}
 		write(child->pipe[WRITE], passString, strlen(passString) + 1);
