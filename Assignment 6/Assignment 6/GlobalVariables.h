@@ -13,6 +13,7 @@
 #define NUM_CHILDREN 5
 #define READ 0
 #define WRITE 1
+#define STRING_SIZE 512
 
 static time_t initialTime;
 

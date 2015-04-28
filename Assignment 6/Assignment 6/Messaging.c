@@ -24,7 +24,7 @@ double getTimeInMilli() {
 }
 
 void createTimestamp(char *buf) {
-    char retString[128];
+    char retString[STRING_SIZE];
     double curTime;
     curTime = getTimeInMilli();
     double difference = curTime - startTime;
@@ -39,14 +39,14 @@ void createMessage(char * passString, Child * child) {
 }
 
 void createTimestampMessage(char * passString, char * originalMessage) {
-    char timestamp[128];
+    char timestamp[STRING_SIZE];
     createTimestamp(timestamp);
     sprintf(passString, "%s: %s", timestamp, originalMessage);
 }
 
 void runChild(Child * child) {
-    char passString[100];
-    char tempString[100];
+    char passString[STRING_SIZE];
+    char tempString[STRING_SIZE];
     if(close(child->pipe[READ]) == -1) {
         perror("ERROR: Child Closing Read");
         exit(1);
@@ -59,8 +59,8 @@ void runChild(Child * child) {
             createTimestampMessage(passString, tempString);
         }
         else{
-            char msg[100];
-            fgets(msg,100, stdin);
+            char msg[STRING_SIZE];
+            fgets(msg, STRING_SIZE, stdin);
             createTimestamp(passString);
             sprintf(passString, "%s: %s", passString, msg);
         }
@@ -78,7 +78,7 @@ void runChild(Child * child) {
 }
 
 void runParent(Child *pipes) {
-    char readBuffer[100];
+    char readBuffer[STRING_SIZE];
     int activity, nbytes, max_fd, i;
     max_fd = 0;
     fd_set readfds, reads;
@@ -124,7 +124,7 @@ void runParent(Child *pipes) {
                     close(pipes[i].pipe[WRITE]);
                     nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
                     if(nbytes > 0) {
-                        char timestampedBuffer[128];
+                        char timestampedBuffer[STRING_SIZE];
                         createTimestampMessage(timestampedBuffer, readBuffer);
                         printf("%s", timestampedBuffer);
                         //writeToFile(readBuffer);
