@@ -101,6 +101,7 @@ void runParent(Child *pipes) {
     //Currently exiting when all children ports are read from
     int count = 0;
     while(!finished) {
+        pthread_mutex_lock(&readWriteMutex);
         reads = readfds;
         //Timeout struct
         struct timeval tv;
@@ -118,7 +119,6 @@ void runParent(Child *pipes) {
         else {
             //Is there a way for select to give us which File Descriptor that woke it?
             for(i = 0; i < NUM_CHILDREN; i++) {
-                pthread_mutex_lock(&readWriteMutex);
                 if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
                     nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
                     if(nbytes > 0) {
@@ -127,12 +127,12 @@ void runParent(Child *pipes) {
                         count++;
                     }
                 }
-                pthread_mutex_unlock(&readWriteMutex);
             }
         }
         //1000 converts seconds to milliseconds
         if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
             finished = true;
         }
+        pthread_mutex_unlock(&readWriteMutex);
     }
 }
