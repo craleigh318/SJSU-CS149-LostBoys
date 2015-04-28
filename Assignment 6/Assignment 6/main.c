@@ -35,6 +35,7 @@ void inputMessage(int * pipe, int childID) {
 
 int main(int argc, const char * argv[]) {
     Child children[NUM_CHILDREN];
+    pid_t childIDs[NUM_CHILDREN];
     int i;
     pid_t parent = getpid();
     initializeStartTime();
@@ -51,7 +52,8 @@ int main(int argc, const char * argv[]) {
 			exit(1);
 		}
         fflush(0);
-        if(fork() == -1) {
+        childIDs[i] = fork();
+        if(childIDs[i] == -1) {
             perror("ERROR: Fork");
             exit(1);
         }
@@ -63,7 +65,10 @@ int main(int argc, const char * argv[]) {
 
     if(parent == getpid()) {
     	runParent(children);
+        int j;
+        for (j = 0; j < NUM_CHILDREN; ++j) {
+            kill(j, SIGTERM);
+        }
     }
-
     return 0;
 }

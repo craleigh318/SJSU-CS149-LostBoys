@@ -130,7 +130,7 @@ void runParent(Child *pipes) {
             //Is there a way for select to give us which File Descriptor that woke it?
             for(i = 0; i < NUM_CHILDREN; i++) {
                 if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
-                    //close(pipes[i].pipe[WRITE]);
+                    close(pipes[i].pipe[WRITE]);
                     nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
                     if(nbytes > 0) {
                         char timestampedBuffer[STRING_SIZE];
