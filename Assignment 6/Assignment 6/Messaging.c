@@ -57,7 +57,7 @@ void runChild(Child * child) {
         perror("ERROR: Child Closing Read");
         exit(1);
     }
-    while(!finished) {
+    while(getppid() > 1) {
         //pthread_mutex_lock(&readWriteMutex);
         if(!child->input) {
             randomSleepTime();
@@ -73,9 +73,6 @@ void runChild(Child * child) {
         //close(child->pipe[READ]);
         write(child->pipe[WRITE], passString, strlen(passString) + 1);
         //pthread_mutex_unlock(&readWriteMutex);
-        if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
-            finished = true;
-        }
     }
     
     if(close(child->pipe[WRITE]) == -1) {
