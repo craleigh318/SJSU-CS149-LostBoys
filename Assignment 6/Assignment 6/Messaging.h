@@ -14,6 +14,8 @@
 
 static double startTime;
 
+void writeToFile(char* message);
+
 void initializeStartTime();
 
 double getTimeInMilli();

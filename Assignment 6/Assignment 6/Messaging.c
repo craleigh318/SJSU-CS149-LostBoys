@@ -8,6 +8,12 @@
 
 #include "Messaging.h"
 
+void writeToFile(char* message) {
+    FILE *fp;
+    fp = fopen("output.txt", "a+");
+    fprintf(fp, "%s", message);
+}
+
 void initializeStartTime() {
     struct timeval  tv;
     gettimeofday(&tv, NULL);

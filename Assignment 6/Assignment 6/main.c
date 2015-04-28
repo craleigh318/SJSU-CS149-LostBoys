@@ -11,12 +11,6 @@
 #include "Messaging.h"
 #include "SystemHeaders.h"
 
-void writeToFile(char* message) {
-    FILE *fp;
-    fp = fopen("output.txt", "a+");
-	fprintf(fp, "%s", message);
-}
-
 void inputMessage(int * pipe, int childID) {
 	char passString[100];
 	if(close(pipe[READ]) == -1) {
@@ -40,7 +34,6 @@ void inputMessage(int * pipe, int childID) {
 }
 
 int main(int argc, const char * argv[]) {
-    printf("Hello, World!\n");
     Child children[NUM_CHILDREN];
     int i;
     pid_t parent = getpid();
