@@ -73,9 +73,6 @@ void runChild(Child * child) {
         //close(child->pipe[READ]);
         write(child->pipe[WRITE], passString, strlen(passString) + 1);
         //pthread_mutex_unlock(&readWriteMutex);
-        if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
-            finished = true;
-        }
     }
     
     if(close(child->pipe[WRITE]) == -1) {
@@ -145,7 +142,6 @@ void runParent(Child *pipes) {
         //1000 converts seconds to milliseconds
         if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
             finished = true;
-            
         }
         //pthread_mutex_unlock(&readWriteMutex);
     }
