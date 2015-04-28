@@ -64,7 +64,7 @@ void runChild(Child * child) {
             createTimestamp(passString);
             sprintf(passString, "%s: %s", passString, msg);
         }
-        close(child->pipe[READ]);
+        //close(child->pipe[READ]);
         write(child->pipe[WRITE], passString, strlen(passString) + 1);
         //pthread_mutex_unlock(&readWriteMutex);
     }
@@ -89,8 +89,8 @@ void runParent(Child *pipes) {
             exit(1);
         }
         //Makes the pipes nonblocking
-        int flags = fcntl(pipes[i].pipe[READ], F_GETFL, 0);
-        fcntl(pipes[i].pipe[READ], F_SETFL, flags | O_NONBLOCK);
+        //int flags = fcntl(pipes[i].pipe[READ], F_GETFL, 0);
+        //fcntl(pipes[i].pipe[READ], F_SETFL, flags | O_NONBLOCK);
         
         FD_SET(pipes[i].pipe[READ], &readfds);
         
@@ -121,7 +121,7 @@ void runParent(Child *pipes) {
             //Is there a way for select to give us which File Descriptor that woke it?
             for(i = 0; i < NUM_CHILDREN; i++) {
                 if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
-                    close(pipes[i].pipe[WRITE]);
+                    //close(pipes[i].pipe[WRITE]);
                     nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
                     if(nbytes > 0) {
                         char timestampedBuffer[STRING_SIZE];
