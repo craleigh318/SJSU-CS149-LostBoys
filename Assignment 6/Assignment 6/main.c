@@ -69,7 +69,6 @@ int main(int argc, const char * argv[]) {
     }
 
     if(parent == getpid()) {
-    	sleep(1);
     	runParent(children);
     }
 
