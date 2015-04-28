@@ -52,21 +52,23 @@ void runChild(Child * child) {
         exit(1);
     }
     while(!finished) {
-        //pthread_mutex_lock(&readWriteMutex);
-        if(!child->input) {
-            randomSleepTime();
-            createMessage(tempString, child);
-            createTimestampMessage(passString, tempString);
+        if ((read(child->pipe[READ], 0, 0) <= 0)) {
+            //pthread_mutex_lock(&readWriteMutex);
+            if(!child->input) {
+                randomSleepTime();
+                createMessage(tempString, child);
+                createTimestampMessage(passString, tempString);
+            }
+            else{
+                char msg[100];
+                fgets(msg,100, stdin);
+                createTimestamp(passString);
+                sprintf(passString, "%s: %s", passString, msg);
+            }
+            close(child->pipe[READ]);
+            write(child->pipe[WRITE], passString, strlen(passString) + 1);
+            //pthread_mutex_unlock(&readWriteMutex);
         }
-        else{
-            char msg[100];
-            fgets(msg,100, stdin);
-            createTimestamp(passString);
-            sprintf(passString, "%s: %s", passString, msg);
-        }
-        close(child->pipe[READ]);
-        write(child->pipe[WRITE], passString, strlen(passString) + 1);
-        //pthread_mutex_unlock(&readWriteMutex);
     }
     
     if(close(child->pipe[WRITE]) == -1) {
