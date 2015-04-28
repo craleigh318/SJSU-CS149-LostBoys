@@ -126,8 +126,8 @@ void runParent(Child *pipes) {
                     if(nbytes > 0) {
                         char timestampedBuffer[STRING_SIZE];
                         createTimestampMessage(timestampedBuffer, readBuffer);
-                        printf("%s", timestampedBuffer);
-                        //writeToFile(readBuffer);
+                        //printf("%s", timestampedBuffer);
+                        writeToFile(timestampedBuffer);
                         count++;
                     }
                 }

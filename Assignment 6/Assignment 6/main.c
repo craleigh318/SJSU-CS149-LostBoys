@@ -11,11 +11,11 @@
 #include "Messaging.h"
 #include "SystemHeaders.h"
 
-//void writeToFile(char* message) {
-//    FILE *fp;
-//    fp = fopen("output.txt", "a+");
-//	fprintf(fp, message);
-//}
+void writeToFile(char* message) {
+    FILE *fp;
+    fp = fopen("output.txt", "a+");
+	fprintf(fp, "%s", message);
+}
 
 void inputMessage(int * pipe, int childID) {
 	char passString[100];
