@@ -73,6 +73,9 @@ void runChild(Child * child) {
         //close(child->pipe[READ]);
         write(child->pipe[WRITE], passString, strlen(passString) + 1);
         //pthread_mutex_unlock(&readWriteMutex);
+        if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
+            finished = true;
+        }
     }
     
     if(close(child->pipe[WRITE]) == -1) {
@@ -127,7 +130,7 @@ void runParent(Child *pipes) {
             //Is there a way for select to give us which File Descriptor that woke it?
             for(i = 0; i < NUM_CHILDREN; i++) {
                 if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
-                    close(pipes[i].pipe[WRITE]);
+                    //close(pipes[i].pipe[WRITE]);
                     nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
                     if(nbytes > 0) {
                         char timestampedBuffer[STRING_SIZE];
@@ -142,6 +145,7 @@ void runParent(Child *pipes) {
         //1000 converts seconds to milliseconds
         if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
             finished = true;
+            
         }
         //pthread_mutex_unlock(&readWriteMutex);
     }

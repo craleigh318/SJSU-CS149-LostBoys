@@ -10,7 +10,6 @@
 #define Assignment_6_SystemHeaders_h
 #include <math.h>
 #include <pthread.h>
-#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
