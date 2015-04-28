@@ -52,7 +52,7 @@ void runChild(Child * child) {
         exit(1);
     }
     while(!finished) {
-        pthread_mutex_lock(&readWriteMutex);
+        //pthread_mutex_lock(&readWriteMutex);
         if(!child->input) {
             randomSleepTime();
             createMessage(tempString, child);
@@ -64,8 +64,9 @@ void runChild(Child * child) {
             createTimestamp(passString);
             sprintf(passString, "%s: %s", passString, msg);
         }
+        close(child->pipe[READ]);
         write(child->pipe[WRITE], passString, strlen(passString) + 1);
-        pthread_mutex_unlock(&readWriteMutex);
+        //pthread_mutex_unlock(&readWriteMutex);
     }
     
     if(close(child->pipe[WRITE]) == -1) {
@@ -101,7 +102,7 @@ void runParent(Child *pipes) {
     //Currently exiting when all children ports are read from
     int count = 0;
     while(!finished) {
-        pthread_mutex_lock(&readWriteMutex);
+        //pthread_mutex_lock(&readWriteMutex);
         reads = readfds;
         //Timeout struct
         struct timeval tv;
@@ -120,6 +121,7 @@ void runParent(Child *pipes) {
             //Is there a way for select to give us which File Descriptor that woke it?
             for(i = 0; i < NUM_CHILDREN; i++) {
                 if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
+                    close(pipes[i].pipe[WRITE]);
                     nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
                     if(nbytes > 0) {
                         char timestampedBuffer[128];
@@ -135,6 +137,6 @@ void runParent(Child *pipes) {
         if(getTimeInMilli() - startTime >= terminateProcessTime * 1000) {
             finished = true;
         }
-        pthread_mutex_unlock(&readWriteMutex);
+        //pthread_mutex_unlock(&readWriteMutex);
     }
 }
