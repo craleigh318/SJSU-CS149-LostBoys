@@ -106,7 +106,7 @@ void runParent(Child *pipes) {
     
     //Temporary while condition, change when we get timing solved
     //Currently exiting when all children ports are read from
-    int count = 0;
+    //int count = 0;
     while(!finished) {
         //pthread_mutex_lock(&readWriteMutex);
         reads = readfds;
@@ -117,7 +117,7 @@ void runParent(Child *pipes) {
         activity = select(max_fd + 1, &reads, NULL, NULL, &tv);
         if(activity == 0) {
             printf("Timed out\n");
-            count++;
+            //count++;
         }
         else if(activity < 0) {
             printf("Error On Select\n");
@@ -132,9 +132,9 @@ void runParent(Child *pipes) {
                     if(nbytes > 0) {
                         char timestampedBuffer[STRING_SIZE];
                         createTimestampMessage(timestampedBuffer, readBuffer);
-                        //printf("%s", timestampedBuffer);
+                        printf("%s", timestampedBuffer);
                         writeToFile(timestampedBuffer);
-                        count++;
+                        //count++;
                     }
                 }
             }
