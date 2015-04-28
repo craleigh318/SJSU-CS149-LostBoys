@@ -34,14 +34,14 @@ void createTimestamp(char *buf) {
 }
 
 void createMessage(char * passString, Child * child) {
-    sprintf(passString, "Child %i message %i", child->id, child->numMessages);
+    sprintf(passString, "Child %i message %i\n", child->id, child->numMessages);
     ++(child->numMessages);
 }
 
 void createTimestampMessage(char * passString, char * originalMessage) {
     char timestamp[128];
     createTimestamp(timestamp);
-    sprintf(passString, "%s: %s\n", timestamp, originalMessage);
+    sprintf(passString, "%s: %s", timestamp, originalMessage);
 }
 
 void runChild(Child * child) {
@@ -122,7 +122,9 @@ void runParent(Child *pipes) {
                 if(FD_ISSET(pipes[i].pipe[READ], &reads)) {
                     nbytes = read(pipes[i].pipe[READ], readBuffer, sizeof(readBuffer));
                     if(nbytes > 0) {
-                        printf("%s", readBuffer);
+                        char timestampedBuffer[128];
+                        createTimestampMessage(timestampedBuffer, readBuffer);
+                        printf("%s", timestampedBuffer);
                         //writeToFile(readBuffer);
                         count++;
                     }
